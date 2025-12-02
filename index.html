@@ -190,8 +190,8 @@
                      <button onclick="document.getElementById('projects').scrollIntoView({behavior: 'smooth'})" class="px-6 py-3 bg-white text-black font-bold rounded-full hover:bg-accent transition-colors flex items-center gap-2 text-sm z-20 relative">
                        <span data-i18n="btn_view_work">View Work</span> <i data-lucide="arrow-down" class="w-4 h-4"></i>
                      </button>
-                     <!-- Ensure you place cv.pdf in the 'assets' folder -->
-                     <a href="assets/cv.pdf" download class="px-6 py-3 bg-transparent border border-zinc-700 text-white font-bold rounded-full hover:bg-zinc-800 transition-colors flex items-center gap-2 text-sm z-20 relative">
+                     <!-- IMPORTANT: Create an 'assets' folder and place 'cv.pdf' inside it for this to work -->
+                     <a href="assets/cv.pdf" download="Ritchie_Olthuis_CV.pdf" target="_blank" class="px-6 py-3 bg-transparent border border-zinc-700 text-white font-bold rounded-full hover:bg-zinc-800 transition-colors flex items-center gap-2 text-sm z-20 relative">
                        <span data-i18n="btn_download_cv">Download CV</span> <i data-lucide="download" class="w-4 h-4"></i>
                      </a>
                    </div>
@@ -203,10 +203,9 @@
                 <div class="spotlight-overlay"></div>
                 <!-- 
                   CHANGE IMAGE: 
-                  For local image: src="assets/your-photo.jpg" 
-                  Current: Unsplash URL
+                  Using direct LinkedIn URL as requested by user.
                 -->
-                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=2574&auto=format&fit=crop" alt="Ritchie Olthuis" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-80 group-hover:opacity-100">
+                <img src="https://media.licdn.com/dms/image/v2/D4E03AQGS-5HiPlo3Hg/profile-displayphoto-crop_800_800/B4EZi_U3r2GUAI-/0/1755556576505?e=1766016000&v=beta&t=pHkswNMeFh130hQfxFgE3XmpkE7IAm1aCXVW7-HgJww" alt="Ritchie Olthuis" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-80 group-hover:opacity-100 grayscale group-hover:grayscale-0">
                 <div class="absolute inset-0 bg-gradient-to-t from-[#121212] via-transparent to-transparent opacity-80 pointer-events-none"></div>
                 <div class="absolute bottom-6 left-6 pointer-events-none">
                    <div class="text-accent font-mono text-xs mb-1" data-i18n="based_in">BASED IN</div>
@@ -216,20 +215,16 @@
                 </div>
             </div>
 
-            <!-- 3. Stats Block -->
+            <!-- 3. Stats Block (Updated per request) -->
             <div class="bento-card col-span-1 md:col-span-2 lg:col-span-2 p-6 flex flex-col justify-center gap-4 bg-[#151515] group">
                 <div class="spotlight-overlay"></div>
                 <div class="flex justify-between items-center border-b border-zinc-800 pb-4 group-hover:border-zinc-700 transition-colors">
                     <span class="text-zinc-500 text-sm uppercase font-mono" data-i18n="stat_edu">Education</span>
-                    <span class="text-white font-bold">University of Twente</span>
-                 </div>
-                 <div class="flex justify-between items-center border-b border-zinc-800 pb-4 group-hover:border-zinc-700 transition-colors">
-                    <span class="text-zinc-500 text-sm uppercase font-mono" data-i18n="stat_degree">Degree</span>
-                    <span class="text-white font-bold">Pre-master BA</span>
+                    <span class="text-white font-bold">Windesheim</span>
                  </div>
                  <div class="flex justify-between items-center">
-                    <span class="text-zinc-500 text-sm uppercase font-mono" data-i18n="stat_grade">Avg. Grade</span>
-                    <span class="text-accent font-bold text-lg">7.5</span>
+                    <span class="text-zinc-500 text-sm uppercase font-mono" data-i18n="stat_degree">Degree</span>
+                    <span class="text-white font-bold">Bachelor Commercial Economics</span>
                  </div>
             </div>
 
@@ -242,6 +237,9 @@
                     </a>
                     <a href="mailto:ritchieolthuis@gmail.com" class="w-12 h-12 rounded-full bg-zinc-900 border border-zinc-800 flex items-center justify-center text-zinc-400 hover:text-black hover:bg-accent hover:border-accent transition-all duration-300 relative">
                         <i data-lucide="mail" class="w-5 h-5"></i>
+                    </a>
+                    <a href="https://wa.me/31641415887" target="_blank" class="w-12 h-12 rounded-full bg-zinc-900 border border-zinc-800 flex items-center justify-center text-zinc-400 hover:text-black hover:bg-accent hover:border-accent transition-all duration-300 relative" title="WhatsApp">
+                        <i data-lucide="message-circle" class="w-5 h-5"></i>
                     </a>
                 </div>
                 <div class="text-right">
@@ -354,7 +352,7 @@
                                 <h4 class="text-lg font-bold text-white" data-i18n="edu_2_school">Windesheim</h4>
                                 <span class="text-xs font-mono text-zinc-500 bg-zinc-900 px-2 py-1 rounded border border-zinc-800">Sep 2022 - Jul 2026</span>
                             </div>
-                            <div class="text-sm text-zinc-400 mb-2 font-medium">Bachelor's degree, Commerciële Economie</div>
+                            <div class="text-sm text-zinc-400 mb-2 font-medium">Bachelor's degree, Commercial Economics</div>
                             <p class="text-sm text-zinc-500 leading-relaxed max-w-2xl" data-i18n="edu_2_desc">Developing skills in innovative research, strategic advice, design thinking, and commercial awareness. <br> Minor: Financiële Besluitvorming</p>
                         </div>
                          <!-- Edu 3 -->
@@ -362,10 +360,24 @@
                             <div class="absolute left-[-5px] top-1 w-2.5 h-2.5 rounded-full bg-zinc-700"></div>
                             <div class="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2 mb-2">
                                 <h4 class="text-lg font-bold text-white" data-i18n="edu_3_school">Windesheim</h4>
-                                <span class="text-xs font-mono text-zinc-500 bg-zinc-900 px-2 py-1 rounded border border-zinc-800">Sep 2022 - Jul 2023</span>
+                                <div class="flex items-center gap-2">
+                                    <span class="text-xs font-mono text-zinc-500 bg-zinc-900 px-2 py-1 rounded border border-zinc-800">Sep 2022 - Jul 2023</span>
+                                    <a href="https://www.linkedin.com/posts/ritchieolthuis_afgelopen-maandag-heb-ik-mijn-propedeuse-activity-7115429316821147648-2I83/?originalSubdomain=nl" target="_blank" class="text-zinc-500 hover:text-[#0077b5] transition-colors" title="Bekijk Post op LinkedIn">
+                                        <i data-lucide="linkedin" class="w-4 h-4"></i>
+                                    </a>
+                                </div>
                             </div>
-                            <div class="text-sm text-zinc-400 mb-2 font-medium">Propedeuse, Commerciële Economie</div>
+                            <div class="text-sm text-zinc-400 mb-2 font-medium">Propedeuse, Commercial Economics</div>
                             <div class="mt-3 text-xs font-bold text-accent"><span data-i18n="edu_1_grade_label">Average:</span> 7.5</div>
+                        </div>
+                         <!-- Edu 4 -->
+                         <div class="relative pl-8 border-l border-zinc-800 group-hover:border-zinc-700 transition-colors">
+                            <div class="absolute left-[-5px] top-1 w-2.5 h-2.5 rounded-full bg-zinc-700"></div>
+                            <div class="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2 mb-2">
+                                <h4 class="text-lg font-bold text-white" data-i18n="edu_4_school">ROC van Twente</h4>
+                                <span class="text-xs font-mono text-zinc-500 bg-zinc-900 px-2 py-1 rounded border border-zinc-800">2018 - 2020</span>
+                            </div>
+                            <div class="text-sm text-zinc-400 mb-2 font-medium" data-i18n="edu_4_degree">Assistant Manager International Trade</div>
                         </div>
                     </div>
                 </div>
@@ -378,95 +390,193 @@
                         <i data-lucide="briefcase" class="text-zinc-600 group-hover:text-white transition-colors"></i>
                     </div>
                     
-                    <div class="group/item">
-                      <div class="flex flex-col md:flex-row md:items-center justify-between gap-2 mb-4">
-                        <div>
-                          <h4 class="text-xl font-bold text-white group-hover/item:text-accent transition-colors" data-i18n="exp_1_role">Research & Development (R&D)</h4>
-                          <div class="text-zinc-400 text-sm">Unica Building Services • Hoevelaken, Gelderland (Hybrid)</div>
+                    <div class="space-y-10">
+                        <!-- Exp 1: Unica -->
+                        <div class="group/item relative pl-4 border-l-2 border-zinc-800 hover:border-accent transition-colors">
+                          <div class="flex flex-col md:flex-row md:items-center justify-between gap-2 mb-2">
+                            <div>
+                                <div class="flex items-center gap-2">
+                                    <h4 class="text-xl font-bold text-white group-hover/item:text-accent transition-colors" data-i18n="exp_1_role">Research & Development (R&D)</h4>
+                                </div>
+                                <div class="text-zinc-400 text-sm flex items-center gap-2">
+                                    Unica Building Services • Hoevelaken
+                                    <a href="https://www.unica.nl/over-ons/onze-bedrijven/unica-building-services" target="_blank" class="text-zinc-500 hover:text-white transition-colors" title="Unica Website">
+                                        <i data-lucide="external-link" class="w-4 h-4"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <span class="text-xs font-mono text-zinc-500 border border-zinc-800 px-3 py-1 rounded-full">Aug 2023 - Jan 2024</span>
+                          </div>
+                          <p class="text-zinc-400 text-sm leading-relaxed" data-i18n="exp_1_desc">
+                            Strategic research into new market opportunities and sustainable business models.
+                          </p>
                         </div>
-                        <span class="text-xs font-mono text-zinc-500 border border-zinc-800 px-3 py-1 rounded-full">Aug 2023 - Jan 2024</span>
-                      </div>
-                      <p class="text-zinc-400 text-sm leading-relaxed mb-4 whitespace-pre-line border-l-2 border-zinc-800 pl-4 group-hover/item:border-accent transition-colors" data-i18n="exp_1_desc">
-                        Conducted in-depth strategic analysis and innovation development. Responsible for identifying SWOT elements, creating confrontation matrices, and developing comprehensive business models focusing on economic, ecological, and social aspects.
-                      </p>
-                      <div class="flex flex-wrap gap-2">
-                         <span class="text-[10px] uppercase font-bold text-zinc-500 bg-zinc-900 px-2 py-1 rounded">Design Thinking</span>
-                         <span class="text-[10px] uppercase font-bold text-zinc-500 bg-zinc-900 px-2 py-1 rounded">SWOT Analysis</span>
-                         <span class="text-[10px] uppercase font-bold text-zinc-500 bg-zinc-900 px-2 py-1 rounded">Business Model Canvas</span>
-                      </div>
+
+                        <!-- Exp 2: Inncempro -->
+                        <div class="group/item relative pl-4 border-l-2 border-zinc-800 hover:border-accent transition-colors">
+                          <div class="flex flex-col md:flex-row md:items-center justify-between gap-2 mb-2">
+                            <div>
+                              <h4 class="text-xl font-bold text-white group-hover/item:text-accent transition-colors" data-i18n="exp_2_role">Intern International Trade</h4>
+                              <div class="text-zinc-400 text-sm flex items-center gap-2">
+                                  Inncempro • Hengelo
+                                  <a href="https://www.inncempro.nl/" target="_blank" class="text-zinc-500 hover:text-white transition-colors" title="Inncempro Website">
+                                      <i data-lucide="external-link" class="w-4 h-4"></i>
+                                  </a>
+                              </div>
+                            </div>
+                            <span class="text-xs font-mono text-zinc-500 border border-zinc-800 px-3 py-1 rounded-full">Apr 2019 - Jun 2020</span>
+                          </div>
+                          <p class="text-zinc-400 text-sm leading-relaxed mb-3" data-i18n="exp_2_desc">
+                            Focused on building relationships with architects and contractors. Staffed the stand at the Ahoy fair (Rotterdam) and managed personalized B2B mailings to generate leads.
+                          </p>
+                        </div>
+
+                        <!-- Exp 3: Delfins -->
+                        <div class="group/item relative pl-4 border-l-2 border-zinc-800 hover:border-accent transition-colors">
+                          <div class="flex flex-col md:flex-row md:items-center justify-between gap-2 mb-2">
+                            <div>
+                              <h4 class="text-xl font-bold text-white group-hover/item:text-accent transition-colors" data-i18n="exp_3_role">Intern International Trade</h4>
+                              <div class="text-zinc-400 text-sm flex items-center gap-2">
+                                  Delfins Beach Resort • Bonaire
+                                  <a href="https://www.delfinsbeachresort.com/nl" target="_blank" class="text-zinc-500 hover:text-white transition-colors" title="Delfins Website">
+                                      <i data-lucide="external-link" class="w-4 h-4"></i>
+                                  </a>
+                              </div>
+                            </div>
+                            <span class="text-xs font-mono text-zinc-500 border border-zinc-800 px-3 py-1 rounded-full">Mar 2020 - Apr 2020</span>
+                          </div>
+                          <p class="text-zinc-400 text-sm leading-relaxed mb-3" data-i18n="exp_3_desc">
+                             Gained international experience across various departments: Real Estate (via Molenbeek Invest), Maintenance, Front Office, and kitchen operations at Brass Boer.
+                          </p>
+                        </div>
+                    </div>
+
+                    <!-- Other Roles Compact List -->
+                    <div class="mt-8 pt-6 border-t border-zinc-800">
+                        <h4 class="text-sm font-mono uppercase text-zinc-500 mb-4" data-i18n="exp_other_title">Previous Roles</h4>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="bg-zinc-900/50 p-3 rounded-lg border border-zinc-800">
+                                <div class="text-white font-bold text-sm">Hammer Techniek</div>
+                                <div class="text-zinc-500 text-xs flex justify-between">
+                                    <span data-i18n="role_temp">Temporary Worker</span>
+                                    <span>2021 - 2022</span>
+                                </div>
+                            </div>
+                            <div class="bg-zinc-900/50 p-3 rounded-lg border border-zinc-800">
+                                <div class="text-white font-bold text-sm">Roosdom Tijhuis</div>
+                                <div class="text-zinc-500 text-xs flex justify-between">
+                                    <span data-i18n="role_temp">Temporary Worker</span>
+                                    <span>2021 - 2022</span>
+                                </div>
+                            </div>
+                            <div class="bg-zinc-900/50 p-3 rounded-lg border border-zinc-800">
+                                <div class="text-white font-bold text-sm">Braamhaar Ankoné</div>
+                                <div class="text-zinc-500 text-xs flex justify-between">
+                                    <span data-i18n="role_landscaper">Landscaper</span>
+                                    <span>2020 - 2021</span>
+                                </div>
+                            </div>
+                            <div class="bg-zinc-900/50 p-3 rounded-lg border border-zinc-800">
+                                <div class="text-white font-bold text-sm">Coop & Albert Heijn</div>
+                                <div class="text-zinc-500 text-xs flex justify-between">
+                                    <span data-i18n="role_retail">Retail Staff</span>
+                                    <span>2016 - 2020</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Projects -->
-                <div id="projects" class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div class="md:col-span-2 flex items-center justify-between py-4">
-                        <h3 class="text-2xl font-display font-bold text-white uppercase" data-i18n="proj_title">Selected Projects</h3>
-                        <a href="#" class="text-xs font-mono text-zinc-500 hover:text-white flex items-center gap-1 transition-colors">
-                            <span data-i18n="proj_view_all">VIEW ALL</span> <i data-lucide="arrow-up-right" class="w-3 h-3"></i>
-                        </a>
-                    </div>
+            </div>
+        </div>
 
-                    <!-- Project 1: Vitens -->
-                    <div class="bento-card flex flex-col h-full group">
-                        <div class="spotlight-overlay"></div>
-                        <div class="aspect-[16/9] w-full overflow-hidden border-b border-zinc-800 relative group-hover:border-zinc-700 transition-colors">
-                            <!-- 
-                              CHANGE IMAGE:
-                              For local image: src="assets/vitens_strategie_duurzaam.jpg"
-                            -->
-                            <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2670&auto=format&fit=crop" alt="Vitens Project" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-70 group-hover:opacity-100">
+        <!-- Projects Slideshow (Moved out of grid for full width) -->
+        <div id="projects" class="grid grid-cols-1 gap-6 mt-4">
+            <div class="flex items-center justify-between py-4">
+                <h3 class="text-2xl font-display font-bold text-white uppercase" data-i18n="proj_title">Selected Projects</h3>
+                <a href="#" class="text-xs font-mono text-zinc-500 hover:text-white flex items-center gap-1 transition-colors">
+                    <span data-i18n="proj_view_all">VIEW ALL</span> <i data-lucide="arrow-up-right" class="w-3 h-3"></i>
+                </a>
+            </div>
+
+            <!-- Carousel Container - Adjusted height for wider look -->
+            <div class="relative bento-card p-0 overflow-hidden group h-auto md:h-[420px]">
+                <div class="spotlight-overlay"></div>
+                
+                <!-- Navigation Buttons -->
+                <button id="prevBtn" class="absolute left-4 top-1/2 -translate-y-1/2 z-30 w-10 h-10 rounded-full bg-zinc-900/80 border border-zinc-700 text-white flex items-center justify-center hover:bg-accent hover:text-black transition-all hover:scale-110">
+                    <i data-lucide="chevron-left" class="w-6 h-6"></i>
+                </button>
+                <button id="nextBtn" class="absolute right-4 top-1/2 -translate-y-1/2 z-30 w-10 h-10 rounded-full bg-zinc-900/80 border border-zinc-700 text-white flex items-center justify-center hover:bg-accent hover:text-black transition-all hover:scale-110">
+                    <i data-lucide="chevron-right" class="w-6 h-6"></i>
+                </button>
+
+                <!-- Track -->
+                <div id="carousel-track" class="flex transition-transform duration-500 ease-in-out h-full">
+                    
+                    <!-- Slide 1: Vitens -->
+                    <div class="project-slide w-full flex-shrink-0 flex flex-col md:flex-row h-full">
+                        <!-- Image Side -->
+                        <div class="w-full md:w-1/2 h-64 md:h-full relative border-b md:border-b-0 md:border-r border-zinc-800">
+                            <img src="https://www.h2owaternetwerk.nl/images/2020/December/vitens_strategie_duurzaam.jpg" alt="Vitens Project" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700">
+                            <a href="https://www.vitens.nl/Zakelijk" target="_blank" class="absolute top-4 right-4 p-3 bg-white text-black rounded-full hover:scale-110 transition-transform">
+                                <i data-lucide="external-link" class="w-5 h-5"></i>
+                            </a>
                         </div>
-                        <div class="p-6 flex flex-col flex-grow">
-                            <h3 class="text-xl font-bold text-white font-display uppercase tracking-tight group-hover:text-accent transition-colors mb-3" data-i18n="proj_1_title">Vitens: Corporate Entity Strategy</h3>
-                            <p class="text-zinc-400 text-sm leading-relaxed mb-6 flex-grow" data-i18n="proj_1_desc">Strategic research into the formation of a new organizational entity specifically targeting the large-scale business market.</p>
-                            <div class="flex flex-wrap gap-2 mt-auto">
-                                <span class="px-3 py-1 text-[10px] uppercase tracking-wider font-bold rounded-full bg-zinc-900 text-zinc-400 border border-zinc-800">Market Analysis</span>
-                                <span class="px-3 py-1 text-[10px] uppercase tracking-wider font-bold rounded-full bg-zinc-900 text-zinc-400 border border-zinc-800">Org. Structuring</span>
+                        <!-- Text Side -->
+                        <div class="w-full md:w-1/2 p-6 md:p-10 flex flex-col justify-center bg-[#121212]">
+                            <h3 class="text-xl font-bold text-white font-display uppercase tracking-tight mb-4" data-i18n="proj_1_title">Vitens, Grootzakelijke markt: Market Needs, Positioning & Organisational Direction</h3>
+                            <div class="overflow-y-auto pr-2 custom-scrollbar flex-grow max-h-[200px] md:max-h-none">
+                                <p class="text-zinc-400 text-sm leading-relaxed mb-6" data-i18n="proj_1_desc">For Vitens, I conducted an in-depth market study to determine how a new Water-as-a-Service division should be positioned, structured, and brought to market. The research examined which parties in the Netherlands offer similar services, the differences in propositions, and how Vitens can distinguish itself through circular water solutions and water stewardship. I analysed target segments, assessed customer needs, and identified which services should (and should not yet) be included in the WaaS portfolio. The study also explored naming, branding and organisational form, and evaluated how Vitens can bridge from its current service boundary to a commercial WaaS entity that contributes to a more resilient and sustainable water system. These insights provide strategic support for Vitens in shaping the future of its large business segment.</p>
+                            </div>
+                            <div class="flex flex-wrap gap-2 mt-4 pt-4 border-t border-zinc-800">
+                                <span class="px-3 py-1 text-[10px] uppercase tracking-wider font-bold rounded-full bg-zinc-900 text-zinc-400 border border-zinc-800">Market Strategy</span>
+                                <span class="px-3 py-1 text-[10px] uppercase tracking-wider font-bold rounded-full bg-zinc-900 text-zinc-400 border border-zinc-800">Water-as-a-Service</span>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Project 2: Perron038 -->
-                    <div class="bento-card flex flex-col h-full group">
-                        <div class="spotlight-overlay"></div>
-                         <div class="aspect-[16/9] w-full overflow-hidden border-b border-zinc-800 relative group-hover:border-zinc-700 transition-colors">
-                             <!-- 
-                              CHANGE IMAGE:
-                              For local image: src="assets/perron038_robotarm.jpg"
-                            -->
-                            <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2670&auto=format&fit=crop" alt="Perron038 Project" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-70 group-hover:opacity-100">
+                    <!-- Slide 2: Perron038 -->
+                    <div class="project-slide w-full flex-shrink-0 flex flex-col md:flex-row h-full">
+                        <div class="w-full md:w-1/2 h-64 md:h-full relative border-b md:border-b-0 md:border-r border-zinc-800">
+                            <img src="https://smartindustry.nl/hs-fs/hubfs/news/Factory_NEXT_Perron038_Robotopstelling_Coldspray.jpg?width=2048&height=1365&name=Factory_NEXT_Perron038_Robotopstelling_Coldspray.jpg" alt="Perron038 Project" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700">
+                            <a href="https://www.perron038.nl/factory-next/" target="_blank" class="absolute top-4 right-4 p-3 bg-white text-black rounded-full hover:scale-110 transition-transform">
+                                <i data-lucide="external-link" class="w-5 h-5"></i>
+                            </a>
                         </div>
-                        <div class="p-6 flex flex-col flex-grow">
-                            <h3 class="text-xl font-bold text-white font-display uppercase tracking-tight group-hover:text-accent transition-colors mb-3" data-i18n="proj_2_title">Perron038: Factory Next Activation</h3>
-                            <p class="text-zinc-400 text-sm leading-relaxed mb-6 flex-grow" data-i18n="proj_2_desc">Developed an activation strategy for 'Factory Next' to transform the location into a bustling testing ground.</p>
-                            <div class="flex flex-wrap gap-2 mt-auto">
-                                <span class="px-3 py-1 text-[10px] uppercase tracking-wider font-bold rounded-full bg-zinc-900 text-zinc-400 border border-zinc-800">Innovation</span>
-                                <span class="px-3 py-1 text-[10px] uppercase tracking-wider font-bold rounded-full bg-zinc-900 text-zinc-400 border border-zinc-800">Location Strategy</span>
+                        <div class="w-full md:w-1/2 p-6 md:p-10 flex flex-col justify-center bg-[#121212]">
+                            <h3 class="text-xl font-bold text-white font-display uppercase tracking-tight mb-4" data-i18n="proj_2_title">Perron038, Factory NEXT: Strategic Commercial Positioning</h3>
+                            <div class="overflow-y-auto pr-2 custom-scrollbar flex-grow max-h-[200px] md:max-h-none">
+                                <p class="text-zinc-400 text-sm leading-relaxed mb-6" data-i18n="proj_2_desc">At Perron038, I explored how Factory NEXT can be commercially positioned and made attractive for industrial partners. The research focused on determining the market potential for a shared innovation facility, identifying which companies and segments would adopt a “test-before-invest” model, and analysing competing initiatives in the Dutch manufacturing landscape. I evaluated how Factory NEXT’s labs, technologies and expertise could be translated into clear value propositions and developed strategic recommendations on messaging, target segments, and revenue models. By combining internal and external analysis with the Design Thinking cycle and customer validation, I delivered insights that support Perron038 in strengthening Factory NEXT as a commercially viable and distinctive innovation hub.</p>
+                            </div>
+                            <div class="flex flex-wrap gap-2 mt-4 pt-4 border-t border-zinc-800">
+                                <span class="px-3 py-1 text-[10px] uppercase tracking-wider font-bold rounded-full bg-zinc-900 text-zinc-400 border border-zinc-800">Innovation Hub</span>
+                                <span class="px-3 py-1 text-[10px] uppercase tracking-wider font-bold rounded-full bg-zinc-900 text-zinc-400 border border-zinc-800">Design Thinking</span>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Project 3: Unica -->
-                    <div class="bento-card flex flex-col h-full group">
-                        <div class="spotlight-overlay"></div>
-                         <div class="aspect-[16/9] w-full overflow-hidden border-b border-zinc-800 relative group-hover:border-zinc-700 transition-colors">
-                             <!-- 
-                              CHANGE IMAGE:
-                              For local image: src="assets/unica_technicians.jpg"
-                            -->
-                            <img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?q=80&w=2669&auto=format&fit=crop" alt="Unica Project" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-70 group-hover:opacity-100">
+                    <!-- Slide 3: Unica -->
+                    <div class="project-slide w-full flex-shrink-0 flex flex-col md:flex-row h-full">
+                        <div class="w-full md:w-1/2 h-64 md:h-full relative border-b md:border-b-0 md:border-r border-zinc-800">
+                            <img src="https://stapintechniek.nl/wp-content/uploads/2025/10/7r31189-scaled.jpg" alt="Unica Project" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700">
+                            <a href="https://www.unica.nl/over-ons/onze-bedrijven/unica-building-services" target="_blank" class="absolute top-4 right-4 p-3 bg-white text-black rounded-full hover:scale-110 transition-transform">
+                                <i data-lucide="external-link" class="w-5 h-5"></i>
+                            </a>
                         </div>
-                        <div class="p-6 flex flex-col flex-grow">
-                            <h3 class="text-xl font-bold text-white font-display uppercase tracking-tight group-hover:text-accent transition-colors mb-3" data-i18n="proj_3_title">Unica: Sustainable Business Model</h3>
-                            <p class="text-zinc-400 text-sm leading-relaxed mb-6 flex-grow" data-i18n="proj_3_desc">Applied Design Thinking to develop a Triple Bottom Line business model (Economic, Ecological, Social).</p>
-                            <div class="flex flex-wrap gap-2 mt-auto">
+                        <div class="w-full md:w-1/2 p-6 md:p-10 flex flex-col justify-center bg-[#121212]">
+                            <h3 class="text-xl font-bold text-white font-display uppercase tracking-tight mb-4" data-i18n="proj_3_title">Unica: Sustainable Business Model</h3>
+                            <div class="overflow-y-auto pr-2 custom-scrollbar flex-grow max-h-[200px] md:max-h-none">
+                                <p class="text-zinc-400 text-sm leading-relaxed mb-6" data-i18n="proj_3_desc">Conducted in-depth strategic analysis and innovation development. Responsible for identifying SWOT elements, creating confrontation matrices, and developing comprehensive business models focusing on economic, ecological, and social aspects.</p>
+                            </div>
+                            <div class="flex flex-wrap gap-2 mt-4 pt-4 border-t border-zinc-800">
                                 <span class="px-3 py-1 text-[10px] uppercase tracking-wider font-bold rounded-full bg-zinc-900 text-zinc-400 border border-zinc-800">Sustainability</span>
                                 <span class="px-3 py-1 text-[10px] uppercase tracking-wider font-bold rounded-full bg-zinc-900 text-zinc-400 border border-zinc-800">Design Thinking</span>
                             </div>
                         </div>
                     </div>
-                </div>
 
+                </div>
             </div>
         </div>
 
@@ -483,8 +593,9 @@
                         Open to discussing new opportunities, strategic collaborations, or sustainability initiatives.
                     </p>
                     <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-                        <a href="mailto:ritchieolthuis@gmail.com" class="px-8 py-4 bg-accent text-black font-bold rounded-full hover:bg-[#b3e600] transition-colors min-w-[200px]" data-i18n="btn_email">Send Email</a>
-                        <a href="#" class="px-8 py-4 bg-white text-black font-bold rounded-full hover:bg-zinc-200 transition-colors min-w-[200px] flex items-center justify-center gap-2">
+                        <a href="mailto:ritchieolthuis@gmail.com?subject=Contact%20via%20Portfolio" class="px-8 py-4 bg-accent text-black font-bold rounded-full hover:bg-[#b3e600] transition-colors min-w-[200px]" data-i18n="btn_email">Send Email</a>
+                        <!-- Google Calendar Invite Link: Opens calendar, adds Ritchie as guest, pre-fills subject -->
+                        <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Intro+Call+with+Ritchie+Olthuis&details=Invitation+via+Portfolio&add=ritchieolthuis@gmail.com" target="_blank" class="px-8 py-4 bg-white text-black font-bold rounded-full hover:bg-zinc-200 transition-colors min-w-[200px] flex items-center justify-center gap-2">
                              <i data-lucide="calendar" class="w-4 h-4"></i> <span data-i18n="btn_call">Schedule Call</span>
                         </a>
                         <a href="https://www.linkedin.com/in/ritchieolthuis" target="_blank" class="px-8 py-4 bg-zinc-900 text-white font-bold rounded-full border border-zinc-800 hover:border-zinc-600 transition-colors min-w-[200px] flex items-center justify-center gap-2">
@@ -503,7 +614,7 @@
         </div>
     </div>
 
-    <!-- Floating Call Button -->
+    <!-- Floating Call Button - Links to dialer -->
     <a href="tel:0641415887" class="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full shadow-[0_0_20px_rgba(204,255,0,0.4)] flex items-center justify-center border border-zinc-800 transition-all duration-300 hover:scale-105 active:scale-95 bg-accent text-black hover:bg-[#b3e600]">
         <i data-lucide="phone" class="w-6 h-6"></i>
     </a>
@@ -525,7 +636,33 @@
             });
         });
 
-        // --- 3. Language Logic ---
+        // --- 3. Projects Carousel Logic ---
+        let currentSlide = 0;
+        const track = document.getElementById('carousel-track');
+        const slides = document.querySelectorAll('.project-slide');
+        const totalSlides = slides.length;
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+
+        function updateCarousel() {
+            if(track) {
+                track.style.transform = `translateX(-${currentSlide * 100}%)`;
+            }
+        }
+
+        if(prevBtn && nextBtn && track) {
+            nextBtn.addEventListener('click', () => {
+                currentSlide = (currentSlide + 1) % totalSlides;
+                updateCarousel();
+            });
+
+            prevBtn.addEventListener('click', () => {
+                currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+                updateCarousel();
+            });
+        }
+
+        // --- 4. Language Logic ---
         const translations = {
             en: {
                 nav_about: "About",
@@ -559,17 +696,29 @@
                 edu_2_school: "Windesheim",
                 edu_2_desc: "Developing skills in innovative research, strategic advice, design thinking, and commercial awareness. <br> Minor: Financial Decision Making",
                 edu_3_school: "Windesheim",
+                edu_4_school: "ROC van Twente",
+                edu_4_degree: "Assistant Manager International Trade",
                 exp_title: "Experience",
                 exp_1_role: "Research & Development (R&D)",
-                exp_1_desc: "Conducted in-depth strategic analysis and innovation development. Responsible for identifying SWOT elements, creating confrontation matrices, and developing comprehensive business models focusing on economic, ecological, and social aspects.",
+                exp_1_desc: "Part-time · Hybrid<br><br>Main tasks:<br>• Identifying strengths, weaknesses, opportunities, and threats<br>• Conducting SWOT analysis and confrontation matrix<br>• Developing persona and customer journey<br>• Creating Business Model Canvas on economic, ecological, and social aspects<br>• Developing strategies to enter new (international) markets<br>• Executing Design Thinking (innovation process) and developing concrete ideas<br>• Conducting thorough competitive analysis<br>• Analyzing impact of trends/developments on micro, macro, and meso levels",
+                exp_2_role: "Intern International Trade",
+                exp_2_desc: "Focused on building relationships with architects and contractors. Staffed the stand at the Ahoy fair (Rotterdam) and managed personalized B2B mailings to generate leads.",
+                exp_3_role: "Intern International Trade",
+                exp_3_desc: "Gained international experience across various departments: Real Estate (via Molenbeek Invest), Maintenance, Front Office, and kitchen operations at Brass Boer.",
+                exp_other_title: "Previous Roles",
+                role_assist_manager: "Assistant Manager Int. Trade",
+                role_agency: "Agency Worker",
+                role_temp: "Temporary Worker",
+                role_landscaper: "Landscaper",
+                role_retail: "Retail Staff",
                 proj_title: "Selected Projects",
                 proj_view_all: "VIEW ALL",
-                proj_1_title: "Vitens: Corporate Entity Strategy",
-                proj_1_desc: "Strategic research into the formation of a new organizational entity specifically targeting the large-scale business market.",
-                proj_2_title: "Perron038: Factory Next Activation",
-                proj_2_desc: "Developed an activation strategy for 'Factory Next' to transform the location into a bustling testing ground.",
+                proj_1_title: "Vitens, Grootzakelijke markt: Market Needs, Positioning & Organisational Direction",
+                proj_1_desc: "For Vitens, I conducted an in-depth market study to determine how a new Water-as-a-Service division should be positioned, structured, and brought to market. The research examined which parties in the Netherlands offer similar services, the differences in propositions, and how Vitens can distinguish itself through circular water solutions and water stewardship. I analysed target segments, assessed customer needs, and identified which services should (and should not yet) be included in the WaaS portfolio. The study also explored naming, branding and organisational form, and evaluated how Vitens can bridge from its current service boundary to a commercial WaaS entity that contributes to a more resilient and sustainable water system. These insights provide strategic support for Vitens in shaping the future of its large business segment.",
+                proj_2_title: "Perron038, Factory NEXT: Strategic Commercial Positioning",
+                proj_2_desc: "At Perron038, I explored how Factory NEXT can be commercially positioned and made attractive for industrial partners. The research focused on determining the market potential for a shared innovation facility, identifying which companies and segments would adopt a “test-before-invest” model, and analysing competing initiatives in the Dutch manufacturing landscape. I evaluated how Factory NEXT’s labs, technologies and expertise could be translated into clear value propositions and developed strategic recommendations on messaging, target segments, and revenue models. By combining internal and external analysis with the Design Thinking cycle and customer validation, I delivered insights that support Perron038 in strengthening Factory NEXT as a commercially viable and distinctive innovation hub.",
                 proj_3_title: "Unica: Sustainable Business Model",
-                proj_3_desc: "Applied Design Thinking to develop a Triple Bottom Line business model (Economic, Ecological, Social).",
+                proj_3_desc: "Conducted in-depth strategic analysis and innovation development. Responsible for identifying SWOT elements, creating confrontation matrices, and developing comprehensive business models focusing on economic, ecological, and social aspects.",
                 contact_title: "Let's work <span class=\"text-zinc-600 transition-colors group-hover:text-zinc-400\">Together</span>",
                 contact_desc: "Open to discussing new opportunities, strategic collaborations, or sustainability initiatives.",
                 btn_email: "Send Email",
@@ -607,17 +756,29 @@
                 edu_2_school: "Windesheim",
                 edu_2_desc: "Ontwikkelen van vaardigheden in innovatief onderzoek, strategisch advies, design thinking en commercieel bewustzijn. <br> Minor: Financiële Besluitvorming",
                 edu_3_school: "Windesheim",
+                edu_4_school: "ROC van Twente",
+                edu_4_degree: "Assistent Manager Internationale Handel",
                 exp_title: "Ervaring",
                 exp_1_role: "Onderzoek & Ontwikkeling (R&D)",
-                exp_1_desc: "Diepgaande strategische analyse en innovatieontwikkeling uitgevoerd. Verantwoordelijk voor het identificeren van SWOT-elementen, het opstellen van confrontatiematrices en het ontwikkelen van integrale bedrijfsmodellen met focus op economische, ecologische en sociale aspecten.",
+                exp_1_desc: "Part-time · Hybrid<br><br>Voornaamste taken:<br>• Sterktes, zwaktes, kansen en bedreigingen identificeren<br>• SWOT-analyse en confrontatiematrix uitvoeren<br>• Persona en klantreis ontwikkelen<br>• Businessmodelcanvas op economisch, ecologisch en sociaal aspect opstellen<br>• Strategieën ontwikkelen om nieuwe (internationale) markten te betreden<br>• Design Thinking (innovatieproces) doorlopen en concrete ideeën ontwikkelen<br>• Gedegen concurrentieanalyse uitvoeren<br>• Invloed van trends en ontwikkelingen op micro-, macro- en mesoniveau analyseren",
+                exp_2_role: "Stagiair Internationale Handel",
+                exp_2_desc: "Focus op het opbouwen van relaties met architecten en aannemers. Bemanning van de stand op de Ahoy beurs (Rotterdam) en beheer van gepersonaliseerde B2B mailings voor leadgeneratie.",
+                exp_3_role: "Stagiair Internationale Handel",
+                exp_3_desc: "Internationale ervaring opgedaan op diverse afdelingen: Vastgoed (via Molenbeek Invest), Maintenance, Frontoffice en de keuken van Brass Boer.",
+                exp_other_title: "Eerdere Functies",
+                role_assist_manager: "Assistent Manager Int. Handel",
+                role_agency: "Uitzendkracht",
+                role_temp: "Uitzendkracht",
+                role_landscaper: "Hovenier",
+                role_retail: "Verkoopmedewerker",
                 proj_title: "Geselecteerde Projecten",
                 proj_view_all: "BEKIJK ALLES",
-                proj_1_title: "Vitens: Strategie Grootzakelijke Markt",
-                proj_1_desc: "Strategisch onderzoek naar de vorming van een nieuwe organisatie-entiteit specifiek gericht op de grootzakelijke markt.",
-                proj_2_title: "Perron038: Factory Next Activatie",
-                proj_2_desc: "Activatiestrategie ontwikkeld voor 'Factory Next' om de locatie te transformeren tot een levendige proeftuin.",
-                proj_3_title: "Unica: Duurzaam Business Model",
-                proj_3_desc: "Design Thinking toegepast om een Triple Bottom Line bedrijfsmodel (Economisch, Ecologisch, Sociaal) te ontwikkelen.",
+                proj_1_title: "Vitens, Grootzakelijke markt: Marktbehoeften, Positionering & Organisatierichting",
+                proj_1_desc: "Voor Vitens heb ik een diepgaand marktonderzoek uitgevoerd om te bepalen hoe een nieuwe Water-as-a-Service divisie gepositioneerd, gestructureerd en op de markt gebracht moet worden. Het onderzoek bekeek welke partijen in Nederland vergelijkbare diensten aanbieden, de verschillen in proposities en hoe Vitens zich kan onderscheiden door circulaire wateroplossingen en waterbeheer. Ik analyseerde doelgroepsegmenten, beoordeelde klantbehoeften en identificeerde welke diensten wel (en niet) in het WaaS-portfolio moesten worden opgenomen. De studie verkende ook naamgeving, branding en organisatievorm, en evalueerde hoe Vitens de brug kan slaan van zijn huidige diensten naar een commerciële WaaS-entiteit die bijdraagt aan een veerkrachtiger en duurzamer watersysteem.",
+                proj_2_title: "Perron038, Factory NEXT: Strategische Commerciële Positionering",
+                proj_2_desc: "Bij Perron038 onderzocht ik hoe Factory NEXT commercieel gepositioneerd en aantrekkelijk gemaakt kan worden voor industriële partners. Het onderzoek richtte zich op het bepalen van het marktpotentieel voor een gedeelde innovatiefaciliteit, het identificeren van welke bedrijven en segmenten een “test-before-invest” model zouden adopteren, en het analyseren van concurrerende initiatieven in het Nederlandse maakindustrie-landschap. Ik evalueerde hoe de labs, technologieën en expertise van Factory NEXT vertaald konden worden naar duidelijke waardeproposities en ontwikkelde strategische aanbevelingen over messaging, doelsegmenten en verdienmodellen. Door interne en externe analyse te combineren met de Design Thinking cyclus en klantvalidatie, leverde ik inzichten die Perron038 ondersteunen bij het versterken van Factory NEXT als een commercieel levensvatbare en onderscheidende innovatiehub.",
+                proj_3_title: "Unica: Duurzaam Bedrijfsmodel",
+                proj_3_desc: "Diepgaande strategische analyse en innovatieontwikkeling uitgevoerd. Verantwoordelijk voor het identificeren van SWOT-elementen, het creëren van confrontatiematrices en het ontwikkelen van uitgebreide bedrijfsmodellen gericht op economische, ecologische en sociale aspecten.",
                 contact_title: "Laten we <span class=\"text-zinc-600 transition-colors group-hover:text-zinc-400\">Samenwerken</span>",
                 contact_desc: "Open voor het bespreken van nieuwe kansen, strategische samenwerkingen of duurzaamheidsinitiatieven.",
                 btn_email: "Stuur E-mail",
