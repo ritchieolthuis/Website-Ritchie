@@ -113,15 +113,13 @@
         opacity: 1;
       }
     </style>
-    
-    <!-- Import Map for Gemini SDK -->
-    <script type="importmap">
+<script type="importmap">
 {
   "imports": {
-    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.30.0",
-    "react/": "https://aistudiocdn.com/react@^19.2.0/",
     "react": "https://aistudiocdn.com/react@^19.2.0",
-    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.555.0"
+    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.555.0",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.30.0"
   }
 }
 </script>
@@ -136,16 +134,23 @@
           </button>
           
           <div class="hidden sm:flex items-center px-2 gap-4">
-             <button onclick="document.getElementById('about').scrollIntoView({behavior: 'smooth'})" class="text-sm font-medium text-zinc-400 hover:text-white transition-colors">About</button>
-             <button onclick="document.getElementById('education').scrollIntoView({behavior: 'smooth'})" class="text-sm font-medium text-zinc-400 hover:text-white transition-colors">Education</button>
-             <button onclick="document.getElementById('experience').scrollIntoView({behavior: 'smooth'})" class="text-sm font-medium text-zinc-400 hover:text-white transition-colors">Experience</button>
-             <button onclick="document.getElementById('projects').scrollIntoView({behavior: 'smooth'})" class="text-sm font-medium text-zinc-400 hover:text-white transition-colors">Projects</button>
+             <button onclick="document.getElementById('about').scrollIntoView({behavior: 'smooth'})" class="text-sm font-medium text-zinc-400 hover:text-white transition-colors" data-i18n="nav_about">About</button>
+             <button onclick="document.getElementById('education').scrollIntoView({behavior: 'smooth'})" class="text-sm font-medium text-zinc-400 hover:text-white transition-colors" data-i18n="nav_edu">Education</button>
+             <button onclick="document.getElementById('experience').scrollIntoView({behavior: 'smooth'})" class="text-sm font-medium text-zinc-400 hover:text-white transition-colors" data-i18n="nav_exp">Experience</button>
+             <button onclick="document.getElementById('projects').scrollIntoView({behavior: 'smooth'})" class="text-sm font-medium text-zinc-400 hover:text-white transition-colors" data-i18n="nav_proj">Projects</button>
           </div>
 
-          <button onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})" class="px-5 py-2.5 bg-white text-black text-sm font-bold rounded-full hover:bg-accent transition-colors flex items-center gap-2">
-            <i data-lucide="mail" class="w-4 h-4"></i>
-            <span class="hidden sm:inline">Contact</span>
-          </button>
+          <div class="flex items-center gap-2">
+            <!-- Language Toggle -->
+            <button id="lang-toggle" onclick="toggleLanguage()" class="cursor-pointer px-3 py-2.5 bg-zinc-900 text-zinc-400 text-xs font-bold rounded-full hover:text-white border border-zinc-800 transition-colors w-[60px]">
+                NL
+            </button>
+
+            <button onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})" class="px-5 py-2.5 bg-white text-black text-sm font-bold rounded-full hover:bg-accent transition-colors flex items-center gap-2">
+                <i data-lucide="mail" class="w-4 h-4"></i>
+                <span class="hidden sm:inline" data-i18n="nav_contact">Contact</span>
+            </button>
+          </div>
         </nav>
     </div>
 
@@ -166,7 +171,7 @@
                           <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75"></span>
                           <span class="relative inline-flex rounded-full h-2 w-2 bg-accent"></span>
                         </span>
-                        Available for work
+                        <span data-i18n="hero_badge">Available for work</span>
                     </div>
                     
                     <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold font-display uppercase leading-[0.9] tracking-tighter mb-4">
@@ -176,18 +181,19 @@
                 </div>
 
                 <div class="relative z-10 max-w-xl">
-                   <h2 class="text-xl md:text-2xl text-white mb-4 font-medium">Strategic Innovator & Business Student</h2>
-                   <p className="text-zinc-400 leading-relaxed text-sm md:text-base mb-8 group-hover:text-zinc-300 transition-colors">
+                   <h2 class="text-xl md:text-2xl text-white mb-4 font-medium" data-i18n="hero_title">Strategic Innovator & Business Student</h2>
+                   <p class="text-zinc-400 leading-relaxed text-sm md:text-base mb-8 group-hover:text-zinc-300 transition-colors" data-i18n="hero_desc">
                      Bridging the gap between commercial strategy, sustainability, and design thinking.
                    </p>
                    
                    <div class="flex flex-wrap gap-3">
                      <button onclick="document.getElementById('projects').scrollIntoView({behavior: 'smooth'})" class="px-6 py-3 bg-white text-black font-bold rounded-full hover:bg-accent transition-colors flex items-center gap-2 text-sm z-20 relative">
-                       View Work <i data-lucide="arrow-down" class="w-4 h-4"></i>
+                       <span data-i18n="btn_view_work">View Work</span> <i data-lucide="arrow-down" class="w-4 h-4"></i>
                      </button>
-                     <button class="px-6 py-3 bg-transparent border border-zinc-700 text-white font-bold rounded-full hover:bg-zinc-800 transition-colors flex items-center gap-2 text-sm z-20 relative">
-                       Download CV <i data-lucide="download" class="w-4 h-4"></i>
-                     </button>
+                     <!-- Ensure you place cv.pdf in the 'assets' folder -->
+                     <a href="assets/cv.pdf" download class="px-6 py-3 bg-transparent border border-zinc-700 text-white font-bold rounded-full hover:bg-zinc-800 transition-colors flex items-center gap-2 text-sm z-20 relative">
+                       <span data-i18n="btn_download_cv">Download CV</span> <i data-lucide="download" class="w-4 h-4"></i>
+                     </a>
                    </div>
                 </div>
             </div>
@@ -195,10 +201,15 @@
             <!-- 2. Photo Block -->
             <div class="bento-card col-span-1 md:col-span-2 lg:col-span-2 row-span-2 min-h-[300px] group">
                 <div class="spotlight-overlay"></div>
+                <!-- 
+                  CHANGE IMAGE: 
+                  For local image: src="assets/your-photo.jpg" 
+                  Current: Unsplash URL
+                -->
                 <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=2574&auto=format&fit=crop" alt="Ritchie Olthuis" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-80 group-hover:opacity-100">
                 <div class="absolute inset-0 bg-gradient-to-t from-[#121212] via-transparent to-transparent opacity-80 pointer-events-none"></div>
                 <div class="absolute bottom-6 left-6 pointer-events-none">
-                   <div class="text-accent font-mono text-xs mb-1">BASED IN</div>
+                   <div class="text-accent font-mono text-xs mb-1" data-i18n="based_in">BASED IN</div>
                    <div class="text-white font-display font-bold text-xl flex items-center gap-2">
                      <i data-lucide="map-pin" class="w-4 h-4"></i> Netherlands
                    </div>
@@ -209,15 +220,15 @@
             <div class="bento-card col-span-1 md:col-span-2 lg:col-span-2 p-6 flex flex-col justify-center gap-4 bg-[#151515] group">
                 <div class="spotlight-overlay"></div>
                 <div class="flex justify-between items-center border-b border-zinc-800 pb-4 group-hover:border-zinc-700 transition-colors">
-                    <span class="text-zinc-500 text-sm uppercase font-mono">Education</span>
+                    <span class="text-zinc-500 text-sm uppercase font-mono" data-i18n="stat_edu">Education</span>
                     <span class="text-white font-bold">University of Twente</span>
                  </div>
                  <div class="flex justify-between items-center border-b border-zinc-800 pb-4 group-hover:border-zinc-700 transition-colors">
-                    <span class="text-zinc-500 text-sm uppercase font-mono">Degree</span>
+                    <span class="text-zinc-500 text-sm uppercase font-mono" data-i18n="stat_degree">Degree</span>
                     <span class="text-white font-bold">Pre-master BA</span>
                  </div>
                  <div class="flex justify-between items-center">
-                    <span class="text-zinc-500 text-sm uppercase font-mono">Avg. Grade</span>
+                    <span class="text-zinc-500 text-sm uppercase font-mono" data-i18n="stat_grade">Avg. Grade</span>
                     <span class="text-accent font-bold text-lg">7.5</span>
                  </div>
             </div>
@@ -226,10 +237,10 @@
             <div class="bento-card col-span-1 md:col-span-2 lg:col-span-2 p-6 flex items-center justify-between group">
                 <div class="spotlight-overlay"></div>
                 <div class="flex gap-2 z-20">
-                    <a href="https://linkedin.com" target="_blank" class="w-12 h-12 rounded-full bg-zinc-900 border border-zinc-800 flex items-center justify-center text-zinc-400 hover:text-black hover:bg-accent hover:border-accent transition-all duration-300 relative">
+                    <a href="https://www.linkedin.com/in/ritchieolthuis" target="_blank" class="w-12 h-12 rounded-full bg-zinc-900 border border-zinc-800 flex items-center justify-center text-zinc-400 hover:text-black hover:bg-accent hover:border-accent transition-all duration-300 relative">
                         <i data-lucide="linkedin" class="w-5 h-5"></i>
                     </a>
-                    <a href="mailto:contact@ritchie.dev" class="w-12 h-12 rounded-full bg-zinc-900 border border-zinc-800 flex items-center justify-center text-zinc-400 hover:text-black hover:bg-accent hover:border-accent transition-all duration-300 relative">
+                    <a href="mailto:ritchieolthuis@gmail.com" class="w-12 h-12 rounded-full bg-zinc-900 border border-zinc-800 flex items-center justify-center text-zinc-400 hover:text-black hover:bg-accent hover:border-accent transition-all duration-300 relative">
                         <i data-lucide="mail" class="w-5 h-5"></i>
                     </a>
                 </div>
@@ -242,13 +253,13 @@
             <!-- 5. Ticker -->
             <div class="bento-card col-span-1 md:col-span-4 lg:col-span-2 p-6 flex items-center bg-accent text-black overflow-hidden">
                 <div class="whitespace-nowrap animate-[slideUp_10s_linear_infinite] font-display font-bold text-lg uppercase tracking-wider flex gap-8">
-                     <span>Strategic Innovation</span>
+                     <span data-i18n="ticker_1">Strategic Innovation</span>
                      <span>•</span>
-                     <span>Design Thinking</span>
+                     <span data-i18n="ticker_2">Design Thinking</span>
                      <span>•</span>
-                     <span>Sustainability</span>
+                     <span data-i18n="ticker_3">Sustainability</span>
                      <span>•</span>
-                     <span>Business Modeling</span>
+                     <span data-i18n="ticker_4">Business Modeling</span>
                 </div>
             </div>
         </div>
@@ -264,11 +275,11 @@
                     <div class="w-10 h-10 rounded-full bg-zinc-900 flex items-center justify-center text-accent mb-6 border border-zinc-800 group-hover:scale-110 transition-transform">
                         <i data-lucide="cpu" class="w-5 h-5"></i>
                     </div>
-                    <h3 class="text-2xl font-display font-bold text-white mb-4 uppercase">About</h3>
-                    <p class="text-zinc-400 text-sm leading-7 mb-6">
-                        I am an ambitious Business Administration and Commercial Economics student with a passion for strategic innovation. Currently pursuing a Pre-master at the University of Twente and a Bachelor's at Windesheim, I specialize in Design Thinking and sustainable business modeling.
+                    <h3 class="text-2xl font-display font-bold text-white mb-4 uppercase" data-i18n="about_title">About</h3>
+                    <p class="text-zinc-400 text-sm leading-7 mb-6" data-i18n="about_text">
+                        I am an ambitious fourth-year Commercial Economics student at Windesheim University of Applied Sciences, 24 years old, with a passion for strategic innovation. During my studies, I completed a Pre-master in Business Administration as a minor and a minor in Financial Decision-Making. Throughout my Commercial Economics program, I further specialized in Design Thinking and sustainable business models.
                         <br><br>
-                        My approach combines thorough research with creative problem-solving. I thrive on analyzing complex market trends and translating them into actionable strategies that drive economic, ecological, and social value.
+                        I am particularly interested in making data-driven decisions and validating insights with customers to uncover needs that might not be visible internally. Understanding what the customer truly wants is increasingly important today, as it ensures that strategies and innovations are relevant, effective, and create economic, ecological, and social value.
                     </p>
                     <div class="h-px w-full bg-zinc-800 mb-6 group-hover:bg-zinc-700 transition-colors"></div>
                     <div class="flex flex-wrap gap-2">
@@ -284,11 +295,11 @@
                     <div class="spotlight-overlay"></div>
                     <h3 class="text-xl font-display font-bold text-white mb-6 uppercase flex items-center gap-2">
                         <span class="w-2 h-2 bg-accent rounded-full animate-pulse"></span>
-                        Expertise
+                        <span data-i18n="skills_title">Expertise</span>
                     </h3>
                     <div class="space-y-6 relative z-10">
                         <div>
-                            <h4 class="text-xs font-mono uppercase text-zinc-500 mb-3">Strategic Analysis</h4>
+                            <h4 class="text-xs font-mono uppercase text-zinc-500 mb-3" data-i18n="skills_cat_1">Strategic Analysis</h4>
                             <div class="flex flex-wrap gap-2">
                                 <span class="px-2 py-1 text-xs font-medium text-white bg-zinc-800/50 border border-zinc-700 rounded hover:border-accent hover:text-accent transition-colors">SWOT Analysis</span>
                                 <span class="px-2 py-1 text-xs font-medium text-white bg-zinc-800/50 border border-zinc-700 rounded hover:border-accent hover:text-accent transition-colors">Confrontation Matrix</span>
@@ -296,7 +307,7 @@
                             </div>
                         </div>
                         <div>
-                            <h4 class="text-xs font-mono uppercase text-zinc-500 mb-3">Innovation & Design</h4>
+                            <h4 class="text-xs font-mono uppercase text-zinc-500 mb-3" data-i18n="skills_cat_2">Innovation & Design</h4>
                             <div class="flex flex-wrap gap-2">
                                 <span class="px-2 py-1 text-xs font-medium text-white bg-zinc-800/50 border border-zinc-700 rounded hover:border-accent hover:text-accent transition-colors">Design Thinking</span>
                                 <span class="px-2 py-1 text-xs font-medium text-white bg-zinc-800/50 border border-zinc-700 rounded hover:border-accent hover:text-accent transition-colors">Prototyping</span>
@@ -304,7 +315,7 @@
                             </div>
                         </div>
                          <div>
-                            <h4 class="text-xs font-mono uppercase text-zinc-500 mb-3">Business Management</h4>
+                            <h4 class="text-xs font-mono uppercase text-zinc-500 mb-3" data-i18n="skills_cat_3">Business Management</h4>
                             <div class="flex flex-wrap gap-2">
                                 <span class="px-2 py-1 text-xs font-medium text-white bg-zinc-800/50 border border-zinc-700 rounded hover:border-accent hover:text-accent transition-colors">Business Model Canvas</span>
                                 <span class="px-2 py-1 text-xs font-medium text-white bg-zinc-800/50 border border-zinc-700 rounded hover:border-accent hover:text-accent transition-colors">ESG</span>
@@ -321,7 +332,7 @@
                 <div id="education" class="bento-card p-8 group">
                     <div class="spotlight-overlay"></div>
                     <div class="flex items-center justify-between mb-8">
-                        <h3 class="text-2xl font-display font-bold text-white uppercase">Education</h3>
+                        <h3 class="text-2xl font-display font-bold text-white uppercase" data-i18n="edu_title">Education</h3>
                         <i data-lucide="graduation-cap" class="text-zinc-600 group-hover:text-white transition-colors"></i>
                     </div>
                     <div class="space-y-8">
@@ -329,32 +340,32 @@
                         <div class="relative pl-8 border-l border-zinc-800 group-hover:border-zinc-700 transition-colors">
                             <div class="absolute left-[-5px] top-1 w-2.5 h-2.5 rounded-full bg-accent"></div>
                             <div class="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2 mb-2">
-                                <h4 class="text-lg font-bold text-white">University of Twente</h4>
+                                <h4 class="text-lg font-bold text-white" data-i18n="edu_1_school">University of Twente</h4>
                                 <span class="text-xs font-mono text-zinc-500 bg-zinc-900 px-2 py-1 rounded border border-zinc-800">Feb 2025 - Jul 2025</span>
                             </div>
                             <div class="text-sm text-zinc-400 mb-2 font-medium">Pre-master, Business Administration / Bedrijfskunde</div>
-                            <p class="text-sm text-zinc-500 leading-relaxed max-w-2xl">Focus on Business Management and academic research methodologies.</p>
-                            <div class="mt-3 text-xs font-bold text-accent">Gemiddelde: 7.5</div>
+                            <p class="text-sm text-zinc-500 leading-relaxed max-w-2xl" data-i18n="edu_1_desc">Focus on Business Management and academic research methodologies.</p>
+                            <div class="mt-3 text-xs font-bold text-accent"><span data-i18n="edu_1_grade_label">Average:</span> 7.5</div>
                         </div>
                         <!-- Edu 2 -->
                          <div class="relative pl-8 border-l border-zinc-800 group-hover:border-zinc-700 transition-colors">
                             <div class="absolute left-[-5px] top-1 w-2.5 h-2.5 rounded-full bg-zinc-700"></div>
                             <div class="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2 mb-2">
-                                <h4 class="text-lg font-bold text-white">Windesheim</h4>
+                                <h4 class="text-lg font-bold text-white" data-i18n="edu_2_school">Windesheim</h4>
                                 <span class="text-xs font-mono text-zinc-500 bg-zinc-900 px-2 py-1 rounded border border-zinc-800">Sep 2022 - Jul 2026</span>
                             </div>
                             <div class="text-sm text-zinc-400 mb-2 font-medium">Bachelor's degree, Commerciële Economie</div>
-                            <p class="text-sm text-zinc-500 leading-relaxed max-w-2xl">Developing skills in innovative research, strategic advice, design thinking, and commercial awareness. <br> Minor: Financiële Besluitvorming</p>
+                            <p class="text-sm text-zinc-500 leading-relaxed max-w-2xl" data-i18n="edu_2_desc">Developing skills in innovative research, strategic advice, design thinking, and commercial awareness. <br> Minor: Financiële Besluitvorming</p>
                         </div>
                          <!-- Edu 3 -->
                          <div class="relative pl-8 border-l border-zinc-800 group-hover:border-zinc-700 transition-colors">
                             <div class="absolute left-[-5px] top-1 w-2.5 h-2.5 rounded-full bg-zinc-700"></div>
                             <div class="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2 mb-2">
-                                <h4 class="text-lg font-bold text-white">Windesheim</h4>
+                                <h4 class="text-lg font-bold text-white" data-i18n="edu_3_school">Windesheim</h4>
                                 <span class="text-xs font-mono text-zinc-500 bg-zinc-900 px-2 py-1 rounded border border-zinc-800">Sep 2022 - Jul 2023</span>
                             </div>
                             <div class="text-sm text-zinc-400 mb-2 font-medium">Propedeuse, Commerciële Economie</div>
-                            <div class="mt-3 text-xs font-bold text-accent">Gemiddelde: 7.5</div>
+                            <div class="mt-3 text-xs font-bold text-accent"><span data-i18n="edu_1_grade_label">Average:</span> 7.5</div>
                         </div>
                     </div>
                 </div>
@@ -363,19 +374,19 @@
                 <div id="experience" class="bento-card p-8 bg-[#151515] group">
                     <div class="spotlight-overlay"></div>
                     <div class="flex items-center justify-between mb-8">
-                        <h3 class="text-2xl font-display font-bold text-white uppercase">Experience</h3>
+                        <h3 class="text-2xl font-display font-bold text-white uppercase" data-i18n="exp_title">Experience</h3>
                         <i data-lucide="briefcase" class="text-zinc-600 group-hover:text-white transition-colors"></i>
                     </div>
                     
                     <div class="group/item">
                       <div class="flex flex-col md:flex-row md:items-center justify-between gap-2 mb-4">
                         <div>
-                          <h4 class="text-xl font-bold text-white group-hover/item:text-accent transition-colors">Research & Development (R&D)</h4>
+                          <h4 class="text-xl font-bold text-white group-hover/item:text-accent transition-colors" data-i18n="exp_1_role">Research & Development (R&D)</h4>
                           <div class="text-zinc-400 text-sm">Unica Building Services • Hoevelaken, Gelderland (Hybrid)</div>
                         </div>
                         <span class="text-xs font-mono text-zinc-500 border border-zinc-800 px-3 py-1 rounded-full">Aug 2023 - Jan 2024</span>
                       </div>
-                      <p class="text-zinc-400 text-sm leading-relaxed mb-4 whitespace-pre-line border-l-2 border-zinc-800 pl-4 group-hover/item:border-accent transition-colors">
+                      <p class="text-zinc-400 text-sm leading-relaxed mb-4 whitespace-pre-line border-l-2 border-zinc-800 pl-4 group-hover/item:border-accent transition-colors" data-i18n="exp_1_desc">
                         Conducted in-depth strategic analysis and innovation development. Responsible for identifying SWOT elements, creating confrontation matrices, and developing comprehensive business models focusing on economic, ecological, and social aspects.
                       </p>
                       <div class="flex flex-wrap gap-2">
@@ -389,9 +400,9 @@
                 <!-- Projects -->
                 <div id="projects" class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div class="md:col-span-2 flex items-center justify-between py-4">
-                        <h3 class="text-2xl font-display font-bold text-white uppercase">Selected Projects</h3>
+                        <h3 class="text-2xl font-display font-bold text-white uppercase" data-i18n="proj_title">Selected Projects</h3>
                         <a href="#" class="text-xs font-mono text-zinc-500 hover:text-white flex items-center gap-1 transition-colors">
-                            VIEW ALL <i data-lucide="arrow-up-right" class="w-3 h-3"></i>
+                            <span data-i18n="proj_view_all">VIEW ALL</span> <i data-lucide="arrow-up-right" class="w-3 h-3"></i>
                         </a>
                     </div>
 
@@ -399,11 +410,15 @@
                     <div class="bento-card flex flex-col h-full group">
                         <div class="spotlight-overlay"></div>
                         <div class="aspect-[16/9] w-full overflow-hidden border-b border-zinc-800 relative group-hover:border-zinc-700 transition-colors">
+                            <!-- 
+                              CHANGE IMAGE:
+                              For local image: src="assets/vitens_strategie_duurzaam.jpg"
+                            -->
                             <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2670&auto=format&fit=crop" alt="Vitens Project" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-70 group-hover:opacity-100">
                         </div>
                         <div class="p-6 flex flex-col flex-grow">
-                            <h3 class="text-xl font-bold text-white font-display uppercase tracking-tight group-hover:text-accent transition-colors mb-3">Vitens: Corporate Entity Strategy</h3>
-                            <p class="text-zinc-400 text-sm leading-relaxed mb-6 flex-grow">Strategic research into the formation of a new organizational entity specifically targeting the large-scale business market.</p>
+                            <h3 class="text-xl font-bold text-white font-display uppercase tracking-tight group-hover:text-accent transition-colors mb-3" data-i18n="proj_1_title">Vitens: Corporate Entity Strategy</h3>
+                            <p class="text-zinc-400 text-sm leading-relaxed mb-6 flex-grow" data-i18n="proj_1_desc">Strategic research into the formation of a new organizational entity specifically targeting the large-scale business market.</p>
                             <div class="flex flex-wrap gap-2 mt-auto">
                                 <span class="px-3 py-1 text-[10px] uppercase tracking-wider font-bold rounded-full bg-zinc-900 text-zinc-400 border border-zinc-800">Market Analysis</span>
                                 <span class="px-3 py-1 text-[10px] uppercase tracking-wider font-bold rounded-full bg-zinc-900 text-zinc-400 border border-zinc-800">Org. Structuring</span>
@@ -415,11 +430,15 @@
                     <div class="bento-card flex flex-col h-full group">
                         <div class="spotlight-overlay"></div>
                          <div class="aspect-[16/9] w-full overflow-hidden border-b border-zinc-800 relative group-hover:border-zinc-700 transition-colors">
+                             <!-- 
+                              CHANGE IMAGE:
+                              For local image: src="assets/perron038_robotarm.jpg"
+                            -->
                             <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2670&auto=format&fit=crop" alt="Perron038 Project" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-70 group-hover:opacity-100">
                         </div>
                         <div class="p-6 flex flex-col flex-grow">
-                            <h3 class="text-xl font-bold text-white font-display uppercase tracking-tight group-hover:text-accent transition-colors mb-3">Perron038: Factory Next Activation</h3>
-                            <p class="text-zinc-400 text-sm leading-relaxed mb-6 flex-grow">Developed an activation strategy for 'Factory Next' to transform the location into a bustling testing ground.</p>
+                            <h3 class="text-xl font-bold text-white font-display uppercase tracking-tight group-hover:text-accent transition-colors mb-3" data-i18n="proj_2_title">Perron038: Factory Next Activation</h3>
+                            <p class="text-zinc-400 text-sm leading-relaxed mb-6 flex-grow" data-i18n="proj_2_desc">Developed an activation strategy for 'Factory Next' to transform the location into a bustling testing ground.</p>
                             <div class="flex flex-wrap gap-2 mt-auto">
                                 <span class="px-3 py-1 text-[10px] uppercase tracking-wider font-bold rounded-full bg-zinc-900 text-zinc-400 border border-zinc-800">Innovation</span>
                                 <span class="px-3 py-1 text-[10px] uppercase tracking-wider font-bold rounded-full bg-zinc-900 text-zinc-400 border border-zinc-800">Location Strategy</span>
@@ -431,11 +450,15 @@
                     <div class="bento-card flex flex-col h-full group">
                         <div class="spotlight-overlay"></div>
                          <div class="aspect-[16/9] w-full overflow-hidden border-b border-zinc-800 relative group-hover:border-zinc-700 transition-colors">
+                             <!-- 
+                              CHANGE IMAGE:
+                              For local image: src="assets/unica_technicians.jpg"
+                            -->
                             <img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?q=80&w=2669&auto=format&fit=crop" alt="Unica Project" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-70 group-hover:opacity-100">
                         </div>
                         <div class="p-6 flex flex-col flex-grow">
-                            <h3 class="text-xl font-bold text-white font-display uppercase tracking-tight group-hover:text-accent transition-colors mb-3">Unica: Sustainable Business Model</h3>
-                            <p class="text-zinc-400 text-sm leading-relaxed mb-6 flex-grow">Applied Design Thinking to develop a Triple Bottom Line business model (Economic, Ecological, Social).</p>
+                            <h3 class="text-xl font-bold text-white font-display uppercase tracking-tight group-hover:text-accent transition-colors mb-3" data-i18n="proj_3_title">Unica: Sustainable Business Model</h3>
+                            <p class="text-zinc-400 text-sm leading-relaxed mb-6 flex-grow" data-i18n="proj_3_desc">Applied Design Thinking to develop a Triple Bottom Line business model (Economic, Ecological, Social).</p>
                             <div class="flex flex-wrap gap-2 mt-auto">
                                 <span class="px-3 py-1 text-[10px] uppercase tracking-wider font-bold rounded-full bg-zinc-900 text-zinc-400 border border-zinc-800">Sustainability</span>
                                 <span class="px-3 py-1 text-[10px] uppercase tracking-wider font-bold rounded-full bg-zinc-900 text-zinc-400 border border-zinc-800">Design Thinking</span>
@@ -453,18 +476,18 @@
                 <div class="spotlight-overlay"></div>
                 <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-accent to-transparent opacity-50"></div>
                 <div class="relative z-10">
-                    <h2 class="text-4xl md:text-6xl font-display font-bold text-white uppercase mb-6 tracking-tight">
+                    <h2 class="text-4xl md:text-6xl font-display font-bold text-white uppercase mb-6 tracking-tight" data-i18n="contact_title">
                         Let's work <span class="text-zinc-600 transition-colors group-hover:text-zinc-400">Together</span>
                     </h2>
-                    <p class="text-zinc-400 max-w-xl mx-auto mb-10 text-lg">
+                    <p class="text-zinc-400 max-w-xl mx-auto mb-10 text-lg" data-i18n="contact_desc">
                         Open to discussing new opportunities, strategic collaborations, or sustainability initiatives.
                     </p>
                     <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-                        <a href="mailto:contact@ritchie.dev" class="px-8 py-4 bg-accent text-black font-bold rounded-full hover:bg-[#b3e600] transition-colors min-w-[200px]">Send Email</a>
+                        <a href="mailto:ritchieolthuis@gmail.com" class="px-8 py-4 bg-accent text-black font-bold rounded-full hover:bg-[#b3e600] transition-colors min-w-[200px]" data-i18n="btn_email">Send Email</a>
                         <a href="#" class="px-8 py-4 bg-white text-black font-bold rounded-full hover:bg-zinc-200 transition-colors min-w-[200px] flex items-center justify-center gap-2">
-                             <i data-lucide="calendar" class="w-4 h-4"></i> Schedule Call
+                             <i data-lucide="calendar" class="w-4 h-4"></i> <span data-i18n="btn_call">Schedule Call</span>
                         </a>
-                        <a href="https://linkedin.com" target="_blank" class="px-8 py-4 bg-zinc-900 text-white font-bold rounded-full border border-zinc-800 hover:border-zinc-600 transition-colors min-w-[200px] flex items-center justify-center gap-2">
+                        <a href="https://www.linkedin.com/in/ritchieolthuis" target="_blank" class="px-8 py-4 bg-zinc-900 text-white font-bold rounded-full border border-zinc-800 hover:border-zinc-600 transition-colors min-w-[200px] flex items-center justify-center gap-2">
                              <i data-lucide="linkedin" class="w-4 h-4"></i> LinkedIn
                         </a>
                     </div>
@@ -480,61 +503,13 @@
         </div>
     </div>
 
-    <!-- Chat Widget HTML -->
-    <div id="chat-widget-container" class="fixed bottom-6 right-6 z-50 flex flex-col items-end pointer-events-none">
-        
-        <!-- Chat Window -->
-        <div id="chat-window" class="pointer-events-auto mb-4 w-[320px] sm:w-[380px] h-[500px] max-h-[70vh] bg-[#121212] border border-zinc-800 rounded-3xl shadow-2xl flex flex-col overflow-hidden transition-all duration-300 origin-bottom-right opacity-0 scale-90 translate-y-10 pointer-events-none">
-            
-            <!-- Header -->
-            <div class="p-4 border-b border-zinc-800 bg-zinc-900/50 flex justify-between items-center backdrop-blur-md">
-                <div class="flex items-center gap-3">
-                    <div class="w-8 h-8 rounded-full bg-accent flex items-center justify-center shadow-[0_0_15px_rgba(204,255,0,0.3)]">
-                        <i data-lucide="bot" class="w-4 h-4 text-black"></i>
-                    </div>
-                    <div>
-                        <h3 class="font-bold text-sm text-white font-display uppercase tracking-wide">Ritchie AI</h3>
-                        <div class="flex items-center gap-1.5">
-                            <span class="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></span>
-                            <p class="text-[10px] text-zinc-400 uppercase tracking-wider">Online</p>
-                        </div>
-                    </div>
-                </div>
-                <button onclick="toggleChat()" class="p-2 hover:bg-white/5 rounded-full transition-colors text-zinc-400 hover:text-white">
-                    <i data-lucide="x" class="w-4 h-4"></i>
-                </button>
-            </div>
-
-            <!-- Messages -->
-            <div id="chat-messages" class="flex-1 overflow-y-auto p-4 space-y-4 custom-scrollbar">
-                <div class="flex justify-start">
-                    <div class="max-w-[85%] p-3.5 rounded-2xl text-sm leading-relaxed bg-accent/10 text-zinc-200 border border-accent/20 rounded-bl-none">
-                        Hi! I'm Ritchie's AI assistant. Ask me about his strategy experience or studies.
-                    </div>
-                </div>
-            </div>
-
-            <!-- Input -->
-            <form onsubmit="handleChatSubmit(event)" class="p-3 border-t border-zinc-800 bg-zinc-900/30">
-                <div class="relative flex items-center">
-                    <input id="chat-input" type="text" placeholder="Ask a question..." class="w-full bg-[#0a0a0a] border border-zinc-800 rounded-xl pl-4 pr-12 py-3 text-sm text-white focus:outline-none focus:border-accent/50 focus:ring-1 focus:ring-accent/50 transition-all placeholder:text-zinc-600 font-sans" />
-                    <button type="submit" class="absolute right-2 p-2 bg-accent hover:bg-[#b3e600] rounded-lg text-black transition-colors">
-                        <i data-lucide="send" class="w-4 h-4"></i>
-                    </button>
-                </div>
-            </form>
-        </div>
-
-        <!-- Toggle Button -->
-        <button onclick="toggleChat()" id="chat-toggle-btn" class="pointer-events-auto w-14 h-14 rounded-full shadow-[0_0_20px_rgba(0,0,0,0.5)] flex items-center justify-center border border-zinc-800 transition-all duration-300 hover:scale-105 active:scale-95 bg-accent text-black hover:bg-[#b3e600]">
-            <i data-lucide="message-circle" class="w-6 h-6"></i>
-        </button>
-    </div>
+    <!-- Floating Call Button -->
+    <a href="tel:0641415887" class="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full shadow-[0_0_20px_rgba(204,255,0,0.4)] flex items-center justify-center border border-zinc-800 transition-all duration-300 hover:scale-105 active:scale-95 bg-accent text-black hover:bg-[#b3e600]">
+        <i data-lucide="phone" class="w-6 h-6"></i>
+    </a>
 
     <!-- Scripts for Logic -->
-    <script type="module">
-        import { GoogleGenAI } from "@google/genai";
-
+    <script>
         // --- 1. Initialize Icons ---
         lucide.createIcons();
 
@@ -550,78 +525,127 @@
             });
         });
 
-        // --- 3. Chat Logic ---
-        let isChatOpen = false;
-        const chatWindow = document.getElementById('chat-window');
-        const chatToggleBtn = document.getElementById('chat-toggle-btn');
-        const chatInput = document.getElementById('chat-input');
-        const messagesContainer = document.getElementById('chat-messages');
-
-        window.toggleChat = () => {
-            isChatOpen = !isChatOpen;
-            if (isChatOpen) {
-                chatWindow.classList.remove('opacity-0', 'scale-90', 'translate-y-10', 'pointer-events-none');
-                chatWindow.classList.add('opacity-100', 'scale-100', 'translate-y-0');
-                chatToggleBtn.classList.remove('bg-accent', 'text-black');
-                chatToggleBtn.classList.add('bg-zinc-900', 'text-white');
-                chatToggleBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>';
-            } else {
-                chatWindow.classList.add('opacity-0', 'scale-90', 'translate-y-10', 'pointer-events-none');
-                chatWindow.classList.remove('opacity-100', 'scale-100', 'translate-y-0');
-                chatToggleBtn.classList.add('bg-accent', 'text-black');
-                chatToggleBtn.classList.remove('bg-zinc-900', 'text-white');
-                chatToggleBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-message-circle"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>';
+        // --- 3. Language Logic ---
+        const translations = {
+            en: {
+                nav_about: "About",
+                nav_edu: "Education",
+                nav_exp: "Experience",
+                nav_proj: "Projects",
+                nav_contact: "Contact",
+                hero_badge: "Available for work",
+                hero_title: "Strategic Innovator & Business Student",
+                hero_desc: "Bridging the gap between commercial strategy, sustainability, and design thinking.",
+                btn_view_work: "View Work",
+                btn_download_cv: "Download CV",
+                based_in: "BASED IN",
+                stat_edu: "Education",
+                stat_degree: "Degree",
+                stat_grade: "Avg. Grade",
+                ticker_1: "Strategic Innovation",
+                ticker_2: "Design Thinking",
+                ticker_3: "Sustainability",
+                ticker_4: "Business Modeling",
+                about_title: "About",
+                about_text: "I am an ambitious fourth-year Commercial Economics student at Windesheim University of Applied Sciences, 24 years old, with a passion for strategic innovation. During my studies, I completed a Pre-master in Business Administration as a minor and a minor in Financial Decision-Making. Throughout my Commercial Economics program, I further specialized in Design Thinking and sustainable business models.<br><br>I am particularly interested in making data-driven decisions and validating insights with customers to uncover needs that might not be visible internally. Understanding what the customer truly wants is increasingly important today, as it ensures that strategies and innovations are relevant, effective, and create economic, ecological, and social value.",
+                skills_title: "Expertise",
+                skills_cat_1: "Strategic Analysis",
+                skills_cat_2: "Innovation & Design",
+                skills_cat_3: "Business Management",
+                edu_title: "Education",
+                edu_1_school: "University of Twente",
+                edu_1_desc: "Focus on Business Management and academic research methodologies.",
+                edu_1_grade_label: "Average:",
+                edu_2_school: "Windesheim",
+                edu_2_desc: "Developing skills in innovative research, strategic advice, design thinking, and commercial awareness. <br> Minor: Financial Decision Making",
+                edu_3_school: "Windesheim",
+                exp_title: "Experience",
+                exp_1_role: "Research & Development (R&D)",
+                exp_1_desc: "Conducted in-depth strategic analysis and innovation development. Responsible for identifying SWOT elements, creating confrontation matrices, and developing comprehensive business models focusing on economic, ecological, and social aspects.",
+                proj_title: "Selected Projects",
+                proj_view_all: "VIEW ALL",
+                proj_1_title: "Vitens: Corporate Entity Strategy",
+                proj_1_desc: "Strategic research into the formation of a new organizational entity specifically targeting the large-scale business market.",
+                proj_2_title: "Perron038: Factory Next Activation",
+                proj_2_desc: "Developed an activation strategy for 'Factory Next' to transform the location into a bustling testing ground.",
+                proj_3_title: "Unica: Sustainable Business Model",
+                proj_3_desc: "Applied Design Thinking to develop a Triple Bottom Line business model (Economic, Ecological, Social).",
+                contact_title: "Let's work <span class=\"text-zinc-600 transition-colors group-hover:text-zinc-400\">Together</span>",
+                contact_desc: "Open to discussing new opportunities, strategic collaborations, or sustainability initiatives.",
+                btn_email: "Send Email",
+                btn_call: "Schedule Call",
+            },
+            nl: {
+                nav_about: "Over mij",
+                nav_edu: "Opleiding",
+                nav_exp: "Ervaring",
+                nav_proj: "Projecten",
+                nav_contact: "Contact",
+                hero_badge: "Beschikbaar voor werk",
+                hero_title: "Strategisch Innovator & Bedrijfskunde Student",
+                hero_desc: "De brug slaan tussen commerciële strategie, duurzaamheid en design thinking.",
+                btn_view_work: "Bekijk Werk",
+                btn_download_cv: "Download CV",
+                based_in: "GEVESTIGD IN",
+                stat_edu: "Opleiding",
+                stat_degree: "Diploma",
+                stat_grade: "Gemiddelde",
+                ticker_1: "Strategische Innovatie",
+                ticker_2: "Design Thinking",
+                ticker_3: "Duurzaamheid",
+                ticker_4: "Business Modeling",
+                about_title: "Over mij",
+                about_text: "Ik ben een ambitieuze vierdejaars student Commerciële Economie aan Hogeschool Windesheim, 24 jaar oud, met een passie voor strategische innovatie. Tijdens mijn studie heb ik een Pre-master Business Administration als minor afgerond, evenals een minor Financiële Besluitvorming. Gedurende mijn opleiding Commerciële Economie heb ik mij verder gespecialiseerd in Design Thinking en duurzame bedrijfsmodellen.<br><br>Ik ben met name geïnteresseerd in het maken van datagedreven beslissingen en het valideren van inzichten bij klanten om behoeften te ontdekken die intern wellicht niet zichtbaar zijn. Begrijpen wat de klant écht wil is vandaag de dag steeds belangrijker, omdat dit ervoor zorgt dat strategieën en innovaties relevant en effectief zijn, en economische, ecologische en sociale waarde creëren.",
+                skills_title: "Expertise",
+                skills_cat_1: "Strategische Analyse",
+                skills_cat_2: "Innovatie & Design",
+                skills_cat_3: "Bedrijfsmanagement",
+                edu_title: "Opleidingen",
+                edu_1_school: "Universiteit Twente",
+                edu_1_desc: "Focus op Bedrijfsmanagement en academische onderzoeksmethodologieën.",
+                edu_1_grade_label: "Gemiddelde:",
+                edu_2_school: "Windesheim",
+                edu_2_desc: "Ontwikkelen van vaardigheden in innovatief onderzoek, strategisch advies, design thinking en commercieel bewustzijn. <br> Minor: Financiële Besluitvorming",
+                edu_3_school: "Windesheim",
+                exp_title: "Ervaring",
+                exp_1_role: "Onderzoek & Ontwikkeling (R&D)",
+                exp_1_desc: "Diepgaande strategische analyse en innovatieontwikkeling uitgevoerd. Verantwoordelijk voor het identificeren van SWOT-elementen, het opstellen van confrontatiematrices en het ontwikkelen van integrale bedrijfsmodellen met focus op economische, ecologische en sociale aspecten.",
+                proj_title: "Geselecteerde Projecten",
+                proj_view_all: "BEKIJK ALLES",
+                proj_1_title: "Vitens: Strategie Grootzakelijke Markt",
+                proj_1_desc: "Strategisch onderzoek naar de vorming van een nieuwe organisatie-entiteit specifiek gericht op de grootzakelijke markt.",
+                proj_2_title: "Perron038: Factory Next Activatie",
+                proj_2_desc: "Activatiestrategie ontwikkeld voor 'Factory Next' om de locatie te transformeren tot een levendige proeftuin.",
+                proj_3_title: "Unica: Duurzaam Business Model",
+                proj_3_desc: "Design Thinking toegepast om een Triple Bottom Line bedrijfsmodel (Economisch, Ecologisch, Sociaal) te ontwikkelen.",
+                contact_title: "Laten we <span class=\"text-zinc-600 transition-colors group-hover:text-zinc-400\">Samenwerken</span>",
+                contact_desc: "Open voor het bespreken van nieuwe kansen, strategische samenwerkingen of duurzaamheidsinitiatieven.",
+                btn_email: "Stuur E-mail",
+                btn_call: "Plan Gesprek",
             }
         };
 
-        const appendMessage = (text, sender) => {
-            const div = document.createElement('div');
-            div.className = `flex ${sender === 'user' ? 'justify-end' : 'justify-start'}`;
-            div.innerHTML = `
-                <div class="max-w-[85%] p-3.5 rounded-2xl text-sm leading-relaxed ${sender === 'user' ? 'bg-zinc-800 text-white rounded-br-none border border-zinc-700' : 'bg-accent/10 text-zinc-200 border border-accent/20 rounded-bl-none'}">
-                    ${text}
-                </div>
-            `;
-            messagesContainer.appendChild(div);
-            messagesContainer.scrollTop = messagesContainer.scrollHeight;
-        };
+        let currentLang = 'en';
 
-        window.handleChatSubmit = async (e) => {
-            e.preventDefault();
-            const text = chatInput.value.trim();
-            if (!text) return;
-
-            appendMessage(text, 'user');
-            chatInput.value = '';
-
-            // AI Integration
-            try {
-                // Check if API key is available (Note: In pure client-side HTML, env vars don't work the same way as Node.
-                // We assume process.env.API_KEY is replaced by the builder or not available.
-                // For this demo, we will simulate a response if no key is present to prevent crashing.)
-                
-                let apiKey = null;
-                try { apiKey = process.env.API_KEY; } catch(e) {}
-
-                if (!apiKey) {
-                    setTimeout(() => appendMessage("I'm sorry, I can't connect to the AI brain right now (API Key missing). But I can tell you Ritchie is great at strategy!", 'model'), 500);
-                    return;
+        window.toggleLanguage = () => {
+            currentLang = currentLang === 'en' ? 'nl' : 'en';
+            
+            // Update Toggle Button Text
+            const btn = document.getElementById('lang-toggle');
+            btn.textContent = currentLang === 'en' ? 'NL' : 'EN';
+            
+            // Update Text Content
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[currentLang][key]) {
+                   if (el.tagName === 'SPAN' && key === 'contact_title') {
+                       // Handle HTML content for specific keys
+                       el.parentNode.innerHTML = translations[currentLang][key];
+                   } else {
+                       el.innerHTML = translations[currentLang][key];
+                   }
                 }
-
-                const ai = new GoogleGenAI({ apiKey: apiKey });
-                const model = ai.getGenerativeModel({ 
-                    model: "gemini-2.5-flash",
-                    systemInstruction: "You are an AI Assistant for Ritchie Olthuis's personal portfolio. He is a Business Administration student specializing in Strategy, Design Thinking, and Sustainability. Be professional and concise."
-                });
-
-                const result = await model.generateContent(text);
-                const response = result.response.text();
-                appendMessage(response, 'model');
-
-            } catch (error) {
-                console.error(error);
-                appendMessage("I'm currently offline. Please email Ritchie directly!", 'model');
-            }
+            });
         };
     </script>
 </body>
