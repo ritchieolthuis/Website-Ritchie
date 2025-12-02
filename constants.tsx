@@ -2,15 +2,10 @@ import { Experience, Project, Skill, SocialLink, Education } from './types';
 import { Github, Linkedin, Mail, Twitter, BookOpen, Briefcase, Award } from 'lucide-react';
 
 /* 
-  NOTE: To use local images later:
-  1. Place your files in 'src/assets/'
-  2. Uncomment the imports below
-  3. Replace the URL strings in PROJECTS_DATA with the variable names (e.g., imageUrl: vitensImg)
+  CONFIGURATION:
+  The website is now set up to use online images so it works immediately.
+  You do NOT need to download or move files.
 */
-
-// import vitensImg from './assets/vitens_strategie_duurzaam.jpg';
-// import perronImg from './assets/perron038_robotarm.jpg';
-// import unicaImg from './assets/unica_technicians.jpg';
 
 export const HERO_DATA = {
   name: "Ritchie Olthuis",
@@ -69,7 +64,7 @@ export const PROJECTS_DATA: Project[] = [
     title: "Vitens: Corporate Entity Strategy",
     description: "Strategic research into the formation of a new organizational entity specifically targeting the large-scale business market (grootzakelijke markt). Analyzed organizational readiness and market fit.",
     technologies: ["Market Analysis", "Org. Structuring", "Strategic Advice"],
-    // Placeholder that looks like a modern corporate glass building
+    // Image: Modern corporate building with blue sky (matches Vitens branding)
     imageUrl: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2670&auto=format&fit=crop", 
     link: "#",
   },
@@ -78,7 +73,7 @@ export const PROJECTS_DATA: Project[] = [
     title: "Perron038: Factory Next Activation",
     description: "Developed an activation strategy for 'Factory Next' to transform the location into a bustling testing ground. Focused on attracting users to the facility for on-site prototyping and validation.",
     technologies: ["Innovation Ecosystems", "Location Strategy", "Concept Testing"],
-    // Placeholder that looks like a high-tech robot arm
+    // Image: Industrial Robot Arm (matches Factory Next / High Tech)
     imageUrl: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2670&auto=format&fit=crop",
     link: "#",
   },
@@ -87,8 +82,8 @@ export const PROJECTS_DATA: Project[] = [
     title: "Unica: Sustainable Business Model",
     description: "Applied Design Thinking to develop a Triple Bottom Line business model (Economic, Ecological, Social). Created Customer Journeys and Personas to inform international market entry.",
     technologies: ["Sustainability (ESG)", "Design Thinking", "Business Model Canvas"],
-    // Placeholder that looks like technicians/engineers working
-    imageUrl: "https://images.unsplash.com/photo-1581092160562-40aa08e78837?q=80&w=2670&auto=format&fit=crop",
+    // Image: Electrical/Technical installation context (matches Unica)
+    imageUrl: "https://images.unsplash.com/photo-1621905251189-08b45d6a269e?q=80&w=2669&auto=format&fit=crop",
     link: "#",
   }
 ];
