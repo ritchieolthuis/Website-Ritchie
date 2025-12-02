@@ -1,13 +1,22 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Ritchie Olthuis | Business Administration & Strategy</title>
+    
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Tailwind Config -->
     <script>
       tailwind.config = {
         theme: {
@@ -42,6 +51,8 @@
         },
       }
     </script>
+    
+    <!-- Custom Styles -->
     <style>
       body {
         background-color: #050505;
@@ -78,28 +89,540 @@
         border: 1px solid #222;
         border-radius: 1.5rem; /* 24px */
         transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), border-color 0.3s ease;
+        position: relative;
+        overflow: hidden;
       }
       
-      /* Subtle lift on hover */
       .bento-card:hover {
         border-color: #333;
         transform: translateY(-4px);
         box-shadow: 0 10px 40px -10px rgba(0,0,0,0.5);
       }
+
+      /* Spotlight Effect */
+      .spotlight-overlay {
+        pointer-events: none;
+        position: absolute;
+        inset: -1px;
+        transition: opacity 0.3s;
+        opacity: 0;
+        z-index: 10;
+        background: radial-gradient(600px circle at var(--x) var(--y), rgba(255,255,255,0.08), transparent 40%);
+      }
+      .bento-card:hover .spotlight-overlay {
+        opacity: 1;
+      }
     </style>
-  <script type="importmap">
+    
+    <!-- Import Map for Gemini SDK -->
+    <script type="importmap">
 {
   "imports": {
     "@google/genai": "https://aistudiocdn.com/@google/genai@^1.30.0",
-    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.555.0",
     "react/": "https://aistudiocdn.com/react@^19.2.0/",
     "react": "https://aistudiocdn.com/react@^19.2.0",
-    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/"
+    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.555.0"
   }
 }
 </script>
 </head>
-  <body>
-    <div id="root"></div>
-  </body>
+<body class="bg-background text-primary selection:bg-accent selection:text-black font-sans bg-grid-pattern pb-20">
+
+    <!-- Top Navigation -->
+    <div class="fixed top-6 left-0 right-0 z-50 flex justify-center pointer-events-none px-4">
+        <nav class="pointer-events-auto bg-[#121212]/80 backdrop-blur-xl border border-white/10 rounded-full px-2 py-2 flex items-center gap-1 shadow-2xl">
+          <button onclick="window.scrollTo({ top: 0, behavior: 'smooth' })" class="w-10 h-10 rounded-full bg-zinc-900 flex items-center justify-center text-white font-serif italic border border-zinc-800 hover:border-accent transition-colors">
+            R
+          </button>
+          
+          <div class="hidden sm:flex items-center px-2 gap-4">
+             <button onclick="document.getElementById('about').scrollIntoView({behavior: 'smooth'})" class="text-sm font-medium text-zinc-400 hover:text-white transition-colors">About</button>
+             <button onclick="document.getElementById('education').scrollIntoView({behavior: 'smooth'})" class="text-sm font-medium text-zinc-400 hover:text-white transition-colors">Education</button>
+             <button onclick="document.getElementById('experience').scrollIntoView({behavior: 'smooth'})" class="text-sm font-medium text-zinc-400 hover:text-white transition-colors">Experience</button>
+             <button onclick="document.getElementById('projects').scrollIntoView({behavior: 'smooth'})" class="text-sm font-medium text-zinc-400 hover:text-white transition-colors">Projects</button>
+          </div>
+
+          <button onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})" class="px-5 py-2.5 bg-white text-black text-sm font-bold rounded-full hover:bg-accent transition-colors flex items-center gap-2">
+            <i data-lucide="mail" class="w-4 h-4"></i>
+            <span class="hidden sm:inline">Contact</span>
+          </button>
+        </nav>
+    </div>
+
+    <!-- Main Content -->
+    <div class="max-w-[1400px] mx-auto pt-24 md:pt-32 px-4 md:px-8">
+        
+        <!-- HERO GRID -->
+        <div class="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-6 gap-4 mb-4">
+            
+            <!-- 1. Name Block -->
+            <div class="bento-card col-span-1 md:col-span-4 lg:col-span-4 row-span-2 p-6 md:p-10 flex flex-col justify-between group">
+                <div class="spotlight-overlay"></div>
+                <div class="absolute top-0 right-0 p-32 bg-accent/5 rounded-full blur-3xl -mr-16 -mt-16 pointer-events-none transition-all duration-700 group-hover:bg-accent/10"></div>
+                
+                <div class="relative z-10">
+                    <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-zinc-900/80 border border-zinc-800 text-[10px] md:text-xs font-mono uppercase tracking-widest text-accent mb-6">
+                        <span class="relative flex h-2 w-2">
+                          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75"></span>
+                          <span class="relative inline-flex rounded-full h-2 w-2 bg-accent"></span>
+                        </span>
+                        Available for work
+                    </div>
+                    
+                    <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold font-display uppercase leading-[0.9] tracking-tighter mb-4">
+                        Ritchie <br />
+                        <span class="text-zinc-500 transition-colors group-hover:text-zinc-300">Olthuis.</span>
+                    </h1>
+                </div>
+
+                <div class="relative z-10 max-w-xl">
+                   <h2 class="text-xl md:text-2xl text-white mb-4 font-medium">Strategic Innovator & Business Student</h2>
+                   <p className="text-zinc-400 leading-relaxed text-sm md:text-base mb-8 group-hover:text-zinc-300 transition-colors">
+                     Bridging the gap between commercial strategy, sustainability, and design thinking.
+                   </p>
+                   
+                   <div class="flex flex-wrap gap-3">
+                     <button onclick="document.getElementById('projects').scrollIntoView({behavior: 'smooth'})" class="px-6 py-3 bg-white text-black font-bold rounded-full hover:bg-accent transition-colors flex items-center gap-2 text-sm z-20 relative">
+                       View Work <i data-lucide="arrow-down" class="w-4 h-4"></i>
+                     </button>
+                     <button class="px-6 py-3 bg-transparent border border-zinc-700 text-white font-bold rounded-full hover:bg-zinc-800 transition-colors flex items-center gap-2 text-sm z-20 relative">
+                       Download CV <i data-lucide="download" class="w-4 h-4"></i>
+                     </button>
+                   </div>
+                </div>
+            </div>
+
+            <!-- 2. Photo Block -->
+            <div class="bento-card col-span-1 md:col-span-2 lg:col-span-2 row-span-2 min-h-[300px] group">
+                <div class="spotlight-overlay"></div>
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=2574&auto=format&fit=crop" alt="Ritchie Olthuis" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-80 group-hover:opacity-100">
+                <div class="absolute inset-0 bg-gradient-to-t from-[#121212] via-transparent to-transparent opacity-80 pointer-events-none"></div>
+                <div class="absolute bottom-6 left-6 pointer-events-none">
+                   <div class="text-accent font-mono text-xs mb-1">BASED IN</div>
+                   <div class="text-white font-display font-bold text-xl flex items-center gap-2">
+                     <i data-lucide="map-pin" class="w-4 h-4"></i> Netherlands
+                   </div>
+                </div>
+            </div>
+
+            <!-- 3. Stats Block -->
+            <div class="bento-card col-span-1 md:col-span-2 lg:col-span-2 p-6 flex flex-col justify-center gap-4 bg-[#151515] group">
+                <div class="spotlight-overlay"></div>
+                <div class="flex justify-between items-center border-b border-zinc-800 pb-4 group-hover:border-zinc-700 transition-colors">
+                    <span class="text-zinc-500 text-sm uppercase font-mono">Education</span>
+                    <span class="text-white font-bold">University of Twente</span>
+                 </div>
+                 <div class="flex justify-between items-center border-b border-zinc-800 pb-4 group-hover:border-zinc-700 transition-colors">
+                    <span class="text-zinc-500 text-sm uppercase font-mono">Degree</span>
+                    <span class="text-white font-bold">Pre-master BA</span>
+                 </div>
+                 <div class="flex justify-between items-center">
+                    <span class="text-zinc-500 text-sm uppercase font-mono">Avg. Grade</span>
+                    <span class="text-accent font-bold text-lg">7.5</span>
+                 </div>
+            </div>
+
+            <!-- 4. Social Links -->
+            <div class="bento-card col-span-1 md:col-span-2 lg:col-span-2 p-6 flex items-center justify-between group">
+                <div class="spotlight-overlay"></div>
+                <div class="flex gap-2 z-20">
+                    <a href="https://linkedin.com" target="_blank" class="w-12 h-12 rounded-full bg-zinc-900 border border-zinc-800 flex items-center justify-center text-zinc-400 hover:text-black hover:bg-accent hover:border-accent transition-all duration-300 relative">
+                        <i data-lucide="linkedin" class="w-5 h-5"></i>
+                    </a>
+                    <a href="mailto:contact@ritchie.dev" class="w-12 h-12 rounded-full bg-zinc-900 border border-zinc-800 flex items-center justify-center text-zinc-400 hover:text-black hover:bg-accent hover:border-accent transition-all duration-300 relative">
+                        <i data-lucide="mail" class="w-5 h-5"></i>
+                    </a>
+                </div>
+                <div class="text-right">
+                    <div class="text-xs text-zinc-500 font-mono uppercase mb-1">Let's Connect</div>
+                    <div class="text-white font-bold">Social Profiles</div>
+                </div>
+            </div>
+
+            <!-- 5. Ticker -->
+            <div class="bento-card col-span-1 md:col-span-4 lg:col-span-2 p-6 flex items-center bg-accent text-black overflow-hidden">
+                <div class="whitespace-nowrap animate-[slideUp_10s_linear_infinite] font-display font-bold text-lg uppercase tracking-wider flex gap-8">
+                     <span>Strategic Innovation</span>
+                     <span>•</span>
+                     <span>Design Thinking</span>
+                     <span>•</span>
+                     <span>Sustainability</span>
+                     <span>•</span>
+                     <span>Business Modeling</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- CONTENT GRID -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+            
+            <!-- LEFT COLUMN -->
+            <div class="lg:col-span-1 flex flex-col gap-4">
+                <!-- About -->
+                <div id="about" class="bento-card p-8 group">
+                    <div class="spotlight-overlay"></div>
+                    <div class="w-10 h-10 rounded-full bg-zinc-900 flex items-center justify-center text-accent mb-6 border border-zinc-800 group-hover:scale-110 transition-transform">
+                        <i data-lucide="cpu" class="w-5 h-5"></i>
+                    </div>
+                    <h3 class="text-2xl font-display font-bold text-white mb-4 uppercase">About</h3>
+                    <p class="text-zinc-400 text-sm leading-7 mb-6">
+                        I am an ambitious Business Administration and Commercial Economics student with a passion for strategic innovation. Currently pursuing a Pre-master at the University of Twente and a Bachelor's at Windesheim, I specialize in Design Thinking and sustainable business modeling.
+                        <br><br>
+                        My approach combines thorough research with creative problem-solving. I thrive on analyzing complex market trends and translating them into actionable strategies that drive economic, ecological, and social value.
+                    </p>
+                    <div class="h-px w-full bg-zinc-800 mb-6 group-hover:bg-zinc-700 transition-colors"></div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-zinc-900 rounded text-xs text-zinc-300 border border-zinc-800">#Innovation</span>
+                        <span class="px-3 py-1 bg-zinc-900 rounded text-xs text-zinc-300 border border-zinc-800">#Research</span>
+                        <span class="px-3 py-1 bg-zinc-900 rounded text-xs text-zinc-300 border border-zinc-800">#Strategy</span>
+                        <span class="px-3 py-1 bg-zinc-900 rounded text-xs text-zinc-300 border border-zinc-800">#ESG</span>
+                    </div>
+                </div>
+
+                <!-- Skills -->
+                <div id="skills" class="bento-card p-8 group">
+                    <div class="spotlight-overlay"></div>
+                    <h3 class="text-xl font-display font-bold text-white mb-6 uppercase flex items-center gap-2">
+                        <span class="w-2 h-2 bg-accent rounded-full animate-pulse"></span>
+                        Expertise
+                    </h3>
+                    <div class="space-y-6 relative z-10">
+                        <div>
+                            <h4 class="text-xs font-mono uppercase text-zinc-500 mb-3">Strategic Analysis</h4>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-2 py-1 text-xs font-medium text-white bg-zinc-800/50 border border-zinc-700 rounded hover:border-accent hover:text-accent transition-colors">SWOT Analysis</span>
+                                <span class="px-2 py-1 text-xs font-medium text-white bg-zinc-800/50 border border-zinc-700 rounded hover:border-accent hover:text-accent transition-colors">Confrontation Matrix</span>
+                                <span class="px-2 py-1 text-xs font-medium text-white bg-zinc-800/50 border border-zinc-700 rounded hover:border-accent hover:text-accent transition-colors">Market Entry</span>
+                            </div>
+                        </div>
+                        <div>
+                            <h4 class="text-xs font-mono uppercase text-zinc-500 mb-3">Innovation & Design</h4>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-2 py-1 text-xs font-medium text-white bg-zinc-800/50 border border-zinc-700 rounded hover:border-accent hover:text-accent transition-colors">Design Thinking</span>
+                                <span class="px-2 py-1 text-xs font-medium text-white bg-zinc-800/50 border border-zinc-700 rounded hover:border-accent hover:text-accent transition-colors">Prototyping</span>
+                                <span class="px-2 py-1 text-xs font-medium text-white bg-zinc-800/50 border border-zinc-700 rounded hover:border-accent hover:text-accent transition-colors">Customer Journey</span>
+                            </div>
+                        </div>
+                         <div>
+                            <h4 class="text-xs font-mono uppercase text-zinc-500 mb-3">Business Management</h4>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-2 py-1 text-xs font-medium text-white bg-zinc-800/50 border border-zinc-700 rounded hover:border-accent hover:text-accent transition-colors">Business Model Canvas</span>
+                                <span class="px-2 py-1 text-xs font-medium text-white bg-zinc-800/50 border border-zinc-700 rounded hover:border-accent hover:text-accent transition-colors">ESG</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RIGHT COLUMN -->
+            <div class="lg:col-span-2 flex flex-col gap-4">
+                
+                <!-- Education -->
+                <div id="education" class="bento-card p-8 group">
+                    <div class="spotlight-overlay"></div>
+                    <div class="flex items-center justify-between mb-8">
+                        <h3 class="text-2xl font-display font-bold text-white uppercase">Education</h3>
+                        <i data-lucide="graduation-cap" class="text-zinc-600 group-hover:text-white transition-colors"></i>
+                    </div>
+                    <div class="space-y-8">
+                        <!-- Edu 1 -->
+                        <div class="relative pl-8 border-l border-zinc-800 group-hover:border-zinc-700 transition-colors">
+                            <div class="absolute left-[-5px] top-1 w-2.5 h-2.5 rounded-full bg-accent"></div>
+                            <div class="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2 mb-2">
+                                <h4 class="text-lg font-bold text-white">University of Twente</h4>
+                                <span class="text-xs font-mono text-zinc-500 bg-zinc-900 px-2 py-1 rounded border border-zinc-800">Feb 2025 - Jul 2025</span>
+                            </div>
+                            <div class="text-sm text-zinc-400 mb-2 font-medium">Pre-master, Business Administration / Bedrijfskunde</div>
+                            <p class="text-sm text-zinc-500 leading-relaxed max-w-2xl">Focus on Business Management and academic research methodologies.</p>
+                            <div class="mt-3 text-xs font-bold text-accent">Gemiddelde: 7.5</div>
+                        </div>
+                        <!-- Edu 2 -->
+                         <div class="relative pl-8 border-l border-zinc-800 group-hover:border-zinc-700 transition-colors">
+                            <div class="absolute left-[-5px] top-1 w-2.5 h-2.5 rounded-full bg-zinc-700"></div>
+                            <div class="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2 mb-2">
+                                <h4 class="text-lg font-bold text-white">Windesheim</h4>
+                                <span class="text-xs font-mono text-zinc-500 bg-zinc-900 px-2 py-1 rounded border border-zinc-800">Sep 2022 - Jul 2026</span>
+                            </div>
+                            <div class="text-sm text-zinc-400 mb-2 font-medium">Bachelor's degree, Commerciële Economie</div>
+                            <p class="text-sm text-zinc-500 leading-relaxed max-w-2xl">Developing skills in innovative research, strategic advice, design thinking, and commercial awareness. <br> Minor: Financiële Besluitvorming</p>
+                        </div>
+                         <!-- Edu 3 -->
+                         <div class="relative pl-8 border-l border-zinc-800 group-hover:border-zinc-700 transition-colors">
+                            <div class="absolute left-[-5px] top-1 w-2.5 h-2.5 rounded-full bg-zinc-700"></div>
+                            <div class="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2 mb-2">
+                                <h4 class="text-lg font-bold text-white">Windesheim</h4>
+                                <span class="text-xs font-mono text-zinc-500 bg-zinc-900 px-2 py-1 rounded border border-zinc-800">Sep 2022 - Jul 2023</span>
+                            </div>
+                            <div class="text-sm text-zinc-400 mb-2 font-medium">Propedeuse, Commerciële Economie</div>
+                            <div class="mt-3 text-xs font-bold text-accent">Gemiddelde: 7.5</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Experience -->
+                <div id="experience" class="bento-card p-8 bg-[#151515] group">
+                    <div class="spotlight-overlay"></div>
+                    <div class="flex items-center justify-between mb-8">
+                        <h3 class="text-2xl font-display font-bold text-white uppercase">Experience</h3>
+                        <i data-lucide="briefcase" class="text-zinc-600 group-hover:text-white transition-colors"></i>
+                    </div>
+                    
+                    <div class="group/item">
+                      <div class="flex flex-col md:flex-row md:items-center justify-between gap-2 mb-4">
+                        <div>
+                          <h4 class="text-xl font-bold text-white group-hover/item:text-accent transition-colors">Research & Development (R&D)</h4>
+                          <div class="text-zinc-400 text-sm">Unica Building Services • Hoevelaken, Gelderland (Hybrid)</div>
+                        </div>
+                        <span class="text-xs font-mono text-zinc-500 border border-zinc-800 px-3 py-1 rounded-full">Aug 2023 - Jan 2024</span>
+                      </div>
+                      <p class="text-zinc-400 text-sm leading-relaxed mb-4 whitespace-pre-line border-l-2 border-zinc-800 pl-4 group-hover/item:border-accent transition-colors">
+                        Conducted in-depth strategic analysis and innovation development. Responsible for identifying SWOT elements, creating confrontation matrices, and developing comprehensive business models focusing on economic, ecological, and social aspects.
+                      </p>
+                      <div class="flex flex-wrap gap-2">
+                         <span class="text-[10px] uppercase font-bold text-zinc-500 bg-zinc-900 px-2 py-1 rounded">Design Thinking</span>
+                         <span class="text-[10px] uppercase font-bold text-zinc-500 bg-zinc-900 px-2 py-1 rounded">SWOT Analysis</span>
+                         <span class="text-[10px] uppercase font-bold text-zinc-500 bg-zinc-900 px-2 py-1 rounded">Business Model Canvas</span>
+                      </div>
+                    </div>
+                </div>
+
+                <!-- Projects -->
+                <div id="projects" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="md:col-span-2 flex items-center justify-between py-4">
+                        <h3 class="text-2xl font-display font-bold text-white uppercase">Selected Projects</h3>
+                        <a href="#" class="text-xs font-mono text-zinc-500 hover:text-white flex items-center gap-1 transition-colors">
+                            VIEW ALL <i data-lucide="arrow-up-right" class="w-3 h-3"></i>
+                        </a>
+                    </div>
+
+                    <!-- Project 1: Vitens -->
+                    <div class="bento-card flex flex-col h-full group">
+                        <div class="spotlight-overlay"></div>
+                        <div class="aspect-[16/9] w-full overflow-hidden border-b border-zinc-800 relative group-hover:border-zinc-700 transition-colors">
+                            <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2670&auto=format&fit=crop" alt="Vitens Project" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-70 group-hover:opacity-100">
+                        </div>
+                        <div class="p-6 flex flex-col flex-grow">
+                            <h3 class="text-xl font-bold text-white font-display uppercase tracking-tight group-hover:text-accent transition-colors mb-3">Vitens: Corporate Entity Strategy</h3>
+                            <p class="text-zinc-400 text-sm leading-relaxed mb-6 flex-grow">Strategic research into the formation of a new organizational entity specifically targeting the large-scale business market.</p>
+                            <div class="flex flex-wrap gap-2 mt-auto">
+                                <span class="px-3 py-1 text-[10px] uppercase tracking-wider font-bold rounded-full bg-zinc-900 text-zinc-400 border border-zinc-800">Market Analysis</span>
+                                <span class="px-3 py-1 text-[10px] uppercase tracking-wider font-bold rounded-full bg-zinc-900 text-zinc-400 border border-zinc-800">Org. Structuring</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 2: Perron038 -->
+                    <div class="bento-card flex flex-col h-full group">
+                        <div class="spotlight-overlay"></div>
+                         <div class="aspect-[16/9] w-full overflow-hidden border-b border-zinc-800 relative group-hover:border-zinc-700 transition-colors">
+                            <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2670&auto=format&fit=crop" alt="Perron038 Project" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-70 group-hover:opacity-100">
+                        </div>
+                        <div class="p-6 flex flex-col flex-grow">
+                            <h3 class="text-xl font-bold text-white font-display uppercase tracking-tight group-hover:text-accent transition-colors mb-3">Perron038: Factory Next Activation</h3>
+                            <p class="text-zinc-400 text-sm leading-relaxed mb-6 flex-grow">Developed an activation strategy for 'Factory Next' to transform the location into a bustling testing ground.</p>
+                            <div class="flex flex-wrap gap-2 mt-auto">
+                                <span class="px-3 py-1 text-[10px] uppercase tracking-wider font-bold rounded-full bg-zinc-900 text-zinc-400 border border-zinc-800">Innovation</span>
+                                <span class="px-3 py-1 text-[10px] uppercase tracking-wider font-bold rounded-full bg-zinc-900 text-zinc-400 border border-zinc-800">Location Strategy</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 3: Unica -->
+                    <div class="bento-card flex flex-col h-full group">
+                        <div class="spotlight-overlay"></div>
+                         <div class="aspect-[16/9] w-full overflow-hidden border-b border-zinc-800 relative group-hover:border-zinc-700 transition-colors">
+                            <img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?q=80&w=2669&auto=format&fit=crop" alt="Unica Project" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-70 group-hover:opacity-100">
+                        </div>
+                        <div class="p-6 flex flex-col flex-grow">
+                            <h3 class="text-xl font-bold text-white font-display uppercase tracking-tight group-hover:text-accent transition-colors mb-3">Unica: Sustainable Business Model</h3>
+                            <p class="text-zinc-400 text-sm leading-relaxed mb-6 flex-grow">Applied Design Thinking to develop a Triple Bottom Line business model (Economic, Ecological, Social).</p>
+                            <div class="flex flex-wrap gap-2 mt-auto">
+                                <span class="px-3 py-1 text-[10px] uppercase tracking-wider font-bold rounded-full bg-zinc-900 text-zinc-400 border border-zinc-800">Sustainability</span>
+                                <span class="px-3 py-1 text-[10px] uppercase tracking-wider font-bold rounded-full bg-zinc-900 text-zinc-400 border border-zinc-800">Design Thinking</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Contact Block -->
+        <div id="contact" class="mt-4 mb-8">
+            <div class="bento-card p-10 md:p-20 text-center group">
+                <div class="spotlight-overlay"></div>
+                <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-accent to-transparent opacity-50"></div>
+                <div class="relative z-10">
+                    <h2 class="text-4xl md:text-6xl font-display font-bold text-white uppercase mb-6 tracking-tight">
+                        Let's work <span class="text-zinc-600 transition-colors group-hover:text-zinc-400">Together</span>
+                    </h2>
+                    <p class="text-zinc-400 max-w-xl mx-auto mb-10 text-lg">
+                        Open to discussing new opportunities, strategic collaborations, or sustainability initiatives.
+                    </p>
+                    <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                        <a href="mailto:contact@ritchie.dev" class="px-8 py-4 bg-accent text-black font-bold rounded-full hover:bg-[#b3e600] transition-colors min-w-[200px]">Send Email</a>
+                        <a href="#" class="px-8 py-4 bg-white text-black font-bold rounded-full hover:bg-zinc-200 transition-colors min-w-[200px] flex items-center justify-center gap-2">
+                             <i data-lucide="calendar" class="w-4 h-4"></i> Schedule Call
+                        </a>
+                        <a href="https://linkedin.com" target="_blank" class="px-8 py-4 bg-zinc-900 text-white font-bold rounded-full border border-zinc-800 hover:border-zinc-600 transition-colors min-w-[200px] flex items-center justify-center gap-2">
+                             <i data-lucide="linkedin" class="w-4 h-4"></i> LinkedIn
+                        </a>
+                    </div>
+                    <div class="mt-20 pt-10 border-t border-zinc-800 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-zinc-600 font-mono uppercase">
+                        <span>© 2025 Ritchie Olthuis</span>
+                        <div class="flex gap-6">
+                            <a href="#" class="hover:text-zinc-400">Privacy</a>
+                            <a href="#" class="hover:text-zinc-400">Terms</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Chat Widget HTML -->
+    <div id="chat-widget-container" class="fixed bottom-6 right-6 z-50 flex flex-col items-end pointer-events-none">
+        
+        <!-- Chat Window -->
+        <div id="chat-window" class="pointer-events-auto mb-4 w-[320px] sm:w-[380px] h-[500px] max-h-[70vh] bg-[#121212] border border-zinc-800 rounded-3xl shadow-2xl flex flex-col overflow-hidden transition-all duration-300 origin-bottom-right opacity-0 scale-90 translate-y-10 pointer-events-none">
+            
+            <!-- Header -->
+            <div class="p-4 border-b border-zinc-800 bg-zinc-900/50 flex justify-between items-center backdrop-blur-md">
+                <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 rounded-full bg-accent flex items-center justify-center shadow-[0_0_15px_rgba(204,255,0,0.3)]">
+                        <i data-lucide="bot" class="w-4 h-4 text-black"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-sm text-white font-display uppercase tracking-wide">Ritchie AI</h3>
+                        <div class="flex items-center gap-1.5">
+                            <span class="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></span>
+                            <p class="text-[10px] text-zinc-400 uppercase tracking-wider">Online</p>
+                        </div>
+                    </div>
+                </div>
+                <button onclick="toggleChat()" class="p-2 hover:bg-white/5 rounded-full transition-colors text-zinc-400 hover:text-white">
+                    <i data-lucide="x" class="w-4 h-4"></i>
+                </button>
+            </div>
+
+            <!-- Messages -->
+            <div id="chat-messages" class="flex-1 overflow-y-auto p-4 space-y-4 custom-scrollbar">
+                <div class="flex justify-start">
+                    <div class="max-w-[85%] p-3.5 rounded-2xl text-sm leading-relaxed bg-accent/10 text-zinc-200 border border-accent/20 rounded-bl-none">
+                        Hi! I'm Ritchie's AI assistant. Ask me about his strategy experience or studies.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Input -->
+            <form onsubmit="handleChatSubmit(event)" class="p-3 border-t border-zinc-800 bg-zinc-900/30">
+                <div class="relative flex items-center">
+                    <input id="chat-input" type="text" placeholder="Ask a question..." class="w-full bg-[#0a0a0a] border border-zinc-800 rounded-xl pl-4 pr-12 py-3 text-sm text-white focus:outline-none focus:border-accent/50 focus:ring-1 focus:ring-accent/50 transition-all placeholder:text-zinc-600 font-sans" />
+                    <button type="submit" class="absolute right-2 p-2 bg-accent hover:bg-[#b3e600] rounded-lg text-black transition-colors">
+                        <i data-lucide="send" class="w-4 h-4"></i>
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Toggle Button -->
+        <button onclick="toggleChat()" id="chat-toggle-btn" class="pointer-events-auto w-14 h-14 rounded-full shadow-[0_0_20px_rgba(0,0,0,0.5)] flex items-center justify-center border border-zinc-800 transition-all duration-300 hover:scale-105 active:scale-95 bg-accent text-black hover:bg-[#b3e600]">
+            <i data-lucide="message-circle" class="w-6 h-6"></i>
+        </button>
+    </div>
+
+    <!-- Scripts for Logic -->
+    <script type="module">
+        import { GoogleGenAI } from "@google/genai";
+
+        // --- 1. Initialize Icons ---
+        lucide.createIcons();
+
+        // --- 2. Spotlight Effect ---
+        const cards = document.querySelectorAll('.bento-card');
+        cards.forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                card.style.setProperty('--x', `${x}px`);
+                card.style.setProperty('--y', `${y}px`);
+            });
+        });
+
+        // --- 3. Chat Logic ---
+        let isChatOpen = false;
+        const chatWindow = document.getElementById('chat-window');
+        const chatToggleBtn = document.getElementById('chat-toggle-btn');
+        const chatInput = document.getElementById('chat-input');
+        const messagesContainer = document.getElementById('chat-messages');
+
+        window.toggleChat = () => {
+            isChatOpen = !isChatOpen;
+            if (isChatOpen) {
+                chatWindow.classList.remove('opacity-0', 'scale-90', 'translate-y-10', 'pointer-events-none');
+                chatWindow.classList.add('opacity-100', 'scale-100', 'translate-y-0');
+                chatToggleBtn.classList.remove('bg-accent', 'text-black');
+                chatToggleBtn.classList.add('bg-zinc-900', 'text-white');
+                chatToggleBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>';
+            } else {
+                chatWindow.classList.add('opacity-0', 'scale-90', 'translate-y-10', 'pointer-events-none');
+                chatWindow.classList.remove('opacity-100', 'scale-100', 'translate-y-0');
+                chatToggleBtn.classList.add('bg-accent', 'text-black');
+                chatToggleBtn.classList.remove('bg-zinc-900', 'text-white');
+                chatToggleBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-message-circle"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>';
+            }
+        };
+
+        const appendMessage = (text, sender) => {
+            const div = document.createElement('div');
+            div.className = `flex ${sender === 'user' ? 'justify-end' : 'justify-start'}`;
+            div.innerHTML = `
+                <div class="max-w-[85%] p-3.5 rounded-2xl text-sm leading-relaxed ${sender === 'user' ? 'bg-zinc-800 text-white rounded-br-none border border-zinc-700' : 'bg-accent/10 text-zinc-200 border border-accent/20 rounded-bl-none'}">
+                    ${text}
+                </div>
+            `;
+            messagesContainer.appendChild(div);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        };
+
+        window.handleChatSubmit = async (e) => {
+            e.preventDefault();
+            const text = chatInput.value.trim();
+            if (!text) return;
+
+            appendMessage(text, 'user');
+            chatInput.value = '';
+
+            // AI Integration
+            try {
+                // Check if API key is available (Note: In pure client-side HTML, env vars don't work the same way as Node.
+                // We assume process.env.API_KEY is replaced by the builder or not available.
+                // For this demo, we will simulate a response if no key is present to prevent crashing.)
+                
+                let apiKey = null;
+                try { apiKey = process.env.API_KEY; } catch(e) {}
+
+                if (!apiKey) {
+                    setTimeout(() => appendMessage("I'm sorry, I can't connect to the AI brain right now (API Key missing). But I can tell you Ritchie is great at strategy!", 'model'), 500);
+                    return;
+                }
+
+                const ai = new GoogleGenAI({ apiKey: apiKey });
+                const model = ai.getGenerativeModel({ 
+                    model: "gemini-2.5-flash",
+                    systemInstruction: "You are an AI Assistant for Ritchie Olthuis's personal portfolio. He is a Business Administration student specializing in Strategy, Design Thinking, and Sustainability. Be professional and concise."
+                });
+
+                const result = await model.generateContent(text);
+                const response = result.response.text();
+                appendMessage(response, 'model');
+
+            } catch (error) {
+                console.error(error);
+                appendMessage("I'm currently offline. Please email Ritchie directly!", 'model');
+            }
+        };
+    </script>
+</body>
 </html>

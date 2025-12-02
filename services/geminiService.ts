@@ -1,5 +1,7 @@
 import { GoogleGenAI, Chat, GenerateContentResponse } from "@google/genai";
-import { GEMINI_SYSTEM_INSTRUCTION } from "../constants";
+
+// Defined locally as constants.tsx is no longer available/used
+const GEMINI_SYSTEM_INSTRUCTION = "You are Ritchie's AI assistant. You help visitors learn about Ritchie's projects, strategy experience, skills, and studies. Be polite, professional, and concise.";
 
 let chatSession: Chat | null = null;
 let genAI: GoogleGenAI | null = null;
