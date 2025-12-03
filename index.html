@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Ritchie Olthuis | Business Administration & Strategy</title>
+    <title>Ritchie Olthuis | Business Strategy & Innovation Enthusiast</title>
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -36,6 +36,7 @@
             animation: {
               'fade-in': 'fadeIn 0.5s ease-out',
               'slide-up': 'slideUp 0.5s ease-out',
+              'marquee': 'marquee 30s linear infinite',
             },
             keyframes: {
               fadeIn: {
@@ -46,6 +47,10 @@
                 '0%': { transform: 'translateY(20px)', opacity: '0' },
                 '100%': { transform: 'translateY(0)', opacity: '1' },
               },
+              marquee: {
+                '0%': { transform: 'translateX(0)' },
+                '100%': { transform: 'translateX(-50%)' },
+              }
             }
           },
         },
@@ -88,7 +93,7 @@
         background: #121212;
         border: 1px solid #222;
         border-radius: 1.5rem; /* 24px */
-        transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), border-color 0.3s ease;
+        transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), border-color 0.3s ease, box-shadow 0.3s ease;
         position: relative;
         overflow: hidden;
       }
@@ -112,6 +117,44 @@
       .bento-card:hover .spotlight-overlay {
         opacity: 1;
       }
+
+      /* Scroll Reveal Animation Classes */
+      .reveal-on-scroll {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+      }
+      
+      .reveal-visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* Typewriter Cursor */
+      .typewriter-cursor::after {
+        content: '|';
+        display: inline-block;
+        margin-left: 2px;
+        animation: blink 1s step-start infinite;
+        color: #ccff00;
+      }
+      
+      @keyframes blink {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0; }
+      }
+
+      /* Logo Slider Styling */
+      /* Updated filter logic to handle white backgrounds on dark theme */
+      .logo-filter {
+        filter: grayscale(100%) invert(1); /* Inverts colors: Black text -> White text, White bg -> Black bg */
+        mix-blend-mode: screen; /* Screens the logo over the background: Black bg becomes transparent, White text stays white */
+        opacity: 0.6;
+        transition: opacity 0.3s ease;
+      }
+      .logo-filter:hover {
+        opacity: 1;
+      }
     </style>
 <script type="importmap">
 {
@@ -127,7 +170,7 @@
 <body class="bg-background text-primary selection:bg-accent selection:text-black font-sans bg-grid-pattern pb-20">
 
     <!-- Top Navigation -->
-    <div class="fixed top-6 left-0 right-0 z-50 flex justify-center pointer-events-none px-4">
+    <div class="fixed top-6 left-0 right-0 z-50 flex justify-center pointer-events-none px-4 fade-in-nav">
         <nav class="pointer-events-auto bg-[#121212]/80 backdrop-blur-xl border border-white/10 rounded-full px-2 py-2 flex items-center gap-1 shadow-2xl">
           <button onclick="window.scrollTo({ top: 0, behavior: 'smooth' })" class="w-10 h-10 rounded-full bg-zinc-900 flex items-center justify-center text-white font-serif italic border border-zinc-800 hover:border-accent transition-colors">
             R
@@ -161,7 +204,7 @@
         <div class="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-6 gap-4 mb-4">
             
             <!-- 1. Name Block -->
-            <div class="bento-card col-span-1 md:col-span-4 lg:col-span-4 row-span-2 p-6 md:p-10 flex flex-col justify-between group">
+            <div class="bento-card col-span-1 md:col-span-4 lg:col-span-4 row-span-2 p-6 md:p-10 flex flex-col justify-between group reveal-on-scroll">
                 <div class="spotlight-overlay"></div>
                 <div class="absolute top-0 right-0 p-32 bg-accent/5 rounded-full blur-3xl -mr-16 -mt-16 pointer-events-none transition-all duration-700 group-hover:bg-accent/10"></div>
                 
@@ -181,7 +224,8 @@
                 </div>
 
                 <div class="relative z-10 max-w-xl">
-                   <h2 class="text-xl md:text-2xl text-white mb-4 font-medium" data-i18n="hero_title">Strategic Innovator & Business Student</h2>
+                   <!-- Typewriter effect target -->
+                   <h2 id="typewriter-title" class="text-xl md:text-2xl text-white mb-4 font-medium typewriter-cursor" data-i18n="hero_title">Business Strategy & Innovation Enthusiast</h2>
                    <p class="text-zinc-400 leading-relaxed text-sm md:text-base mb-8 group-hover:text-zinc-300 transition-colors" data-i18n="hero_desc">
                      Transforming business challenges into data-driven, human-centred and sustainable driven opportunities.
                    </p>
@@ -199,7 +243,7 @@
             </div>
 
             <!-- 2. Photo Block -->
-            <div class="bento-card col-span-1 md:col-span-2 lg:col-span-2 row-span-2 min-h-[300px] group">
+            <div class="bento-card col-span-1 md:col-span-2 lg:col-span-2 row-span-2 min-h-[300px] group reveal-on-scroll" style="transition-delay: 100ms;">
                 <div class="spotlight-overlay"></div>
                 <!-- 
                   CHANGE IMAGE: 
@@ -216,20 +260,20 @@
             </div>
 
             <!-- 3. Stats Block (Updated per request) -->
-            <div class="bento-card col-span-1 md:col-span-2 lg:col-span-2 p-6 flex flex-col justify-center gap-4 bg-[#151515] group">
+            <div class="bento-card col-span-1 md:col-span-2 lg:col-span-2 p-6 flex flex-col justify-center gap-4 bg-[#151515] group reveal-on-scroll" style="transition-delay: 200ms;">
                 <div class="spotlight-overlay"></div>
                 <div class="flex justify-between items-center border-b border-zinc-800 pb-4 group-hover:border-zinc-700 transition-colors">
                     <span class="text-zinc-500 text-sm uppercase font-mono" data-i18n="stat_edu">Education</span>
-                    <span class="text-white font-bold">Windesheim</span>
+                    <span class="text-white font-bold text-right ml-4" data-i18n="stat_edu_val">Commercial Economics (Marketing)</span>
                  </div>
                  <div class="flex justify-between items-center">
                     <span class="text-zinc-500 text-sm uppercase font-mono" data-i18n="stat_degree">Degree</span>
-                    <span class="text-white font-bold" data-i18n="stat_degree_val">Bachelor Commercial Economics (Marketing)</span>
+                    <span class="text-white font-bold text-right ml-4" data-i18n="stat_degree_val">Bachelor Degree</span>
                  </div>
             </div>
 
             <!-- 4. Social Links -->
-            <div class="bento-card col-span-1 md:col-span-2 lg:col-span-2 p-6 flex items-center justify-between group">
+            <div class="bento-card col-span-1 md:col-span-2 lg:col-span-2 p-6 flex items-center justify-between group reveal-on-scroll" style="transition-delay: 300ms;">
                 <div class="spotlight-overlay"></div>
                 <div class="flex gap-2 z-20">
                     <a href="https://www.linkedin.com/in/ritchieolthuis" target="_blank" class="w-12 h-12 rounded-full bg-zinc-900 border border-zinc-800 flex items-center justify-center text-zinc-400 hover:text-black hover:bg-accent hover:border-accent transition-all duration-300 relative">
@@ -249,7 +293,7 @@
             </div>
 
             <!-- 5. Ticker -->
-            <div class="bento-card col-span-1 md:col-span-4 lg:col-span-2 p-6 flex items-center bg-accent text-black overflow-hidden">
+            <div class="bento-card col-span-1 md:col-span-4 lg:col-span-2 p-6 flex items-center bg-accent text-black overflow-hidden reveal-on-scroll" style="transition-delay: 400ms;">
                 <div class="whitespace-nowrap animate-[slideUp_10s_linear_infinite] font-display font-bold text-lg uppercase tracking-wider flex gap-8">
                      <span data-i18n="ticker_1">Strategic Innovation</span>
                      <span>•</span>
@@ -268,7 +312,7 @@
             <!-- LEFT COLUMN -->
             <div class="lg:col-span-1 flex flex-col gap-4">
                 <!-- About -->
-                <div id="about" class="bento-card p-8 group">
+                <div id="about" class="bento-card p-8 group reveal-on-scroll">
                     <div class="spotlight-overlay"></div>
                     <div class="w-10 h-10 rounded-full bg-zinc-900 flex items-center justify-center text-accent mb-6 border border-zinc-800 group-hover:scale-110 transition-transform">
                         <i data-lucide="cpu" class="w-5 h-5"></i>
@@ -289,7 +333,7 @@
                 </div>
 
                 <!-- Skills -->
-                <div id="skills" class="bento-card p-8 group">
+                <div id="skills" class="bento-card p-8 group reveal-on-scroll">
                     <div class="spotlight-overlay"></div>
                     <h3 class="text-xl font-display font-bold text-white mb-6 uppercase flex items-center gap-2">
                         <span class="w-2 h-2 bg-accent rounded-full animate-pulse"></span>
@@ -327,7 +371,7 @@
             <div class="lg:col-span-2 flex flex-col gap-4">
                 
                 <!-- Education -->
-                <div id="education" class="bento-card p-8 group">
+                <div id="education" class="bento-card p-8 group reveal-on-scroll">
                     <div class="spotlight-overlay"></div>
                     <div class="flex items-center justify-between mb-8">
                         <h3 class="text-2xl font-display font-bold text-white uppercase" data-i18n="edu_title">Education</h3>
@@ -384,7 +428,7 @@
                 </div>
 
                 <!-- Experience -->
-                <div id="experience" class="bento-card p-8 bg-[#151515] group">
+                <div id="experience" class="bento-card p-8 bg-[#151515] group reveal-on-scroll">
                     <div class="spotlight-overlay"></div>
                     <div class="flex items-center justify-between mb-8">
                         <h3 class="text-2xl font-display font-bold text-white uppercase" data-i18n="exp_title">Experience</h3>
@@ -492,10 +536,10 @@
         </div>
 
         <!-- Projects Slideshow (Moved out of grid for full width) -->
-        <div id="projects" class="grid grid-cols-1 gap-6 mt-4">
+        <div id="projects" class="grid grid-cols-1 gap-6 mt-4 reveal-on-scroll">
             <div class="flex items-center justify-between py-4">
                 <h3 class="text-2xl font-display font-bold text-white uppercase" data-i18n="proj_title">Selected Projects</h3>
-                <a href="#" class="text-xs font-mono text-zinc-500 hover:text-white flex items-center gap-1 transition-colors">
+                <a href="#" onclick="openProjectsModal(); return false;" class="text-xs font-mono text-zinc-500 hover:text-white flex items-center gap-1 transition-colors">
                     <span data-i18n="proj_view_all">VIEW ALL</span> <i data-lucide="arrow-up-right" class="w-3 h-3"></i>
                 </a>
             </div>
@@ -519,16 +563,37 @@
                     <div class="project-slide w-full flex-shrink-0 flex flex-col md:flex-row h-full">
                         <!-- Image Side -->
                         <div class="w-full md:w-1/2 h-64 md:h-full relative border-b md:border-b-0 md:border-r border-zinc-800">
+                             <!-- Date Label -->
+                            <div class="absolute top-4 left-4 z-20 px-3 py-1 bg-accent text-black text-xs font-bold uppercase tracking-wider rounded-full">
+                                Aug 2025 - Jan 2026 · 6 months
+                            </div>
                             <img src="https://www.h2owaternetwerk.nl/images/2020/December/vitens_strategie_duurzaam.jpg" alt="Vitens Project" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700">
-                            <a href="https://www.vitens.nl/Zakelijk" target="_blank" class="absolute top-4 right-4 p-3 bg-white text-black rounded-full hover:scale-110 transition-transform">
+                            <a href="https://www.vitens.nl/Zakelijk" target="_blank" class="absolute top-4 right-4 p-3 bg-white text-black rounded-full hover:scale-110 transition-transform z-20">
                                 <i data-lucide="external-link" class="w-5 h-5"></i>
                             </a>
                         </div>
-                        <!-- Text Side -->
+                        <!-- Text Side (Roadmap Style) -->
                         <div class="w-full md:w-1/2 p-6 md:p-10 flex flex-col justify-center bg-[#121212]">
                             <h3 class="text-xl font-bold text-white font-display uppercase tracking-tight mb-4" data-i18n="proj_1_title">Vitens, Grootzakelijke markt: Market Needs, Positioning & Organisational Direction</h3>
-                            <div class="overflow-y-auto pr-2 custom-scrollbar flex-grow max-h-[200px] md:max-h-none">
-                                <p class="text-zinc-400 text-sm leading-relaxed mb-6" data-i18n="proj_1_desc">For Vitens, I conducted an in-depth market study to determine how a new Water-as-a-Service division should be positioned, structured, and brought to market. The research examined which parties in the Netherlands offer similar services, the differences in propositions, and how Vitens can distinguish itself through circular water solutions and water stewardship. I analysed target segments, assessed customer needs, and identified which services should (and should not yet) be included in the WaaS portfolio. The study also explored naming, branding and organisational form, and evaluated how Vitens can bridge from its current service boundary to a commercial WaaS entity that contributes to a more resilient and sustainable water system. These insights provide strategic support for Vitens in shaping the future of its large business segment.</p>
+                            <div class="overflow-y-auto pr-2 custom-scrollbar flex-grow max-h-[200px] md:max-h-none" data-i18n="proj_1_desc">
+                                <!-- Roadmap Timeline Structure -->
+                                <div class="relative pl-6 border-l-2 border-zinc-800 ml-2">
+                                    <div class="mb-6 last:mb-0 relative">
+                                        <div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div>
+                                        <h4 class="text-accent font-mono text-xs uppercase mb-1">Challenge & Analysis</h4>
+                                        <p class="text-zinc-400 text-sm leading-relaxed">Conducted in-depth market study to position new 'Water-as-a-Service' division. Analyzed competitors and customer needs to define the scope of the portfolio.</p>
+                                    </div>
+                                    <div class="mb-6 last:mb-0 relative">
+                                        <div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div>
+                                        <h4 class="text-accent font-mono text-xs uppercase mb-1">Strategic Insight</h4>
+                                        <p class="text-zinc-400 text-sm leading-relaxed">Identified opportunity to distinguish Vitens through circular water solutions and water stewardship, bridging current services to a commercial entity.</p>
+                                    </div>
+                                     <div class="mb-6 last:mb-0 relative">
+                                        <div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div>
+                                        <h4 class="text-accent font-mono text-xs uppercase mb-1">Advice & Outcome</h4>
+                                        <p class="text-zinc-400 text-sm leading-relaxed">Delivered strategic roadmap for naming, branding, and organizational form, creating a resilient and sustainable future for the large business segment.</p>
+                                    </div>
+                                </div>
                             </div>
                             <div class="flex flex-wrap gap-2 mt-4 pt-4 border-t border-zinc-800">
                                 <span class="px-3 py-1 text-[10px] uppercase tracking-wider font-bold rounded-full bg-zinc-900 text-zinc-400 border border-zinc-800">Market Strategy</span>
@@ -540,15 +605,36 @@
                     <!-- Slide 2: Perron038 -->
                     <div class="project-slide w-full flex-shrink-0 flex flex-col md:flex-row h-full">
                         <div class="w-full md:w-1/2 h-64 md:h-full relative border-b md:border-b-0 md:border-r border-zinc-800">
+                             <!-- Date Label -->
+                            <div class="absolute top-4 left-4 z-20 px-3 py-1 bg-accent text-black text-xs font-bold uppercase tracking-wider rounded-full">
+                                Aug 2025 - Jan 2026 · 6 months
+                            </div>
                             <img src="https://smartindustry.nl/hs-fs/hubfs/news/Factory_NEXT_Perron038_Robotopstelling_Coldspray.jpg?width=2048&height=1365&name=Factory_NEXT_Perron038_Robotopstelling_Coldspray.jpg" alt="Perron038 Project" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700">
-                            <a href="https://www.perron038.nl/factory-next/" target="_blank" class="absolute top-4 right-4 p-3 bg-white text-black rounded-full hover:scale-110 transition-transform">
+                            <a href="https://www.perron038.nl/factory-next/" target="_blank" class="absolute top-4 right-4 p-3 bg-white text-black rounded-full hover:scale-110 transition-transform z-20">
                                 <i data-lucide="external-link" class="w-5 h-5"></i>
                             </a>
                         </div>
                         <div class="w-full md:w-1/2 p-6 md:p-10 flex flex-col justify-center bg-[#121212]">
                             <h3 class="text-xl font-bold text-white font-display uppercase tracking-tight mb-4" data-i18n="proj_2_title">Perron038, Factory NEXT: Strategic Commercial Positioning</h3>
-                            <div class="overflow-y-auto pr-2 custom-scrollbar flex-grow max-h-[200px] md:max-h-none">
-                                <p class="text-zinc-400 text-sm leading-relaxed mb-6" data-i18n="proj_2_desc">At Perron038, I explored how Factory NEXT can be commercially positioned and made attractive for industrial partners. The research focused on determining the market potential for a shared innovation facility, identifying which companies and segments would adopt a “test-before-invest” model, and analysing competing initiatives in the Dutch manufacturing landscape. I evaluated how Factory NEXT’s labs, technologies and expertise could be translated into clear value propositions and developed strategic recommendations on messaging, target segments, and revenue models. By combining internal and external analysis with the Design Thinking cycle and customer validation, I delivered insights that support Perron038 in strengthening Factory NEXT as a commercially viable and distinctive innovation hub.</p>
+                            <div class="overflow-y-auto pr-2 custom-scrollbar flex-grow max-h-[200px] md:max-h-none" data-i18n="proj_2_desc">
+                                <!-- Roadmap Timeline -->
+                                <div class="relative pl-6 border-l-2 border-zinc-800 ml-2">
+                                    <div class="mb-6 last:mb-0 relative">
+                                        <div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div>
+                                        <h4 class="text-accent font-mono text-xs uppercase mb-1">Challenge & Analysis</h4>
+                                        <p class="text-zinc-400 text-sm leading-relaxed">Determined market potential for 'Factory NEXT' as a shared innovation facility. Analyzed competing initiatives in the Dutch manufacturing landscape.</p>
+                                    </div>
+                                    <div class="mb-6 last:mb-0 relative">
+                                        <div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div>
+                                        <h4 class="text-accent font-mono text-xs uppercase mb-1">Strategic Insight</h4>
+                                        <p class="text-zinc-400 text-sm leading-relaxed">Identified segments for "test-before-invest" model. Used Design Thinking and customer validation to align labs and technology with market needs.</p>
+                                    </div>
+                                     <div class="mb-6 last:mb-0 relative">
+                                        <div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div>
+                                        <h4 class="text-accent font-mono text-xs uppercase mb-1">Advice & Outcome</h4>
+                                        <p class="text-zinc-400 text-sm leading-relaxed">Developed value propositions, revenue models, and messaging to strengthen Factory NEXT as a commercially viable innovation hub.</p>
+                                    </div>
+                                </div>
                             </div>
                             <div class="flex flex-wrap gap-2 mt-4 pt-4 border-t border-zinc-800">
                                 <span class="px-3 py-1 text-[10px] uppercase tracking-wider font-bold rounded-full bg-zinc-900 text-zinc-400 border border-zinc-800">Innovation Hub</span>
@@ -560,19 +646,81 @@
                     <!-- Slide 3: Unica -->
                     <div class="project-slide w-full flex-shrink-0 flex flex-col md:flex-row h-full">
                         <div class="w-full md:w-1/2 h-64 md:h-full relative border-b md:border-b-0 md:border-r border-zinc-800">
+                             <!-- Date Label -->
+                            <div class="absolute top-4 left-4 z-20 px-3 py-1 bg-accent text-black text-xs font-bold uppercase tracking-wider rounded-full">
+                                Aug 2023 - Jan 2024 · 6 months
+                            </div>
                             <img src="https://stapintechniek.nl/wp-content/uploads/2025/10/7r31189-scaled.jpg" alt="Unica Project" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700">
-                            <a href="https://www.unica.nl/over-ons/onze-bedrijven/unica-building-services" target="_blank" class="absolute top-4 right-4 p-3 bg-white text-black rounded-full hover:scale-110 transition-transform">
+                            <a href="https://www.unica.nl/over-ons/onze-bedrijven/unica-building-services" target="_blank" class="absolute top-4 right-4 p-3 bg-white text-black rounded-full hover:scale-110 transition-transform z-20">
                                 <i data-lucide="external-link" class="w-5 h-5"></i>
                             </a>
                         </div>
                         <div class="w-full md:w-1/2 p-6 md:p-10 flex flex-col justify-center bg-[#121212]">
-                            <h3 class="text-xl font-bold text-white font-display uppercase tracking-tight mb-4" data-i18n="proj_3_title">Unica: Sustainable Business Model</h3>
-                            <div class="overflow-y-auto pr-2 custom-scrollbar flex-grow max-h-[200px] md:max-h-none">
-                                <p class="text-zinc-400 text-sm leading-relaxed mb-6" data-i18n="proj_3_desc">Conducted in-depth strategic analysis and innovation development. Responsible for identifying SWOT elements, creating confrontation matrices, and developing comprehensive business models focusing on economic, ecological, and social aspects.</p>
+                            <h3 class="text-xl font-bold text-white font-display uppercase tracking-tight mb-4" data-i18n="proj_3_title">Unica, Smart Buildings Business Development: Value Proposition Optimization</h3>
+                            <div class="overflow-y-auto pr-2 custom-scrollbar flex-grow max-h-[200px] md:max-h-none" data-i18n="proj_3_desc">
+                                <!-- Roadmap Timeline -->
+                                <div class="relative pl-6 border-l-2 border-zinc-800 ml-2">
+                                    <div class="mb-6 last:mb-0 relative">
+                                        <div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div>
+                                        <h4 class="text-accent font-mono text-xs uppercase mb-1">Challenge & Analysis</h4>
+                                        <p class="text-zinc-400 text-sm leading-relaxed">Mapped internal dynamics (35 locations vs 9 branches) and external factors (EPBD III, technician scarcity). Used Business Model Canvas to reveal economic/social dependencies.</p>
+                                    </div>
+                                    <div class="mb-6 last:mb-0 relative">
+                                        <div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div>
+                                        <h4 class="text-accent font-mono text-xs uppercase mb-1">Strategic Insight</h4>
+                                        <p class="text-zinc-400 text-sm leading-relaxed">Ideation via trend pyramids led to 'SmartEase': entry-level kits & VR demos to visualize energy flows, removing customer capex fears.</p>
+                                    </div>
+                                     <div class="mb-6 last:mb-0 relative">
+                                        <div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div>
+                                        <h4 class="text-accent font-mono text-xs uppercase mb-1">Advice & Outcome</h4>
+                                        <p class="text-zinc-400 text-sm leading-relaxed">Prototyped and validated concepts with end-users. Created rollout impact canvas with KPIs for revenue and NPS, positioning Unica for customer-centric leadership.</p>
+                                    </div>
+                                </div>
                             </div>
                             <div class="flex flex-wrap gap-2 mt-4 pt-4 border-t border-zinc-800">
                                 <span class="px-3 py-1 text-[10px] uppercase tracking-wider font-bold rounded-full bg-zinc-900 text-zinc-400 border border-zinc-800">Sustainability</span>
                                 <span class="px-3 py-1 text-[10px] uppercase tracking-wider font-bold rounded-full bg-zinc-900 text-zinc-400 border border-zinc-800">Design Thinking</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 4: Zonneplan (NEW) -->
+                    <div class="project-slide w-full flex-shrink-0 flex flex-col md:flex-row h-full">
+                        <div class="w-full md:w-1/2 h-64 md:h-full relative border-b md:border-b-0 md:border-r border-zinc-800">
+                             <!-- Date Label -->
+                            <div class="absolute top-4 left-4 z-20 px-3 py-1 bg-accent text-black text-xs font-bold uppercase tracking-wider rounded-full">
+                                Feb 2023 - Jun 2023 · 5 months
+                            </div>
+                            <img src="https://zonneplan-site.s3.amazonaws.com/uploads/2024/05/zonnepanelen-header-hoeveel-kwh-e1716799873343.png" alt="Zonneplan Project" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700">
+                            <a href="https://www.zonneplan.nl/" target="_blank" class="absolute top-4 right-4 p-3 bg-white text-black rounded-full hover:scale-110 transition-transform z-20">
+                                <i data-lucide="external-link" class="w-5 h-5"></i>
+                            </a>
+                        </div>
+                        <div class="w-full md:w-1/2 p-6 md:p-10 flex flex-col justify-center bg-[#121212]">
+                            <h3 class="text-xl font-bold text-white font-display uppercase tracking-tight mb-4" data-i18n="proj_4_title">Zonneplan, EV Charging Sales Acceleration: Marketing Whitepaper</h3>
+                            <div class="overflow-y-auto pr-2 custom-scrollbar flex-grow max-h-[200px] md:max-h-none" data-i18n="proj_4_desc">
+                                <!-- Roadmap Timeline -->
+                                <div class="relative pl-6 border-l-2 border-zinc-800 ml-2">
+                                    <div class="mb-6 last:mb-0 relative">
+                                        <div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div>
+                                        <h4 class="text-accent font-mono text-xs uppercase mb-1">Challenge & Analysis</h4>
+                                        <p class="text-zinc-400 text-sm leading-relaxed">Goal: 3,000 EV charger sales. Identified barriers like complex quote processes (6-7 clicks) and lack of post-sale retention.</p>
+                                    </div>
+                                    <div class="mb-6 last:mb-0 relative">
+                                        <div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div>
+                                        <h4 class="text-accent font-mono text-xs uppercase mb-1">Strategic Insight</h4>
+                                        <p class="text-zinc-400 text-sm leading-relaxed">Pinpointed EV owner pains (€0.50/kWh public vs home charging). Defined a journey from awareness to loyalty using personas.</p>
+                                    </div>
+                                     <div class="mb-6 last:mb-0 relative">
+                                        <div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div>
+                                        <h4 class="text-accent font-mono text-xs uppercase mb-1">Advice & Outcome</h4>
+                                        <p class="text-zinc-400 text-sm leading-relaxed">Recommended optimizing SEO/SEA for "laadpaal kopen", simplifying landing pages, and using Trustpilot social proof. KPIs set for rapid scalable growth.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex flex-wrap gap-2 mt-4 pt-4 border-t border-zinc-800">
+                                <span class="px-3 py-1 text-[10px] uppercase tracking-wider font-bold rounded-full bg-zinc-900 text-zinc-400 border border-zinc-800">Growth Marketing</span>
+                                <span class="px-3 py-1 text-[10px] uppercase tracking-wider font-bold rounded-full bg-zinc-900 text-zinc-400 border border-zinc-800">Customer Journey</span>
                             </div>
                         </div>
                     </div>
@@ -582,7 +730,7 @@
         </div>
 
         <!-- Contact Block -->
-        <div id="contact" class="mt-4 mb-8">
+        <div id="contact" class="mt-4 mb-8 reveal-on-scroll">
             <div class="bento-card p-10 md:p-20 text-center group">
                 <div class="spotlight-overlay"></div>
                 <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-accent to-transparent opacity-50"></div>
@@ -606,8 +754,109 @@
                     <div class="mt-20 pt-10 border-t border-zinc-800 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-zinc-600 font-mono uppercase">
                         <span>© 2025 Ritchie Olthuis</span>
                         <div class="flex gap-6">
-                            <a href="#" class="hover:text-zinc-400">Privacy</a>
-                            <a href="#" class="hover:text-zinc-400">Terms</a>
+                            <!-- Privacy/Terms links removed as requested -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Trusted Partners (Marquee Slider) - MOVED HERE -->
+        <div class="mb-10 pt-16 border-t border-zinc-900 reveal-on-scroll">
+            <p class="text-center text-xs font-mono uppercase text-zinc-600 mb-8 tracking-widest" data-i18n="partners_title">Partnered with</p>
+            <div class="relative flex overflow-x-hidden group">
+                <div class="animate-marquee flex items-center gap-16 whitespace-nowrap py-4 px-4">
+                    <!-- Logos Set 1 -->
+                    <img src="https://www.vitens.nl/-/media/Project/Vitens/VitensNl/vitens-logo.jpg" alt="Vitens" class="h-10 w-auto object-contain logo-filter">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0kTw7PhwMVs-IQmNdomH7h6oPquEiRAyCcw&s" alt="Perron038" class="h-10 w-auto object-contain logo-filter">
+                    <img src="https://www.duurzaam-ondernemen.nl/wordpress/wp-content/uploads/2025/07/unica.png" alt="Unica" class="h-10 w-auto object-contain logo-filter">
+                    <img src="https://www.overstappen.nl/assets/Zonneplan@2x.png" alt="Zonneplan" class="h-8 w-auto object-contain logo-filter">
+                    
+                    <!-- Logos Set 2 (Duplicate for loop) -->
+                    <img src="https://www.vitens.nl/-/media/Project/Vitens/VitensNl/vitens-logo.jpg" alt="Vitens" class="h-10 w-auto object-contain logo-filter">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0kTw7PhwMVs-IQmNdomH7h6oPquEiRAyCcw&s" alt="Perron038" class="h-10 w-auto object-contain logo-filter">
+                    <img src="https://www.duurzaam-ondernemen.nl/wordpress/wp-content/uploads/2025/07/unica.png" alt="Unica" class="h-10 w-auto object-contain logo-filter">
+                    <img src="https://www.overstappen.nl/assets/Zonneplan@2x.png" alt="Zonneplan" class="h-8 w-auto object-contain logo-filter">
+
+                     <!-- Logos Set 3 (Duplicate for wider screens) -->
+                    <img src="https://www.vitens.nl/-/media/Project/Vitens/VitensNl/vitens-logo.jpg" alt="Vitens" class="h-10 w-auto object-contain logo-filter">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0kTw7PhwMVs-IQmNdomH7h6oPquEiRAyCcw&s" alt="Perron038" class="h-10 w-auto object-contain logo-filter">
+                    <img src="https://www.duurzaam-ondernemen.nl/wordpress/wp-content/uploads/2025/07/unica.png" alt="Unica" class="h-10 w-auto object-contain logo-filter">
+                    <img src="https://www.overstappen.nl/assets/Zonneplan@2x.png" alt="Zonneplan" class="h-8 w-auto object-contain logo-filter">
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- PROJECTS MODAL (View All) -->
+    <div id="projects-modal" class="fixed inset-0 z-[100] hidden">
+        <!-- Backdrop -->
+        <div class="absolute inset-0 bg-black/90 backdrop-blur-sm" onclick="closeProjectsModal()"></div>
+        
+        <!-- Content -->
+        <div class="absolute inset-0 overflow-y-auto">
+            <div class="min-h-full flex items-center justify-center p-4 md:p-8">
+                <div class="relative w-full max-w-6xl bg-[#121212] border border-zinc-800 rounded-3xl p-6 md:p-10 shadow-2xl">
+                    <!-- Header -->
+                    <div class="flex justify-between items-center mb-8">
+                        <h2 class="text-3xl font-display font-bold text-white uppercase" data-i18n="modal_title">All Projects</h2>
+                        <button onclick="closeProjectsModal()" class="p-2 bg-zinc-900 rounded-full hover:bg-accent hover:text-black transition-colors text-white border border-zinc-800">
+                            <i data-lucide="x" class="w-6 h-6"></i>
+                        </button>
+                    </div>
+                    
+                    <!-- Grid -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Project 1 -->
+                        <div class="bento-card p-0 flex flex-col group h-full">
+                            <div class="relative h-48 w-full overflow-hidden">
+                                <div class="absolute top-3 left-3 z-20 px-2 py-1 bg-accent text-black text-[10px] font-bold uppercase rounded-full">Aug 2025 - Jan 2026</div>
+                                <img src="https://www.h2owaternetwerk.nl/images/2020/December/vitens_strategie_duurzaam.jpg" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500">
+                            </div>
+                            <div class="p-6 flex flex-col flex-grow">
+                                <h3 class="text-lg font-bold text-white mb-2" data-i18n="proj_1_title_short">Vitens: Market Strategy</h3>
+                                <p class="text-zinc-400 text-xs leading-relaxed mb-4 flex-grow line-clamp-3" data-i18n="proj_1_desc_short">For Vitens, I conducted an in-depth market study to determine how a new Water-as-a-Service division should be positioned, structured, and brought to market.</p>
+                                <a href="https://www.vitens.nl/Zakelijk" target="_blank" class="text-xs font-bold text-accent hover:underline flex items-center gap-1">VIEW PROJECT <i data-lucide="arrow-right" class="w-3 h-3"></i></a>
+                            </div>
+                        </div>
+
+                        <!-- Project 2 -->
+                         <div class="bento-card p-0 flex flex-col group h-full">
+                            <div class="relative h-48 w-full overflow-hidden">
+                                <div class="absolute top-3 left-3 z-20 px-2 py-1 bg-accent text-black text-[10px] font-bold uppercase rounded-full">Aug 2025 - Jan 2026</div>
+                                <img src="https://smartindustry.nl/hs-fs/hubfs/news/Factory_NEXT_Perron038_Robotopstelling_Coldspray.jpg?width=2048&height=1365&name=Factory_NEXT_Perron038_Robotopstelling_Coldspray.jpg" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500">
+                            </div>
+                            <div class="p-6 flex flex-col flex-grow">
+                                <h3 class="text-lg font-bold text-white mb-2" data-i18n="proj_2_title_short">Perron038: Innovation Hub</h3>
+                                <p class="text-zinc-400 text-xs leading-relaxed mb-4 flex-grow line-clamp-3" data-i18n="proj_2_desc_short">At Perron038, I explored how Factory NEXT can be commercially positioned and made attractive for industrial partners.</p>
+                                <a href="https://www.perron038.nl/factory-next/" target="_blank" class="text-xs font-bold text-accent hover:underline flex items-center gap-1">VIEW PROJECT <i data-lucide="arrow-right" class="w-3 h-3"></i></a>
+                            </div>
+                        </div>
+
+                        <!-- Project 3 -->
+                         <div class="bento-card p-0 flex flex-col group h-full">
+                            <div class="relative h-48 w-full overflow-hidden">
+                                <div class="absolute top-3 left-3 z-20 px-2 py-1 bg-accent text-black text-[10px] font-bold uppercase rounded-full">Aug 2023 - Jan 2024</div>
+                                <img src="https://stapintechniek.nl/wp-content/uploads/2025/10/7r31189-scaled.jpg" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500">
+                            </div>
+                            <div class="p-6 flex flex-col flex-grow">
+                                <h3 class="text-lg font-bold text-white mb-2" data-i18n="proj_3_title_short">Unica: Smart Buildings</h3>
+                                <p class="text-zinc-400 text-xs leading-relaxed mb-4 flex-grow line-clamp-3" data-i18n="proj_3_desc_short">We developed a strategic advisory process for Unica using the Design Thinking cycle to optimize their value proposition for smart buildings.</p>
+                                <a href="https://www.unica.nl/over-ons/onze-bedrijven/unica-building-services" target="_blank" class="text-xs font-bold text-accent hover:underline flex items-center gap-1">VIEW PROJECT <i data-lucide="arrow-right" class="w-3 h-3"></i></a>
+                            </div>
+                        </div>
+
+                         <!-- Project 4 -->
+                         <div class="bento-card p-0 flex flex-col group h-full">
+                            <div class="relative h-48 w-full overflow-hidden">
+                                <div class="absolute top-3 left-3 z-20 px-2 py-1 bg-accent text-black text-[10px] font-bold uppercase rounded-full">Feb 2023 - Jun 2023</div>
+                                <img src="https://zonneplan-site.s3.amazonaws.com/uploads/2024/05/zonnepanelen-header-hoeveel-kwh-e1716799873343.png" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500">
+                            </div>
+                            <div class="p-6 flex flex-col flex-grow">
+                                <h3 class="text-lg font-bold text-white mb-2" data-i18n="proj_4_title_short">Zonneplan: EV Sales</h3>
+                                <p class="text-zinc-400 text-xs leading-relaxed mb-4 flex-grow line-clamp-3" data-i18n="proj_4_desc_short">We developed a focused whitepaper for Zonneplan to achieve their 2023 target of 3,000 EV charger sales.</p>
+                                <a href="https://www.zonneplan.nl/" target="_blank" class="text-xs font-bold text-accent hover:underline flex items-center gap-1">VIEW PROJECT <i data-lucide="arrow-right" class="w-3 h-3"></i></a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -662,8 +911,61 @@
                 updateCarousel();
             });
         }
+        
+        // --- 4. Modal Logic ---
+        function openProjectsModal() {
+            const modal = document.getElementById('projects-modal');
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+        }
 
-        // --- 4. Language Logic ---
+        function closeProjectsModal() {
+            const modal = document.getElementById('projects-modal');
+            modal.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+        
+        // --- 5. Scroll Reveal Observer ---
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('reveal-visible');
+                    observer.unobserve(entry.target); // Only animate once
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal-on-scroll').forEach(el => observer.observe(el));
+
+        // --- 6. Typewriter Effect ---
+        // We type the hero title: "Business Strategy & Innovation Enthusiast"
+        const typewriterEl = document.getElementById('typewriter-title');
+        if (typewriterEl) {
+            const originalText = typewriterEl.innerText; // Get text
+            typewriterEl.innerText = ''; // Clear text
+            let i = 0;
+            
+            function typeWriter() {
+                if (i < originalText.length) {
+                    typewriterEl.innerText += originalText.charAt(i);
+                    i++;
+                    setTimeout(typeWriter, 40); // Typing speed
+                } else {
+                    // Remove cursor after typing is done (optional)
+                    // typewriterEl.classList.remove('typewriter-cursor');
+                }
+            }
+            
+            // Start typing after a short delay
+            setTimeout(typeWriter, 500);
+        }
+
+        // --- 7. Language Logic ---
         const translations = {
             en: {
                 nav_about: "About",
@@ -672,14 +974,15 @@
                 nav_proj: "Projects",
                 nav_contact: "Contact",
                 hero_badge: "Available for work",
-                hero_title: "Strategic Innovator & Business Student",
+                hero_title: "Business Strategy & Innovation Enthusiast",
                 hero_desc: "Transforming business challenges into data-driven, human-centred and sustainable driven opportunities.",
                 btn_view_work: "View Work",
                 btn_download_cv: "Download CV",
                 based_in: "BASED IN",
                 stat_edu: "Education",
+                stat_edu_val: "Commercial Economics (Marketing)",
                 stat_degree: "Degree",
-                stat_degree_val: "Bachelor Commercial Economics (Marketing)",
+                stat_degree_val: "Bachelor Degree",
                 stat_grade: "Avg. Grade",
                 ticker_1: "Strategic Innovation",
                 ticker_2: "Design Thinking",
@@ -717,16 +1020,92 @@
                 role_retail: "Retail Staff",
                 proj_title: "Selected Projects",
                 proj_view_all: "VIEW ALL",
+                partners_title: "Partnered with",
                 proj_1_title: "Vitens, Grootzakelijke markt: Market Needs, Positioning & Organisational Direction",
-                proj_1_desc: "For Vitens, I conducted an in-depth market study to determine how a new Water-as-a-Service division should be positioned, structured, and brought to market. The research examined which parties in the Netherlands offer similar services, the differences in propositions, and how Vitens can distinguish itself through circular water solutions and water stewardship. I analysed target segments, assessed customer needs, and identified which services should (and should not yet) be included in the WaaS portfolio. The study also explored naming, branding and organisational form, and evaluated how Vitens can bridge from its current service boundary to a commercial WaaS entity that contributes to a more resilient and sustainable water system. These insights provide strategic support for Vitens in shaping the future of its large business segment.",
+                proj_1_title_short: "Vitens: Market Strategy",
+                proj_1_desc: `<div class="relative pl-6 border-l-2 border-zinc-800 ml-2">
+                                <div class="mb-6 last:mb-0 relative">
+                                    <div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div>
+                                    <h4 class="text-accent font-mono text-xs uppercase mb-1">Challenge & Analysis</h4>
+                                    <p class="text-zinc-400 text-sm leading-relaxed">Conducted in-depth market study to position new 'Water-as-a-Service' division. Analyzed competitors and customer needs to define the scope of the portfolio.</p>
+                                </div>
+                                <div class="mb-6 last:mb-0 relative">
+                                    <div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div>
+                                    <h4 class="text-accent font-mono text-xs uppercase mb-1">Strategic Insight</h4>
+                                    <p class="text-zinc-400 text-sm leading-relaxed">Identified opportunity to distinguish Vitens through circular water solutions and water stewardship, bridging current services to a commercial entity.</p>
+                                </div>
+                                <div class="mb-6 last:mb-0 relative">
+                                    <div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div>
+                                    <h4 class="text-accent font-mono text-xs uppercase mb-1">Advice & Outcome</h4>
+                                    <p class="text-zinc-400 text-sm leading-relaxed">Delivered strategic roadmap for naming, branding, and organizational form, creating a resilient and sustainable future for the large business segment.</p>
+                                </div>
+                              </div>`,
+                proj_1_desc_short: "For Vitens, I conducted an in-depth market study to determine how a new Water-as-a-Service division should be positioned, structured, and brought to market.",
                 proj_2_title: "Perron038, Factory NEXT: Strategic Commercial Positioning",
-                proj_2_desc: "At Perron038, I explored how Factory NEXT can be commercially positioned and made attractive for industrial partners. The research focused on determining the market potential for a shared innovation facility, identifying which companies and segments would adopt a “test-before-invest” model, and analysing competing initiatives in the Dutch manufacturing landscape. I evaluated how Factory NEXT’s labs, technologies and expertise could be translated into clear value propositions and developed strategic recommendations on messaging, target segments, and revenue models. By combining internal and external analysis with the Design Thinking cycle and customer validation, I delivered insights that support Perron038 in strengthening Factory NEXT as a commercially viable and distinctive innovation hub.",
-                proj_3_title: "Unica: Sustainable Business Model",
-                proj_3_desc: "Conducted in-depth strategic analysis and innovation development. Responsible for identifying SWOT elements, creating confrontation matrices, and developing comprehensive business models focusing on economic, ecological, and social aspects.",
+                proj_2_title_short: "Perron038: Innovation Hub",
+                proj_2_desc: `<div class="relative pl-6 border-l-2 border-zinc-800 ml-2">
+                                <div class="mb-6 last:mb-0 relative">
+                                    <div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div>
+                                    <h4 class="text-accent font-mono text-xs uppercase mb-1">Challenge & Analysis</h4>
+                                    <p class="text-zinc-400 text-sm leading-relaxed">Determined market potential for 'Factory NEXT' as a shared innovation facility. Analyzed competing initiatives in the Dutch manufacturing landscape.</p>
+                                </div>
+                                <div class="mb-6 last:mb-0 relative">
+                                    <div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div>
+                                    <h4 class="text-accent font-mono text-xs uppercase mb-1">Strategic Insight</h4>
+                                    <p class="text-zinc-400 text-sm leading-relaxed">Identified segments for "test-before-invest" model. Used Design Thinking and customer validation to align labs and technology with market needs.</p>
+                                </div>
+                                <div class="mb-6 last:mb-0 relative">
+                                    <div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div>
+                                    <h4 class="text-accent font-mono text-xs uppercase mb-1">Advice & Outcome</h4>
+                                    <p class="text-zinc-400 text-sm leading-relaxed">Developed value propositions, revenue models, and messaging to strengthen Factory NEXT as a commercially viable innovation hub.</p>
+                                </div>
+                              </div>`,
+                proj_2_desc_short: "At Perron038, I explored how Factory NEXT can be commercially positioned and made attractive for industrial partners.",
+                proj_3_title: "Unica, Smart Buildings Business Development: Value Proposition Optimization",
+                proj_3_title_short: "Unica: Smart Buildings",
+                proj_3_desc: `<div class="relative pl-6 border-l-2 border-zinc-800 ml-2">
+                                <div class="mb-6 last:mb-0 relative">
+                                    <div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div>
+                                    <h4 class="text-accent font-mono text-xs uppercase mb-1">Challenge & Analysis</h4>
+                                    <p class="text-zinc-400 text-sm leading-relaxed">Mapped internal dynamics (35 locations vs 9 branches) and external factors (EPBD III, technician scarcity). Used Business Model Canvas to reveal economic/social dependencies.</p>
+                                </div>
+                                <div class="mb-6 last:mb-0 relative">
+                                    <div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div>
+                                    <h4 class="text-accent font-mono text-xs uppercase mb-1">Strategic Insight</h4>
+                                    <p class="text-zinc-400 text-sm leading-relaxed">Ideation via trend pyramids led to 'SmartEase': entry-level kits & VR demos to visualize energy flows, removing customer capex fears.</p>
+                                </div>
+                                <div class="mb-6 last:mb-0 relative">
+                                    <div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div>
+                                    <h4 class="text-accent font-mono text-xs uppercase mb-1">Advice & Outcome</h4>
+                                    <p class="text-zinc-400 text-sm leading-relaxed">Prototyped and validated concepts with end-users. Created rollout impact canvas with KPIs for revenue and NPS, positioning Unica for customer-centric leadership.</p>
+                                </div>
+                              </div>`,
+                proj_3_desc_short: "We developed a strategic advisory process for Unica using the Design Thinking cycle to optimize their value proposition for smart buildings.",
+                proj_4_title: "Zonneplan, EV Charging Sales Acceleration: Marketing Whitepaper",
+                proj_4_title_short: "Zonneplan: EV Sales",
+                proj_4_desc: `<div class="relative pl-6 border-l-2 border-zinc-800 ml-2">
+                                <div class="mb-6 last:mb-0 relative">
+                                    <div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div>
+                                    <h4 class="text-accent font-mono text-xs uppercase mb-1">Challenge & Analysis</h4>
+                                    <p class="text-zinc-400 text-sm leading-relaxed">Goal: 3,000 EV charger sales. Identified barriers like complex quote processes (6-7 clicks) and lack of post-sale retention.</p>
+                                </div>
+                                <div class="mb-6 last:mb-0 relative">
+                                    <div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div>
+                                    <h4 class="text-accent font-mono text-xs uppercase mb-1">Strategic Insight</h4>
+                                    <p class="text-zinc-400 text-sm leading-relaxed">Pinpointed EV owner pains (€0.50/kWh public vs home charging). Defined a journey from awareness to loyalty using personas.</p>
+                                </div>
+                                <div class="mb-6 last:mb-0 relative">
+                                    <div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div>
+                                    <h4 class="text-accent font-mono text-xs uppercase mb-1">Advice & Outcome</h4>
+                                    <p class="text-zinc-400 text-sm leading-relaxed">Recommended optimizing SEO/SEA for "laadpaal kopen", simplifying landing pages, and using Trustpilot social proof. KPIs set for rapid scalable growth.</p>
+                                </div>
+                              </div>`,
+                proj_4_desc_short: "We developed a focused whitepaper for Zonneplan to achieve their 2023 target of 3,000 EV charger sales.",
                 contact_title: "Let's work <span class=\"text-zinc-600 transition-colors group-hover:text-zinc-400\">Together</span>",
                 contact_desc: "Open to discussing new opportunities, strategic collaborations, or sustainability initiatives.",
                 btn_email: "Send Email",
                 btn_call: "Schedule Call",
+                modal_title: "All Projects"
             },
             nl: {
                 nav_about: "Over mij",
@@ -735,14 +1114,15 @@
                 nav_proj: "Projecten",
                 nav_contact: "Contact",
                 hero_badge: "Beschikbaar voor werk",
-                hero_title: "Strategisch Innovator & Bedrijfskunde Student",
+                hero_title: "Business Strategy & Innovation Enthusiast",
                 hero_desc: "Het transformeren van zakelijke uitdagingen naar datagedreven, mensgerichte en duurzame kansen.",
                 btn_view_work: "Bekijk Werk",
                 btn_download_cv: "Download CV",
                 based_in: "GEVESTIGD IN",
                 stat_edu: "Opleiding",
+                stat_edu_val: "Commerciële Economie (Marketing)",
                 stat_degree: "Diploma",
-                stat_degree_val: "Bachelor Commerciële Economie (Marketing)",
+                stat_degree_val: "Bachelor Degree",
                 stat_grade: "Gemiddelde",
                 ticker_1: "Strategische Innovatie",
                 ticker_2: "Design Thinking",
@@ -780,16 +1160,92 @@
                 role_retail: "Verkoopmedewerker",
                 proj_title: "Geselecteerde Projecten",
                 proj_view_all: "BEKIJK ALLES",
+                partners_title: "Samengewerkt met",
                 proj_1_title: "Vitens, Grootzakelijke markt: Marktbehoeften, Positionering & Organisatierichting",
-                proj_1_desc: "Voor Vitens heb ik een diepgaand marktonderzoek uitgevoerd om te bepalen hoe een nieuwe Water-as-a-Service divisie gepositioneerd, gestructureerd en op de markt gebracht moet worden. Het onderzoek bekeek welke partijen in Nederland vergelijkbare diensten aanbieden, de verschillen in proposities en hoe Vitens zich kan onderscheiden door circulaire wateroplossingen en waterbeheer. Ik analyseerde doelgroepsegmenten, beoordeelde klantbehoeften en identificeerde welke diensten wel (en niet) in het WaaS-portfolio moesten worden opgenomen. De studie verkende ook naamgeving, branding en organisatievorm, en evalueerde hoe Vitens de brug kan slaan van zijn huidige diensten naar een commerciële WaaS-entiteit die bijdraagt aan een veerkrachtiger en duurzamer watersysteem.",
+                proj_1_title_short: "Vitens: Marktstrategie",
+                proj_1_desc: `<div class="relative pl-6 border-l-2 border-zinc-800 ml-2">
+                                <div class="mb-6 last:mb-0 relative">
+                                    <div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div>
+                                    <h4 class="text-accent font-mono text-xs uppercase mb-1">Uitdaging & Analyse</h4>
+                                    <p class="text-zinc-400 text-sm leading-relaxed">Diepgaand marktonderzoek uitgevoerd om de nieuwe 'Water-as-a-Service' divisie te positioneren. Concurrentie en klantbehoeften geanalyseerd om de scope te bepalen.</p>
+                                </div>
+                                <div class="mb-6 last:mb-0 relative">
+                                    <div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div>
+                                    <h4 class="text-accent font-mono text-xs uppercase mb-1">Strategisch Inzicht</h4>
+                                    <p class="text-zinc-400 text-sm leading-relaxed">Kansen geïdentificeerd om Vitens te onderscheiden via circulaire wateroplossingen en stewardship, als brug naar een commerciële entiteit.</p>
+                                </div>
+                                <div class="mb-6 last:mb-0 relative">
+                                    <div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div>
+                                    <h4 class="text-accent font-mono text-xs uppercase mb-1">Advies & Resultaat</h4>
+                                    <p class="text-zinc-400 text-sm leading-relaxed">Strategische roadmap opgeleverd voor naamgeving, branding en organisatievorm, gericht op een veerkrachtige toekomst voor de grootzakelijke markt.</p>
+                                </div>
+                              </div>`,
+                proj_1_desc_short: "Voor Vitens heb ik een diepgaand marktonderzoek uitgevoerd om te bepalen hoe een nieuwe Water-as-a-Service divisie gepositioneerd moet worden.",
                 proj_2_title: "Perron038, Factory NEXT: Strategische Commerciële Positionering",
-                proj_2_desc: "Bij Perron038 onderzocht ik hoe Factory NEXT commercieel gepositioneerd en aantrekkelijk gemaakt kan worden voor industriële partners. Het onderzoek richtte zich op het bepalen van het marktpotentieel voor een gedeelde innovatiefaciliteit, het identificeren van welke bedrijven en segmenten een “test-before-invest” model zouden adopteren, en het analyseren van concurrerende initiatieven in het Nederlandse maakindustrie-landschap. Ik evalueerde hoe de labs, technologieën en expertise van Factory NEXT vertaald konden worden naar duidelijke waardeproposities en ontwikkelde strategische aanbevelingen over messaging, doelsegmenten en verdienmodellen. Door interne en externe analyse te combineren met de Design Thinking cyclus en klantvalidatie, leverde ik inzichten die Perron038 ondersteunen bij het versterken van Factory NEXT als een commercieel levensvatbare en onderscheidende innovatiehub.",
-                proj_3_title: "Unica: Duurzaam Bedrijfsmodel",
-                proj_3_desc: "Diepgaande strategische analyse en innovatieontwikkeling uitgevoerd. Verantwoordelijk voor het identificeren van SWOT-elementen, het creëren van confrontatiematrices en het ontwikkelen van uitgebreide bedrijfsmodellen gericht op economische, ecologische en sociale aspecten.",
+                proj_2_title_short: "Perron038: Innovatiehub",
+                proj_2_desc: `<div class="relative pl-6 border-l-2 border-zinc-800 ml-2">
+                                <div class="mb-6 last:mb-0 relative">
+                                    <div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div>
+                                    <h4 class="text-accent font-mono text-xs uppercase mb-1">Uitdaging & Analyse</h4>
+                                    <p class="text-zinc-400 text-sm leading-relaxed">Marktpotentieel bepaald voor 'Factory NEXT' als gedeelde innovatiefaciliteit. Concurrerende initiatieven in de maakindustrie geanalyseerd.</p>
+                                </div>
+                                <div class="mb-6 last:mb-0 relative">
+                                    <div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div>
+                                    <h4 class="text-accent font-mono text-xs uppercase mb-1">Strategisch Inzicht</h4>
+                                    <p class="text-zinc-400 text-sm leading-relaxed">Segmenten geïdentificeerd voor het "test-before-invest" model. Design Thinking ingezet om labs en technologie af te stemmen op de markt.</p>
+                                </div>
+                                <div class="mb-6 last:mb-0 relative">
+                                    <div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div>
+                                    <h4 class="text-accent font-mono text-xs uppercase mb-1">Advies & Resultaat</h4>
+                                    <p class="text-zinc-400 text-sm leading-relaxed">Waardeproposities, verdienmodellen en messaging ontwikkeld om Factory NEXT te versterken als commercieel levensvatbare innovatiehub.</p>
+                                </div>
+                              </div>`,
+                proj_2_desc_short: "Bij Perron038 onderzocht ik hoe Factory NEXT commercieel gepositioneerd en aantrekkelijk gemaakt kan worden voor industriële partners.",
+                proj_3_title: "Unica, Smart Buildings Business Development: Optimalisatie van waardeproposities",
+                proj_3_title_short: "Unica: Slimme Gebouwen",
+                proj_3_desc: `<div class="relative pl-6 border-l-2 border-zinc-800 ml-2">
+                                <div class="mb-6 last:mb-0 relative">
+                                    <div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div>
+                                    <h4 class="text-accent font-mono text-xs uppercase mb-1">Uitdaging & Analyse</h4>
+                                    <p class="text-zinc-400 text-sm leading-relaxed">Interne dynamiek (35 locaties vs 9 vestigingen) en externe factoren (EPBD III, tekort technici) in kaart gebracht. BMC gebruikt voor economische/sociale afhankelijkheden.</p>
+                                </div>
+                                <div class="mb-6 last:mb-0 relative">
+                                    <div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div>
+                                    <h4 class="text-accent font-mono text-xs uppercase mb-1">Strategisch Inzicht</h4>
+                                    <p class="text-zinc-400 text-sm leading-relaxed">Ideation via trendpiramides leidde tot 'SmartEase': instapklare kits & VR-demo's om energiestromen te visualiseren en capex-angst weg te nemen.</p>
+                                </div>
+                                <div class="mb-6 last:mb-0 relative">
+                                    <div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div>
+                                    <h4 class="text-accent font-mono text-xs uppercase mb-1">Advies & Resultaat</h4>
+                                    <p class="text-zinc-400 text-sm leading-relaxed">Concepten gevalideerd bij eindgebruikers. Uitrol-impactcanvas gemaakt met KPI's voor omzet en NPS, positionerend voor klantgericht leiderschap.</p>
+                                </div>
+                              </div>`,
+                proj_3_desc_short: "We ontwikkelden een strategisch adviesproces voor Unica met behulp van de Design Thinking-cyclus om hun waardepropositie voor slimme gebouwen te optimaliseren.",
+                proj_4_title: "Zonneplan, EV Charging Sales Acceleration: Marketing Whitepaper",
+                proj_4_title_short: "Zonneplan: EV Verkoop",
+                proj_4_desc: `<div class="relative pl-6 border-l-2 border-zinc-800 ml-2">
+                                <div class="mb-6 last:mb-0 relative">
+                                    <div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div>
+                                    <h4 class="text-accent font-mono text-xs uppercase mb-1">Uitdaging & Analyse</h4>
+                                    <p class="text-zinc-400 text-sm leading-relaxed">Doel: 3.000 laadpaal-verkopen. Barrières geïdentificeerd zoals complex offerteproces (6-7 kliks) en gebrek aan retentie.</p>
+                                </div>
+                                <div class="mb-6 last:mb-0 relative">
+                                    <div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div>
+                                    <h4 class="text-accent font-mono text-xs uppercase mb-1">Strategisch Inzicht</h4>
+                                    <p class="text-zinc-400 text-sm leading-relaxed">Pijnpunten EV-rijders (€0,50/kWh publiek vs thuis) blootgelegd. Klantreis van bewustwording tot loyaliteit gedefinieerd met persona's.</p>
+                                </div>
+                                <div class="mb-6 last:mb-0 relative">
+                                    <div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div>
+                                    <h4 class="text-accent font-mono text-xs uppercase mb-1">Advies & Resultaat</h4>
+                                    <p class="text-zinc-400 text-sm leading-relaxed">Aanbeveling: SEO/SEA optimalisatie ("laadpaal kopen"), landingspagina's versimpelen en Trustpilot inzetten. KPI's voor schaalbare groei.</p>
+                                </div>
+                              </div>`,
+                proj_4_desc_short: "We ontwikkelden een gerichte whitepaper voor Zonneplan om hun 2023-doelstelling van 3.000 verkochte laadpalen te behalen.",
                 contact_title: "Laten we <span class=\"text-zinc-600 transition-colors group-hover:text-zinc-400\">Samenwerken</span>",
                 contact_desc: "Open voor het bespreken van nieuwe kansen, strategische samenwerkingen of duurzaamheidsinitiatieven.",
                 btn_email: "Stuur E-mail",
                 btn_call: "Plan Gesprek",
+                modal_title: "Alle Projecten"
             }
         };
 
@@ -814,6 +1270,10 @@
                    }
                 }
             });
+            
+            // Re-trigger typewriter if language changes (optional, keeps effect simple for now)
+            // const typewriterEl = document.getElementById('typewriter-title');
+            // if(typewriterEl) typewriterEl.innerText = translations[currentLang]['hero_title'];
         };
     </script>
 </body>
