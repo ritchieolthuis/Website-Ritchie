@@ -347,11 +347,27 @@
                 <!-- Skills -->
                 <div id="skills" class="bento-card p-8 group reveal-on-scroll">
                     <div class="spotlight-overlay"></div>
-                    <h3 class="text-xl font-display font-bold text-white mb-6 uppercase flex items-center gap-2">
-                        <span class="w-2 h-2 bg-accent rounded-full animate-pulse"></span>
-                        <span data-i18n="skills_title">Expertise</span>
-                    </h3>
+                    <!-- Z-index 20 ensures this header is clickable above the spotlight overlay -->
+                    <div class="flex items-center justify-between mb-6 relative z-20">
+                        <h3 class="text-xl font-display font-bold text-white uppercase flex items-center gap-2">
+                            <span class="w-2 h-2 bg-accent rounded-full animate-pulse"></span>
+                            <span data-i18n="skills_title">Expertise</span>
+                        </h3>
+                        <!-- Added p-2 and -m-2 to increase touch target -->
+                        <a href="#" onclick="openSkillsModal(); return false;" class="text-xs font-mono text-zinc-500 hover:text-white flex items-center gap-1 transition-colors p-2 -m-2 cursor-pointer">
+                            <span data-i18n="proj_view_all">VIEW ALL</span> <i data-lucide="arrow-up-right" class="w-3 h-3"></i>
+                        </a>
+                    </div>
+                    
                     <div class="space-y-6 relative z-10">
+                        <div>
+                            <h4 class="text-xs font-mono uppercase text-zinc-500 mb-3" data-i18n="skills_cat_digital">Digital Skills</h4>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-2 py-1 text-xs font-medium text-white bg-zinc-800/50 border border-zinc-700 rounded hover:border-accent hover:text-accent transition-colors">Excel / Power BI</span>
+                                <span class="px-2 py-1 text-xs font-medium text-white bg-zinc-800/50 border border-zinc-700 rounded hover:border-accent hover:text-accent transition-colors">Google Analytics</span>
+                                <span class="px-2 py-1 text-xs font-medium text-white bg-zinc-800/50 border border-zinc-700 rounded hover:border-accent hover:text-accent transition-colors">SEO / SEA</span>
+                            </div>
+                        </div>
                         <div>
                             <h4 class="text-xs font-mono uppercase text-zinc-500 mb-3" data-i18n="skills_cat_1">Strategic Analysis</h4>
                             <div class="flex flex-wrap gap-2">
@@ -360,19 +376,11 @@
                                 <span class="px-2 py-1 text-xs font-medium text-white bg-zinc-800/50 border border-zinc-700 rounded hover:border-accent hover:text-accent transition-colors">Market Entry</span>
                             </div>
                         </div>
-                        <div>
-                            <h4 class="text-xs font-mono uppercase text-zinc-500 mb-3" data-i18n="skills_cat_2">Innovation & Design</h4>
-                            <div class="flex flex-wrap gap-2">
-                                <span class="px-2 py-1 text-xs font-medium text-white bg-zinc-800/50 border border-zinc-700 rounded hover:border-accent hover:text-accent transition-colors">Design Thinking</span>
-                                <span class="px-2 py-1 text-xs font-medium text-white bg-zinc-800/50 border border-zinc-700 rounded hover:border-accent hover:text-accent transition-colors">Prototyping</span>
-                                <span class="px-2 py-1 text-xs font-medium text-white bg-zinc-800/50 border border-zinc-700 rounded hover:border-accent hover:text-accent transition-colors">Customer Journey</span>
-                            </div>
-                        </div>
                          <div>
-                            <h4 class="text-xs font-mono uppercase text-zinc-500 mb-3" data-i18n="skills_cat_3">Business Management</h4>
+                            <h4 class="text-xs font-mono uppercase text-zinc-500 mb-3" data-i18n="skills_cat_theories">Theories & Models</h4>
                             <div class="flex flex-wrap gap-2">
                                 <span class="px-2 py-1 text-xs font-medium text-white bg-zinc-800/50 border border-zinc-700 rounded hover:border-accent hover:text-accent transition-colors">Business Model Canvas</span>
-                                <span class="px-2 py-1 text-xs font-medium text-white bg-zinc-800/50 border border-zinc-700 rounded hover:border-accent hover:text-accent transition-colors">ESG</span>
+                                <span class="px-2 py-1 text-xs font-medium text-white bg-zinc-800/50 border border-zinc-700 rounded hover:border-accent hover:text-accent transition-colors">Design Thinking</span>
                             </div>
                         </div>
                     </div>
@@ -889,6 +897,124 @@
             </div>
         </div>
 
+        <!-- SKILLS MODAL (View All Expertise) -->
+        <div id="skills-modal" class="fixed inset-0 z-[100] hidden">
+            <!-- Backdrop -->
+            <div class="absolute inset-0 bg-black/90 backdrop-blur-sm" onclick="closeSkillsModal()"></div>
+            
+            <!-- Content -->
+            <div class="absolute inset-0 overflow-y-auto">
+                <div class="min-h-full flex items-center justify-center p-4 md:p-8">
+                    <div class="relative w-full max-w-5xl bg-[#121212] border border-zinc-800 rounded-3xl p-6 md:p-10 shadow-2xl">
+                        <!-- Header -->
+                        <div class="flex justify-between items-center mb-8">
+                            <h2 class="text-3xl font-display font-bold text-white uppercase" data-i18n="skills_modal_title">Full Expertise</h2>
+                            <button onclick="closeSkillsModal()" class="p-2 bg-zinc-900 rounded-full hover:bg-accent hover:text-black transition-colors text-white border border-zinc-800">
+                                <i data-lucide="x" class="w-6 h-6"></i>
+                            </button>
+                        </div>
+                        
+                        <!-- Grid Layout for Skills -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                            
+                            <!-- 1. Digital Skills Column -->
+                            <div class="space-y-6">
+                                <div class="bento-card p-6 h-full bg-[#151515]">
+                                    <h3 class="text-xl font-bold text-white mb-4 flex items-center gap-2">
+                                        <i data-lucide="laptop-2" class="w-5 h-5 text-accent"></i>
+                                        <span data-i18n="skills_cat_digital">Digital Skills</span>
+                                    </h3>
+                                    <div class="flex flex-wrap gap-2">
+                                        <span class="px-3 py-1.5 bg-zinc-800 rounded text-sm text-zinc-300">Excel / Power BI</span>
+                                        <span class="px-3 py-1.5 bg-zinc-800 rounded text-sm text-zinc-300">SEO / SEA / Google Ads</span>
+                                        <span class="px-3 py-1.5 bg-zinc-800 rounded text-sm text-zinc-300">Google Analytics</span>
+                                        <span class="px-3 py-1.5 bg-zinc-800 rounded text-sm text-zinc-300">Design Tools (Canva, Figma)</span>
+                                        <span class="px-3 py-1.5 bg-zinc-800 rounded text-sm text-zinc-300">CRM-tools (Salesforce, HubSpot)</span>
+                                        <span class="px-3 py-1.5 bg-zinc-800 rounded text-sm text-zinc-300">Projectmanagement (Asana, Trello)</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 2. Investigative Expertise Column -->
+                            <div class="space-y-6">
+                                
+                                <!-- Analyses -->
+                                <div class="bento-card p-6 bg-[#151515]">
+                                    <h3 class="text-xl font-bold text-white mb-4 flex items-center gap-2">
+                                        <i data-lucide="search" class="w-5 h-5 text-accent"></i>
+                                        <span data-i18n="skills_modal_analyses">Analyses</span>
+                                    </h3>
+                                    <p class="text-zinc-500 text-xs mb-3 italic" data-i18n="skills_modal_analyses_desc">Insight into current situation & environment.</p>
+                                    <div class="flex flex-wrap gap-2">
+                                        <span class="px-3 py-1.5 bg-zinc-800 rounded text-sm text-zinc-300" data-i18n="skill_market_analysis">Market Analysis</span>
+                                        <span class="px-3 py-1.5 bg-zinc-800 rounded text-sm text-zinc-300" data-i18n="skill_comp_analysis">Competitor Analysis</span>
+                                        <span class="px-3 py-1.5 bg-zinc-800 rounded text-sm text-zinc-300" data-i18n="skill_country_analysis">Country Analysis</span>
+                                        <span class="px-3 py-1.5 bg-zinc-800 rounded text-sm text-zinc-300" data-i18n="skill_industry_analysis">Industry Analysis</span>
+                                        <span class="px-3 py-1.5 bg-zinc-800 rounded text-sm text-zinc-300" data-i18n="skill_customer_analysis">Customer Analysis</span>
+                                        <span class="px-3 py-1.5 bg-zinc-800 rounded text-sm text-zinc-300" data-i18n="skill_target_analysis">Target Audience Analysis</span>
+                                    </div>
+                                </div>
+
+                                <!-- Designs / Plans -->
+                                <div class="bento-card p-6 bg-[#151515]">
+                                    <h3 class="text-xl font-bold text-white mb-4 flex items-center gap-2">
+                                        <i data-lucide="pen-tool" class="w-5 h-5 text-accent"></i>
+                                        <span data-i18n="skills_modal_designs">Designs & Plans</span>
+                                    </h3>
+                                    <p class="text-zinc-500 text-xs mb-3 italic" data-i18n="skills_modal_designs_desc">Plans to move from current to desired situation.</p>
+                                    <div class="flex flex-wrap gap-2">
+                                        <span class="px-3 py-1.5 bg-zinc-800 rounded text-sm text-zinc-300" data-i18n="skill_plan_imp">Implementation Plan</span>
+                                        <span class="px-3 py-1.5 bg-zinc-800 rounded text-sm text-zinc-300" data-i18n="skill_plan_marcom">Marketing Comm. Plan</span>
+                                        <span class="px-3 py-1.5 bg-zinc-800 rounded text-sm text-zinc-300" data-i18n="skill_plan_marketing">Marketing Plan</span>
+                                        <span class="px-3 py-1.5 bg-zinc-800 rounded text-sm text-zinc-300" data-i18n="skill_plan_export">Export Plan</span>
+                                        <span class="px-3 py-1.5 bg-zinc-800 rounded text-sm text-zinc-300" data-i18n="skill_plan_entry">Market Entry Plan</span>
+                                        <span class="px-3 py-1.5 bg-zinc-800 rounded text-sm text-zinc-300" data-i18n="skill_plan_sales">Sales Plan</span>
+                                    </div>
+                                </div>
+
+                                <!-- Advices -->
+                                <div class="bento-card p-6 bg-[#151515]">
+                                    <h3 class="text-xl font-bold text-white mb-4 flex items-center gap-2">
+                                        <i data-lucide="message-square" class="w-5 h-5 text-accent"></i>
+                                        <span data-i18n="skills_modal_advice">Strategic Advice</span>
+                                    </h3>
+                                    <p class="text-zinc-500 text-xs mb-3 italic" data-i18n="skills_modal_advice_desc">Recommendations on strategic/tactical level.</p>
+                                    <div class="flex flex-wrap gap-2">
+                                        <span class="px-3 py-1.5 bg-zinc-800 rounded text-sm text-zinc-300" data-i18n="skill_adv_pos">Positioning Strategy</span>
+                                        <span class="px-3 py-1.5 bg-zinc-800 rounded text-sm text-zinc-300" data-i18n="skill_adv_entry">Market Entry Strategy</span>
+                                        <span class="px-3 py-1.5 bg-zinc-800 rounded text-sm text-zinc-300" data-i18n="skill_adv_loyalty">Loyalty Strategy</span>
+                                        <span class="px-3 py-1.5 bg-zinc-800 rounded text-sm text-zinc-300" data-i18n="skill_adv_growth">Growth Strategy</span>
+                                        <span class="px-3 py-1.5 bg-zinc-800 rounded text-sm text-zinc-300" data-i18n="skill_adv_export">Export Strategy</span>
+                                    </div>
+                                </div>
+
+                                <!-- Theories -->
+                                <div class="bento-card p-6 bg-[#151515]">
+                                    <h3 class="text-xl font-bold text-white mb-4 flex items-center gap-2">
+                                        <i data-lucide="book-open" class="w-5 h-5 text-accent"></i>
+                                        <span data-i18n="skills_cat_theories">Theories & Models</span>
+                                    </h3>
+                                    <div class="flex flex-wrap gap-2">
+                                        <span class="px-3 py-1.5 bg-zinc-800 rounded text-sm text-zinc-300">Design Thinking</span>
+                                        <span class="px-3 py-1.5 bg-zinc-800 rounded text-sm text-zinc-300">Business Model Canvas (Triple Layered)</span>
+                                        <span class="px-3 py-1.5 bg-zinc-800 rounded text-sm text-zinc-300">Value Proposition Canvas</span>
+                                        <span class="px-3 py-1.5 bg-zinc-800 rounded text-sm text-zinc-300" data-i18n="skill_th_mvc">Multiple Value Creation</span>
+                                        <span class="px-3 py-1.5 bg-zinc-800 rounded text-sm text-zinc-300">SWOT Analysis</span>
+                                        <span class="px-3 py-1.5 bg-zinc-800 rounded text-sm text-zinc-300" data-i18n="skill_th_conf">Confrontation Matrix</span>
+                                        <span class="px-3 py-1.5 bg-zinc-800 rounded text-sm text-zinc-300">Prototyping</span>
+                                        <span class="px-3 py-1.5 bg-zinc-800 rounded text-sm text-zinc-300">Customer Journey</span>
+                                        <span class="px-3 py-1.5 bg-zinc-800 rounded text-sm text-zinc-300" data-i18n="skill_th_bm">Business Management</span>
+                                        <span class="px-3 py-1.5 bg-zinc-800 rounded text-sm text-zinc-300">ESG</span>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- Floating Call Button - Links to dialer -->
         <a href="tel:0641415887" class="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full shadow-[0_0_20px_rgba(204,255,0,0.4)] flex items-center justify-center border border-zinc-800 transition-all duration-300 hover:scale-105 active:scale-95 bg-accent text-black hover:bg-[#b3e600]">
         <i data-lucide="phone" class="w-6 h-6"></i>
@@ -977,11 +1103,11 @@
             });
         }
         
-        // --- 4. Modal Logic ---
+        // --- 4. Modal Logic (Projects) ---
         function openProjectsModal() {
             const modal = document.getElementById('projects-modal');
             modal.classList.remove('hidden');
-            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+            document.body.style.overflow = 'hidden'; 
         }
 
         function closeProjectsModal() {
@@ -989,8 +1115,21 @@
             modal.classList.add('hidden');
             document.body.style.overflow = 'auto';
         }
+
+        // --- 5. Modal Logic (Skills) ---
+        function openSkillsModal() {
+            const modal = document.getElementById('skills-modal');
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden'; 
+        }
+
+        function closeSkillsModal() {
+            const modal = document.getElementById('skills-modal');
+            modal.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
         
-        // --- 5. Scroll Reveal Observer ---
+        // --- 6. Scroll Reveal Observer ---
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -50px 0px'
@@ -1007,7 +1146,7 @@
 
         document.querySelectorAll('.reveal-on-scroll').forEach(el => observer.observe(el));
 
-        // --- 6. Typewriter Effect ---
+        // --- 7. Typewriter Effect ---
         // We type the hero title: "Business Strategy & Innovation Enthusiast"
         const typewriterEl = document.getElementById('typewriter-title');
         if (typewriterEl) {
@@ -1030,7 +1169,7 @@
             setTimeout(typeWriter, 500);
         }
 
-        // --- 7. Language Logic ---
+        // --- 8. Language Logic ---
         const translations = {
             en: {
                 nav_about: "About",
@@ -1056,9 +1195,36 @@
                 about_title: "About",
                 about_text: "I am an ambitious fourth-year Commercial Economics student at Windesheim University of Applied Sciences, 24 years old, with a passion for strategic innovation. During my studies, I completed a Pre-master in Business Administration as a minor and a minor in Financial Decision-Making. Throughout my Commercial Economics program, I further specialized in Design Thinking and sustainable business models.<br><br>I am particularly interested in making data-driven decisions and validating insights with customers to uncover needs that might not be visible internally. Understanding what the customer truly wants is increasingly important today, as it ensures that strategies and innovations are relevant, effective, and create economic, ecological, and social value.",
                 skills_title: "Expertise",
+                skills_cat_digital: "Digital Skills",
                 skills_cat_1: "Strategic Analysis",
-                skills_cat_2: "Innovation & Design",
-                skills_cat_3: "Business Management",
+                skills_cat_theories: "Theories & Models",
+                skills_modal_title: "Full Expertise",
+                skills_modal_analyses: "Analyses",
+                skills_modal_analyses_desc: "Insight into current situation & environment.",
+                skill_market_analysis: "Market Analysis",
+                skill_comp_analysis: "Competitor Analysis",
+                skill_country_analysis: "Country Analysis",
+                skill_industry_analysis: "Industry Analysis",
+                skill_customer_analysis: "Customer Analysis",
+                skill_target_analysis: "Target Audience Analysis",
+                skills_modal_designs: "Designs & Plans",
+                skills_modal_designs_desc: "Plans to move from current to desired situation.",
+                skill_plan_imp: "Implementation Plan",
+                skill_plan_marcom: "Marketing Comm. Plan",
+                skill_plan_marketing: "Marketing Plan",
+                skill_plan_export: "Export Plan",
+                skill_plan_entry: "Market Entry Plan",
+                skill_plan_sales: "Sales Plan",
+                skills_modal_advice: "Strategic Advice",
+                skills_modal_advice_desc: "Recommendations on strategic/tactical level.",
+                skill_adv_pos: "Positioning Strategy",
+                skill_adv_entry: "Market Entry Strategy",
+                skill_adv_loyalty: "Loyalty Strategy",
+                skill_adv_growth: "Growth Strategy",
+                skill_adv_export: "Export Strategy",
+                skill_th_mvc: "Multiple Value Creation",
+                skill_th_conf: "Confrontation Matrix",
+                skill_th_bm: "Business Management",
                 edu_title: "Education",
                 edu_1_school: "University of Twente",
                 edu_1_desc: "Focus on Business Management and academic research methodologies.",
@@ -1166,6 +1332,173 @@
                                 </div>
                               </div>`,
                 proj_4_desc_short: "We developed a focused whitepaper for Zonneplan to achieve their 2023 target of 3,000 EV charger sales.",
+                contact_title: "Laten we <span class=\"text-zinc-600 transition-colors group-hover:text-zinc-400\">Samenwerken</span>",
+                contact_desc: "Open voor het bespreken van nieuwe kansen, strategische samenwerkingen of duurzaamheidsinitiatieven.",
+                btn_email: "Stuur E-mail",
+                btn_call: "Plan Gesprek",
+                modal_title: "Alle Projecten"
+            },
+            nl: {
+                nav_about: "Over Mij",
+                nav_edu: "Opleiding",
+                nav_exp: "Ervaring",
+                nav_proj: "Projecten",
+                nav_contact: "Contact",
+                hero_badge: "Beschikbaar voor werk",
+                hero_title: "Business Strategy & Innovation Enthusiast",
+                hero_desc: "Zakelijke uitdagingen omzetten in datagedreven, mensgerichte en duurzame kansen.",
+                btn_view_work: "Bekijk Werk",
+                btn_download_cv: "Download CV",
+                based_in: "GEVESTIGD IN",
+                stat_edu: "Opleiding",
+                stat_edu_val: "Commerciële Economie (Marketing)",
+                stat_degree: "Graad",
+                stat_degree_val: "HBO Bachelor",
+                stat_grade: "Gem. Cijfer",
+                ticker_1: "Strategische Innovatie",
+                ticker_2: "Design Thinking",
+                ticker_3: "Duurzaamheid",
+                ticker_4: "Bedrijfsmodellering",
+                about_title: "Over Mij",
+                about_text: "Ik ben een ambitieuze vierdejaars student Commerciële Economie aan Hogeschool Windesheim, 24 jaar oud, met een passie voor strategische innovatie. Tijdens mijn studie heb ik een Pre-master Bedrijfskunde gevolgd als minor en een minor in Financiële Besluitvorming. Binnen mijn opleiding Commerciële Economie heb ik mij verder gespecialiseerd in Design Thinking en duurzame bedrijfsmodellen.<br><br>Ik ben vooral geïnteresseerd in het maken van datagedreven beslissingen en het valideren van inzichten met klanten om behoeften te ontdekken die intern misschien niet zichtbaar zijn. Begrijpen wat de klant écht wil is tegenwoordig steeds belangrijker, omdat het ervoor zorgt dat strategieën en innovaties relevant en effectief zijn, en economische, ecologische en maatschappelijke waarde creëren.",
+                skills_title: "Expertise",
+                skills_cat_digital: "Digitale Vaardigheden",
+                skills_cat_1: "Strategische Analyse",
+                skills_cat_theories: "Theorieën & Modellen",
+                skills_modal_title: "Volledige Expertise",
+                skills_modal_analyses: "Analyses",
+                skills_modal_analyses_desc: "Inzicht in huidige situatie en omgeving.",
+                skill_market_analysis: "Marktanalyse",
+                skill_comp_analysis: "Concurrentenanalyse",
+                skill_country_analysis: "Landenanalyse",
+                skill_industry_analysis: "Bedrijfstakanalyse",
+                skill_customer_analysis: "Afnemersanalyse",
+                skill_target_analysis: "Doelgroepanalyse",
+                skills_modal_designs: "Ontwerpen & Plannen",
+                skills_modal_designs_desc: "Plannen om van huidige naar gewenste situatie te komen.",
+                skill_plan_imp: "Implementatieplan",
+                skill_plan_marcom: "Marketingcommunicatieplan",
+                skill_plan_marketing: "Marketingplan",
+                skill_plan_export: "Exportplan",
+                skill_plan_entry: "Marktbewerkingsplan",
+                skill_plan_sales: "Verkoopplan",
+                skills_modal_advice: "Adviezen",
+                skills_modal_advice_desc: "Onderbouwde aanbevelingen op strategisch/tactisch niveau.",
+                skill_adv_pos: "Positioneringsstrategie",
+                skill_adv_entry: "Marktbewerkingsstrategie",
+                skill_adv_loyalty: "Loyaliteitsstrategie",
+                skill_adv_growth: "Groeistrategie",
+                skill_adv_export: "Exportstrategie",
+                skill_th_mvc: "Meervoudige Waardecreatie",
+                skill_th_conf: "Confrontatiematrix",
+                skill_th_bm: "Business Management",
+                edu_title: "Opleiding",
+                edu_1_school: "Universiteit Twente",
+                edu_1_desc: "Focus op Business Management en academische onderzoeksmethodologieën.",
+                edu_1_grade_label: "Gemiddelde:",
+                edu_2_school: "Windesheim",
+                edu_2_desc: "Ontwikkelen van vaardigheden in innovatief onderzoek, strategisch advies, design thinking en commercieel bewustzijn. <br> Minor: Financiële Besluitvorming",
+                edu_2_degree: "Bachelor, Commerciële Economie (Marketing)",
+                edu_3_school: "Windesheim",
+                edu_4_school: "ROC van Twente",
+                edu_4_degree: "Assistant Manager International Trade",
+                edu_4_desc: "Opleiding voltooid via een versneld traject.",
+                exp_title: "Ervaring",
+                exp_1_role: "Research & Development (R&D)",
+                exp_1_desc: "Parttime · Hybride<br><br>Belangrijkste taken:<br>• Sterktes, zwaktes, kansen en bedreigingen in kaart brengen<br>• SWOT-analyse en confrontatiematrix uitvoeren<br>• Persona en customer journey ontwikkelen<br>• Business Model Canvas opstellen op economisch, ecologisch en sociaal vlak<br>• Strategieën ontwikkelen om nieuwe (buitenlandse) markten te betreden<br>• Design Thinking (innovatieproces) doorlopen en concrete ideeën uitwerken<br>• Grondige concurrentieanalyse uitvoeren<br>• Impact van trends/ontwikkelingen analyseren op micro-, macro- en mesoniveau",
+                exp_2_role: "Stagiair International Trade",
+                exp_2_desc: "Gericht op het opbouwen van relaties met architecten en aannemers. Bemande de stand op de Ahoy beurs (Rotterdam) en beheerde gepersonaliseerde B2B-mailings om leads te genereren.",
+                exp_3_role: "Stagiair International Trade",
+                exp_3_desc: "Internationale ervaring opgedaan op diverse afdelingen: Vastgoed (via Molenbeek Invest), Onderhoud, Receptie en keukenwerkzaamheden bij Brass Boer.",
+                exp_other_title: "Eerdere Functies",
+                role_assist_manager: "Assistant Manager Int. Trade",
+                role_agency: "Uitzendkracht",
+                role_temp: "Vakantiewerker",
+                role_landscaper: "Hovenier",
+                role_retail: "Verkoopmedewerker",
+                proj_title: "Geselecteerde Projecten",
+                proj_view_all: "BEKIJK ALLES",
+                partners_title: "Samengewerkt met",
+                proj_1_title: "Vitens, Grootzakelijke markt: Market Needs, Positioning & Organisational Direction",
+                proj_1_title_short: "Vitens: Marktstrategie",
+                proj_1_desc: `<div class="relative pl-6 border-l-2 border-zinc-800 ml-2">
+                                <div class="mb-6 last:mb-0 relative">
+                                    <div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div>
+                                    <h4 class="text-accent font-mono text-xs uppercase mb-1">Uitdaging & Analyse</h4>
+                                    <p class="text-zinc-400 text-sm leading-relaxed">Diepgaand marktonderzoek uitgevoerd om een nieuwe 'Water-as-a-Service' divisie te positioneren. Concurrenten en klantbehoeften geanalyseerd om de scope van het portfolio te bepalen.</p>
+                                </div>
+                                <div class="mb-6 last:mb-0 relative">
+                                    <div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div>
+                                    <h4 class="text-accent font-mono text-xs uppercase mb-1">Strategisch Inzicht</h4>
+                                    <p class="text-zinc-400 text-sm leading-relaxed">Kansen geïdentificeerd om Vitens te onderscheiden door circulaire wateroplossingen en water stewardship, als brug tussen huidige diensten en een commerciële entiteit.</p>
+                                </div>
+                                <div class="mb-6 last:mb-0 relative">
+                                    <div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div>
+                                    <h4 class="text-accent font-mono text-xs uppercase mb-1">Advies & Resultaat</h4>
+                                    <p class="text-zinc-400 text-sm leading-relaxed">Strategische roadmap opgeleverd voor naamgeving, branding en organisatievorm, wat een veerkrachtige en duurzame toekomst voor het grootzakelijke segment creëert.</p>
+                                </div>
+                              </div>`,
+                proj_1_desc_short: "Voor Vitens heb ik een diepgaand marktonderzoek uitgevoerd om te bepalen hoe een nieuwe Water-as-a-Service divisie gepositioneerd, gestructureerd en in de markt gezet moest worden.",
+                proj_2_title: "Perron038, Factory NEXT: Strategische Commerciële Positionering",
+                proj_2_title_short: "Perron038: Innovatiehub",
+                proj_2_desc: `<div class="relative pl-6 border-l-2 border-zinc-800 ml-2">
+                                <div class="mb-6 last:mb-0 relative">
+                                    <div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div>
+                                    <h4 class="text-accent font-mono text-xs uppercase mb-1">Uitdaging & Analyse</h4>
+                                    <p class="text-zinc-400 text-sm leading-relaxed">Marktpotentieel bepaald voor 'Factory NEXT' als gedeelde innovatiefaciliteit. Concurrerende initiatieven in het Nederlandse maakindustrie-landschap geanalyseerd.</p>
+                                </div>
+                                <div class="mb-6 last:mb-0 relative">
+                                    <div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div>
+                                    <h4 class="text-accent font-mono text-xs uppercase mb-1">Strategisch Inzicht</h4>
+                                    <p class="text-zinc-400 text-sm leading-relaxed">Segmenten geïdentificeerd voor 'test-before-invest' model. Design Thinking en klantvalidatie gebruikt om labs en technologie af te stemmen op marktbehoeften.</p>
+                                </div>
+                                <div class="mb-6 last:mb-0 relative">
+                                    <div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div>
+                                    <h4 class="text-accent font-mono text-xs uppercase mb-1">Advies & Resultaat</h4>
+                                    <p class="text-zinc-400 text-sm leading-relaxed">Waardeproposities, verdienmodellen en messaging ontwikkeld om Factory NEXT te versterken als commercieel levensvatbare innovatiehub.</p>
+                                </div>
+                              </div>`,
+                proj_2_desc_short: "Bij Perron038 heb ik onderzocht hoe Factory NEXT commercieel gepositioneerd kan worden en aantrekkelijk gemaakt kan worden voor industriële partners.",
+                proj_3_title: "Unica, Smart Buildings Business Development: Waardepropositie Optimalisatie",
+                proj_3_title_short: "Unica: Smart Buildings",
+                proj_3_desc: `<div class="relative pl-6 border-l-2 border-zinc-800 ml-2">
+                                <div class="mb-6 last:mb-0 relative">
+                                    <div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div>
+                                    <h4 class="text-accent font-mono text-xs uppercase mb-1">Uitdaging & Analyse</h4>
+                                    <p class="text-zinc-400 text-sm leading-relaxed">Interne dynamiek (35 locaties vs 9 vestigingen) en externe factoren (EPBD III, tekort aan technici) in kaart gebracht. Business Model Canvas gebruikt om economische/sociale afhankelijkheden te onthullen.</p>
+                                </div>
+                                <div class="mb-6 last:mb-0 relative">
+                                    <div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div>
+                                    <h4 class="text-accent font-mono text-xs uppercase mb-1">Strategisch Inzicht</h4>
+                                    <p class="text-zinc-400 text-sm leading-relaxed">Ideeëngeneratie via trendpiramides leidde tot 'SmartEase': instapklare kits & VR-demo's om energiestromen te visualiseren en investeringsangst weg te nemen.</p>
+                                </div>
+                                <div class="mb-6 last:mb-0 relative">
+                                    <div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div>
+                                    <h4 class="text-accent font-mono text-xs uppercase mb-1">Advies & Resultaat</h4>
+                                    <p class="text-zinc-400 text-sm leading-relaxed">Concepten geprototypet en gevalideerd met eindgebruikers. Rollout impact canvas gemaakt met KPI's voor omzet en NPS, om Unica te positioneren als klantgericht leider.</p>
+                                </div>
+                              </div>`,
+                proj_3_desc_short: "We hebben voor Unica een strategisch adviestraject ontwikkeld waarbij we de Design Thinking cyclus hebben doorlopen om hun waardepropositie voor slimme gebouwen te optimaliseren.",
+                proj_4_title: "Zonneplan, EV Charging Sales Acceleration: Marketing Whitepaper",
+                proj_4_title_short: "Zonneplan: EV Verkoop",
+                proj_4_desc: `<div class="relative pl-6 border-l-2 border-zinc-800 ml-2">
+                                <div class="mb-6 last:mb-0 relative">
+                                    <div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div>
+                                    <h4 class="text-accent font-mono text-xs uppercase mb-1">Uitdaging & Analyse</h4>
+                                    <p class="text-zinc-400 text-sm leading-relaxed">Doel: 3.000 verkochte laadpalen. Barrières geïdentificeerd zoals complexe offerteprocessen (6-7 klikken) en gebrek aan retentie na verkoop.</p>
+                                </div>
+                                <div class="mb-6 last:mb-0 relative">
+                                    <div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div>
+                                    <h4 class="text-accent font-mono text-xs uppercase mb-1">Strategisch Inzicht</h4>
+                                    <p class="text-zinc-400 text-sm leading-relaxed">Pijnpunten van EV-bezitters blootgelegd (€0,50/kWh openbaar vs thuisladen). Reis van bewustwording naar loyaliteit gedefinieerd met persona's.</p>
+                                </div>
+                                <div class="mb-6 last:mb-0 relative">
+                                    <div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div>
+                                    <h4 class="text-accent font-mono text-xs uppercase mb-1">Advies & Resultaat</h4>
+                                    <p class="text-zinc-400 text-sm leading-relaxed">Aanbevolen om SEO/SEA te optimaliseren voor "laadpaal kopen", landingspagina's te vereenvoudigen en Trustpilot social proof in te zetten. KPI's ingesteld voor snelle schaalbare groei.</p>
+                                </div>
+                              </div>`,
+                proj_4_desc_short: "Voor Zonneplan hebben we een gerichte whitepaper ontwikkeld om hun doelstelling van 3.000 verkochte laadpalen in 2023 te realiseren.",
                 contact_title: "Laten we <span class=\"text-zinc-600 transition-colors group-hover:text-zinc-400\">Samenwerken</span>",
                 contact_desc: "Open voor het bespreken van nieuwe kansen, strategische samenwerkingen of duurzaamheidsinitiatieven.",
                 btn_email: "Stuur E-mail",
