@@ -156,16 +156,6 @@
         opacity: 1;
       }
     </style>
-<script type="importmap">
-{
-  "imports": {
-    "react": "https://aistudiocdn.com/react@^19.2.0",
-    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.555.0",
-    "react/": "https://aistudiocdn.com/react@^19.2.0/",
-    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.30.0"
-  }
-}
-</script>
 </head>
 <body class="bg-background text-primary selection:bg-accent selection:text-black font-sans bg-grid-pattern pb-20">
 
@@ -245,21 +235,21 @@
             <!-- 2. Photo Block -->
             <div class="bento-card col-span-1 md:col-span-2 lg:col-span-2 row-span-2 min-h-[300px] group reveal-on-scroll" style="transition-delay: 100ms;">
                 <div class="spotlight-overlay"></div>
-                <!-- 
-                  CHANGE IMAGE: 
-                  Using direct LinkedIn URL as requested by user.
-                -->
-                <img src="https://media.licdn.com/dms/image/v2/D4E03AQGS-5HiPlo3Hg/profile-displayphoto-crop_800_800/B4EZi_U3r2GUAI-/0/1755556576505?e=1766016000&v=beta&t=pHkswNMeFh130hQfxFgE3XmpkE7IAm1aCXVW7-HgJww" alt="Ritchie Olthuis" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-80 group-hover:opacity-100 grayscale group-hover:grayscale-0">
-                <div class="absolute inset-0 bg-gradient-to-t from-[#121212] via-transparent to-transparent opacity-80 pointer-events-none"></div>
-                <div class="absolute bottom-6 left-6 pointer-events-none">
-                   <div class="text-accent font-mono text-xs mb-1" data-i18n="based_in">BASED IN</div>
-                   <div class="text-white font-display font-bold text-xl flex items-center gap-2">
+                <img 
+                  src="assets/profile.png" 
+                  onerror="this.src='https://media.licdn.com/dms/image/v2/D4E03AQGS-5HiPlo3Hg/profile-displayphoto-crop_800_800/B4EZi_U3r2GUAI-/0/1755556576505?e=1766016000&v=beta&t=pHkswNMeFh130hQfxFgE3XmpkE7IAm1aCXVW7-HgJww'"
+                  alt="Ritchie Olthuis" 
+                  class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 grayscale group-hover:grayscale-0"
+                >
+                <div class="absolute bottom-6 left-6 pointer-events-none z-10">
+                   <div class="text-accent font-mono text-xs mb-1 drop-shadow-md" data-i18n="based_in">BASED IN</div>
+                   <div class="text-white font-display font-bold text-xl flex items-center gap-2 drop-shadow-md">
                      <i data-lucide="map-pin" class="w-4 h-4"></i> Netherlands
                    </div>
                 </div>
             </div>
 
-            <!-- 3. Stats Block (Updated per request) -->
+            <!-- 3. Stats Block -->
             <div class="bento-card col-span-1 md:col-span-2 lg:col-span-2 p-6 flex flex-col justify-center gap-4 bg-[#151515] group reveal-on-scroll" style="transition-delay: 200ms;">
                 <div class="spotlight-overlay"></div>
                 <div class="flex justify-between items-center border-b border-zinc-800 pb-4 group-hover:border-zinc-700 transition-colors">
@@ -765,6 +755,14 @@
         <div class="mb-10 pt-16 border-t border-zinc-900 reveal-on-scroll">
             <p class="text-center text-xs font-mono uppercase text-zinc-600 mb-8 tracking-widest" data-i18n="partners_title">Partnered with</p>
             <div class="relative flex overflow-x-hidden group">
+                <!-- 
+                   UPDATED MARQUEE LOGIC:
+                   We have 4 identical sets of logos.
+                   The animation 'marquee' moves translateX(-50%).
+                   Since we have 4 sets, moving 50% means shifting exactly 2 sets to the left.
+                   The view will then show Set 3 and Set 4, which are identical to Set 1 and Set 2.
+                   The loop snaps back to Set 1 seamlessly.
+                -->
                 <div class="animate-marquee flex items-center gap-16 whitespace-nowrap py-4 px-4">
                     <!-- Logos Set 1 -->
                     <img src="https://www.vitens.nl/-/media/Project/Vitens/VitensNl/vitens-logo.jpg" alt="Vitens" class="h-10 w-auto object-contain logo-filter">
@@ -772,13 +770,19 @@
                     <img src="https://www.duurzaam-ondernemen.nl/wordpress/wp-content/uploads/2025/07/unica.png" alt="Unica" class="h-10 w-auto object-contain logo-filter">
                     <img src="https://www.overstappen.nl/assets/Zonneplan@2x.png" alt="Zonneplan" class="h-8 w-auto object-contain logo-filter">
                     
-                    <!-- Logos Set 2 (Duplicate for loop) -->
+                    <!-- Logos Set 2 -->
                     <img src="https://www.vitens.nl/-/media/Project/Vitens/VitensNl/vitens-logo.jpg" alt="Vitens" class="h-10 w-auto object-contain logo-filter">
                     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0kTw7PhwMVs-IQmNdomH7h6oPquEiRAyCcw&s" alt="Perron038" class="h-10 w-auto object-contain logo-filter">
                     <img src="https://www.duurzaam-ondernemen.nl/wordpress/wp-content/uploads/2025/07/unica.png" alt="Unica" class="h-10 w-auto object-contain logo-filter">
                     <img src="https://www.overstappen.nl/assets/Zonneplan@2x.png" alt="Zonneplan" class="h-8 w-auto object-contain logo-filter">
 
-                     <!-- Logos Set 3 (Duplicate for wider screens) -->
+                     <!-- Logos Set 3 -->
+                    <img src="https://www.vitens.nl/-/media/Project/Vitens/VitensNl/vitens-logo.jpg" alt="Vitens" class="h-10 w-auto object-contain logo-filter">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0kTw7PhwMVs-IQmNdomH7h6oPquEiRAyCcw&s" alt="Perron038" class="h-10 w-auto object-contain logo-filter">
+                    <img src="https://www.duurzaam-ondernemen.nl/wordpress/wp-content/uploads/2025/07/unica.png" alt="Unica" class="h-10 w-auto object-contain logo-filter">
+                    <img src="https://www.overstappen.nl/assets/Zonneplan@2x.png" alt="Zonneplan" class="h-8 w-auto object-contain logo-filter">
+
+                     <!-- Logos Set 4 (Added for seamless loop on wide screens) -->
                     <img src="https://www.vitens.nl/-/media/Project/Vitens/VitensNl/vitens-logo.jpg" alt="Vitens" class="h-10 w-auto object-contain logo-filter">
                     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0kTw7PhwMVs-IQmNdomH7h6oPquEiRAyCcw&s" alt="Perron038" class="h-10 w-auto object-contain logo-filter">
                     <img src="https://www.duurzaam-ondernemen.nl/wordpress/wp-content/uploads/2025/07/unica.png" alt="Unica" class="h-10 w-auto object-contain logo-filter">
@@ -862,10 +866,9 @@
                 </div>
             </div>
         </div>
-    </div>
 
-    <!-- Floating Call Button - Links to dialer -->
-    <a href="tel:0641415887" class="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full shadow-[0_0_20px_rgba(204,255,0,0.4)] flex items-center justify-center border border-zinc-800 transition-all duration-300 hover:scale-105 active:scale-95 bg-accent text-black hover:bg-[#b3e600]">
+        <!-- Floating Call Button - Links to dialer -->
+        <a href="tel:0641415887" class="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full shadow-[0_0_20px_rgba(204,255,0,0.4)] flex items-center justify-center border border-zinc-800 transition-all duration-300 hover:scale-105 active:scale-95 bg-accent text-black hover:bg-[#b3e600]">
         <i data-lucide="phone" class="w-6 h-6"></i>
     </a>
 
@@ -1101,146 +1104,6 @@
                                 </div>
                               </div>`,
                 proj_4_desc_short: "We developed a focused whitepaper for Zonneplan to achieve their 2023 target of 3,000 EV charger sales.",
-                contact_title: "Let's work <span class=\"text-zinc-600 transition-colors group-hover:text-zinc-400\">Together</span>",
-                contact_desc: "Open to discussing new opportunities, strategic collaborations, or sustainability initiatives.",
-                btn_email: "Send Email",
-                btn_call: "Schedule Call",
-                modal_title: "All Projects"
-            },
-            nl: {
-                nav_about: "Over mij",
-                nav_edu: "Opleiding",
-                nav_exp: "Ervaring",
-                nav_proj: "Projecten",
-                nav_contact: "Contact",
-                hero_badge: "Beschikbaar voor werk",
-                hero_title: "Business Strategy & Innovation Enthusiast",
-                hero_desc: "Het transformeren van zakelijke uitdagingen naar datagedreven, mensgerichte en duurzame kansen.",
-                btn_view_work: "Bekijk Werk",
-                btn_download_cv: "Download CV",
-                based_in: "GEVESTIGD IN",
-                stat_edu: "Opleiding",
-                stat_edu_val: "Commerciële Economie (Marketing)",
-                stat_degree: "Diploma",
-                stat_degree_val: "Bachelor Degree",
-                stat_grade: "Gemiddelde",
-                ticker_1: "Strategische Innovatie",
-                ticker_2: "Design Thinking",
-                ticker_3: "Duurzaamheid",
-                ticker_4: "Business Modeling",
-                about_title: "Over mij",
-                about_text: "Ik ben een ambitieuze vierdejaars student Commerciële Economie aan Hogeschool Windesheim, 24 jaar oud, met een passie voor strategische innovatie. Tijdens mijn studie heb ik een Pre-master Business Administration als minor afgerond, evenals een minor Financiële Besluitvorming. Gedurende mijn opleiding Commerciële Economie heb ik mij verder gespecialiseerd in Design Thinking en duurzame bedrijfsmodellen.<br><br>Ik ben met name geïnteresseerd in het maken van datagedreven beslissingen en het valideren van inzichten bij klanten om behoeften te ontdekken die intern wellicht niet zichtbaar zijn. Begrijpen wat de klant écht wil is vandaag de dag steeds belangrijker, omdat dit ervoor zorgt dat strategieën en innovaties relevant en effectief zijn, en economische, ecologische en sociale waarde creëren.",
-                skills_title: "Expertise",
-                skills_cat_1: "Strategische Analyse",
-                skills_cat_2: "Innovatie & Design",
-                skills_cat_3: "Bedrijfsmanagement",
-                edu_title: "Opleidingen",
-                edu_1_school: "Universiteit Twente",
-                edu_1_desc: "Focus op Bedrijfsmanagement en academische onderzoeksmethodologieën.",
-                edu_1_grade_label: "Gemiddelde:",
-                edu_2_school: "Windesheim",
-                edu_2_desc: "Ontwikkelen van vaardigheden in innovatief onderzoek, strategisch advies, design thinking en commercieel bewustzijn. <br> Minor: Financiële Besluitvorming",
-                edu_2_degree: "Bachelor Commerciële Economie (Marketing)",
-                edu_3_school: "Windesheim",
-                edu_4_school: "ROC van Twente",
-                edu_4_degree: "Assistent Manager Internationale Handel",
-                edu_4_desc: "Opleiding via versneld traject afgerond.",
-                exp_title: "Ervaring",
-                exp_1_role: "Onderzoek & Ontwikkeling (R&D)",
-                exp_1_desc: "Part-time · Hybrid<br><br>Voornaamste taken:<br>• Sterktes, zwaktes, kansen en bedreigingen identificeren<br>• SWOT-analyse en confrontatiematrix uitvoeren<br>• Persona en klantreis ontwikkelen<br>• Businessmodelcanvas op economisch, ecologisch en sociaal aspect opstellen<br>• Strategieën ontwikkelen om nieuwe (internationale) markten te betreden<br>• Design Thinking (innovatieproces) doorlopen en concrete ideeën ontwikkelen<br>• Gedegen concurrentieanalyse uitvoeren<br>• Invloed van trends en ontwikkelingen op micro-, macro- en mesoniveau analyseren",
-                exp_2_role: "Stagiair Internationale Handel",
-                exp_2_desc: "Focus op het opbouwen van relaties met architecten en aannemers. Bemanning van de stand op de Ahoy beurs (Rotterdam) en beheer van gepersonaliseerde B2B mailings voor leadgeneratie.",
-                exp_3_role: "Stagiair Internationale Handel",
-                exp_3_desc: "Internationale ervaring opgedaan op diverse afdelingen: Vastgoed (via Molenbeek Invest), Maintenance, Frontoffice en de keuken van Brass Boer.",
-                exp_other_title: "Eerdere Functies",
-                role_assist_manager: "Assistent Manager Int. Handel",
-                role_agency: "Uitzendkracht",
-                role_temp: "Uitzendkracht",
-                role_landscaper: "Hovenier",
-                role_retail: "Verkoopmedewerker",
-                proj_title: "Geselecteerde Projecten",
-                proj_view_all: "BEKIJK ALLES",
-                partners_title: "Samengewerkt met",
-                proj_1_title: "Vitens, Grootzakelijke markt: Marktbehoeften, Positionering & Organisatierichting",
-                proj_1_title_short: "Vitens: Marktstrategie",
-                proj_1_desc: `<div class="relative pl-6 border-l-2 border-zinc-800 ml-2">
-                                <div class="mb-6 last:mb-0 relative">
-                                    <div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div>
-                                    <h4 class="text-accent font-mono text-xs uppercase mb-1">Uitdaging & Analyse</h4>
-                                    <p class="text-zinc-400 text-sm leading-relaxed">Diepgaand marktonderzoek uitgevoerd om de nieuwe 'Water-as-a-Service' divisie te positioneren. Concurrentie en klantbehoeften geanalyseerd om de scope te bepalen.</p>
-                                </div>
-                                <div class="mb-6 last:mb-0 relative">
-                                    <div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div>
-                                    <h4 class="text-accent font-mono text-xs uppercase mb-1">Strategisch Inzicht</h4>
-                                    <p class="text-zinc-400 text-sm leading-relaxed">Kansen geïdentificeerd om Vitens te onderscheiden via circulaire wateroplossingen en stewardship, als brug naar een commerciële entiteit.</p>
-                                </div>
-                                <div class="mb-6 last:mb-0 relative">
-                                    <div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div>
-                                    <h4 class="text-accent font-mono text-xs uppercase mb-1">Advies & Resultaat</h4>
-                                    <p class="text-zinc-400 text-sm leading-relaxed">Strategische roadmap opgeleverd voor naamgeving, branding en organisatievorm, gericht op een veerkrachtige toekomst voor de grootzakelijke markt.</p>
-                                </div>
-                              </div>`,
-                proj_1_desc_short: "Voor Vitens heb ik een diepgaand marktonderzoek uitgevoerd om te bepalen hoe een nieuwe Water-as-a-Service divisie gepositioneerd moet worden.",
-                proj_2_title: "Perron038, Factory NEXT: Strategische Commerciële Positionering",
-                proj_2_title_short: "Perron038: Innovatiehub",
-                proj_2_desc: `<div class="relative pl-6 border-l-2 border-zinc-800 ml-2">
-                                <div class="mb-6 last:mb-0 relative">
-                                    <div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div>
-                                    <h4 class="text-accent font-mono text-xs uppercase mb-1">Uitdaging & Analyse</h4>
-                                    <p class="text-zinc-400 text-sm leading-relaxed">Marktpotentieel bepaald voor 'Factory NEXT' als gedeelde innovatiefaciliteit. Concurrerende initiatieven in de maakindustrie geanalyseerd.</p>
-                                </div>
-                                <div class="mb-6 last:mb-0 relative">
-                                    <div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div>
-                                    <h4 class="text-accent font-mono text-xs uppercase mb-1">Strategisch Inzicht</h4>
-                                    <p class="text-zinc-400 text-sm leading-relaxed">Segmenten geïdentificeerd voor het "test-before-invest" model. Design Thinking ingezet om labs en technologie af te stemmen op de markt.</p>
-                                </div>
-                                <div class="mb-6 last:mb-0 relative">
-                                    <div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div>
-                                    <h4 class="text-accent font-mono text-xs uppercase mb-1">Advies & Resultaat</h4>
-                                    <p class="text-zinc-400 text-sm leading-relaxed">Waardeproposities, verdienmodellen en messaging ontwikkeld om Factory NEXT te versterken als commercieel levensvatbare innovatiehub.</p>
-                                </div>
-                              </div>`,
-                proj_2_desc_short: "Bij Perron038 onderzocht ik hoe Factory NEXT commercieel gepositioneerd en aantrekkelijk gemaakt kan worden voor industriële partners.",
-                proj_3_title: "Unica, Smart Buildings Business Development: Optimalisatie van waardeproposities",
-                proj_3_title_short: "Unica: Slimme Gebouwen",
-                proj_3_desc: `<div class="relative pl-6 border-l-2 border-zinc-800 ml-2">
-                                <div class="mb-6 last:mb-0 relative">
-                                    <div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div>
-                                    <h4 class="text-accent font-mono text-xs uppercase mb-1">Uitdaging & Analyse</h4>
-                                    <p class="text-zinc-400 text-sm leading-relaxed">Interne dynamiek (35 locaties vs 9 vestigingen) en externe factoren (EPBD III, tekort technici) in kaart gebracht. BMC gebruikt voor economische/sociale afhankelijkheden.</p>
-                                </div>
-                                <div class="mb-6 last:mb-0 relative">
-                                    <div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div>
-                                    <h4 class="text-accent font-mono text-xs uppercase mb-1">Strategisch Inzicht</h4>
-                                    <p class="text-zinc-400 text-sm leading-relaxed">Ideation via trendpiramides leidde tot 'SmartEase': instapklare kits & VR-demo's om energiestromen te visualiseren en capex-angst weg te nemen.</p>
-                                </div>
-                                <div class="mb-6 last:mb-0 relative">
-                                    <div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div>
-                                    <h4 class="text-accent font-mono text-xs uppercase mb-1">Advies & Resultaat</h4>
-                                    <p class="text-zinc-400 text-sm leading-relaxed">Concepten gevalideerd bij eindgebruikers. Uitrol-impactcanvas gemaakt met KPI's voor omzet en NPS, positionerend voor klantgericht leiderschap.</p>
-                                </div>
-                              </div>`,
-                proj_3_desc_short: "We ontwikkelden een strategisch adviesproces voor Unica met behulp van de Design Thinking-cyclus om hun waardepropositie voor slimme gebouwen te optimaliseren.",
-                proj_4_title: "Zonneplan, EV Charging Sales Acceleration: Marketing Whitepaper",
-                proj_4_title_short: "Zonneplan: EV Verkoop",
-                proj_4_desc: `<div class="relative pl-6 border-l-2 border-zinc-800 ml-2">
-                                <div class="mb-6 last:mb-0 relative">
-                                    <div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div>
-                                    <h4 class="text-accent font-mono text-xs uppercase mb-1">Uitdaging & Analyse</h4>
-                                    <p class="text-zinc-400 text-sm leading-relaxed">Doel: 3.000 laadpaal-verkopen. Barrières geïdentificeerd zoals complex offerteproces (6-7 kliks) en gebrek aan retentie.</p>
-                                </div>
-                                <div class="mb-6 last:mb-0 relative">
-                                    <div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div>
-                                    <h4 class="text-accent font-mono text-xs uppercase mb-1">Strategisch Inzicht</h4>
-                                    <p class="text-zinc-400 text-sm leading-relaxed">Pijnpunten EV-rijders (€0,50/kWh publiek vs thuis) blootgelegd. Klantreis van bewustwording tot loyaliteit gedefinieerd met persona's.</p>
-                                </div>
-                                <div class="mb-6 last:mb-0 relative">
-                                    <div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div>
-                                    <h4 class="text-accent font-mono text-xs uppercase mb-1">Advies & Resultaat</h4>
-                                    <p class="text-zinc-400 text-sm leading-relaxed">Aanbeveling: SEO/SEA optimalisatie ("laadpaal kopen"), landingspagina's versimpelen en Trustpilot inzetten. KPI's voor schaalbare groei.</p>
-                                </div>
-                              </div>`,
-                proj_4_desc_short: "We ontwikkelden een gerichte whitepaper voor Zonneplan om hun 2023-doelstelling van 3.000 verkochte laadpalen te behalen.",
                 contact_title: "Laten we <span class=\"text-zinc-600 transition-colors group-hover:text-zinc-400\">Samenwerken</span>",
                 contact_desc: "Open voor het bespreken van nieuwe kansen, strategische samenwerkingen of duurzaamheidsinitiatieven.",
                 btn_email: "Stuur E-mail",
