@@ -3,7 +3,45 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Ritchie Olthuis | Business Strategy & Innovation Enthusiast</title>
+    
+    <!-- SEO & Metadata -->
+    <title>Ritchie Olthuis | Business Strategy & Innovation Portfolio</title>
+    <meta name="description" content="Portfolio of Ritchie Olthuis. Specializing in Business Strategy, Innovation, Market Research, and Design Thinking. Offering services in strategic analysis, business modeling, and sustainability consulting.">
+    <meta name="keywords" content="Ritchie Olthuis, Business Strategy, Innovation, Commercial Economics, Windesheim, Design Thinking, ESG, Sustainability, Market Research, Business Model Canvas, Consultant, Portfolio">
+    <meta name="author" content="Ritchie Olthuis">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:title" content="Ritchie Olthuis | Business Strategy & Innovation">
+    <meta property="og:description" content="Transforming business challenges into data-driven opportunities. Explore my projects and expertise.">
+    <meta property="og:image" content="assets/profile.png">
+    <meta property="og:url" content="https://ritchieolthuis.com">
+    <meta property="og:type" content="website">
+
+    <!-- Structured Data (JSON-LD) for SEO Service Listing -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Ritchie Olthuis",
+      "jobTitle": "Business Strategy & Innovation Enthusiast",
+      "url": "https://ritchieolthuis.com",
+      "sameAs": [
+        "https://www.linkedin.com/in/ritchieolthuis"
+      ],
+      "knowsAbout": ["Business Strategy", "Design Thinking", "Market Research", "ESG", "Sustainability"],
+      "offers": {
+        "@type": "Offer",
+        "itemOffered": [
+          { "@type": "Service", "name": "Strategic Analysis" },
+          { "@type": "Service", "name": "Market Research & Validation" },
+          { "@type": "Service", "name": "Business Modeling" },
+          { "@type": "Service", "name": "Design Thinking Workshops" },
+          { "@type": "Service", "name": "Sustainability & ESG Consulting" }
+        ]
+      }
+    }
+    </script>
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -279,6 +317,23 @@
         opacity: 0.2;
         z-index: 0;
       }
+
+      /* Intro Background Parallax - ABSTRACT GREEN THEME */
+      #intro-bg {
+          position: absolute;
+          inset: -10%; /* Larger than screen to allow movement */
+          width: 120%;
+          height: 120%;
+          /* Abstract digital grid + glowing orb */
+          background-image: 
+              linear-gradient(rgba(204, 255, 0, 0.05) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(204, 255, 0, 0.05) 1px, transparent 1px),
+              radial-gradient(circle at 50% 50%, rgba(204, 255, 0, 0.15), transparent 70%);
+          background-size: 50px 50px, 50px 50px, 100% 100%;
+          background-position: center;
+          transition: transform 0.1s ease-out;
+          z-index: 0;
+      }
     </style>
 </head>
 <body class="bg-background text-primary selection:bg-accent selection:text-black font-sans bg-grid-pattern pb-20 relative">
@@ -310,20 +365,23 @@
     </div>
 
     <!-- Intro Loading Screen -->
-    <div id="intro-screen" class="fixed inset-0 z-[100] bg-[#050505] flex flex-col items-center justify-center transition-opacity duration-1000 overflow-hidden bg-grid-pattern">
+    <div id="intro-screen" class="fixed inset-0 z-[100] bg-[#050505] flex flex-col items-center justify-center transition-opacity duration-1000 overflow-hidden">
+        <!-- Parallax Background for Intro -->
+        <div id="intro-bg"></div>
+
         <!-- Background Glow -->
-        <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+        <div class="absolute inset-0 flex items-center justify-center pointer-events-none z-10">
             <div class="w-[40vw] h-[40vw] bg-accent/5 rounded-full blur-[100px] animate-pulse"></div>
         </div>
 
         <!-- Text Content -->
-        <h1 class="relative z-10 text-4xl md:text-7xl font-display font-bold text-white flex items-center gap-4 md:gap-6">
+        <h1 class="relative z-20 text-4xl md:text-7xl font-display font-bold text-white flex items-center gap-4 md:gap-6">
             <span class="w-4 h-4 md:w-6 md:h-6 bg-accent rounded-full shadow-[0_0_30px_#ccff00] animate-pulse"></span>
             <span id="intro-greeting" class="min-w-[200px] md:min-w-[400px]">Hallo</span>
         </h1>
         
         <!-- Loading Bar -->
-        <div class="absolute bottom-0 left-0 w-full h-1 bg-zinc-900/50">
+        <div class="absolute bottom-0 left-0 w-full h-1 bg-zinc-900/50 z-20">
             <div id="intro-progress" class="h-full bg-accent shadow-[0_0_20px_#ccff00] transition-all duration-300 ease-out w-0"></div>
         </div>
     </div>
@@ -412,7 +470,7 @@
                   src="assets/profile.png" 
                   onerror="this.src='https://media.licdn.com/dms/image/v2/D4E03AQGS-5HiPlo3Hg/profile-displayphoto-crop_800_800/B4EZi_U3r2GUAI-/0/1755556576505?e=1766016000&v=beta&t=pHkswNMeFh130hQfxFgE3XmpkE7IAm1aCXVW7-HgJww'"
                   alt="Ritchie Olthuis" 
-                  class="w-full h-full object-cover transition-all duration-300 grayscale group-hover:grayscale-0 relative z-10"
+                  class="w-auto h-[85%] object-cover transition-all duration-300 grayscale group-hover:grayscale-0 relative z-10"
                 >
                 <div class="absolute bottom-6 left-6 pointer-events-none z-20 translate-z-30">
                    <div class="text-accent font-mono text-xs mb-1 drop-shadow-md" data-i18n="based_in">BASED IN</div>
@@ -1262,6 +1320,18 @@
             
             if (progressBar) progressBar.style.width = `${(1 / greetings.length) * 100}%`;
             document.body.style.overflow = "hidden";
+            
+            // INTRO PARALLAX LOGIC
+            const introBg = document.getElementById('intro-bg');
+            if (introBg) {
+                document.addEventListener('mousemove', (e) => {
+                    if (introScreen.style.display !== 'none') {
+                        const moveX = (e.clientX / window.innerWidth) * -50; // Max movement 50px
+                        const moveY = (e.clientY / window.innerHeight) * -50;
+                        introBg.style.transform = `translate(${moveX}px, ${moveY}px)`;
+                    }
+                });
+            }
 
             const cycleGreetings = setInterval(() => {
                 index++;
