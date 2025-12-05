@@ -3,9 +3,8 @@ PLAATS JE BESTANDEN IN DEZE MAP (assets)
 ========================================
 
 1. CV
-   - Noem je CV bestand: cv.pdf
-   - Plaats het hier.
-   - De downloadknop op de website werkt dan direct.
+   - Je CV wordt nu ingeladen via een externe Google Drive link.
+   - Je hoeft hier geen PDF meer te plaatsen, tenzij je de code weer aanpast.
 
 2. AFBEELDINGEN
    - Plaats je projectafbeeldingen hier.

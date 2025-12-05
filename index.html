@@ -40,6 +40,7 @@
               'float': 'float 6s ease-in-out infinite',
               'spin-slow': 'spin 15s linear infinite',
               'pulse-fast': 'pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+              'spin-medium': 'spin-medium 4s linear infinite',
             },
             keyframes: {
               fadeIn: {
@@ -57,6 +58,10 @@
               float: {
                 '0%, 100%': { transform: 'translateY(0)' },
                 '50%': { transform: 'translateY(-15px)' },
+              },
+              'spin-medium': {
+                '0%': { transform: 'rotate(0deg)' },
+                '100%': { transform: 'rotate(360deg)' },
               }
             }
           },
@@ -279,6 +284,14 @@
         opacity: 0.2;
         z-index: 0;
       }
+
+      /* Intro Exit Animation */
+      .scale-out-exit {
+        transform: scale(1.75);
+        opacity: 0;
+        filter: blur(10px);
+        transition: transform 0.8s ease-in, opacity 0.8s ease-in, filter 0.8s ease-in;
+      }
     </style>
 </head>
 <body class="bg-background text-primary selection:bg-accent selection:text-black font-sans bg-grid-pattern pb-20 relative">
@@ -310,21 +323,27 @@
     </div>
 
     <!-- Intro Loading Screen -->
-    <div id="intro-screen" class="fixed inset-0 z-[100] bg-[#050505] flex flex-col items-center justify-center transition-opacity duration-1000 overflow-hidden bg-grid-pattern">
+    <div id="intro-screen" class="fixed inset-0 z-[100] bg-[#050505] flex items-center justify-center overflow-hidden transition-opacity duration-500">
         <!-- Background Glow -->
-        <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
-            <div class="w-[40vw] h-[40vw] bg-accent/5 rounded-full blur-[100px] animate-pulse"></div>
+        <div class="absolute inset-0 flex items-center justify-center pointer-events-none opacity-20">
+            <div class="w-[60vw] h-[60vw] bg-accent/5 rounded-full blur-[100px]"></div>
         </div>
 
-        <!-- Text Content -->
-        <h1 class="relative z-10 text-4xl md:text-7xl font-display font-bold text-white flex items-center gap-4 md:gap-6">
-            <span class="w-4 h-4 md:w-6 md:h-6 bg-accent rounded-full shadow-[0_0_30px_#ccff00] animate-pulse"></span>
-            <span id="intro-greeting" class="min-w-[200px] md:min-w-[400px]">Hallo</span>
-        </h1>
-        
-        <!-- Loading Bar -->
-        <div class="absolute bottom-0 left-0 w-full h-1 bg-zinc-900/50">
-            <div id="intro-progress" class="h-full bg-accent shadow-[0_0_20px_#ccff00] transition-all duration-300 ease-out w-0"></div>
+        <!-- Content Container (Ring + Text) -->
+        <div id="intro-content" class="relative flex items-center justify-center w-[300px] h-[300px] md:w-[500px] md:h-[500px] will-change-transform">
+             <!-- Rotating Ring SVG -->
+             <svg class="absolute inset-0 w-full h-full animate-spin-medium" viewBox="0 0 100 100" fill="none">
+                 <!-- Main Ring with Gap -->
+                 <circle cx="50" cy="50" r="48" stroke="#ccff00" stroke-width="0.5" stroke-dasharray="220" stroke-linecap="round" />
+                 
+                 <!-- Inner decorative thin ring -->
+                 <circle cx="50" cy="50" r="42" stroke="#ccff00" stroke-width="0.1" stroke-opacity="0.3" stroke-dasharray="40 40" />
+             </svg>
+             
+             <!-- Centered Text -->
+             <h1 id="intro-greeting" class="relative z-10 text-4xl md:text-6xl font-display font-bold text-white tracking-widest text-center min-w-[200px]">
+                Hallo
+             </h1>
         </div>
     </div>
 
@@ -387,14 +406,14 @@
                    <!-- Typewriter effect target -->
                    <h2 id="typewriter-title" class="text-xl md:text-2xl text-white mb-4 font-medium typewriter-cursor" data-i18n="hero_title">Business Strategy & Innovation Enthusiast</h2>
                    <p class="text-zinc-400 leading-relaxed text-sm md:text-base mb-8 group-hover:text-zinc-300 transition-colors" data-i18n="hero_desc">
-                     Transforming business challenges into data-driven, human-centred and sustainable driven opportunities.
+                     Helping your company to turn business challenges into data-driven, human-centred and sustainability-focused opportunities.
                    </p>
                    
                    <div class="flex flex-wrap gap-3">
                      <button onclick="document.getElementById('projects').scrollIntoView({behavior: 'smooth'})" class="magnetic-btn px-6 py-3 bg-white text-black font-bold rounded-full hover:bg-accent hover:shadow-[0_0_20px_rgba(204,255,0,0.5)] transition-all flex items-center gap-2 text-sm z-20 relative data-hover-trigger">
                        <span data-i18n="btn_view_work">View Work</span> <i data-lucide="arrow-down" class="w-4 h-4"></i>
                      </button>
-                     <a href="assets/cv.pdf" download="Ritchie_Olthuis_CV.pdf" target="_blank" class="magnetic-btn px-6 py-3 bg-transparent border border-zinc-700 text-white font-bold rounded-full hover:border-accent hover:text-accent transition-colors flex items-center gap-2 text-sm z-20 relative data-hover-trigger">
+                     <a href="https://drive.google.com/file/d/10yajBRmS-yQHCMXpr36F77puJ6jmY6cs/view?usp=sharing" target="_blank" class="magnetic-btn px-6 py-3 bg-transparent border border-zinc-700 text-white font-bold rounded-full hover:border-accent hover:text-accent transition-colors flex items-center gap-2 text-sm z-20 relative data-hover-trigger">
                        <span data-i18n="btn_download_cv">Download CV</span> <i data-lucide="download" class="w-4 h-4"></i>
                      </a>
                    </div>
@@ -499,7 +518,7 @@
                         <i data-lucide="cpu" class="w-5 h-5"></i>
                     </div>
                     <h3 class="text-2xl font-display font-bold text-white uppercase" data-i18n="about_title">About</h3>
-                    <p class="text-zinc-400 text-sm leading-7 mb-6" data-i18n="about_text">
+                    <p id="about-typewriter" class="text-zinc-400 text-sm leading-7 mb-6" data-i18n="about_text">
                         I am an ambitious fourth-year Commercial Economics student at Windesheim University of Applied Sciences, 24 years old, with a passion for strategic innovation. During my studies, I completed a Pre-master in Business Administration as a minor and a minor in Financial Decision-Making. Throughout my Commercial Economics program, I further specialized in Design Thinking and sustainable business models.
                         <br><br>
                         I am particularly interested in making data-driven decisions and validating insights with customers to uncover needs that might not be visible internally. Understanding what the customer truly wants is increasingly important today, as it ensures that strategies and innovations are relevant, effective, and create economic, ecological, and social value.
@@ -523,7 +542,7 @@
                                 <h3 class="text-xl font-display font-bold text-white uppercase" data-i18n="skills_title">Expertise</h3>
                         </div>
                         
-                        <!-- VIEW ALL BUTTON - EXPERTISE (MOVED OUTSIDE) -->
+                        <!-- VIEW ALL BUTTON - EXPERTISE -->
                         <button type="button" onclick="window.openExpertiseModal()" class="cursor-pointer text-xs font-mono text-zinc-500 hover:text-white flex items-center gap-1 transition-colors magnetic-btn data-hover-trigger">
                             <span data-i18n="proj_view_all">VIEW ALL</span> <i data-lucide="arrow-up-right" class="w-3 h-3"></i>
                         </button>
@@ -735,9 +754,9 @@
                 <h3 class="text-2xl font-display font-bold text-white uppercase" data-i18n="proj_title">Selected Projects</h3>
                 
                 <!-- PROJECTS BUTTON - Uses window.openProjectsModal -->
-                <div onclick="window.openProjectsModal()" class="cursor-pointer text-xs font-mono text-zinc-500 hover:text-white flex items-center gap-1 transition-colors magnetic-btn data-hover-trigger">
+                <button type="button" onclick="window.openProjectsModal()" class="cursor-pointer text-xs font-mono text-zinc-500 hover:text-white flex items-center gap-1 transition-colors magnetic-btn data-hover-trigger">
                     <span data-i18n="proj_view_all">VIEW ALL</span> <i data-lucide="arrow-up-right" class="w-3 h-3"></i>
-                </div>
+                </button>
             </div>
 
             <!-- Carousel Container - Adjusted height for wider look -->
@@ -931,14 +950,14 @@
                 <div class="spotlight-overlay"></div>
                 <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-accent to-transparent opacity-50"></div>
                 <div class="relative z-10 translate-z-20">
-                    <h2 class="text-4xl md:text-6xl font-display font-bold text-white uppercase mb-6 tracking-tight" data-i18n="contact_title">
+                    <h2 id="contact-typewriter" class="text-4xl md:text-6xl font-display font-bold text-white uppercase mb-6 tracking-tight typewriter-cursor" data-i18n="contact_title">
                         Let's work <span class="text-zinc-600 transition-colors group-hover:text-zinc-400">Together</span>
                     </h2>
                     <p class="text-zinc-400 max-w-xl mx-auto mb-10 text-lg" data-i18n="contact_desc">
-                        Open to discussing new opportunities, strategic collaborations, or sustainability initiatives.
+                        Let’s connect and see how we can team up on new projects, strategic partnerships and innovation-oriented opportunities.
                     </p>
                     <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-                        <a href="mailto:ritchieolthuis@gmail.com?subject=Contact%20via%20Portfolio" class="magnetic-btn px-8 py-4 bg-accent text-black font-bold rounded-full hover:bg-[#b3e600] hover:shadow-[0_0_20px_rgba(204,255,0,0.6)] transition-all min-w-[200px] data-hover-trigger" data-i18n="btn_email">Send Email</a>
+                        <a href="mailto:ritchieolthuis@gmail.com" class="magnetic-btn px-8 py-4 bg-accent text-black font-bold rounded-full hover:bg-[#b3e600] hover:shadow-[0_0_20px_rgba(204,255,0,0.6)] transition-all min-w-[200px] flex items-center justify-center data-hover-trigger" data-i18n="btn_email">Send Email</a>
                         <!-- Google Calendar Invite Link: Opens calendar, adds Ritchie as guest, pre-fills subject -->
                         <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Intro+Call+with+Ritchie+Olthuis&details=Invitation+via+Portfolio&add=ritchieolthuis@gmail.com" target="_blank" class="magnetic-btn px-8 py-4 bg-white text-black font-bold rounded-full hover:bg-zinc-200 transition-colors min-w-[200px] flex items-center justify-center gap-2 data-hover-trigger">
                              <i data-lucide="calendar" class="w-4 h-4"></i> <span data-i18n="btn_call">Schedule Call</span>
@@ -979,31 +998,31 @@
                     </div>
                     <div class="relative flex-grow">
                          <i data-lucide="quote" class="absolute -top-1 -left-1 w-4 h-4 text-zinc-700 fill-zinc-700 opacity-50 transform -scale-x-100"></i>
-                        <p class="text-zinc-400 text-sm leading-relaxed pl-4 italic">
-                            "Ritchie was tijdens de lessen en workshops die ik hem heb gegeven bij de opleiding Commerciële Economie aan Hogeschool Windesheim een betrokken student die kritisch blijft nadenken en daarvoor de juiste vragen stelt om het maximale uit zijn projecten te halen voor zijn opdrachtgevers uit het werkveld."
+                        <p class="text-zinc-400 text-sm leading-relaxed pl-4 italic" data-i18n="rec_joel_text">
+                            "During the classes and workshops I taught him in the Commercial Economics program at Windesheim University of Applied Sciences, Ritchie was an involved student who continues to think critically and asks the right questions to get the most out of his projects for his clients in the field."
                         </p>
                     </div>
                 </a>
 
                 <!-- Rec 2 -->
-                <div class="bento-card p-6 flex flex-col gap-4 group h-full bg-[#151515]" data-tilt>
+                <a href="https://www.linkedin.com/in/mark-versluis-a8272512/" target="_blank" class="bento-card p-6 flex flex-col gap-4 group h-full bg-[#151515] hover:border-zinc-600 transition-colors" data-tilt>
                     <div class="spotlight-overlay"></div>
                     <div class="flex items-center gap-3">
                          <div class="w-12 h-12 rounded-full bg-zinc-800 border border-zinc-700 overflow-hidden flex-shrink-0">
-                            <img src="https://ui-avatars.com/api/?name=J+D&background=random" alt="Profile" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all">
+                            <img src="https://media.licdn.com/dms/image/v2/C4E03AQG4QcZzS9gJDA/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1552662906845?e=1766620800&v=beta&t=cUR1jwM6aU043DkgAojWA6jDFXKqygY4o0s8FXMKIB4" alt="Mark Versluis" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all">
                          </div>
                          <div>
-                             <h4 class="text-white font-bold text-sm">LinkedIn Connection</h4>
-                             <p class="text-zinc-500 text-xs">Role, Company</p>
+                             <h4 class="text-white font-bold text-sm flex items-center gap-1">Mark Versluis <i data-lucide="external-link" class="w-3 h-3 text-zinc-600"></i></h4>
+                             <p class="text-zinc-500 text-xs">Senior Marketeer KNGF / Docent Marketing Windesheim</p>
                          </div>
                     </div>
-                    <div class="relative">
+                    <div class="relative flex-grow">
                          <i data-lucide="quote" class="absolute -top-1 -left-1 w-4 h-4 text-zinc-700 fill-zinc-700 opacity-50 transform -scale-x-100"></i>
-                        <p class="text-zinc-400 text-sm leading-relaxed pl-4 italic">
-                            "Copy and paste the recommendation text from LinkedIn here..."
+                        <p class="text-zinc-400 text-sm leading-relaxed pl-4 italic" data-i18n="rec_mark_text">
+                            "As Ritchie's teacher, I got to know him as an independent and result-oriented student who fits well in the group. As a young professional, he will be an asset to many companies."
                         </p>
                     </div>
-                </div>
+                </a>
 
                 <!-- Rec 3 -->
                 <div class="bento-card p-6 flex flex-col gap-4 group h-full bg-[#151515]" data-tilt>
@@ -1013,13 +1032,13 @@
                             <img src="https://ui-avatars.com/api/?name=M+S&background=random" alt="Profile" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all">
                          </div>
                          <div>
-                             <h4 class="text-white font-bold text-sm">LinkedIn Connection</h4>
-                             <p class="text-zinc-500 text-xs">Role, Company</p>
+                             <h4 class="text-white font-bold text-sm" data-i18n="rec_3_name">LinkedIn Connection</h4>
+                             <p class="text-zinc-500 text-xs" data-i18n="rec_3_role">Role, Company</p>
                          </div>
                     </div>
                     <div class="relative">
                          <i data-lucide="quote" class="absolute -top-1 -left-1 w-4 h-4 text-zinc-700 fill-zinc-700 opacity-50 transform -scale-x-100"></i>
-                        <p class="text-zinc-400 text-sm leading-relaxed pl-4 italic">
+                        <p class="text-zinc-400 text-sm leading-relaxed pl-4 italic" data-i18n="rec_3_text">
                             "Copy and paste the recommendation text from LinkedIn here..."
                         </p>
                     </div>
@@ -1157,9 +1176,9 @@
                             <!-- Section 1: Digital Skills -->
                             <div>
                                 <h3 class="text-xl font-bold text-accent mb-4 flex items-center gap-2" data-i18n="full_skills_digital_title">
-                                    1. Digitale Vaardigheden
+                                    1. Digital Skills
                                 </h3>
-                                <p class="text-zinc-400 text-sm mb-4" data-i18n="full_skills_digital_desc">Essentiële tools en platformen voor moderne bedrijfsanalyse.</p>
+                                <p class="text-zinc-400 text-sm mb-4" data-i18n="full_skills_digital_desc">Essential tools and platforms for modern business analysis.</p>
                                 <div class="flex flex-wrap gap-3">
                                     <span class="px-3 py-2 bg-zinc-900 border border-zinc-700 rounded-lg text-white text-sm">Excel / Power BI</span>
                                     <span class="px-3 py-2 bg-zinc-900 border border-zinc-700 rounded-lg text-white text-sm">SEO / SEA / Google Ads</span>
@@ -1175,14 +1194,14 @@
                             <!-- Section 2: Investigative Expertise -->
                             <div>
                                 <h3 class="text-xl font-bold text-accent mb-6 flex items-center gap-2" data-i18n="full_skills_business_title">
-                                    2. Onderzoekende Expertise: Business Strategies
+                                    2. Investigative Expertise: Business Strategies
                                 </h3>
                                 
                                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                                     <!-- Analyses -->
                                     <div class="bg-zinc-900/50 p-6 rounded-2xl border border-zinc-800">
                                         <h4 class="text-white font-bold text-lg mb-2">Analyses</h4>
-                                        <p class="text-zinc-400 text-xs mb-4" data-i18n="full_skills_analyses_def">Analyses bieden inzicht in de huidige situatie en de omgeving waarin een organisatie opereert. Ze kunnen afzonderlijk worden uitgevoerd of gecombineerd worden opgeleverd.</p>
+                                        <p class="text-zinc-400 text-xs mb-4" data-i18n="full_skills_analyses_def">Analyses provide insight into the current situation and the environment in which an organization operates. They can be performed individually or delivered combined.</p>
                                         <ul class="space-y-1 text-sm text-zinc-300">
                                             <li class="flex items-center gap-2"><div class="w-1.5 h-1.5 rounded-full bg-accent"></div>Marktanalyse</li>
                                             <li class="flex items-center gap-2"><div class="w-1.5 h-1.5 rounded-full bg-accent"></div>Concurrentenanalyse</li>
@@ -1196,7 +1215,7 @@
                                     <!-- Ontwerpen -->
                                     <div class="bg-zinc-900/50 p-6 rounded-2xl border border-zinc-800">
                                         <h4 class="text-white font-bold text-lg mb-2">Ontwerpen</h4>
-                                        <p class="text-zinc-400 text-xs mb-4" data-i18n="full_skills_designs_def">Ontwerpen zijn plannen om van de huidige naar de gewenste situatie te komen, binnen vooraf bepaalde kaders.</p>
+                                        <p class="text-zinc-400 text-xs mb-4" data-i18n="full_skills_designs_def">Designs are plans to move from the current to the desired situation, within predetermined frameworks.</p>
                                         <ul class="space-y-1 text-sm text-zinc-300">
                                             <li class="flex items-center gap-2"><div class="w-1.5 h-1.5 rounded-full bg-accent"></div>Implementatieplan</li>
                                             <li class="flex items-center gap-2"><div class="w-1.5 h-1.5 rounded-full bg-accent"></div>Marketingcommunicatieplan</li>
@@ -1210,7 +1229,7 @@
                                     <!-- Adviezen -->
                                     <div class="bg-zinc-900/50 p-6 rounded-2xl border border-zinc-800">
                                         <h4 class="text-white font-bold text-lg mb-2">Adviezen</h4>
-                                        <p class="text-zinc-400 text-xs mb-4" data-i18n="full_skills_advice_def">Adviezen zijn onderbouwde aanbevelingen op strategisch of tactisch niveau, gericht op het behalen van de gewenste situatie.</p>
+                                        <p class="text-zinc-400 text-xs mb-4" data-i18n="full_skills_advice_def">Advice consists of substantiated recommendations at a strategic or tactical level, aimed at achieving the desired situation.</p>
                                         <ul class="space-y-1 text-sm text-zinc-300">
                                             <li class="flex items-center gap-2"><div class="w-1.5 h-1.5 rounded-full bg-accent"></div>Advies voor een positioneringsstrategie</li>
                                             <li class="flex items-center gap-2"><div class="w-1.5 h-1.5 rounded-full bg-accent"></div>Advies voor een marktbewerkingsstrategie</li>
@@ -1223,7 +1242,7 @@
                                     <!-- Modellen -->
                                     <div class="bg-zinc-900/50 p-6 rounded-2xl border border-zinc-800">
                                         <h4 class="text-white font-bold text-lg mb-2">Theorieën en Modellen</h4>
-                                        <p class="text-zinc-400 text-xs mb-4" data-i18n="full_skills_models_def">Bij het uitvoeren van analyses, ontwerpen en adviezen worden verschillende bewezen theorieën en modellen gebruikt om keuzes te onderbouwen en waarde te creëren.</p>
+                                        <p class="text-zinc-400 text-xs mb-4" data-i18n="full_skills_models_def">When performing analyses, designs, and advice, various proven theories and models are used to substantiate choices and create value.</p>
                                         <div class="flex flex-wrap gap-2">
                                             <span class="px-2 py-1 text-xs text-white border border-zinc-700 rounded bg-zinc-800">Design Thinking</span>
                                             <span class="px-2 py-1 text-xs text-white border border-zinc-700 rounded bg-zinc-800">Business Model Canvas (incl. Triple Layered)</span>
@@ -1257,30 +1276,37 @@
             const greetings = ["Hallo", "Hello", "Bonjour", "Hola", "Ciao", "Guten Tag"];
             const introText = document.getElementById("intro-greeting");
             const introScreen = document.getElementById("intro-screen");
-            const progressBar = document.getElementById("intro-progress");
+            const introContent = document.getElementById("intro-content");
             let index = 0;
             
-            if (progressBar) progressBar.style.width = `${(1 / greetings.length) * 100}%`;
             document.body.style.overflow = "hidden";
 
+            // Cycle greetings
             const cycleGreetings = setInterval(() => {
                 index++;
                 if (index < greetings.length) {
                     introText.textContent = greetings[index];
-                    if (progressBar) progressBar.style.width = `${((index + 1) / greetings.length) * 100}%`;
                 } else {
                     clearInterval(cycleGreetings);
-                    if (progressBar) progressBar.style.width = '100%';
+                    
+                    // Trigger Exit Animation (Scale & Fade)
+                    if (introContent) {
+                        introContent.classList.add('scale-out-exit');
+                    }
+                    
+                    // Remove screen after animation completes
                     setTimeout(() => {
-                        introScreen.style.opacity = "0";
-                        introScreen.style.pointerEvents = "none";
-                        setTimeout(() => {
-                            introScreen.style.display = "none";
-                            document.body.style.overflow = "auto";
-                        }, 1000);
-                    }, 500);
+                        if(introScreen) {
+                             introScreen.style.opacity = "0";
+                             introScreen.style.pointerEvents = "none";
+                             setTimeout(() => {
+                                 introScreen.style.display = "none";
+                                 document.body.style.overflow = "auto";
+                             }, 500);
+                        }
+                    }, 600); // Timing matches visual impact of scale-out
                 }
-            }, 350);
+            }, 300); // Slightly faster cycle for better pacing
         });
 
         // --- 1. Custom Cursor & Click Ripple Logic ---
@@ -1379,7 +1405,74 @@
             });
         }
         
-        // --- 8. Scroll Reveal Observer ---
+        // --- 8. Scroll Reveal & Typewriter Logic ---
+        
+        // Function to type simple text preserving HTML tags (for About)
+        function typeWriterHTML(element, html, speed) {
+            element.classList.add('typewriter-cursor');
+            element.innerHTML = '';
+            let i = 0;
+            function type() {
+                if (i < html.length) {
+                    let char = html.charAt(i);
+                    if (char === '<') {
+                        let tag = '';
+                        while (html.charAt(i) !== '>' && i < html.length) {
+                            tag += html.charAt(i);
+                            i++;
+                        }
+                        tag += '>';
+                        i++;
+                        element.innerHTML += tag;
+                    } else {
+                        element.innerHTML += char;
+                        i++;
+                    }
+                    setTimeout(type, speed);
+                } else {
+                    element.classList.remove('typewriter-cursor');
+                }
+            }
+            type();
+        }
+
+        // Function to type Contact Header specific structure
+        function typeWriterContact(element) {
+            // Hardcoded structure for specific request
+            const part1 = "Let's work ";
+            const part2 = "Together";
+            const spanClass = "text-zinc-600 transition-colors group-hover:text-zinc-400";
+            
+            element.classList.add('typewriter-cursor');
+            element.innerHTML = '';
+            
+            let i = 0;
+            function typePart1() {
+                if (i < part1.length) {
+                    element.innerHTML += part1.charAt(i);
+                    i++;
+                    setTimeout(typePart1, 50);
+                } else {
+                    // Prepare span
+                    const span = document.createElement('span');
+                    span.className = spanClass;
+                    element.appendChild(span);
+                    let j = 0;
+                    function typePart2() {
+                        if (j < part2.length) {
+                            span.textContent += part2.charAt(j);
+                            j++;
+                            setTimeout(typePart2, 100); 
+                        } else {
+                            element.classList.remove('typewriter-cursor');
+                        }
+                    }
+                    typePart2();
+                }
+            }
+            typePart1();
+        }
+
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -50px 0px'
@@ -1389,6 +1482,23 @@
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('reveal-visible');
+                    
+                    // Trigger About Typewriter
+                    const aboutTypewriter = entry.target.querySelector('#about-typewriter');
+                    if (aboutTypewriter && !aboutTypewriter.dataset.typed) {
+                        aboutTypewriter.dataset.typed = "true";
+                        const originalHTML = aboutTypewriter.innerHTML.trim();
+                        // 5ms speed for long text
+                        typeWriterHTML(aboutTypewriter, originalHTML, 5);
+                    }
+                    
+                    // Trigger Contact Typewriter
+                    const contactTypewriter = entry.target.querySelector('#contact-typewriter');
+                    if (contactTypewriter && !contactTypewriter.dataset.typed) {
+                         contactTypewriter.dataset.typed = "true";
+                         typeWriterContact(contactTypewriter);
+                    }
+
                     observer.unobserve(entry.target);
                 }
             });
@@ -1396,7 +1506,7 @@
 
         document.querySelectorAll('.reveal-on-scroll').forEach(el => observer.observe(el));
 
-        // --- 9. Typewriter Effect ---
+        // --- 9. Typewriter Effect (Hero) ---
         const typewriterEl = document.getElementById('typewriter-title');
         if (typewriterEl) {
             const originalText = typewriterEl.innerText;
@@ -1424,7 +1534,7 @@
                 nav_contact: "Contact",
                 hero_badge: "Available for work",
                 hero_title: "Business Strategy & Innovation Enthusiast",
-                hero_desc: "Transforming business challenges into data-driven, human-centred and sustainable driven opportunities.",
+                hero_desc: "Helping your company to turn business challenges into data-driven, human-centred and sustainability-focused opportunities.",
                 btn_view_work: "View Work",
                 btn_download_cv: "Download CV",
                 based_in: "BASED IN",
@@ -1481,6 +1591,11 @@
                 proj_view_all: "VIEW ALL",
                 partners_title: "Partnered with",
                 rec_title: "Recommendations",
+                rec_mark_text: "\"As Ritchie's teacher, I got to know him as an independent and result-oriented student who fits well in the group. As a young professional, he will be an asset to many companies.\"",
+                rec_joel_text: "\"During the classes and workshops I taught him in the Commercial Economics program at Windesheim University of Applied Sciences, Ritchie was an involved student who continues to think critically and asks the right questions to get the most out of his projects for his clients in the field.\"",
+                rec_3_name: "LinkedIn Connection",
+                rec_3_role: "Role, Company",
+                rec_3_text: "\"Copy and paste the recommendation text from LinkedIn here...\"",
                 proj_1_title: "Vitens, Grootzakelijke markt: Market Needs, Positioning & Organisational Direction",
                 proj_1_title_short: "Vitens: Market Strategy",
                 proj_1_desc: `<div class="relative pl-6 border-l-2 border-zinc-800 ml-2">
@@ -1561,11 +1676,11 @@
                                 </div>
                               </div>`,
                 proj_4_desc_short: "We developed a focused whitepaper for Zonneplan to achieve their 2023 target of 3,000 EV charger sales.",
-                contact_title: "Laten we <span class=\"text-zinc-600 transition-colors group-hover:text-zinc-400\">Samenwerken</span>",
-                contact_desc: "Open voor het bespreken van nieuwe kansen, strategische samenwerkingen of duurzaamheidsinitiatieven.",
-                btn_email: "Stuur E-mail",
-                btn_call: "Plan Gesprek",
-                modal_title: "Alle Projecten"
+                contact_title: "Let's work <span class=\"text-zinc-600 transition-colors group-hover:text-zinc-400\">Together</span>",
+                contact_desc: "Let’s connect and see how we can team up on new projects, strategic partnerships and innovation-oriented opportunities.",
+                btn_email: "Send Email",
+                btn_call: "Schedule Call",
+                modal_title: "All Projects"
             },
             nl: {
                 nav_about: "Over Mij",
@@ -1632,6 +1747,11 @@
                 proj_view_all: "BEKIJK ALLES",
                 partners_title: "Samengewerkt met",
                 rec_title: "Aanbevelingen",
+                rec_mark_text: "\"Als docent van Ritchie heb ik hem leren kennen als een zelfstandige en resultaatgerichte student die goed in de groep ligt. Als young professional zal hij voor menig bedrijf een aanwinst zijn.\"",
+                rec_joel_text: "\"Ritchie was tijdens de lessen en workshops die ik hem heb gegeven bij de opleiding Commerciële Economie aan Hogeschool Windesheim een betrokken student die kritisch blijft nadenken en daarvoor de juiste vragen stelt om het maximale uit zijn projecten te halen voor zijn opdrachtgevers uit het werkveld.\"",
+                rec_3_name: "LinkedIn Connectie",
+                rec_3_role: "Functie, Bedrijf",
+                rec_3_text: "\"Kopieer en plak de aanbevelingstekst van LinkedIn hier...\"",
                 proj_1_title: "Vitens, Grootzakelijke markt: Market Needs, Positioning & Organisational Direction",
                 proj_1_title_short: "Vitens: Marktstrategie",
                 proj_1_desc: `<div class="relative pl-6 border-l-2 border-zinc-800 ml-2">
