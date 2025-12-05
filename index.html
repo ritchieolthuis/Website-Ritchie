@@ -36,7 +36,7 @@
             animation: {
               'fade-in': 'fadeIn 0.5s ease-out',
               'slide-up': 'slideUp 0.5s ease-out',
-              'marquee': 'marquee 20s linear infinite',
+              'marquee': 'marquee 35s linear infinite',
               'float': 'float 6s ease-in-out infinite',
               'spin-slow': 'spin 15s linear infinite',
               'pulse-fast': 'pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite',
@@ -99,6 +99,23 @@
 
         window.closeExpertiseModal = function() {
              const modal = document.getElementById('expertise-modal-global');
+             if(modal) {
+                 modal.classList.add('hidden');
+                 document.body.style.overflow = 'auto';
+             }
+        };
+
+        // Contact Modal Logic
+        window.openContactModal = function() {
+             const modal = document.getElementById('contact-modal');
+             if(modal) {
+                 modal.classList.remove('hidden');
+                 document.body.style.overflow = 'hidden';
+             }
+        };
+
+        window.closeContactModal = function() {
+             const modal = document.getElementById('contact-modal');
              if(modal) {
                  modal.classList.add('hidden');
                  document.body.style.overflow = 'auto';
@@ -404,7 +421,7 @@
 
                 <div class="relative z-10 max-w-xl translate-z-10">
                    <!-- Typewriter effect target -->
-                   <h2 id="typewriter-title" class="text-xl md:text-2xl text-white mb-4 font-medium typewriter-cursor" data-i18n="hero_title">Business Strategy & Innovation Enthusiast</h2>
+                   <h2 id="typewriter-title" class="text-xl md:text-2xl text-accent mb-4 font-medium typewriter-cursor" data-i18n="hero_title">Business Strategy & Innovation Enthusiast</h2>
                    <p class="text-zinc-400 leading-relaxed text-sm md:text-base mb-8 group-hover:text-zinc-300 transition-colors" data-i18n="hero_desc">
                      Helping your company to turn business challenges into data-driven, human-centred and sustainability-focused opportunities.
                    </p>
@@ -442,26 +459,26 @@
             </div>
 
             <!-- 3. Stats Block -->
-            <div class="bento-card col-span-1 md:col-span-2 lg:col-span-2 p-6 flex flex-col justify-center gap-4 bg-[#151515] group reveal-on-scroll" style="transition-delay: 200ms;" data-tilt>
+            <div class="bento-card col-span-1 md:col-span-2 lg:col-span-2 p-6 flex flex-col justify-center gap-4 bg-[#151515] group reveal-on-scroll data-hover-trigger" style="transition-delay: 200ms;" data-tilt>
                 <div class="spotlight-overlay"></div>
                 <div class="flex justify-between items-center border-b border-zinc-800 pb-4 group-hover:border-zinc-700 transition-colors">
                     <span class="text-zinc-500 text-sm uppercase font-mono" data-i18n="stat_edu">Education</span>
-                    <span class="text-white font-bold text-right ml-4" data-i18n="stat_edu_val">Commercial Economics (Marketing)</span>
+                    <span class="text-white font-bold text-right ml-4 group-hover:text-accent transition-colors" data-i18n="stat_edu_val">Commercial Economics (Marketing)</span>
                  </div>
                  <div class="flex justify-between items-center">
                     <span class="text-zinc-500 text-sm uppercase font-mono" data-i18n="stat_degree">Degree</span>
-                    <span class="text-white font-bold text-right ml-4" data-i18n="stat_degree_val">Bachelor Degree</span>
+                    <span class="text-white font-bold text-right ml-4 group-hover:text-accent transition-colors" data-i18n="stat_degree_val">Bachelor Degree</span>
                  </div>
             </div>
 
             <!-- 4. Social Links -->
-            <div class="bento-card col-span-1 md:col-span-2 lg:col-span-2 p-6 flex items-center justify-between group reveal-on-scroll" style="transition-delay: 300ms;" data-tilt>
+            <div class="bento-card col-span-1 md:col-span-2 lg:col-span-2 p-6 flex items-center justify-between group reveal-on-scroll data-hover-trigger" style="transition-delay: 300ms;" data-tilt>
                 <div class="spotlight-overlay"></div>
                 <div class="flex gap-2 z-20 translate-z-20">
                     <a href="https://www.linkedin.com/in/ritchieolthuis" target="_blank" class="magnetic-btn w-12 h-12 rounded-full bg-zinc-900 border border-zinc-800 flex items-center justify-center text-zinc-400 hover:text-black hover:bg-accent hover:border-accent hover:shadow-[0_0_15px_rgba(204,255,0,0.5)] transition-all duration-300 relative data-hover-trigger">
                         <i data-lucide="linkedin" class="w-5 h-5"></i>
                     </a>
-                    <a href="mailto:ritchieolthuis@gmail.com" class="magnetic-btn w-12 h-12 rounded-full bg-zinc-900 border border-zinc-800 flex items-center justify-center text-zinc-400 hover:text-black hover:bg-accent hover:border-accent hover:shadow-[0_0_15px_rgba(204,255,0,0.5)] transition-all duration-300 relative data-hover-trigger">
+                    <a href="javascript:void(0)" onclick="window.openContactModal()" class="magnetic-btn w-12 h-12 rounded-full bg-zinc-900 border border-zinc-800 flex items-center justify-center text-zinc-400 hover:text-black hover:bg-accent hover:border-accent hover:shadow-[0_0_15px_rgba(204,255,0,0.5)] transition-all duration-300 relative data-hover-trigger">
                         <i data-lucide="mail" class="w-5 h-5"></i>
                     </a>
                     <a href="https://wa.me/31641415887" target="_blank" class="magnetic-btn w-12 h-12 rounded-full bg-zinc-900 border border-zinc-800 flex items-center justify-center text-zinc-400 hover:text-black hover:bg-accent hover:border-accent hover:shadow-[0_0_15px_rgba(204,255,0,0.5)] transition-all duration-300 relative data-hover-trigger" title="WhatsApp">
@@ -470,7 +487,7 @@
                 </div>
                 <div class="text-right">
                     <div class="text-xs text-zinc-500 font-mono uppercase mb-1">Let's Connect</div>
-                    <div class="text-white font-bold">Social Profiles</div>
+                    <div class="text-white font-bold group-hover:text-accent transition-colors">Social Profiles</div>
                 </div>
             </div>
 
@@ -517,7 +534,7 @@
                     <div class="w-10 h-10 rounded-full bg-zinc-900 flex items-center justify-center text-accent mb-6 border border-zinc-800 group-hover:scale-110 group-hover:shadow-[0_0_15px_rgba(204,255,0,0.3)] transition-transform">
                         <i data-lucide="cpu" class="w-5 h-5"></i>
                     </div>
-                    <h3 class="text-2xl font-display font-bold text-white uppercase" data-i18n="about_title">About</h3>
+                    <h3 class="text-2xl font-display font-bold text-accent uppercase" data-i18n="about_title">About</h3>
                     <p id="about-typewriter" class="text-zinc-400 text-sm leading-7 mb-6" data-i18n="about_text">
                         I am an ambitious fourth-year Commercial Economics student at Windesheim University of Applied Sciences, 24 years old, with a passion for strategic innovation. During my studies, I completed a Pre-master in Business Administration as a minor and a minor in Financial Decision-Making. Throughout my Commercial Economics program, I further specialized in Design Thinking and sustainable business models.
                         <br><br>
@@ -539,7 +556,7 @@
                     <div class="flex items-center justify-between mb-3">
                         <div class="flex items-center gap-2">
                                 <span class="w-2 h-2 bg-accent rounded-full animate-pulse-fast"></span>
-                                <h3 class="text-xl font-display font-bold text-white uppercase" data-i18n="skills_title">Expertise</h3>
+                                <h3 class="text-xl font-display font-bold text-accent uppercase" data-i18n="skills_title">Expertise</h3>
                         </div>
                         
                         <!-- VIEW ALL BUTTON - EXPERTISE -->
@@ -587,15 +604,15 @@
                 <div id="education" class="bento-card p-8 group reveal-on-scroll" data-tilt>
                     <div class="spotlight-overlay"></div>
                     <div class="flex items-center justify-between mb-8">
-                        <h3 class="text-2xl font-display font-bold text-white uppercase" data-i18n="edu_title">Education</h3>
+                        <h3 class="text-2xl font-display font-bold text-accent uppercase" data-i18n="edu_title">Education</h3>
                         <i data-lucide="graduation-cap" class="text-zinc-600 group-hover:text-white transition-colors"></i>
                     </div>
                     <div class="space-y-8">
                         <!-- Edu 1 -->
-                        <div class="relative pl-8 border-l border-zinc-800 group-hover:border-zinc-700 transition-colors">
+                        <div class="relative pl-8 border-l border-zinc-800 hover:border-accent group/item transition-colors data-hover-trigger">
                             <div class="absolute left-[-5px] top-1 w-2.5 h-2.5 rounded-full bg-accent animate-pulse"></div>
                             <div class="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2 mb-2">
-                                <h4 class="text-lg font-bold text-white" data-i18n="edu_1_school">University of Twente</h4>
+                                <h4 class="text-lg font-bold text-white group-hover/item:text-accent transition-colors" data-i18n="edu_1_school">University of Twente</h4>
                                 <span class="text-xs font-mono text-zinc-500 bg-zinc-900 px-2 py-1 rounded border border-zinc-800">Feb 2025 - Jul 2025</span>
                             </div>
                             <div class="text-sm text-zinc-400 mb-2 font-medium">Pre-master, Business Administration / Bedrijfskunde</div>
@@ -603,20 +620,20 @@
                             <div class="mt-3 text-xs font-bold text-accent"><span data-i18n="edu_1_grade_label">Average:</span> 7.5</div>
                         </div>
                         <!-- Edu 2 -->
-                         <div class="relative pl-8 border-l border-zinc-800 group-hover:border-zinc-700 transition-colors">
+                         <div class="relative pl-8 border-l border-zinc-800 hover:border-accent group/item transition-colors data-hover-trigger">
                             <div class="absolute left-[-5px] top-1 w-2.5 h-2.5 rounded-full bg-zinc-700"></div>
                             <div class="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2 mb-2">
-                                <h4 class="text-lg font-bold text-white" data-i18n="edu_2_school">Windesheim</h4>
+                                <h4 class="text-lg font-bold text-white group-hover/item:text-accent transition-colors" data-i18n="edu_2_school">Windesheim</h4>
                                 <span class="text-xs font-mono text-zinc-500 bg-zinc-900 px-2 py-1 rounded border border-zinc-800">Sep 2022 - Jul 2026</span>
                             </div>
                             <div class="text-sm text-zinc-400 mb-2 font-medium" data-i18n="edu_2_degree">Bachelor's degree, Commercial Economics (Marketing)</div>
                             <p class="text-sm text-zinc-500 leading-relaxed max-w-2xl" data-i18n="edu_2_desc">Developing skills in innovative research, strategic advice, design thinking, and commercial awareness. <br> Minor: Financiële Besluitvorming</p>
                         </div>
                          <!-- Edu 3 -->
-                         <div class="relative pl-8 border-l border-zinc-800 group-hover:border-zinc-700 transition-colors">
+                         <div class="relative pl-8 border-l border-zinc-800 hover:border-accent group/item transition-colors data-hover-trigger">
                             <div class="absolute left-[-5px] top-1 w-2.5 h-2.5 rounded-full bg-zinc-700"></div>
                             <div class="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2 mb-2">
-                                <h4 class="text-lg font-bold text-white" data-i18n="edu_3_school">Windesheim</h4>
+                                <h4 class="text-lg font-bold text-white group-hover/item:text-accent transition-colors" data-i18n="edu_3_school">Windesheim</h4>
                                 <div class="flex items-center gap-2">
                                     <span class="text-xs font-mono text-zinc-500 bg-zinc-900 px-2 py-1 rounded border border-zinc-800">Sep 2022 - Jul 2023</span>
                                     <a href="https://www.linkedin.com/posts/ritchieolthuis_afgelopen-maandag-heb-ik-mijn-propedeuse-activity-7115429316821147648-2I83/?originalSubdomain=nl" target="_blank" class="text-zinc-500 hover:text-[#0077b5] transition-colors data-hover-trigger" title="Bekijk Post op LinkedIn">
@@ -628,10 +645,10 @@
                             <div class="mt-3 text-xs font-bold text-accent"><span data-i18n="edu_1_grade_label">Average:</span> 7.5</div>
                         </div>
                          <!-- Edu 4 -->
-                         <div class="relative pl-8 border-l border-zinc-800 group-hover:border-zinc-700 transition-colors">
+                         <div class="relative pl-8 border-l border-zinc-800 hover:border-accent group/item transition-colors data-hover-trigger">
                             <div class="absolute left-[-5px] top-1 w-2.5 h-2.5 rounded-full bg-zinc-700"></div>
                             <div class="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2 mb-2">
-                                <h4 class="text-lg font-bold text-white" data-i18n="edu_4_school">ROC van Twente</h4>
+                                <h4 class="text-lg font-bold text-white group-hover/item:text-accent transition-colors" data-i18n="edu_4_school">ROC van Twente</h4>
                                 <span class="text-xs font-mono text-zinc-500 bg-zinc-900 px-2 py-1 rounded border border-zinc-800">2018 - 2020</span>
                             </div>
                             <div class="text-sm text-zinc-400 mb-2 font-medium" data-i18n="edu_4_degree">Assistant Manager International Trade</div>
@@ -644,13 +661,13 @@
                 <div id="experience" class="bento-card p-8 bg-[#151515] group reveal-on-scroll" data-tilt>
                     <div class="spotlight-overlay"></div>
                     <div class="flex items-center justify-between mb-8">
-                        <h3 class="text-2xl font-display font-bold text-white uppercase" data-i18n="exp_title">Experience</h3>
+                        <h3 class="text-2xl font-display font-bold text-accent uppercase" data-i18n="exp_title">Experience</h3>
                         <i data-lucide="briefcase" class="text-zinc-600 group-hover:text-white transition-colors"></i>
                     </div>
                     
                     <div class="space-y-10">
                         <!-- Exp 1: Unica -->
-                        <div class="group/item relative pl-4 border-l-2 border-zinc-800 hover:border-accent transition-colors">
+                        <div class="group/item relative pl-4 border-l-2 border-zinc-800 hover:border-accent transition-colors data-hover-trigger">
                           <div class="flex flex-col md:flex-row md:items-center justify-between gap-2 mb-2">
                             <div>
                                 <div class="flex items-center gap-2">
@@ -671,7 +688,7 @@
                         </div>
 
                         <!-- Exp 2: Inncempro -->
-                        <div class="group/item relative pl-4 border-l-2 border-zinc-800 hover:border-accent transition-colors">
+                        <div class="group/item relative pl-4 border-l-2 border-zinc-800 hover:border-accent transition-colors data-hover-trigger">
                           <div class="flex flex-col md:flex-row md:items-center justify-between gap-2 mb-2">
                             <div>
                               <h4 class="text-xl font-bold text-white group-hover/item:text-accent transition-colors" data-i18n="exp_2_role">Intern International Trade</h4>
@@ -690,7 +707,7 @@
                         </div>
 
                         <!-- Exp 3: Delfins -->
-                        <div class="group/item relative pl-4 border-l-2 border-zinc-800 hover:border-accent transition-colors">
+                        <div class="group/item relative pl-4 border-l-2 border-zinc-800 hover:border-accent transition-colors data-hover-trigger">
                           <div class="flex flex-col md:flex-row md:items-center justify-between gap-2 mb-2">
                             <div>
                               <h4 class="text-xl font-bold text-white group-hover/item:text-accent transition-colors" data-i18n="exp_3_role">Intern International Trade</h4>
@@ -713,29 +730,29 @@
                     <div class="mt-8 pt-6 border-t border-zinc-800">
                         <h4 class="text-sm font-mono uppercase text-zinc-500 mb-4" data-i18n="exp_other_title">Previous Roles</h4>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <div class="bg-zinc-900/50 p-3 rounded-lg border border-zinc-800 hover:border-zinc-600 transition-colors">
-                                <div class="text-white font-bold text-sm">Hammer Techniek</div>
+                            <div class="bg-zinc-900/50 p-3 rounded-lg border border-zinc-800 hover:border-zinc-600 transition-colors group data-hover-trigger">
+                                <div class="text-white font-bold text-sm group-hover:text-accent transition-colors">Hammer Techniek</div>
                                 <div class="text-zinc-500 text-xs flex justify-between">
                                     <span data-i18n="role_temp">Temporary Worker</span>
                                     <span>2021 - 2022</span>
                                 </div>
                             </div>
-                            <div class="bg-zinc-900/50 p-3 rounded-lg border border-zinc-800 hover:border-zinc-600 transition-colors">
-                                <div class="text-white font-bold text-sm">Roosdom Tijhuis</div>
+                            <div class="bg-zinc-900/50 p-3 rounded-lg border border-zinc-800 hover:border-zinc-600 transition-colors group data-hover-trigger">
+                                <div class="text-white font-bold text-sm group-hover:text-accent transition-colors">Roosdom Tijhuis</div>
                                 <div class="text-zinc-500 text-xs flex justify-between">
                                     <span data-i18n="role_temp">Temporary Worker</span>
                                     <span>2021 - 2022</span>
                                 </div>
                             </div>
-                            <div class="bg-zinc-900/50 p-3 rounded-lg border border-zinc-800 hover:border-zinc-600 transition-colors">
-                                <div class="text-white font-bold text-sm">Braamhaar Ankoné</div>
+                            <div class="bg-zinc-900/50 p-3 rounded-lg border border-zinc-800 hover:border-zinc-600 transition-colors group data-hover-trigger">
+                                <div class="text-white font-bold text-sm group-hover:text-accent transition-colors">Braamhaar Ankoné</div>
                                 <div class="text-zinc-500 text-xs flex justify-between">
                                     <span data-i18n="role_landscaper">Gardener</span>
                                     <span>2020 - 2021</span>
                                 </div>
                             </div>
-                            <div class="bg-zinc-900/50 p-3 rounded-lg border border-zinc-800 hover:border-zinc-600 transition-colors">
-                                <div class="text-white font-bold text-sm">Coop & Albert Heijn</div>
+                            <div class="bg-zinc-900/50 p-3 rounded-lg border border-zinc-800 hover:border-zinc-600 transition-colors group data-hover-trigger">
+                                <div class="text-white font-bold text-sm group-hover:text-accent transition-colors">Coop & Albert Heijn</div>
                                 <div class="text-zinc-500 text-xs flex justify-between">
                                     <span data-i18n="role_retail">Retail Staff</span>
                                     <span>2016 - 2020</span>
@@ -751,7 +768,7 @@
         <!-- Projects Slideshow (Moved out of grid for full width) -->
         <div id="projects" class="grid grid-cols-1 gap-6 mt-4 reveal-on-scroll">
             <div class="flex items-center justify-between py-4">
-                <h3 class="text-2xl font-display font-bold text-white uppercase" data-i18n="proj_title">Selected Projects</h3>
+                <h3 class="text-2xl font-display font-bold text-accent uppercase" data-i18n="proj_title">Selected Projects</h3>
                 
                 <!-- PROJECTS BUTTON - Uses window.openProjectsModal -->
                 <button type="button" onclick="window.openProjectsModal()" class="cursor-pointer text-xs font-mono text-zinc-500 hover:text-white flex items-center gap-1 transition-colors magnetic-btn data-hover-trigger">
@@ -775,7 +792,7 @@
                 <div id="carousel-track" class="flex transition-transform duration-500 ease-in-out h-full">
                     
                     <!-- Slide 1: Vitens -->
-                    <div class="project-slide w-full flex-shrink-0 flex flex-col md:flex-row h-full">
+                    <div class="project-slide w-full flex-shrink-0 flex flex-col md:flex-row h-full group/slide data-hover-trigger">
                         <!-- Image Side -->
                         <div class="w-full md:w-1/2 h-64 md:h-full relative border-b md:border-b-0 md:border-r border-zinc-800">
                              <!-- Date Label -->
@@ -789,7 +806,7 @@
                         </div>
                         <!-- Text Side (Roadmap Style) -->
                         <div class="w-full md:w-1/2 p-6 md:p-10 flex flex-col justify-center bg-[#121212]">
-                            <h3 class="text-xl font-bold text-white font-display uppercase tracking-tight mb-4" data-i18n="proj_1_title">Vitens, Grootzakelijke markt: Market Needs, Positioning & Organisational Direction</h3>
+                            <h3 class="text-xl font-bold text-white group-hover/slide:text-accent transition-colors font-display uppercase tracking-tight mb-4" data-i18n="proj_1_title">Vitens, Grootzakelijke markt: Market Needs, Positioning & Organisational Direction</h3>
                             <div class="overflow-y-auto pr-2 custom-scrollbar flex-grow max-h-[200px] md:max-h-none" data-i18n="proj_1_desc">
                                 <!-- Roadmap Timeline Structure -->
                                 <div class="relative pl-6 border-l-2 border-zinc-800 ml-2">
@@ -818,7 +835,7 @@
                     </div>
 
                     <!-- Slide 2: Perron038 -->
-                    <div class="project-slide w-full flex-shrink-0 flex flex-col md:flex-row h-full">
+                    <div class="project-slide w-full flex-shrink-0 flex flex-col md:flex-row h-full group/slide data-hover-trigger">
                         <div class="w-full md:w-1/2 h-64 md:h-full relative border-b md:border-b-0 md:border-r border-zinc-800">
                              <!-- Date Label -->
                             <div class="absolute top-4 left-4 z-20 px-3 py-1 bg-accent text-black text-xs font-bold uppercase tracking-wider rounded-full">
@@ -830,7 +847,7 @@
                             </a>
                         </div>
                         <div class="w-full md:w-1/2 p-6 md:p-10 flex flex-col justify-center bg-[#121212]">
-                            <h3 class="text-xl font-bold text-white font-display uppercase tracking-tight mb-4" data-i18n="proj_2_title">Perron038, Factory NEXT: Strategic Commercial Positioning</h3>
+                            <h3 class="text-xl font-bold text-white group-hover/slide:text-accent transition-colors font-display uppercase tracking-tight mb-4" data-i18n="proj_2_title">Perron038, Factory NEXT: Strategic Commercial Positioning</h3>
                             <div class="overflow-y-auto pr-2 custom-scrollbar flex-grow max-h-[200px] md:max-h-none" data-i18n="proj_2_desc">
                                 <!-- Roadmap Timeline -->
                                 <div class="relative pl-6 border-l-2 border-zinc-800 ml-2">
@@ -859,7 +876,7 @@
                     </div>
 
                     <!-- Slide 3: Unica -->
-                    <div class="project-slide w-full flex-shrink-0 flex flex-col md:flex-row h-full">
+                    <div class="project-slide w-full flex-shrink-0 flex flex-col md:flex-row h-full group/slide data-hover-trigger">
                         <div class="w-full md:w-1/2 h-64 md:h-full relative border-b md:border-b-0 md:border-r border-zinc-800">
                              <!-- Date Label -->
                             <div class="absolute top-4 left-4 z-20 px-3 py-1 bg-accent text-black text-xs font-bold uppercase tracking-wider rounded-full">
@@ -871,7 +888,7 @@
                             </a>
                         </div>
                         <div class="w-full md:w-1/2 p-6 md:p-10 flex flex-col justify-center bg-[#121212]">
-                            <h3 class="text-xl font-bold text-white font-display uppercase tracking-tight mb-4" data-i18n="proj_3_title">Unica, Smart Buildings Business Development: Value Proposition Optimization</h3>
+                            <h3 class="text-xl font-bold text-white group-hover/slide:text-accent transition-colors font-display uppercase tracking-tight mb-4" data-i18n="proj_3_title">Unica, Smart Buildings Business Development: Value Proposition Optimization</h3>
                             <div class="overflow-y-auto pr-2 custom-scrollbar flex-grow max-h-[200px] md:max-h-none" data-i18n="proj_3_desc">
                                 <!-- Roadmap Timeline -->
                                 <div class="relative pl-6 border-l-2 border-zinc-800 ml-2">
@@ -900,7 +917,7 @@
                     </div>
 
                     <!-- Slide 4: Zonneplan -->
-                    <div class="project-slide w-full flex-shrink-0 flex flex-col md:flex-row h-full">
+                    <div class="project-slide w-full flex-shrink-0 flex flex-col md:flex-row h-full group/slide data-hover-trigger">
                         <div class="w-full md:w-1/2 h-64 md:h-full relative border-b md:border-b-0 md:border-r border-zinc-800">
                              <!-- Date Label -->
                             <div class="absolute top-4 left-4 z-20 px-3 py-1 bg-accent text-black text-xs font-bold uppercase tracking-wider rounded-full">
@@ -912,7 +929,7 @@
                             </a>
                         </div>
                         <div class="w-full md:w-1/2 p-6 md:p-10 flex flex-col justify-center bg-[#121212]">
-                            <h3 class="text-xl font-bold text-white font-display uppercase tracking-tight mb-4" data-i18n="proj_4_title">Zonneplan, EV Charging Sales Acceleration: Marketing Whitepaper</h3>
+                            <h3 class="text-xl font-bold text-white group-hover/slide:text-accent transition-colors font-display uppercase tracking-tight mb-4" data-i18n="proj_4_title">Zonneplan, EV Charging Sales Acceleration: Marketing Whitepaper</h3>
                             <div class="overflow-y-auto pr-2 custom-scrollbar flex-grow max-h-[200px] md:max-h-none" data-i18n="proj_4_desc">
                                 <!-- Roadmap Timeline -->
                                 <div class="relative pl-6 border-l-2 border-zinc-800 ml-2">
@@ -950,14 +967,16 @@
                 <div class="spotlight-overlay"></div>
                 <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-accent to-transparent opacity-50"></div>
                 <div class="relative z-10 translate-z-20">
-                    <h2 id="contact-typewriter" class="text-4xl md:text-6xl font-display font-bold text-white uppercase mb-6 tracking-tight typewriter-cursor" data-i18n="contact_title">
+                    <h2 id="contact-typewriter" class="text-4xl md:text-6xl font-display font-bold text-accent uppercase mb-6 tracking-tight typewriter-cursor" data-i18n="contact_title">
                         Let's work <span class="text-zinc-600 transition-colors group-hover:text-zinc-400">Together</span>
                     </h2>
                     <p class="text-zinc-400 max-w-xl mx-auto mb-10 text-lg" data-i18n="contact_desc">
                         Let’s connect and see how we can team up on new projects, strategic partnerships and innovation-oriented opportunities.
                     </p>
                     <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-                        <a href="mailto:ritchieolthuis@gmail.com" class="magnetic-btn px-8 py-4 bg-accent text-black font-bold rounded-full hover:bg-[#b3e600] hover:shadow-[0_0_20px_rgba(204,255,0,0.6)] transition-all min-w-[200px] flex items-center justify-center data-hover-trigger" data-i18n="btn_email">Send Email</a>
+                        <button onclick="window.openContactModal()" class="magnetic-btn px-8 py-4 bg-accent text-black font-bold rounded-full hover:bg-[#b3e600] hover:shadow-[0_0_20px_rgba(204,255,0,0.6)] transition-all min-w-[200px] flex items-center justify-center gap-2 data-hover-trigger">
+                             <i data-lucide="mail" class="w-4 h-4"></i> <span data-i18n="btn_email">Send Email</span>
+                        </button>
                         <!-- Google Calendar Invite Link: Opens calendar, adds Ritchie as guest, pre-fills subject -->
                         <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Intro+Call+with+Ritchie+Olthuis&details=Invitation+via+Portfolio&add=ritchieolthuis@gmail.com" target="_blank" class="magnetic-btn px-8 py-4 bg-white text-black font-bold rounded-full hover:bg-zinc-200 transition-colors min-w-[200px] flex items-center justify-center gap-2 data-hover-trigger">
                              <i data-lucide="calendar" class="w-4 h-4"></i> <span data-i18n="btn_call">Schedule Call</span>
@@ -965,12 +984,6 @@
                         <a href="https://www.linkedin.com/in/ritchieolthuis" target="_blank" class="magnetic-btn px-8 py-4 bg-zinc-900 text-white font-bold rounded-full border border-zinc-800 hover:border-zinc-600 hover:shadow-[0_0_15px_rgba(255,255,255,0.1)] transition-all min-w-[200px] flex items-center justify-center gap-2 data-hover-trigger">
                              <i data-lucide="linkedin" class="w-4 h-4"></i> LinkedIn
                         </a>
-                    </div>
-                    <div class="mt-20 pt-10 border-t border-zinc-800 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-zinc-600 font-mono uppercase">
-                        <span>© 2025 Ritchie Olthuis</span>
-                        <div class="flex gap-6">
-                            <!-- Privacy/Terms links removed as requested -->
-                        </div>
                     </div>
                 </div>
             </div>
@@ -980,19 +993,19 @@
         <div id="recommendations" class="mb-16 reveal-on-scroll">
              <div class="flex items-center gap-2 mb-6 justify-center">
                 <span class="w-2 h-2 bg-accent rounded-full animate-pulse-fast"></span>
-                <h3 class="text-xl font-display font-bold text-white uppercase" data-i18n="rec_title">Recommendations</h3>
+                <h3 class="text-xl font-display font-bold text-accent uppercase" data-i18n="rec_title">Recommendations</h3>
             </div>
             
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <!-- Rec 1 -->
-                <a href="https://www.linkedin.com/in/joelrepko/?locale=nl" target="_blank" class="bento-card p-6 flex flex-col gap-4 group h-full bg-[#151515] hover:border-zinc-600 transition-colors" data-tilt>
+                <a href="https://www.linkedin.com/in/joelrepko/?locale=nl" target="_blank" class="bento-card p-6 flex flex-col gap-4 group h-full bg-[#151515] hover:border-zinc-600 transition-colors data-hover-trigger" data-tilt>
                     <div class="spotlight-overlay"></div>
                     <div class="flex items-center gap-3">
                          <div class="w-12 h-12 rounded-full bg-zinc-800 border border-zinc-700 overflow-hidden flex-shrink-0">
                             <img src="https://media.licdn.com/dms/image/v2/C4D03AQG6GbwvEe8Edw/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1568294449762?e=1766620800&v=beta&t=qbfHkEsBpffwzZ3x1gdyArm70Y-48OM-jPT1WHontvo" alt="Joël Repko" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all">
                          </div>
                          <div>
-                             <h4 class="text-white font-bold text-sm flex items-center gap-1">Joël Repko <i data-lucide="external-link" class="w-3 h-3 text-zinc-600"></i></h4>
+                             <h4 class="text-white font-bold text-sm flex items-center gap-1 group-hover:text-accent transition-colors">Joël Repko <i data-lucide="external-link" class="w-3 h-3 text-zinc-600"></i></h4>
                              <p class="text-zinc-500 text-xs">Docent Commerciële Economie, Windesheim</p>
                          </div>
                     </div>
@@ -1005,14 +1018,14 @@
                 </a>
 
                 <!-- Rec 2 -->
-                <a href="https://www.linkedin.com/in/mark-versluis-a8272512/" target="_blank" class="bento-card p-6 flex flex-col gap-4 group h-full bg-[#151515] hover:border-zinc-600 transition-colors" data-tilt>
+                <a href="https://www.linkedin.com/in/mark-versluis-a8272512/" target="_blank" class="bento-card p-6 flex flex-col gap-4 group h-full bg-[#151515] hover:border-zinc-600 transition-colors data-hover-trigger" data-tilt>
                     <div class="spotlight-overlay"></div>
                     <div class="flex items-center gap-3">
                          <div class="w-12 h-12 rounded-full bg-zinc-800 border border-zinc-700 overflow-hidden flex-shrink-0">
                             <img src="https://media.licdn.com/dms/image/v2/C4E03AQG4QcZzS9gJDA/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1552662906845?e=1766620800&v=beta&t=cUR1jwM6aU043DkgAojWA6jDFXKqygY4o0s8FXMKIB4" alt="Mark Versluis" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all">
                          </div>
                          <div>
-                             <h4 class="text-white font-bold text-sm flex items-center gap-1">Mark Versluis <i data-lucide="external-link" class="w-3 h-3 text-zinc-600"></i></h4>
+                             <h4 class="text-white font-bold text-sm flex items-center gap-1 group-hover:text-accent transition-colors">Mark Versluis <i data-lucide="external-link" class="w-3 h-3 text-zinc-600"></i></h4>
                              <p class="text-zinc-500 text-xs">Senior Marketeer KNGF / Docent Marketing Windesheim</p>
                          </div>
                     </div>
@@ -1025,14 +1038,14 @@
                 </a>
 
                 <!-- Rec 3 -->
-                <div class="bento-card p-6 flex flex-col gap-4 group h-full bg-[#151515]" data-tilt>
+                <div class="bento-card p-6 flex flex-col gap-4 group h-full bg-[#151515] data-hover-trigger" data-tilt>
                     <div class="spotlight-overlay"></div>
                     <div class="flex items-center gap-3">
                          <div class="w-12 h-12 rounded-full bg-zinc-800 border border-zinc-700 overflow-hidden flex-shrink-0">
                             <img src="https://ui-avatars.com/api/?name=M+S&background=random" alt="Profile" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all">
                          </div>
                          <div>
-                             <h4 class="text-white font-bold text-sm" data-i18n="rec_3_name">LinkedIn Connection</h4>
+                             <h4 class="text-white font-bold text-sm group-hover:text-accent transition-colors" data-i18n="rec_3_name">LinkedIn Connection</h4>
                              <p class="text-zinc-500 text-xs" data-i18n="rec_3_role">Role, Company</p>
                          </div>
                     </div>
@@ -1079,6 +1092,56 @@
         </div>
     </div>
     
+    <!-- Footer at the bottom -->
+    <footer class="w-full text-center py-6 text-zinc-600 text-xs font-mono uppercase relative z-10">
+        © 2025 Ritchie Olthuis
+    </footer>
+    
+    <!-- CONTACT MODAL (Email Options) -->
+    <div id="contact-modal" class="fixed inset-0 z-[100] hidden">
+        <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" onclick="window.closeContactModal()"></div>
+        <div class="absolute inset-0 flex items-center justify-center p-4 pointer-events-none">
+            <div class="bg-[#121212] border border-zinc-800 rounded-3xl p-8 max-w-sm w-full shadow-2xl pointer-events-auto relative transform transition-all scale-100">
+                <button onclick="window.closeContactModal()" class="magnetic-btn absolute top-4 right-4 p-2 bg-zinc-900 rounded-full hover:bg-accent hover:text-black transition-colors text-white border border-zinc-800 data-hover-trigger">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+                
+                <h3 class="text-xl font-display font-bold text-white mb-6 text-center" data-i18n="contact_modal_title">Choose Email Client</h3>
+                
+                <div class="flex flex-col gap-3">
+                     <!-- Gmail -->
+                     <a href="https://mail.google.com/mail/?view=cm&fs=1&to=ritchieolthuis@gmail.com" target="_blank" class="flex items-center gap-4 p-4 bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 rounded-xl transition-all group hover:scale-[1.02] hover:border-zinc-700">
+                        <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center shrink-0">
+                           <svg viewBox="0 0 24 24" class="w-6 h-6" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.91 1.528-1.145C21.69 2.28 24 3.434 24 5.457z" fill="#EA4335"/>
+                           </svg>
+                        </div>
+                        <span class="font-bold text-white group-hover:text-accent transition-colors" data-i18n="btn_gmail">Open Gmail</span>
+                     </a>
+
+                     <!-- Outlook -->
+                     <a href="https://outlook.office.com/mail/deeplink/compose?to=ritchieolthuis@gmail.com" target="_blank" class="flex items-center gap-4 p-4 bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 rounded-xl transition-all group hover:scale-[1.02] hover:border-zinc-700">
+                         <div class="w-10 h-10 rounded-full bg-[#0078D4] flex items-center justify-center shrink-0">
+                            <svg viewBox="0 0 24 24" class="w-6 h-6 text-white" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect width="20" height="16" x="2" y="4" rx="2"/>
+                                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+                            </svg>
+                        </div>
+                        <span class="font-bold text-white group-hover:text-accent transition-colors" data-i18n="btn_outlook">Open Outlook</span>
+                     </a>
+
+                     <!-- Default -->
+                     <a href="mailto:ritchieolthuis@gmail.com" class="flex items-center gap-4 p-4 bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 rounded-xl transition-all group hover:scale-[1.02] hover:border-zinc-700">
+                         <div class="w-10 h-10 rounded-full bg-zinc-700 flex items-center justify-center shrink-0">
+                            <i data-lucide="mail" class="w-5 h-5 text-white"></i>
+                        </div>
+                        <span class="font-bold text-white group-hover:text-accent transition-colors" data-i18n="btn_default_mail">Default Mail App</span>
+                     </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
     <!-- PROJECTS MODAL (View All) - Unique ID for specific targeting -->
     <div id="projects-modal-unique" class="fixed inset-0 z-[100] hidden">
         <!-- Backdrop -->
@@ -1099,52 +1162,52 @@
                     <!-- Grid -->
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <!-- Project 1 -->
-                        <div class="bento-card p-0 flex flex-col group h-full">
+                        <div class="bento-card p-0 flex flex-col group h-full data-hover-trigger">
                             <div class="relative h-48 w-full overflow-hidden">
                                 <div class="absolute top-3 left-3 z-20 px-2 py-1 bg-accent text-black text-[10px] font-bold uppercase rounded-full">Aug 2025 - Jan 2026</div>
                                 <img src="https://www.h2owaternetwerk.nl/images/2020/December/vitens_strategie_duurzaam.jpg" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500">
                             </div>
                             <div class="p-6 flex flex-col flex-grow">
-                                <h3 class="text-lg font-bold text-white mb-2" data-i18n="proj_1_title_short">Vitens: Market Strategy</h3>
+                                <h3 class="text-lg font-bold text-white group-hover:text-accent transition-colors mb-2" data-i18n="proj_1_title_short">Vitens: Market Strategy</h3>
                                 <p class="text-zinc-400 text-xs leading-relaxed mb-4 flex-grow line-clamp-3" data-i18n="proj_1_desc_short">For Vitens, I conducted an in-depth market study to determine how a new Water-as-a-Service division should be positioned, structured, and brought to market.</p>
                                 <a href="https://www.vitens.nl/Zakelijk" target="_blank" class="text-xs font-bold text-accent hover:underline flex items-center gap-1 data-hover-trigger">VIEW PROJECT <i data-lucide="arrow-right" class="w-3 h-3"></i></a>
                             </div>
                         </div>
 
                         <!-- Project 2 -->
-                         <div class="bento-card p-0 flex flex-col group h-full">
+                         <div class="bento-card p-0 flex flex-col group h-full data-hover-trigger">
                             <div class="relative h-48 w-full overflow-hidden">
                                 <div class="absolute top-3 left-3 z-20 px-2 py-1 bg-accent text-black text-[10px] font-bold uppercase rounded-full">Aug 2025 - Jan 2026</div>
                                 <img src="https://smartindustry.nl/hs-fs/hubfs/news/Factory_NEXT_Perron038_Robotopstelling_Coldspray.jpg?width=2048&height=1365&name=Factory_NEXT_Perron038_Robotopstelling_Coldspray.jpg" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500">
                             </div>
                             <div class="p-6 flex flex-col flex-grow">
-                                <h3 class="text-lg font-bold text-white mb-2" data-i18n="proj_2_title_short">Perron038: Innovation Hub</h3>
+                                <h3 class="text-lg font-bold text-white group-hover:text-accent transition-colors mb-2" data-i18n="proj_2_title_short">Perron038: Innovation Hub</h3>
                                 <p class="text-zinc-400 text-xs leading-relaxed mb-4 flex-grow line-clamp-3" data-i18n="proj_2_desc_short">At Perron038, I explored how Factory NEXT can be commercially positioned and made attractive for industrial partners.</p>
                                 <a href="https://www.perron038.nl/factory-next/" target="_blank" class="text-xs font-bold text-accent hover:underline flex items-center gap-1 data-hover-trigger">VIEW PROJECT <i data-lucide="arrow-right" class="w-3 h-3"></i></a>
                             </div>
                         </div>
 
                         <!-- Project 3 -->
-                         <div class="bento-card p-0 flex flex-col group h-full">
+                         <div class="bento-card p-0 flex flex-col group h-full data-hover-trigger">
                             <div class="relative h-48 w-full overflow-hidden">
                                 <div class="absolute top-3 left-3 z-20 px-2 py-1 bg-accent text-black text-[10px] font-bold uppercase rounded-full">Aug 2023 - Jan 2024</div>
                                 <img src="https://stapintechniek.nl/wp-content/uploads/2025/10/7r31189-scaled.jpg" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500">
                             </div>
                             <div class="p-6 flex flex-col flex-grow">
-                                <h3 class="text-lg font-bold text-white mb-2" data-i18n="proj_3_title_short">Unica: Smart Buildings</h3>
+                                <h3 class="text-lg font-bold text-white group-hover:text-accent transition-colors mb-2" data-i18n="proj_3_title_short">Unica: Smart Buildings</h3>
                                 <p class="text-zinc-400 text-xs leading-relaxed mb-4 flex-grow line-clamp-3" data-i18n="proj_3_desc_short">We developed a strategic advisory process for Unica using the Design Thinking cycle to optimize their value proposition for smart buildings.</p>
                                 <a href="https://www.unica.nl/over-ons/onze-bedrijven/unica-building-services" target="_blank" class="text-xs font-bold text-accent hover:underline flex items-center gap-1 data-hover-trigger">VIEW PROJECT <i data-lucide="arrow-right" class="w-3 h-3"></i></a>
                             </div>
                         </div>
 
                          <!-- Project 4 -->
-                         <div class="bento-card p-0 flex flex-col group h-full">
+                         <div class="bento-card p-0 flex flex-col group h-full data-hover-trigger">
                             <div class="relative h-48 w-full overflow-hidden">
                                 <div class="absolute top-3 left-3 z-20 px-2 py-1 bg-accent text-black text-[10px] font-bold uppercase rounded-full">Feb 2023 - Jun 2023</div>
                                 <img src="https://zonneplan-site.s3.amazonaws.com/uploads/2024/05/zonnepanelen-header-hoeveel-kwh-e1716799873343.png" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500">
                             </div>
                             <div class="p-6 flex flex-col flex-grow">
-                                <h3 class="text-lg font-bold text-white mb-2" data-i18n="proj_4_title_short">Zonneplan: EV Sales</h3>
+                                <h3 class="text-lg font-bold text-white group-hover:text-accent transition-colors mb-2" data-i18n="proj_4_title_short">Zonneplan: EV Sales</h3>
                                 <p class="text-zinc-400 text-xs leading-relaxed mb-4 flex-grow line-clamp-3" data-i18n="proj_4_desc_short">We developed a focused whitepaper for Zonneplan to achieve their 2023 target of 3,000 EV charger sales.</p>
                                 <a href="https://www.zonneplan.nl/" target="_blank" class="text-xs font-bold text-accent hover:underline flex items-center gap-1 data-hover-trigger">VIEW PROJECT <i data-lucide="arrow-right" class="w-3 h-3"></i></a>
                             </div>
@@ -1511,13 +1574,16 @@
         if (typewriterEl) {
             const originalText = typewriterEl.innerText;
             typewriterEl.innerText = '';
+            typewriterEl.classList.add('typewriter-cursor');
             let i = 0;
             
             function typeWriter() {
                 if (i < originalText.length) {
                     typewriterEl.innerText += originalText.charAt(i);
                     i++;
-                    setTimeout(typeWriter, 40);
+                    setTimeout(typeWriter, 50); // Speed adjusted to 50ms for optimal effect
+                } else {
+                    typewriterEl.classList.remove('typewriter-cursor');
                 }
             }
             setTimeout(typeWriter, 500);
@@ -1676,167 +1742,15 @@
                                 </div>
                               </div>`,
                 proj_4_desc_short: "We developed a focused whitepaper for Zonneplan to achieve their 2023 target of 3,000 EV charger sales.",
-                contact_title: "Let's work <span class=\"text-zinc-600 transition-colors group-hover:text-zinc-400\">Together</span>",
-                contact_desc: "Let’s connect and see how we can team up on new projects, strategic partnerships and innovation-oriented opportunities.",
-                btn_email: "Send Email",
-                btn_call: "Schedule Call",
-                modal_title: "All Projects"
-            },
-            nl: {
-                nav_about: "Over Mij",
-                nav_edu: "Opleiding",
-                nav_exp: "Ervaring",
-                nav_proj: "Projecten",
-                nav_contact: "Contact",
-                hero_badge: "Beschikbaar voor werk",
-                hero_title: "Business Strategy & Innovation Enthusiast",
-                hero_desc: "Zakelijke uitdagingen omzetten in datagedreven, mensgerichte en duurzame kansen.",
-                btn_view_work: "Bekijk Werk",
-                btn_download_cv: "Download CV",
-                based_in: "GEVESTIGD IN",
-                stat_edu: "Opleiding",
-                stat_edu_val: "Commerciële Economie (Marketing)",
-                stat_degree: "Graad",
-                stat_degree_val: "HBO Bachelor",
-                stat_grade: "Gem. Cijfer",
-                ticker_1: "Strategische Innovatie",
-                ticker_2: "Design Thinking",
-                ticker_3: "Duurzaamheid",
-                ticker_4: "Bedrijfsmodellering",
-                about_title: "Over Mij",
-                about_text: "Ik ben een ambitieuze vierdejaars student Commerciële Economie aan Hogeschool Windesheim, 24 jaar oud, met een passie voor strategische innovatie. Tijdens mijn studie heb ik een Pre-master Bedrijfskunde gevolgd als minor en een minor in Financiële Besluitvorming. Binnen mijn opleiding Commerciële Economie heb ik mij verder gespecialiseerd in Design Thinking en duurzame bedrijfsmodellen.<br><br>Ik ben vooral geïnteresseerd in het maken van datagedreven beslissingen en het valideren van inzichten met klanten om behoeften te ontdekken die intern misschien niet zichtbaar zijn. Begrijpen wat de klant écht wil is tegenwoordig steeds belangrijker, omdat het ervoor zorgt dat strategieën en innovaties relevant en effectief zijn, en economische, ecologische en maatschappelijke waarde creëren.",
-                skills_title: "Expertise",
-                skills_cat_digital: "Digitale Vaardigheden",
-                skills_cat_1: "Strategische Analyse",
-                skills_cat_theories: "Theorieën & Modellen",
-                skills_modal_title: "Volledige Expertise",
-                 // New Expertise Page Strings (Dutch)
-                full_skills_digital_title: "1. Digitale Vaardigheden",
-                full_skills_digital_desc: "Essentiële tools en platformen voor moderne bedrijfsanalyse.",
-                full_skills_business_title: "2. Onderzoekende Expertise: Business Strategies",
-                full_skills_analyses_def: "Analyses bieden inzicht in de huidige situatie en de omgeving waarin een organisatie opereert. Ze kunnen afzonderlijk worden uitgevoerd of gecombineerd worden opgeleverd.",
-                full_skills_designs_def: "Ontwerpen zijn plannen om van de huidige naar de gewenste situatie te komen, binnen vooraf bepaalde kaders.",
-                full_skills_advice_def: "Adviezen zijn onderbouwde aanbevelingen op strategisch of tactisch niveau, gericht op het behalen van de gewenste situatie.",
-                full_skills_models_def: "Bij het uitvoeren van analyses, ontwerpen en adviezen worden verschillende bewezen theorieën en modellen gebruikt om keuzes te onderbouwen en waarde te creëren.",
-
-                edu_title: "Opleiding",
-                edu_1_school: "Universiteit Twente",
-                edu_1_desc: "Focus op Business Management en academische onderzoeksmethodologieën.",
-                edu_1_grade_label: "Gemiddelde:",
-                edu_2_school: "Windesheim",
-                edu_2_desc: "Ontwikkelen van vaardigheden in innovatief onderzoek, strategisch advies, design thinking, en commercieel bewustzijn. <br> Minor: Financiële Besluitvorming",
-                edu_2_degree: "Bachelor, Commerciële Economie (Marketing)",
-                edu_3_school: "Windesheim",
-                edu_4_school: "ROC van Twente",
-                edu_4_degree: "Assistant Manager International Trade",
-                edu_4_desc: "Opleiding voltooid via een versneld traject.",
-                exp_title: "Ervaring",
-                exp_1_role: "Research & Development (R&D)",
-                exp_1_desc: "Parttime · Hybride<br><br>Belangrijkste taken:<br>• Sterktes, zwaktes, kansen en bedreigingen in kaart brengen<br>• SWOT-analyse en confrontatiematrix uitvoeren<br>• Persona en customer journey ontwikkelen<br>• Business Model Canvas opstellen op economisch, ecologisch en sociaal vlak<br>• Strategieën ontwikkelen om nieuwe (buitenlandse) markten te betreden<br>• Design Thinking (innovatieproces) doorlopen en concrete ideeën uitwerken<br>• Grondige concurrentieanalyse uitvoeren<br>• Impact van trends/ontwikkelingen analyseren op micro-, macro- en mesoniveau",
-                exp_2_role: "Stagiair International Trade",
-                exp_2_desc: "Gericht op het opbouwen van relaties met architecten en aannemers. Bemande de stand op de Ahoy beurs (Rotterdam) en beheerde gepersonaliseerde B2B-mailings om leads te genereren.",
-                exp_3_role: "Stagiair International Trade",
-                exp_3_desc: "Internationale ervaring opgedaan op diverse afdelingen: Vastgoed (via Molenbeek Invest), Onderhoud, Receptie en keukenwerkzaamheden bij Brass Boer.",
-                exp_other_title: "Eerdere Functies",
-                role_assist_manager: "Assistant Manager Int. Trade",
-                role_agency: "Uitzendkracht",
-                role_temp: "Vakantiewerker",
-                role_landscaper: "Hovenier",
-                role_retail: "Verkoopmedewerker",
-                proj_title: "Geselecteerde Projecten",
-                proj_view_all: "BEKIJK ALLES",
-                partners_title: "Samengewerkt met",
-                rec_title: "Aanbevelingen",
-                rec_mark_text: "\"Als docent van Ritchie heb ik hem leren kennen als een zelfstandige en resultaatgerichte student die goed in de groep ligt. Als young professional zal hij voor menig bedrijf een aanwinst zijn.\"",
-                rec_joel_text: "\"Ritchie was tijdens de lessen en workshops die ik hem heb gegeven bij de opleiding Commerciële Economie aan Hogeschool Windesheim een betrokken student die kritisch blijft nadenken en daarvoor de juiste vragen stelt om het maximale uit zijn projecten te halen voor zijn opdrachtgevers uit het werkveld.\"",
-                rec_3_name: "LinkedIn Connectie",
-                rec_3_role: "Functie, Bedrijf",
-                rec_3_text: "\"Kopieer en plak de aanbevelingstekst van LinkedIn hier...\"",
-                proj_1_title: "Vitens, Grootzakelijke markt: Market Needs, Positioning & Organisational Direction",
-                proj_1_title_short: "Vitens: Marktstrategie",
-                proj_1_desc: `<div class="relative pl-6 border-l-2 border-zinc-800 ml-2">
-                                <div class="mb-6 last:mb-0 relative">
-                                    <div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div>
-                                    <h4 class="text-accent font-mono text-xs uppercase mb-1">Uitdaging & Analyse</h4>
-                                    <p class="text-zinc-400 text-sm leading-relaxed">Diepgaand marktonderzoek uitgevoerd om een nieuwe 'Water-as-a-Service' divisie te positioneren. Concurrenten en klantbehoeften geanalyseerd om de scope van het portfolio te bepalen.</p>
-                                </div>
-                                <div class="mb-6 last:mb-0 relative">
-                                    <div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div>
-                                    <h4 class="text-accent font-mono text-xs uppercase mb-1">Strategisch Inzicht</h4>
-                                    <p class="text-zinc-400 text-sm leading-relaxed">Kansen geïdentificeerd om Vitens te onderscheiden door circulaire wateroplossingen en water stewardship, als brug tussen huidige diensten en een commerciële entiteit.</p>
-                                </div>
-                                <div class="mb-6 last:mb-0 relative">
-                                    <div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div>
-                                    <h4 class="text-accent font-mono text-xs uppercase mb-1">Advies & Resultaat</h4>
-                                    <p class="text-zinc-400 text-sm leading-relaxed">Strategische roadmap opgeleverd voor naamgeving, branding en organisatievorm, wat een veerkrachtige en duurzame toekomst voor het grootzakelijke segment creëert.</p>
-                                </div>
-                              </div>`,
-                proj_1_desc_short: "Voor Vitens heb ik een diepgaand marktonderzoek uitgevoerd om te bepalen hoe een nieuwe Water-as-a-Service divisie gepositioneerd, gestructureerd en in de markt gezet moest worden.",
-                proj_2_title: "Perron038, Factory NEXT: Strategische Commerciële Positionering",
-                proj_2_title_short: "Perron038: Innovatiehub",
-                proj_2_desc: `<div class="relative pl-6 border-l-2 border-zinc-800 ml-2">
-                                <div class="mb-6 last:mb-0 relative">
-                                    <div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div>
-                                    <h4 class="text-accent font-mono text-xs uppercase mb-1">Uitdaging & Analyse</h4>
-                                    <p class="text-zinc-400 text-sm leading-relaxed">Marktpotentieel bepaald voor 'Factory NEXT' als gedeelde innovatiefaciliteit. Concurrerende initiatieven in het Nederlandse maakindustrie-landschap geanalyseerd.</p>
-                                </div>
-                                <div class="mb-6 last:mb-0 relative">
-                                    <div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div>
-                                    <h4 class="text-accent font-mono text-xs uppercase mb-1">Strategisch Inzicht</h4>
-                                    <p class="text-zinc-400 text-sm leading-relaxed">Segmenten geïdentificeerd voor 'test-before-invest' model. Design Thinking en klantvalidatie gebruikt om labs en technologie af te stemmen op marktbehoeften.</p>
-                                </div>
-                                <div class="mb-6 last:mb-0 relative">
-                                    <div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div>
-                                    <h4 class="text-accent font-mono text-xs uppercase mb-1">Advies & Resultaat</h4>
-                                    <p class="text-zinc-400 text-sm leading-relaxed">Waardeproposities, verdienmodellen en messaging ontwikkeld om Factory NEXT te versterken als commercieel levensvatbare innovatiehub.</p>
-                                </div>
-                              </div>`,
-                proj_2_desc_short: "Bij Perron038 heb ik onderzocht hoe Factory NEXT commercieel gepositioneerd kan worden en aantrekkelijk gemaakt kan worden voor industriële partners.",
-                proj_3_title: "Unica, Smart Buildings Business Development: Waardepropositie Optimalisatie",
-                proj_3_title_short: "Unica: Smart Buildings",
-                proj_3_desc: `<div class="relative pl-6 border-l-2 border-zinc-800 ml-2">
-                                <div class="mb-6 last:mb-0 relative">
-                                    <div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div>
-                                    <h4 class="text-accent font-mono text-xs uppercase mb-1">Uitdaging & Analyse</h4>
-                                    <p class="text-zinc-400 text-sm leading-relaxed">Interne dynamiek (35 locaties vs 9 vestigingen) en externe factoren (EPBD III, tekort aan technici) in kaart gebracht. Business Model Canvas gebruikt om economische/sociale afhankelijkheden te onthullen.</p>
-                                </div>
-                                <div class="mb-6 last:mb-0 relative">
-                                    <div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div>
-                                    <h4 class="text-accent font-mono text-xs uppercase mb-1">Strategisch Inzicht</h4>
-                                    <p class="text-zinc-400 text-sm leading-relaxed">Ideeëngeneratie via trendpiramides leidde tot 'SmartEase': instapklare kits & VR-demo's om energiestromen te visualiseren en investeringsangst weg te nemen.</p>
-                                </div>
-                                <div class="mb-6 last:mb-0 relative">
-                                    <div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div>
-                                    <h4 class="text-accent font-mono text-xs uppercase mb-1">Advies & Resultaat</h4>
-                                    <p class="text-zinc-400 text-sm leading-relaxed">Concepten geprototypet en gevalideerd met eindgebruikers. Rollout impact canvas gemaakt met KPI's voor omzet en NPS, om Unica te positioneren als klantgericht leider.</p>
-                                </div>
-                              </div>`,
-                proj_3_desc_short: "We hebben voor Unica een strategisch adviestraject ontwikkeld waarbij we de Design Thinking cyclus hebben doorlopen om hun waardepropositie voor slimme gebouwen te optimaliseren.",
-                proj_4_title: "Zonneplan, EV Charging Sales Acceleration: Marketing Whitepaper",
-                proj_4_title_short: "Zonneplan: EV Verkoop",
-                proj_4_desc: `<div class="relative pl-6 border-l-2 border-zinc-800 ml-2">
-                                <div class="mb-6 last:mb-0 relative">
-                                    <div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div>
-                                    <h4 class="text-accent font-mono text-xs uppercase mb-1">Uitdaging & Analyse</h4>
-                                    <p class="text-zinc-400 text-sm leading-relaxed">Doel: 3.000 verkochte laadpalen. Barrières geïdentificeerd zoals complexe offerteprocessen (6-7 klikken) en gebrek aan retentie na verkoop.</p>
-                                </div>
-                                <div class="mb-6 last:mb-0 relative">
-                                    <div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div>
-                                    <h4 class="text-accent font-mono text-xs uppercase mb-1">Strategisch Inzicht</h4>
-                                    <p class="text-zinc-400 text-sm leading-relaxed">Pijnpunten van EV-bezitters blootgelegd (€0,50/kWh openbaar vs thuisladen). Reis van bewustwording naar loyaliteit gedefinieerd met persona's.</p>
-                                </div>
-                                <div class="mb-6 last:mb-0 relative">
-                                    <div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div>
-                                    <h4 class="text-accent font-mono text-xs uppercase mb-1">Advies & Resultaat</h4>
-                                    <p class="text-zinc-400 text-sm leading-relaxed">Aanbevolen om SEO/SEA te optimaliseren voor "laadpaal kopen", landingspagina's te vereenvoudigen en Trustpilot social proof in te zetten. KPI's ingesteld voor snelle schaalbare groei.</p>
-                                </div>
-                              </div>`,
-                proj_4_desc_short: "Voor Zonneplan hebben we een gerichte whitepaper ontwikkeld om hun doelstelling van 3.000 verkochte laadpalen in 2023 te realiseren.",
                 contact_title: "Laten we <span class=\"text-zinc-600 transition-colors group-hover:text-zinc-400\">Samenwerken</span>",
-                contact_desc: "Open voor het bespreken van nieuwe kansen, strategische samenwerkingen of duurzaamheidsinitiatieven.",
+                contact_desc: "Laten we connecten en kijken hoe we kunnen samenwerken aan nieuwe projecten, strategische partnerschappen en innovatiekansen.",
                 btn_email: "Stuur E-mail",
                 btn_call: "Plan Gesprek",
-                modal_title: "Alle Projecten"
+                modal_title: "Alle Projecten",
+                contact_modal_title: "Kies E-mail Programma",
+                btn_gmail: "Open Gmail",
+                btn_outlook: "Open Outlook",
+                btn_default_mail: "Standaard Mail App"
             }
         };
 
