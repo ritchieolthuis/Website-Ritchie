@@ -1501,39 +1501,56 @@
 
         // Function to type Contact Header specific structure
         function typeWriterContact(element) {
-            // Hardcoded structure for specific request
-            const part1 = "Let's work ";
-            const part2 = "Together";
-            const spanClass = "text-zinc-600 transition-colors group-hover:text-zinc-400";
+            const key = element.getAttribute('data-i18n');
+            let htmlContent = element.innerHTML;
             
-            element.classList.add('typewriter-cursor');
-            element.innerHTML = '';
-            
-            let i = 0;
-            function typePart1() {
-                if (i < part1.length) {
-                    element.innerHTML += part1.charAt(i);
-                    i++;
-                    setTimeout(typePart1, 50);
-                } else {
-                    // Prepare span
-                    const span = document.createElement('span');
-                    span.className = spanClass;
-                    element.appendChild(span);
-                    let j = 0;
-                    function typePart2() {
-                        if (j < part2.length) {
-                            span.textContent += part2.charAt(j);
-                            j++;
-                            setTimeout(typePart2, 100); 
-                        } else {
-                            element.classList.remove('typewriter-cursor');
-                        }
-                    }
-                    typePart2();
-                }
+            // Use translation if available and key exists
+            if (key && translations && translations[currentLang] && translations[currentLang][key]) {
+                htmlContent = translations[currentLang][key];
             }
-            typePart1();
+            
+            // Use a temp container to parse safely without regex fragility
+            const tempDiv = document.createElement('div');
+            tempDiv.innerHTML = htmlContent;
+            const span = tempDiv.querySelector('span');
+            
+            if (span && tempDiv.childNodes.length > 0) {
+                 const part1 = tempDiv.childNodes[0].textContent; // e.g. "Laten we "
+                 const part2 = span.textContent; // e.g. "Samenwerken"
+                 const spanClass = span.className;
+                 
+                 element.classList.add('typewriter-cursor');
+                 element.innerHTML = '';
+                 
+                 let i = 0;
+                 function typePart1() {
+                    if (i < part1.length) {
+                        element.innerHTML += part1.charAt(i);
+                        i++;
+                        setTimeout(typePart1, 50);
+                    } else {
+                        const newSpan = document.createElement('span');
+                        newSpan.className = spanClass;
+                        element.appendChild(newSpan);
+                        let j = 0;
+                        function typePart2() {
+                            if (j < part2.length) {
+                                newSpan.textContent += part2.charAt(j);
+                                j++;
+                                setTimeout(typePart2, 100); 
+                            } else {
+                                element.classList.remove('typewriter-cursor');
+                            }
+                        }
+                        typePart2();
+                    }
+                }
+                typePart1();
+            } else {
+                // Fallback: just set HTML if structure is different
+                element.innerHTML = htmlContent;
+                element.classList.remove('typewriter-cursor');
+            }
         }
 
         const observerOptions = {
@@ -1620,7 +1637,6 @@
                 skills_cat_1: "Strategic Analysis",
                 skills_cat_theories: "Theories & Models",
                 skills_modal_title: "Full Expertise",
-                // New Expertise Page Strings (English Fallback)
                 full_skills_digital_title: "1. Digital Skills",
                 full_skills_digital_desc: "Essential tools and platforms for modern business analysis.",
                 full_skills_business_title: "2. Investigative Expertise: Business Strategies",
@@ -1634,7 +1650,7 @@
                 edu_1_desc: "Focus on Business Management and academic research methodologies.",
                 edu_1_grade_label: "Average:",
                 edu_2_school: "Windesheim",
-                edu_2_desc: "Developing skills in innovative research, strategic advice, design thinking, and commercial awareness. <br> Minor: Financial Decision Making",
+                edu_2_desc: "Developing skills in innovative research, strategic advice, design thinking, and commercial awareness. <br> Minor: Financiële Besluitvorming",
                 edu_2_degree: "Bachelor's degree, Commercial Economics (Marketing)",
                 edu_3_school: "Windesheim",
                 edu_4_school: "ROC van Twente",
@@ -1642,7 +1658,7 @@
                 edu_4_desc: "Completed the program via an accelerated track.",
                 exp_title: "Experience",
                 exp_1_role: "Research & Development (R&D)",
-                exp_1_desc: "Parttime · Hybride<br><br>Main tasks:<br>• Identifying strengths, weaknesses, opportunities, and threats<br>• SWOT-analyse en confrontatiematrix uitvoeren<br>• Persona en customer journey ontwikkelen<br>• Business Model Canvas opstellen op economisch, ecologisch en sociaal vlak<br>• Strategieën ontwikkelen om nieuwe (buitenlandse) markten te betreden<br>• Design Thinking (innovatieproces) doorlopen en concrete ideeën uitwerken<br>• Grondige concurrentieanalyse uitvoeren<br>• Impact van trends/ontwikkelingen analyseren op micro-, macro- en mesoniveau",
+                exp_1_desc: "Strategic research into new market opportunities and sustainable business models.",
                 exp_2_role: "Intern International Trade",
                 exp_2_desc: "Focused on building relationships with architects and contractors. Staffed the stand at the Ahoy fair (Rotterdam) and managed personalized B2B mailings to generate leads.",
                 exp_3_role: "Intern International Trade",
@@ -1742,6 +1758,163 @@
                                 </div>
                               </div>`,
                 proj_4_desc_short: "We developed a focused whitepaper for Zonneplan to achieve their 2023 target of 3,000 EV charger sales.",
+                contact_title: "Let's work <span class=\"text-zinc-600 transition-colors group-hover:text-zinc-400\">Together</span>",
+                contact_desc: "Let’s connect and see how we can team up on new projects, strategic partnerships and innovation-oriented opportunities.",
+                btn_email: "Send Email",
+                btn_call: "Schedule Call",
+                modal_title: "All Projects",
+                contact_modal_title: "Choose Email Client",
+                btn_gmail: "Open Gmail",
+                btn_outlook: "Open Outlook",
+                btn_default_mail: "Default Mail App"
+            },
+            nl: {
+                nav_about: "Over mij",
+                nav_edu: "Opleiding",
+                nav_exp: "Ervaring",
+                nav_proj: "Projecten",
+                nav_contact: "Contact",
+                hero_badge: "Beschikbaar voor werk",
+                hero_title: "Business Strategy & Innovation Enthousiast",
+                hero_desc: "Ik help uw bedrijf om zakelijke uitdagingen om te zetten in datagedreven, mensgerichte en op duurzaamheid gerichte kansen.",
+                btn_view_work: "Bekijk Werk",
+                btn_download_cv: "Download CV",
+                based_in: "GEVESTIGD IN",
+                stat_edu: "Opleiding",
+                stat_edu_val: "Commerciële Economie (Marketing)",
+                stat_degree: "Graad",
+                stat_degree_val: "Bachelor",
+                stat_grade: "Gem. Cijfer",
+                ticker_1: "Strategische Innovatie",
+                ticker_2: "Design Thinking",
+                ticker_3: "Duurzaamheid",
+                ticker_4: "Business Modeling",
+                about_title: "Over mij",
+                about_text: "Ik ben een ambitieuze vierdejaars student Commerciële Economie aan Hogeschool Windesheim, 24 jaar oud, met een passie voor strategische innovatie. Tijdens mijn studie heb ik een Pre-master Business Administration en een minor Financiële Besluitvorming afgerond. Binnen mijn opleiding heb ik mij verder gespecialiseerd in Design Thinking en duurzame verdienmodellen.<br><br>Ik ben vooral geïnteresseerd in het maken van datagedreven beslissingen en het valideren van inzichten bij klanten om behoeften bloot te leggen die intern wellicht niet zichtbaar zijn. Begrijpen wat de klant écht wil is vandaag de dag steeds belangrijker, omdat het ervoor zorgt dat strategieën en innovaties relevant en effectief zijn en economische, ecologische en sociale waarde creëren.",
+                skills_title: "Expertise",
+                skills_cat_digital: "Digitale Vaardigheden",
+                skills_cat_1: "Strategische Analyse",
+                skills_cat_theories: "Theorieën & Modellen",
+                skills_modal_title: "Expertise",
+                full_skills_digital_title: "1. Digitale Vaardigheden",
+                full_skills_digital_desc: "Essentiële tools en platforms voor moderne bedrijfsanalyse.",
+                full_skills_business_title: "2. Onderzoeksexpertise: Bedrijfsstrategieën",
+                full_skills_analyses_def: "Analyses geven inzicht in de huidige situatie en de omgeving waarin een organisatie opereert. Ze kunnen afzonderlijk worden uitgevoerd of gecombineerd worden opgeleverd.",
+                full_skills_designs_def: "Ontwerpen zijn plannen om van de huidige naar de gewenste situatie te bewegen, binnen vooraf bepaalde kaders.",
+                full_skills_advice_def: "Advies bestaat uit onderbouwde aanbevelingen op strategisch of tactisch niveau, gericht op het bereiken van de gewenste situatie.",
+                full_skills_models_def: "Bij het uitvoeren van analyses, ontwerpen en adviezen worden diverse bewezen theorieën en modellen gebruikt om keuzes te onderbouwen en waarde te creëren.",
+                
+                edu_title: "Opleiding",
+                edu_1_school: "Universiteit Twente",
+                edu_1_desc: "Focus op Business Management en academische onderzoeksmethodologieën.",
+                edu_1_grade_label: "Gemiddelde:",
+                edu_2_school: "Windesheim",
+                edu_2_desc: "Ontwikkelen van vaardigheden in innovatief onderzoek, strategisch advies, design thinking en commercieel bewustzijn. <br> Minor: Financiële Besluitvorming",
+                edu_2_degree: "Bachelor, Commerciële Economie (Marketing)",
+                edu_3_school: "Windesheim",
+                edu_4_school: "ROC van Twente",
+                edu_4_degree: "Assistent Manager Internationale Handel",
+                edu_4_desc: "Opleiding versneld afgerond.",
+                exp_title: "Ervaring",
+                exp_1_role: "Research & Development (R&D)",
+                exp_1_desc: "Strategisch onderzoek naar nieuwe marktkansen en duurzame verdienmodellen.",
+                exp_2_role: "Stagiair Internationale Handel",
+                exp_2_desc: "Gericht op het opbouwen van relaties met architecten en aannemers. Beursstand bemand in Ahoy (Rotterdam) en gepersonaliseerde B2B-mailings beheerd voor leadgeneratie.",
+                exp_3_role: "Stagiair Internationale Handel",
+                exp_3_desc: "Internationale ervaring opgedaan op diverse afdelingen: Real Estate (via Molenbeek Invest), Onderhoud, Front Office en keukenwerkzaamheden bij Brass Boer.",
+                exp_other_title: "Eerdere Rollen",
+                role_temp: "Uitzendkracht",
+                role_landscaper: "Hovenier",
+                role_retail: "Winkelmedewerker",
+                proj_title: "Geselecteerde Projecten",
+                proj_view_all: "BEKIJK ALLES",
+                partners_title: "Samenwerkinspartners",
+                rec_title: "Aanbevelingen",
+                rec_mark_text: "\"Als docent heb ik Ritchie leren kennen als een zelfstandige en resultaatgerichte student die goed in de groep ligt. Als young professional zal hij een aanwinst zijn voor menig bedrijf.\"",
+                rec_joel_text: "\"Tijdens de lessen en workshops die ik hem gaf bij de opleiding Commerciële Economie aan Hogeschool Windesheim, was Ritchie een betrokken student die kritisch doorvraagt om het onderste uit de kan te halen voor zijn projecten voor opdrachtgevers in het werkveld.\"",
+                rec_3_name: "LinkedIn Connectie",
+                rec_3_role: "Functie, Bedrijf",
+                rec_3_text: "\"Kopieer en plak de aanbevelingstekst van LinkedIn hier...\"",
+                proj_1_title: "Vitens, Grootzakelijke markt: Market Needs, Positioning & Organisational Direction",
+                proj_1_title_short: "Vitens: Marktstrategie",
+                proj_1_desc: `<div class="relative pl-6 border-l-2 border-zinc-800 ml-2">
+                                <div class="mb-6 last:mb-0 relative">
+                                    <div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div>
+                                    <h4 class="text-accent font-mono text-xs uppercase mb-1">Challenge & Analysis</h4>
+                                    <p class="text-zinc-400 text-sm leading-relaxed">Diepgaand marktonderzoek uitgevoerd om de nieuwe 'Water-as-a-Service' divisie te positioneren. Concurrenten en klantbehoeften geanalyseerd om de scope van het portfolio te bepalen.</p>
+                                </div>
+                                <div class="mb-6 last:mb-0 relative">
+                                    <div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div>
+                                    <h4 class="text-accent font-mono text-xs uppercase mb-1">Strategic Insight</h4>
+                                    <p class="text-zinc-400 text-sm leading-relaxed">Kans geïdentificeerd om Vitens te onderscheiden door circulaire wateroplossingen en water stewardship, als brug tussen huidige diensten en een commerciële entiteit.</p>
+                                </div>
+                                <div class="mb-6 last:mb-0 relative">
+                                    <div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div>
+                                    <h4 class="text-accent font-mono text-xs uppercase mb-1">Advice & Outcome</h4>
+                                    <p class="text-zinc-400 text-sm leading-relaxed">Strategische roadmap opgeleverd voor naamgeving, branding en organisatievorm, om een veerkrachtige en duurzame toekomst voor het grootzakelijke segment te creëren.</p>
+                                </div>
+                              </div>`,
+                proj_1_desc_short: "Voor Vitens heb ik een diepgaand marktonderzoek uitgevoerd om te bepalen hoe een nieuwe 'Water-as-a-Service' divisie gepositioneerd, gestructureerd en in de markt gezet moet worden.",
+                proj_2_title: "Perron038, Factory NEXT: Strategic Commercial Positioning",
+                proj_2_title_short: "Perron038: Innovatie Hub",
+                proj_2_desc: `<div class="relative pl-6 border-l-2 border-zinc-800 ml-2">
+                                <div class="mb-6 last:mb-0 relative">
+                                    <div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div>
+                                    <h4 class="text-accent font-mono text-xs uppercase mb-1">Challenge & Analysis</h4>
+                                    <p class="text-zinc-400 text-sm leading-relaxed">Marktpotentieel bepaald voor 'Factory NEXT' als gedeelde innovatiefaciliteit. Concurrerende initiatieven in het Nederlandse maakindustrie-landschap geanalyseerd.</p>
+                                </div>
+                                <div class="mb-6 last:mb-0 relative">
+                                    <div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div>
+                                    <h4 class="text-accent font-mono text-xs uppercase mb-1">Strategic Insight</h4>
+                                    <p class="text-zinc-400 text-sm leading-relaxed">Segmenten geïdentificeerd voor 'test-before-invest' model. Design Thinking en klantvalidatie gebruikt om labs en technologie af te stemmen op marktbehoeften.</p>
+                                </div>
+                                <div class="mb-6 last:mb-0 relative">
+                                    <div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div>
+                                    <h4 class="text-accent font-mono text-xs uppercase mb-1">Advice & Outcome</h4>
+                                    <p class="text-zinc-400 text-sm leading-relaxed">Waardeproposities, verdienmodellen en messaging ontwikkeld om Factory NEXT te versterken als commercieel levensvatbare innovatiehub.</p>
+                                </div>
+                              </div>`,
+                proj_2_desc_short: "Bij Perron038 heb ik onderzocht hoe Factory NEXT commercieel gepositioneerd en aantrekkelijk gemaakt kan worden voor industriële partners.",
+                proj_3_title: "Unica, Smart Buildings Business Development: Value Proposition Optimization",
+                proj_3_title_short: "Unica: Smart Buildings",
+                proj_3_desc: `<div class="relative pl-6 border-l-2 border-zinc-800 ml-2">
+                                <div class="mb-6 last:mb-0 relative">
+                                    <div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div>
+                                    <h4 class="text-accent font-mono text-xs uppercase mb-1">Challenge & Analysis</h4>
+                                    <p class="text-zinc-400 text-sm leading-relaxed">Interne dynamiek (35 locaties vs 9 vestigingen) en externe factoren (EPBD III, tekort aan technici) in kaart gebracht. Business Model Canvas gebruikt om economische/sociale afhankelijkheden bloot te leggen.</p>
+                                </div>
+                                <div class="mb-6 last:mb-0 relative">
+                                    <div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div>
+                                    <h4 class="text-accent font-mono text-xs uppercase mb-1">Strategic Insight</h4>
+                                    <p class="text-zinc-400 text-sm leading-relaxed">Ideeënvorming via trendpiramides leidde tot 'SmartEase': instap-kits & VR-demo's om energiestromen te visualiseren en investeringsangst weg te nemen.</p>
+                                </div>
+                                <div class="mb-6 last:mb-0 relative">
+                                    <div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div>
+                                    <h4 class="text-accent font-mono text-xs uppercase mb-1">Advice & Outcome</h4>
+                                    <p class="text-zinc-400 text-sm leading-relaxed">Concepten geprototyped en gevalideerd met eindgebruikers. Impact canvas gemaakt met KPI's voor omzet en NPS, om Unica te positioneren als klantgericht leider.</p>
+                                </div>
+                              </div>`,
+                proj_3_desc_short: "We hebben voor Unica een strategisch adviestraject ontwikkeld via de Design Thinking cyclus om hun waardepropositie voor slimme gebouwen te optimaliseren.",
+                proj_4_title: "Zonneplan, EV Charging Sales Acceleration: Marketing Whitepaper",
+                proj_4_title_short: "Zonneplan: EV Sales",
+                proj_4_desc: `<div class="relative pl-6 border-l-2 border-zinc-800 ml-2">
+                                <div class="mb-6 last:mb-0 relative">
+                                    <div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div>
+                                    <h4 class="text-accent font-mono text-xs uppercase mb-1">Challenge & Analysis</h4>
+                                    <p class="text-zinc-400 text-sm leading-relaxed">Doel: 3.000 laadpaalverkopen. Barrières geïdentificeerd zoals complexe offerteprocessen (6-7 klikken) en gebrek aan klantbehoud na verkoop.</p>
+                                </div>
+                                <div class="mb-6 last:mb-0 relative">
+                                    <div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div>
+                                    <h4 class="text-accent font-mono text-xs uppercase mb-1">Strategic Insight</h4>
+                                    <p class="text-zinc-400 text-sm leading-relaxed">Pijnpunten van EV-bezitters blootgelegd (€0,50/kWh openbaar vs thuisladen). Klantreis gedefinieerd van bewustwording tot loyaliteit met behulp van persona's.</p>
+                                </div>
+                                <div class="mb-6 last:mb-0 relative">
+                                    <div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div>
+                                    <h4 class="text-accent font-mono text-xs uppercase mb-1">Advice & Outcome</h4>
+                                    <p class="text-zinc-400 text-sm leading-relaxed">Aanbevolen om SEO/SEA te optimaliseren voor 'laadpaal kopen', landingspagina's te vereenvoudigen en Trustpilot social proof te gebruiken. KPI's ingesteld voor snelle schaalbare groei.</p>
+                                </div>
+                              </div>`,
+                proj_4_desc_short: "Voor Zonneplan hebben we een gerichte whitepaper ontwikkeld om hun doelstelling van 3.000 laadpaalverkopen in 2023 te behalen.",
                 contact_title: "Laten we <span class=\"text-zinc-600 transition-colors group-hover:text-zinc-400\">Samenwerken</span>",
                 contact_desc: "Laten we connecten en kijken hoe we kunnen samenwerken aan nieuwe projecten, strategische partnerschappen en innovatiekansen.",
                 btn_email: "Stuur E-mail",
