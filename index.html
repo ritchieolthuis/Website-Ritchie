@@ -421,7 +421,7 @@
 
                 <div class="relative z-10 max-w-xl translate-z-10">
                    <!-- Typewriter effect target -->
-                   <h2 id="typewriter-title" class="text-xl md:text-2xl text-accent mb-4 font-medium typewriter-cursor" data-i18n="hero_title">Business Strategy & Innovation Enthusiast</h2>
+                   <h2 id="typewriter-title" class="text-xl md:text-2xl text-accent mb-4 font-medium" data-i18n="hero_title">Business Strategy & Innovation Enthusiast</h2>
                    <p class="text-zinc-400 leading-relaxed text-sm md:text-base mb-8 group-hover:text-zinc-300 transition-colors" data-i18n="hero_desc">
                      Helping your company to turn business challenges into data-driven, human-centred and sustainability-focused opportunities.
                    </p>
@@ -1342,6 +1342,13 @@
             const introContent = document.getElementById("intro-content");
             let index = 0;
             
+            // Clear hero title immediately so it reveals empty
+            const heroTitleEl = document.getElementById('typewriter-title');
+            if (heroTitleEl) heroTitleEl.innerHTML = '';
+            
+            // Note: We do NOT clear 'about-typewriter' here because the scroll observer
+            // handles capturing the text before clearing it.
+
             document.body.style.overflow = "hidden";
 
             // Cycle greetings
@@ -1365,6 +1372,9 @@
                              setTimeout(() => {
                                  introScreen.style.display = "none";
                                  document.body.style.overflow = "auto";
+                                 
+                                 // Start typing now that loading screen is gone
+                                 startHeroTypewriter();
                              }, 500);
                         }
                     }, 600); // Timing matches visual impact of scale-out
@@ -1561,15 +1571,23 @@
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.classList.add('reveal-visible');
                     
-                    // Trigger About Typewriter
+                    // Trigger About Typewriter - Capture text BEFORE reveal
                     const aboutTypewriter = entry.target.querySelector('#about-typewriter');
                     if (aboutTypewriter && !aboutTypewriter.dataset.typed) {
                         aboutTypewriter.dataset.typed = "true";
                         const originalHTML = aboutTypewriter.innerHTML.trim();
-                        // 5ms speed for long text
-                        typeWriterHTML(aboutTypewriter, originalHTML, 5);
+                        // Clear immediately before revealing parent
+                        aboutTypewriter.innerHTML = '';
+                        
+                        // Reveal parent
+                        entry.target.classList.add('reveal-visible');
+
+                        // Adjusted speed: previously 5, now 4 (approx 0.85 factor faster/tuned)
+                        typeWriterHTML(aboutTypewriter, originalHTML, 4);
+                    } else {
+                        // Normal reveal for other elements
+                        entry.target.classList.add('reveal-visible');
                     }
                     
                     // Trigger Contact Typewriter
@@ -1587,23 +1605,39 @@
         document.querySelectorAll('.reveal-on-scroll').forEach(el => observer.observe(el));
 
         // --- 9. Typewriter Effect (Hero) ---
-        const typewriterEl = document.getElementById('typewriter-title');
-        if (typewriterEl) {
-            const originalText = typewriterEl.innerText;
-            typewriterEl.innerText = '';
-            typewriterEl.classList.add('typewriter-cursor');
-            let i = 0;
+        // Reusable Generic Typewriter function
+        function typeWriterGeneric(elementId, text, speed = 50) {
+            const element = document.getElementById(elementId);
+            if (!element) return;
             
-            function typeWriter() {
-                if (i < originalText.length) {
-                    typewriterEl.innerText += originalText.charAt(i);
+            element.innerHTML = '';
+            element.classList.add('typewriter-cursor');
+            
+            let i = 0;
+            function type() {
+                if (i < text.length) {
+                    element.innerHTML += text.charAt(i);
                     i++;
-                    setTimeout(typeWriter, 50); // Speed adjusted to 50ms for optimal effect
+                    setTimeout(type, speed);
                 } else {
-                    typewriterEl.classList.remove('typewriter-cursor');
+                    element.classList.remove('typewriter-cursor');
                 }
             }
-            setTimeout(typeWriter, 500);
+            type();
+        }
+
+        // Helper to start hero typewriter with correct language text
+        function startHeroTypewriter() {
+            const el = document.getElementById('typewriter-title');
+            if(!el) return;
+            
+            // Determine text based on current language
+            const text = (typeof translations !== 'undefined' && translations[currentLang]) 
+                         ? translations[currentLang]['hero_title'] 
+                         : "Business Strategy & Innovation Enthusiast";
+            
+            // Adjusted speed: previously 50, now 40 (approx 0.85 factor)
+            typeWriterGeneric('typewriter-title', text, 40);
         }
 
         // --- 10. Language Logic ---
@@ -1936,9 +1970,16 @@
             document.querySelectorAll('[data-i18n]').forEach(el => {
                 const key = el.getAttribute('data-i18n');
                 if (translations[currentLang][key]) {
-                   if (el.tagName === 'SPAN' && key === 'contact_title') {
-                       el.parentNode.innerHTML = translations[currentLang][key];
-                   } else {
+                   // Special handling for Hero Title Typewriter (Apply new text with effect)
+                   if (key === 'hero_title') {
+                       typeWriterGeneric('typewriter-title', translations[currentLang][key], 40);
+                   }
+                   // Special handling for Contact Title (contains HTML span)
+                   // The element with data-i18n is the H2, so innerHTML replacement is correct.
+                   else if (key === 'contact_title') {
+                       el.innerHTML = translations[currentLang][key];
+                   } 
+                   else {
                        el.innerHTML = translations[currentLang][key];
                    }
                 }
