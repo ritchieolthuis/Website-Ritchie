@@ -88,23 +88,6 @@
              }
         };
 
-        // Expertise Modal Logic
-        window.openExpertiseModal = function() {
-             const modal = document.getElementById('expertise-modal-global');
-             if(modal) {
-                 modal.classList.remove('hidden');
-                 document.body.style.overflow = 'hidden';
-             }
-        };
-
-        window.closeExpertiseModal = function() {
-             const modal = document.getElementById('expertise-modal-global');
-             if(modal) {
-                 modal.classList.add('hidden');
-                 document.body.style.overflow = 'auto';
-             }
-        };
-
         // Contact Modal Logic
         window.openContactModal = function() {
              const modal = document.getElementById('contact-modal');
@@ -116,6 +99,40 @@
 
         window.closeContactModal = function() {
              const modal = document.getElementById('contact-modal');
+             if(modal) {
+                 modal.classList.add('hidden');
+                 document.body.style.overflow = 'auto';
+             }
+        };
+
+        // CV Modal Logic
+        window.openCVModal = function() {
+             const modal = document.getElementById('cv-modal');
+             if(modal) {
+                 modal.classList.remove('hidden');
+                 document.body.style.overflow = 'hidden';
+             }
+        };
+
+        window.closeCVModal = function() {
+             const modal = document.getElementById('cv-modal');
+             if(modal) {
+                 modal.classList.add('hidden');
+                 document.body.style.overflow = 'auto';
+             }
+        };
+
+        // Expertise Modal Logic
+        window.openExpertiseModal = function() {
+             const modal = document.getElementById('expertise-modal-global');
+             if(modal) {
+                 modal.classList.remove('hidden');
+                 document.body.style.overflow = 'hidden';
+             }
+        };
+
+        window.closeExpertiseModal = function() {
+             const modal = document.getElementById('expertise-modal-global');
              if(modal) {
                  modal.classList.add('hidden');
                  document.body.style.overflow = 'auto';
@@ -373,6 +390,7 @@
           
           <div class="hidden sm:flex items-center px-2 gap-4">
              <button onclick="document.getElementById('about').scrollIntoView({behavior: 'smooth'})" class="magnetic-btn text-sm font-medium text-zinc-400 hover:text-accent transition-colors p-2 data-hover-trigger" data-i18n="nav_about">About</button>
+             <button onclick="document.getElementById('expertise').scrollIntoView({behavior: 'smooth'})" class="magnetic-btn text-sm font-medium text-zinc-400 hover:text-accent transition-colors p-2 data-hover-trigger" data-i18n="nav_expertise">Expertise</button>
              <button onclick="document.getElementById('education').scrollIntoView({behavior: 'smooth'})" class="magnetic-btn text-sm font-medium text-zinc-400 hover:text-accent transition-colors p-2 data-hover-trigger" data-i18n="nav_edu">Education</button>
              <button onclick="document.getElementById('experience').scrollIntoView({behavior: 'smooth'})" class="magnetic-btn text-sm font-medium text-zinc-400 hover:text-accent transition-colors p-2 data-hover-trigger" data-i18n="nav_exp">Experience</button>
              <button onclick="document.getElementById('projects').scrollIntoView({behavior: 'smooth'})" class="magnetic-btn text-sm font-medium text-zinc-400 hover:text-accent transition-colors p-2 data-hover-trigger" data-i18n="nav_proj">Projects</button>
@@ -430,9 +448,10 @@
                      <button onclick="document.getElementById('projects').scrollIntoView({behavior: 'smooth'})" class="magnetic-btn px-6 py-3 bg-white text-black font-bold rounded-full hover:bg-accent hover:shadow-[0_0_20px_rgba(204,255,0,0.5)] transition-all flex items-center gap-2 text-sm z-20 relative data-hover-trigger">
                        <span data-i18n="btn_view_work">View Work</span> <i data-lucide="arrow-down" class="w-4 h-4"></i>
                      </button>
-                     <a href="https://drive.google.com/file/d/10yajBRmS-yQHCMXpr36F77puJ6jmY6cs/view?usp=sharing" target="_blank" class="magnetic-btn px-6 py-3 bg-transparent border border-zinc-700 text-white font-bold rounded-full hover:border-accent hover:text-accent transition-colors flex items-center gap-2 text-sm z-20 relative data-hover-trigger">
+                     <!-- Changed to open CV Modal -->
+                     <button onclick="window.openCVModal()" class="magnetic-btn px-6 py-3 bg-transparent border border-zinc-700 text-white font-bold rounded-full hover:border-accent hover:text-accent transition-colors flex items-center gap-2 text-sm z-20 relative data-hover-trigger">
                        <span data-i18n="btn_download_cv">Download CV</span> <i data-lucide="download" class="w-4 h-4"></i>
-                     </a>
+                     </button>
                    </div>
                 </div>
             </div>
@@ -550,17 +569,17 @@
                 </div>
 
                 <!-- Skills (Expertise) -->
-                <!-- Removed data-tilt entirely for stability -->
-                <div class="reveal-on-scroll">
+                <!-- ID added here for navigation scrolling -->
+                <div id="expertise" class="reveal-on-scroll scroll-mt-32">
                     <!-- External Header (Similar to Projects) -->
-                    <div class="flex items-center justify-between mb-3">
+                    <div class="flex items-center justify-between mb-3 relative z-20">
                         <div class="flex items-center gap-2">
                                 <span class="w-2 h-2 bg-accent rounded-full animate-pulse-fast"></span>
                                 <h3 class="text-xl font-display font-bold text-accent uppercase" data-i18n="skills_title">Expertise</h3>
                         </div>
                         
-                        <!-- VIEW ALL BUTTON - EXPERTISE -->
-                        <button type="button" onclick="window.openExpertiseModal()" class="cursor-pointer text-xs font-mono text-zinc-500 hover:text-white flex items-center gap-1 transition-colors magnetic-btn data-hover-trigger">
+                        <!-- VIEW ALL BUTTON - EXPERTISE - Triggering Modal now preferred -->
+                        <button type="button" onclick="window.openExpertiseModal()" class="cursor-pointer text-xs font-mono text-zinc-500 hover:text-white flex items-center gap-1 transition-colors magnetic-btn data-hover-trigger relative z-50">
                             <span data-i18n="proj_view_all">VIEW ALL</span> <i data-lucide="arrow-up-right" class="w-3 h-3"></i>
                         </button>
                     </div>
@@ -1141,6 +1160,56 @@
             </div>
         </div>
     </div>
+
+    <!-- CV SELECTION MODAL -->
+    <div id="cv-modal" class="fixed inset-0 z-[100] hidden">
+        <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" onclick="window.closeCVModal()"></div>
+        <div class="absolute inset-0 flex items-center justify-center p-4 pointer-events-none">
+            <div class="bg-[#121212] border border-zinc-800 rounded-3xl p-8 max-w-sm w-full shadow-2xl pointer-events-auto relative transform transition-all scale-100">
+                <button onclick="window.closeCVModal()" class="magnetic-btn absolute top-4 right-4 p-2 bg-zinc-900 rounded-full hover:bg-accent hover:text-black transition-colors text-white border border-zinc-800 data-hover-trigger">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+                
+                <h3 class="text-xl font-display font-bold text-white mb-6 text-center" data-i18n="cv_modal_title">Select Version</h3>
+                
+                <div class="flex flex-col gap-3">
+                     <!-- Dutch Version -->
+                     <a href="https://drive.google.com/file/d/1b1upJApvnbv6Iye-dXC8Cjx3pcG9uise/view?usp=sharing" target="_blank" class="flex items-center gap-4 p-4 bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 rounded-xl transition-all group hover:scale-[1.02] hover:border-zinc-700">
+                        <div class="w-10 h-10 rounded-full bg-zinc-800 flex items-center justify-center shrink-0 overflow-hidden relative">
+                           <!-- Dutch Flag SVG -->
+                           <svg viewBox="0 0 640 480" class="w-full h-full object-cover">
+                               <path fill="#21468b" d="M0 0h640v480H0z"/>
+                               <path fill="#fff" d="M0 0h640v320H0z"/>
+                               <path fill="#ae1c28" d="M0 0h640v160H0z"/>
+                           </svg>
+                        </div>
+                        <div>
+                             <span class="block font-bold text-white group-hover:text-accent transition-colors" data-i18n="cv_dutch_title">Download Dutch Version</span>
+                             <span class="text-xs text-zinc-500">PDF</span>
+                        </div>
+                     </a>
+
+                     <!-- English Version -->
+                     <a href="https://drive.google.com/file/d/1fYf3Qa561FvxvJuUkraMCjG0li8RWRI_/view?usp=sharing" target="_blank" class="flex items-center gap-4 p-4 bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 rounded-xl transition-all group hover:scale-[1.02] hover:border-zinc-700">
+                         <div class="w-10 h-10 rounded-full bg-zinc-800 flex items-center justify-center shrink-0 overflow-hidden relative">
+                            <!-- UK Flag SVG -->
+                            <svg viewBox="0 0 640 480" class="w-full h-full object-cover">
+                                <path fill="#012169" d="M0 0h640v480H0z"/>
+                                <path fill="#fff" d="M75 0l244 181L562 0h78v62L400 241l240 178v61h-80L320 301 81 480H0v-60l239-178L0 64V0h75z"/>
+                                <path fill="#c8102e" d="M424 281l216 159v40L369 281h55zm-184 20l6 35L54 480H0l240-179zM640 0v3L391 191l2-44L590 0h50zM0 0l239 176h-60L0 42V0z"/>
+                                <path fill="#fff" d="M241 0v480h160V0H241zM0 160v160h640V160H0z"/>
+                                <path fill="#c8102e" d="M0 193v96h640v-96H0zM273 0v480h96V0h-96z"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <span class="block font-bold text-white group-hover:text-accent transition-colors" data-i18n="cv_english_title">Download English Version</span>
+                            <span class="text-xs text-zinc-500">PDF</span>
+                        </div>
+                     </a>
+                </div>
+            </div>
+        </div>
+    </div>
     
     <!-- PROJECTS MODAL (View All) - Unique ID for specific targeting -->
     <div id="projects-modal-unique" class="fixed inset-0 z-[100] hidden">
@@ -1218,109 +1287,115 @@
         </div>
 
         <!-- EXPERTISE MODAL (New) -->
-        <div id="expertise-modal-global" class="fixed inset-0 z-[9999] hidden">
+        <div id="expertise-modal-global" class="fixed inset-0 z-[10000] hidden">
             <!-- Backdrop -->
             <div class="absolute inset-0 bg-[#050505] transition-opacity" onclick="window.closeExpertiseModal()"></div>
             
             <!-- Content -->
             <div class="absolute inset-0 overflow-y-auto">
                 <div class="min-h-full flex items-center justify-center p-4 md:p-8">
-                    <div class="relative w-full max-w-6xl bg-[#121212] border border-zinc-800 rounded-3xl p-6 md:p-10 shadow-2xl">
+                    <div class="relative w-full max-w-4xl bg-[#121212] border border-zinc-800 rounded-3xl p-8 md:p-12 shadow-2xl">
                         <!-- Header -->
-                        <div class="flex justify-between items-center mb-8">
-                            <h2 class="text-3xl font-display font-bold text-white uppercase" data-i18n="skills_modal_title">Full Expertise</h2>
-                            <button onclick="window.closeExpertiseModal()" class="magnetic-btn p-2 bg-zinc-900 rounded-full hover:bg-accent hover:text-black transition-colors text-white border border-zinc-800 data-hover-trigger">
+                        <div class="flex justify-between items-center mb-10">
+                            <h2 class="text-3xl md:text-4xl font-display font-bold text-white uppercase tracking-tight">EXPERTISE</h2>
+                            <button onclick="window.closeExpertiseModal()" class="magnetic-btn p-3 bg-zinc-900 rounded-full hover:bg-accent hover:text-black transition-colors text-white border border-zinc-800 data-hover-trigger">
                                 <i data-lucide="x" class="w-6 h-6"></i>
                             </button>
                         </div>
                         
-                        <!-- Content -->
+                        <!-- Content Body -->
                         <div class="space-y-12">
-                            <!-- Section 1: Digital Skills -->
+                            
+                            <!-- Digitale Vaardigheden -->
                             <div>
-                                <h3 class="text-xl font-bold text-accent mb-4 flex items-center gap-2" data-i18n="full_skills_digital_title">
-                                    1. Digital Skills
-                                </h3>
-                                <p class="text-zinc-400 text-sm mb-4" data-i18n="full_skills_digital_desc">Essential tools and platforms for modern business analysis.</p>
-                                <div class="flex flex-wrap gap-3">
-                                    <span class="px-3 py-2 bg-zinc-900 border border-zinc-700 rounded-lg text-white text-sm">Excel / Power BI</span>
-                                    <span class="px-3 py-2 bg-zinc-900 border border-zinc-700 rounded-lg text-white text-sm">SEO / SEA / Google Ads</span>
-                                    <span class="px-3 py-2 bg-zinc-900 border border-zinc-700 rounded-lg text-white text-sm">Google Analytics</span>
-                                    <span class="px-3 py-2 bg-zinc-900 border border-zinc-700 rounded-lg text-white text-sm">Design Tools (Canva, Figma)</span>
-                                    <span class="px-3 py-2 bg-zinc-900 border border-zinc-700 rounded-lg text-white text-sm">CRM-tools (Salesforce, HubSpot)</span>
-                                    <span class="px-3 py-2 bg-zinc-900 border border-zinc-700 rounded-lg text-white text-sm">Projectmanagement (Asana, Trello)</span>
+                                <h3 class="text-xl font-bold text-accent mb-4 uppercase tracking-wide">Digitale Vaardigheden</h3>
+                                <div class="flex flex-wrap gap-3 text-sm text-zinc-300">
+                                     <span class="px-3 py-2 bg-zinc-900 border border-zinc-800 rounded-lg">Excel / Power BI</span>
+                                     <span class="px-3 py-2 bg-zinc-900 border border-zinc-800 rounded-lg">SEO / SEA / Google Ads</span>
+                                     <span class="px-3 py-2 bg-zinc-900 border border-zinc-800 rounded-lg">Google Analytics</span>
+                                     <span class="px-3 py-2 bg-zinc-900 border border-zinc-800 rounded-lg">Design Tools (Canva, Figma)</span>
+                                     <span class="px-3 py-2 bg-zinc-900 border border-zinc-800 rounded-lg">CRM-tools (Salesforce, HubSpot)</span>
+                                     <span class="px-3 py-2 bg-zinc-900 border border-zinc-800 rounded-lg">Projectmanagement (Asana, Trello)</span>
                                 </div>
                             </div>
 
-                            <div class="h-px bg-zinc-800 w-full"></div>
+                            <div class="h-px w-full bg-zinc-800"></div>
 
-                            <!-- Section 2: Investigative Expertise -->
+                            <!-- ONDERZOEKENDE EXPERTISE -->
                             <div>
-                                <h3 class="text-xl font-bold text-accent mb-6 flex items-center gap-2" data-i18n="full_skills_business_title">
-                                    2. Investigative Expertise: Business Strategies
-                                </h3>
+                                <h3 class="text-xl font-bold text-accent mb-8 uppercase tracking-wide">ONDERZOEKENDE EXPERTISE: BUSINESS STRATEGIES</h3>
                                 
-                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                                    
                                     <!-- Analyses -->
-                                    <div class="bg-zinc-900/50 p-6 rounded-2xl border border-zinc-800">
-                                        <h4 class="text-white font-bold text-lg mb-2">Analyses</h4>
-                                        <p class="text-zinc-400 text-xs mb-4" data-i18n="full_skills_analyses_def">Analyses provide insight into the current situation and the environment in which an organization operates. They can be performed individually or delivered combined.</p>
-                                        <ul class="space-y-1 text-sm text-zinc-300">
-                                            <li class="flex items-center gap-2"><div class="w-1.5 h-1.5 rounded-full bg-accent"></div>Marktanalyse</li>
-                                            <li class="flex items-center gap-2"><div class="w-1.5 h-1.5 rounded-full bg-accent"></div>Concurrentenanalyse</li>
-                                            <li class="flex items-center gap-2"><div class="w-1.5 h-1.5 rounded-full bg-accent"></div>Landenanalyse</li>
-                                            <li class="flex items-center gap-2"><div class="w-1.5 h-1.5 rounded-full bg-accent"></div>Bedrijfstakanalyse</li>
-                                            <li class="flex items-center gap-2"><div class="w-1.5 h-1.5 rounded-full bg-accent"></div>Afnemersanalyse</li>
-                                            <li class="flex items-center gap-2"><div class="w-1.5 h-1.5 rounded-full bg-accent"></div>Doelgroepanalyse</li>
+                                    <div class="bg-zinc-900/30 p-6 rounded-2xl border border-zinc-800/50">
+                                        <h4 class="text-lg font-bold text-white mb-2">Analyses</h4>
+                                        <p class="text-zinc-400 text-sm mb-4 leading-relaxed">
+                                            Analyses bieden inzicht in de huidige situatie en de omgeving waarin een organisatie opereert. Ze kunnen zelfstandig worden uitgevoerd of gecombineerd worden toegepast.
+                                        </p>
+                                        <ul class="space-y-2 text-sm text-zinc-300">
+                                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-accent rounded-full"></span>Marktanalyse</li>
+                                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-accent rounded-full"></span>Concurrentieanalyse</li>
+                                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-accent rounded-full"></span>Landenanalyse</li>
+                                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-accent rounded-full"></span>Bedrijfstakanalyse</li>
+                                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-accent rounded-full"></span>Afzetruimteanalyse</li>
+                                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-accent rounded-full"></span>Doelgroepanalyse</li>
                                         </ul>
                                     </div>
 
                                     <!-- Ontwerpen -->
-                                    <div class="bg-zinc-900/50 p-6 rounded-2xl border border-zinc-800">
-                                        <h4 class="text-white font-bold text-lg mb-2">Ontwerpen</h4>
-                                        <p class="text-zinc-400 text-xs mb-4" data-i18n="full_skills_designs_def">Designs are plans to move from the current to the desired situation, within predetermined frameworks.</p>
-                                        <ul class="space-y-1 text-sm text-zinc-300">
-                                            <li class="flex items-center gap-2"><div class="w-1.5 h-1.5 rounded-full bg-accent"></div>Implementatieplan</li>
-                                            <li class="flex items-center gap-2"><div class="w-1.5 h-1.5 rounded-full bg-accent"></div>Marketingcommunicatieplan</li>
-                                            <li class="flex items-center gap-2"><div class="w-1.5 h-1.5 rounded-full bg-accent"></div>Marketingplan</li>
-                                            <li class="flex items-center gap-2"><div class="w-1.5 h-1.5 rounded-full bg-accent"></div>Exportplan</li>
-                                            <li class="flex items-center gap-2"><div class="w-1.5 h-1.5 rounded-full bg-accent"></div>Marktbewerkingsplan</li>
-                                            <li class="flex items-center gap-2"><div class="w-1.5 h-1.5 rounded-full bg-accent"></div>Verkoopplan</li>
+                                    <div class="bg-zinc-900/30 p-6 rounded-2xl border border-zinc-800/50">
+                                        <h4 class="text-lg font-bold text-white mb-2">Ontwerpen</h4>
+                                        <p class="text-zinc-400 text-sm mb-4 leading-relaxed">
+                                            Ontwerpen zijn plannen om van de huidige naar de gewenste situatie te bewegen. Ze dienen als kader.
+                                        </p>
+                                        <ul class="space-y-2 text-sm text-zinc-300">
+                                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-accent rounded-full"></span>Implementatieplan</li>
+                                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-accent rounded-full"></span>Marketingcommunicatieplan</li>
+                                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-accent rounded-full"></span>Marketingplan</li>
+                                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-accent rounded-full"></span>Exportplan</li>
+                                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-accent rounded-full"></span>Marktverkenningsplan</li>
+                                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-accent rounded-full"></span>Verkoopplan</li>
                                         </ul>
                                     </div>
 
                                     <!-- Adviezen -->
-                                    <div class="bg-zinc-900/50 p-6 rounded-2xl border border-zinc-800">
-                                        <h4 class="text-white font-bold text-lg mb-2">Adviezen</h4>
-                                        <p class="text-zinc-400 text-xs mb-4" data-i18n="full_skills_advice_def">Advice consists of substantiated recommendations at a strategic or tactical level, aimed at achieving the desired situation.</p>
-                                        <ul class="space-y-1 text-sm text-zinc-300">
-                                            <li class="flex items-center gap-2"><div class="w-1.5 h-1.5 rounded-full bg-accent"></div>Advies voor een positioneringsstrategie</li>
-                                            <li class="flex items-center gap-2"><div class="w-1.5 h-1.5 rounded-full bg-accent"></div>Advies voor een marktbewerkingsstrategie</li>
-                                            <li class="flex items-center gap-2"><div class="w-1.5 h-1.5 rounded-full bg-accent"></div>Advies voor een loyaliteitsstrategie of -programma</li>
-                                            <li class="flex items-center gap-2"><div class="w-1.5 h-1.5 rounded-full bg-accent"></div>Advies voor een groeistrategie</li>
-                                            <li class="flex items-center gap-2"><div class="w-1.5 h-1.5 rounded-full bg-accent"></div>Advies voor een export- of entreestrategie</li>
+                                    <div class="bg-zinc-900/30 p-6 rounded-2xl border border-zinc-800/50">
+                                        <h4 class="text-lg font-bold text-white mb-2">Adviezen</h4>
+                                        <p class="text-zinc-400 text-sm mb-4 leading-relaxed">
+                                            Adviezen zijn onderbouwde aanbevelingen op strategisch of tactisch niveau, gericht op het bestendigen en de groei van de organisatie.
+                                        </p>
+                                        <ul class="space-y-2 text-sm text-zinc-300">
+                                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-accent rounded-full"></span>Advies voor een positioneringsstrategie</li>
+                                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-accent rounded-full"></span>Advies voor een marktbewerkingsstrategie</li>
+                                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-accent rounded-full"></span>Advies voor een loyaliteitsstrategie of -programma</li>
+                                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-accent rounded-full"></span>Advies voor een groeistrategie</li>
+                                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-accent rounded-full"></span>Advies voor een export- of entreestrategie</li>
                                         </ul>
                                     </div>
 
-                                    <!-- Modellen -->
-                                    <div class="bg-zinc-900/50 p-6 rounded-2xl border border-zinc-800">
-                                        <h4 class="text-white font-bold text-lg mb-2">Theorieën en Modellen</h4>
-                                        <p class="text-zinc-400 text-xs mb-4" data-i18n="full_skills_models_def">When performing analyses, designs, and advice, various proven theories and models are used to substantiate choices and create value.</p>
-                                        <div class="flex flex-wrap gap-2">
-                                            <span class="px-2 py-1 text-xs text-white border border-zinc-700 rounded bg-zinc-800">Design Thinking</span>
-                                            <span class="px-2 py-1 text-xs text-white border border-zinc-700 rounded bg-zinc-800">Business Model Canvas (incl. Triple Layered)</span>
-                                            <span class="px-2 py-1 text-xs text-white border border-zinc-700 rounded bg-zinc-800">Value Proposition Canvas</span>
-                                            <span class="px-2 py-1 text-xs text-white border border-zinc-700 rounded bg-zinc-800">Meervoudige Waardecreatie</span>
-                                            <span class="px-2 py-1 text-xs text-white border border-zinc-700 rounded bg-zinc-800">SWOT-analyse</span>
-                                            <span class="px-2 py-1 text-xs text-white border border-zinc-700 rounded bg-zinc-800">Confrontation Matrix</span>
-                                            <span class="px-2 py-1 text-xs text-white border border-zinc-700 rounded bg-zinc-800">Prototyping</span>
-                                            <span class="px-2 py-1 text-xs text-white border border-zinc-700 rounded bg-zinc-800">Customer Journey</span>
-                                            <span class="px-2 py-1 text-xs text-white border border-zinc-700 rounded bg-zinc-800">Business Management</span>
-                                            <span class="px-2 py-1 text-xs text-white border border-zinc-700 rounded bg-zinc-800">ESG</span>
+                                    <!-- Theorieën en Modellen -->
+                                    <div class="bg-zinc-900/30 p-6 rounded-2xl border border-zinc-800/50">
+                                        <h4 class="text-lg font-bold text-white mb-2">Theorieën en Modellen</h4>
+                                        <p class="text-zinc-400 text-sm mb-4 leading-relaxed">
+                                            Theorieën en modellen worden toegepast bij analyses en adviezen, om een organisatie te kunnen structureren en richting te geven.
+                                        </p>
+                                        <div class="flex flex-wrap gap-2 text-sm text-zinc-300">
+                                             <span class="px-2 py-1 bg-zinc-800 rounded border border-zinc-700">Design Thinking</span>
+                                             <span class="px-2 py-1 bg-zinc-800 rounded border border-zinc-700">Business Model Canvas (incl. Triple Layered)</span>
+                                             <span class="px-2 py-1 bg-zinc-800 rounded border border-zinc-700">Value Proposition Model</span>
+                                             <span class="px-2 py-1 bg-zinc-800 rounded border border-zinc-700">Meervoudige Waardecreatie</span>
+                                             <span class="px-2 py-1 bg-zinc-800 rounded border border-zinc-700">SWOT-analyse</span>
+                                             <span class="px-2 py-1 bg-zinc-800 rounded border border-zinc-700">Customer Journey</span>
+                                             <span class="px-2 py-1 bg-zinc-800 rounded border border-zinc-700">Organizational Mapping</span>
+                                             <span class="px-2 py-1 bg-zinc-800 rounded border border-zinc-700">Action Learning</span>
+                                             <span class="px-2 py-1 bg-zinc-800 rounded border border-zinc-700">Business Management</span>
+                                             <span class="px-2 py-1 bg-zinc-800 rounded border border-zinc-700">ESG</span>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+
                         </div>
                     </div>
                 </div>
@@ -1645,6 +1720,7 @@
         const translations = {
             en: {
                 nav_about: "About",
+                nav_expertise: "Expertise",
                 nav_edu: "Education",
                 nav_exp: "Experience",
                 nav_proj: "Projects",
@@ -1670,14 +1746,6 @@
                 skills_cat_digital: "Digital Skills",
                 skills_cat_1: "Strategic Analysis",
                 skills_cat_theories: "Theories & Models",
-                skills_modal_title: "Full Expertise",
-                full_skills_digital_title: "1. Digital Skills",
-                full_skills_digital_desc: "Essential tools and platforms for modern business analysis.",
-                full_skills_business_title: "2. Investigative Expertise: Business Strategies",
-                full_skills_analyses_def: "Analyses provide insight into the current situation and the environment in which an organization operates. They can be performed individually or delivered combined.",
-                full_skills_designs_def: "Designs are plans to move from the current to the desired situation, within predetermined frameworks.",
-                full_skills_advice_def: "Advice consists of substantiated recommendations at a strategic or tactical level, aimed at achieving the desired situation.",
-                full_skills_models_def: "When performing analyses, designs, and advice, various proven theories and models are used to substantiate choices and create value.",
                 
                 edu_title: "Education",
                 edu_1_school: "University of Twente",
@@ -1800,10 +1868,14 @@
                 contact_modal_title: "Choose Email Client",
                 btn_gmail: "Open Gmail",
                 btn_outlook: "Open Outlook",
-                btn_default_mail: "Default Mail App"
+                btn_default_mail: "Default Mail App",
+                cv_modal_title: "Select Version",
+                cv_dutch_title: "Download Dutch Version",
+                cv_english_title: "Download English Version"
             },
             nl: {
                 nav_about: "Over mij",
+                nav_expertise: "Expertise",
                 nav_edu: "Opleiding",
                 nav_exp: "Ervaring",
                 nav_proj: "Projecten",
@@ -1829,14 +1901,6 @@
                 skills_cat_digital: "Digitale Vaardigheden",
                 skills_cat_1: "Strategische Analyse",
                 skills_cat_theories: "Theorieën & Modellen",
-                skills_modal_title: "Expertise",
-                full_skills_digital_title: "1. Digitale Vaardigheden",
-                full_skills_digital_desc: "Essentiële tools en platforms voor moderne bedrijfsanalyse.",
-                full_skills_business_title: "2. Onderzoeksexpertise: Bedrijfsstrategieën",
-                full_skills_analyses_def: "Analyses geven inzicht in de huidige situatie en de omgeving waarin een organisatie opereert. Ze kunnen afzonderlijk worden uitgevoerd of gecombineerd worden opgeleverd.",
-                full_skills_designs_def: "Ontwerpen zijn plannen om van de huidige naar de gewenste situatie te bewegen, binnen vooraf bepaalde kaders.",
-                full_skills_advice_def: "Advies bestaat uit onderbouwde aanbevelingen op strategisch of tactisch niveau, gericht op het bereiken van de gewenste situatie.",
-                full_skills_models_def: "Bij het uitvoeren van analyses, ontwerpen en adviezen worden diverse bewezen theorieën en modellen gebruikt om keuzes te onderbouwen en waarde te creëren.",
                 
                 edu_title: "Opleiding",
                 edu_1_school: "Universiteit Twente",
@@ -1957,7 +2021,10 @@
                 contact_modal_title: "Kies E-mail Programma",
                 btn_gmail: "Open Gmail",
                 btn_outlook: "Open Outlook",
-                btn_default_mail: "Standaard Mail App"
+                btn_default_mail: "Standaard Mail App",
+                cv_modal_title: "Kies Versie",
+                cv_dutch_title: "Download Nederlandse Versie",
+                cv_english_title: "Download Engelse Versie"
             }
         };
 
