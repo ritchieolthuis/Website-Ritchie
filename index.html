@@ -69,77 +69,6 @@
       }
     </script>
     
-    <!-- Global Logic for Modals - Defined Early to ensure availability -->
-    <script>
-        // Projects Modal Logic
-        window.openProjectsModal = function() {
-             const modal = document.getElementById('projects-modal-unique');
-             if(modal) {
-                 modal.classList.remove('hidden');
-                 document.body.style.overflow = 'hidden';
-             }
-        };
-
-        window.closeProjectsModal = function() {
-             const modal = document.getElementById('projects-modal-unique');
-             if(modal) {
-                 modal.classList.add('hidden');
-                 document.body.style.overflow = 'auto';
-             }
-        };
-
-        // Contact Modal Logic
-        window.openContactModal = function() {
-             const modal = document.getElementById('contact-modal');
-             if(modal) {
-                 modal.classList.remove('hidden');
-                 document.body.style.overflow = 'hidden';
-             }
-        };
-
-        window.closeContactModal = function() {
-             const modal = document.getElementById('contact-modal');
-             if(modal) {
-                 modal.classList.add('hidden');
-                 document.body.style.overflow = 'auto';
-             }
-        };
-
-        // CV Modal Logic
-        window.openCVModal = function() {
-             const modal = document.getElementById('cv-modal');
-             if(modal) {
-                 modal.classList.remove('hidden');
-                 document.body.style.overflow = 'hidden';
-             }
-        };
-
-        window.closeCVModal = function() {
-             const modal = document.getElementById('cv-modal');
-             if(modal) {
-                 modal.classList.add('hidden');
-                 document.body.style.overflow = 'auto';
-             }
-        };
-
-        // Expertise Modal Logic
-        window.openExpertiseModal = function() {
-             const modal = document.getElementById('expertise-modal-global');
-             if(modal) {
-                 modal.classList.remove('hidden');
-                 document.body.style.overflow = 'hidden';
-             }
-        };
-
-        window.closeExpertiseModal = function() {
-             const modal = document.getElementById('expertise-modal-global');
-             if(modal) {
-                 modal.classList.add('hidden');
-                 document.body.style.overflow = 'auto';
-             }
-        };
-    </script>
-    
     <!-- Custom Styles -->
     <style>
       body {
@@ -578,9 +507,9 @@
                                 <h3 class="text-xl font-display font-bold text-accent uppercase" data-i18n="skills_title">Expertise</h3>
                         </div>
                         
-                        <!-- VIEW ALL BUTTON - EXPERTISE - Triggering Modal now preferred -->
-                        <button type="button" onclick="window.openExpertiseModal()" class="cursor-pointer text-xs font-mono text-zinc-500 hover:text-white flex items-center gap-1 transition-colors magnetic-btn data-hover-trigger relative z-50">
-                            <span data-i18n="proj_view_all">VIEW ALL</span> <i data-lucide="arrow-up-right" class="w-3 h-3"></i>
+                        <!-- VIEW ALL BUTTON - EXPERTISE - FIXED with event delegation support -->
+                        <button type="button" id="view-all-expertise-btn" class="cursor-pointer text-xs font-mono font-bold text-accent hover:text-white flex items-center gap-1 transition-colors relative z-[60] p-2 hover:bg-zinc-800 rounded">
+                            <span>VIEW ALL</span> <i data-lucide="arrow-up-right" class="w-3 h-3"></i>
                         </button>
                     </div>
 
@@ -1056,23 +985,25 @@
                     </div>
                 </a>
 
-                <!-- Rec 3 -->
+                <!-- Rec 3: Antoinette Alma -->
                 <div class="bento-card p-6 flex flex-col gap-4 group h-full bg-[#151515] data-hover-trigger" data-tilt>
                     <div class="spotlight-overlay"></div>
                     <div class="flex items-center gap-3">
                          <div class="w-12 h-12 rounded-full bg-zinc-800 border border-zinc-700 overflow-hidden flex-shrink-0">
-                            <img src="https://ui-avatars.com/api/?name=M+S&background=random" alt="Profile" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all">
+                            <img src="https://media.licdn.com/dms/image/v2/D4E03AQHIOvSk7dG1aQ/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1718250141902?e=1766620800&v=beta&t=cyhI1rttruM7wS7XhPaT6C61QvpkUbH9UH9HSOWgG_E" alt="Antoinette Alma" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all">
                          </div>
                          <div>
-                             <h4 class="text-white font-bold text-sm group-hover:text-accent transition-colors" data-i18n="rec_3_name">LinkedIn Connection</h4>
-                             <p class="text-zinc-500 text-xs" data-i18n="rec_3_role">Role, Company</p>
+                             <h4 class="text-white font-bold text-sm group-hover:text-accent transition-colors" data-i18n="rec_3_name">Antoinette Alma</h4>
+                             <p class="text-zinc-500 text-xs" data-i18n="rec_3_role">Speaker, Trainer & Lecturer</p>
                          </div>
                     </div>
                     <div class="relative">
                          <i data-lucide="quote" class="absolute -top-1 -left-1 w-4 h-4 text-zinc-700 fill-zinc-700 opacity-50 transform -scale-x-100"></i>
-                        <p class="text-zinc-400 text-sm leading-relaxed pl-4 italic" data-i18n="rec_3_text">
-                            "Copy and paste the recommendation text from LinkedIn here..."
-                        </p>
+                        <div class="overflow-y-auto max-h-[160px] custom-scrollbar pr-2">
+                             <p class="text-zinc-400 text-sm leading-relaxed pl-4 italic" data-i18n="rec_3_text">
+                                "I know Ritchie as a smart and inquisitive student. He asks sharp questions that stimulate further thinking in others. He actively seeks depth and quickly bridges the gap between theory and practice.<br><br>Collaboration is very important to him. He focuses not just on the result, but on the process of achieving it together. In a project group with varying levels of commitment, he remained calm and clear-headed. He addressed the issue openly, redistributed tasks, and checked what each member needed to contribute. His approach revitalized the team and ensured a fairer distribution of work.<br><br>Ritchie communicates openly and clearly. He listens well, summarizes effectively, and ensures agreements are concrete. This makes him a pleasant and reliable partner to work with."
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1287,9 +1218,9 @@
         </div>
 
         <!-- EXPERTISE MODAL (New) -->
-        <div id="expertise-modal-global" class="fixed inset-0 z-[10000] hidden">
+        <div id="expertise-overlay" class="fixed inset-0 z-[10001] hidden">
             <!-- Backdrop -->
-            <div class="absolute inset-0 bg-[#050505] transition-opacity" onclick="window.closeExpertiseModal()"></div>
+            <div class="absolute inset-0 bg-[#050505]" onclick="closeExpertiseOverlay()"></div>
             
             <!-- Content -->
             <div class="absolute inset-0 overflow-y-auto">
@@ -1298,7 +1229,7 @@
                         <!-- Header -->
                         <div class="flex justify-between items-center mb-10">
                             <h2 class="text-3xl md:text-4xl font-display font-bold text-white uppercase tracking-tight">EXPERTISE</h2>
-                            <button onclick="window.closeExpertiseModal()" class="magnetic-btn p-3 bg-zinc-900 rounded-full hover:bg-accent hover:text-black transition-colors text-white border border-zinc-800 data-hover-trigger">
+                            <button onclick="closeExpertiseOverlay()" class="magnetic-btn p-3 bg-zinc-900 rounded-full hover:bg-accent hover:text-black transition-colors text-white border border-zinc-800 data-hover-trigger">
                                 <i data-lucide="x" class="w-6 h-6"></i>
                             </button>
                         </div>
@@ -1409,8 +1340,93 @@
 
     <!-- Scripts for Logic -->
     <script>
-        // --- 0. Intro Animation ---
+        // --- 0. Define Modal Functions Globally ---
+        // Moved to top and made robust
+        window.openExpertiseOverlay = function() {
+             console.log('Opening Expertise Overlay...');
+             const overlay = document.getElementById('expertise-overlay');
+             if(overlay) {
+                 overlay.classList.remove('hidden');
+                 // FORCE display and z-index to override any potential CSS conflicts
+                 overlay.style.display = 'block'; 
+                 overlay.style.zIndex = '10001';
+                 document.body.style.overflow = 'hidden';
+             } else {
+                 console.error('Expertise overlay element not found!');
+             }
+        };
+        window.closeExpertiseOverlay = function() {
+             const overlay = document.getElementById('expertise-overlay');
+             if(overlay) {
+                 overlay.classList.add('hidden');
+                 overlay.style.display = ''; // Reset inline display
+                 document.body.style.overflow = 'auto';
+             }
+        };
+
+        window.openProjectsModal = function() {
+             const modal = document.getElementById('projects-modal-unique');
+             if(modal) {
+                 modal.classList.remove('hidden');
+                 document.body.style.overflow = 'hidden';
+             }
+        };
+        window.closeProjectsModal = function() {
+             const modal = document.getElementById('projects-modal-unique');
+             if(modal) {
+                 modal.classList.add('hidden');
+                 document.body.style.overflow = 'auto';
+             }
+        };
+
+        window.openContactModal = function() {
+             const modal = document.getElementById('contact-modal');
+             if(modal) {
+                 modal.classList.remove('hidden');
+                 document.body.style.overflow = 'hidden';
+             }
+        };
+        window.closeContactModal = function() {
+             const modal = document.getElementById('contact-modal');
+             if(modal) {
+                 modal.classList.add('hidden');
+                 document.body.style.overflow = 'auto';
+             }
+        };
+
+        window.openCVModal = function() {
+             const modal = document.getElementById('cv-modal');
+             if(modal) {
+                 modal.classList.remove('hidden');
+                 document.body.style.overflow = 'hidden';
+             }
+        };
+        window.closeCVModal = function() {
+             const modal = document.getElementById('cv-modal');
+             if(modal) {
+                 modal.classList.add('hidden');
+                 document.body.style.overflow = 'auto';
+             }
+        };
+
+        // Event Delegation for Expertise Button
+        document.addEventListener('click', function(e) {
+            // Check if the clicked element is the button or inside it
+            const trigger = e.target.closest('#view-all-expertise-btn');
+            if (trigger) {
+                e.preventDefault();
+                e.stopPropagation();
+                console.log('Delegated click detected on Expertise Button');
+                window.openExpertiseOverlay();
+            }
+        });
+
+        // --- 1. DOM Content Loaded Logic ---
         document.addEventListener("DOMContentLoaded", () => {
+            
+            // NOTE: Removed previous direct listener to avoid conflicts with delegation
+
+            // Intro Animation Logic
             const greetings = ["Hallo", "Hello", "Bonjour", "Hola", "Ciao", "Guten Tag"];
             const introText = document.getElementById("intro-greeting");
             const introScreen = document.getElementById("intro-screen");
@@ -1420,9 +1436,6 @@
             // Clear hero title immediately so it reveals empty
             const heroTitleEl = document.getElementById('typewriter-title');
             if (heroTitleEl) heroTitleEl.innerHTML = '';
-            
-            // Note: We do NOT clear 'about-typewriter' here because the scroll observer
-            // handles capturing the text before clearing it.
 
             document.body.style.overflow = "hidden";
 
@@ -1457,7 +1470,7 @@
             }, 300); // Slightly faster cycle for better pacing
         });
 
-        // --- 1. Custom Cursor & Click Ripple Logic ---
+        // --- 2. Custom Cursor & Click Ripple Logic ---
         const cursor = document.getElementById('custom-cursor');
         
         document.addEventListener('mousemove', (e) => {
@@ -1484,7 +1497,7 @@
             el.addEventListener('mouseleave', () => cursor.classList.remove('hovered'));
         });
 
-        // --- 2. Magnetic Buttons Logic ---
+        // --- 3. Magnetic Buttons Logic ---
         document.querySelectorAll('.magnetic-btn').forEach(btn => {
             btn.addEventListener('mousemove', (e) => {
                 const rect = btn.getBoundingClientRect();
@@ -1498,8 +1511,7 @@
             });
         });
 
-        // --- 3. 3D Tilt Effect for Bento Cards ---
-        // Note: Profile photo card explicitly does NOT have data-tilt attribute now
+        // --- 4. 3D Tilt Effect for Bento Cards ---
         document.querySelectorAll('[data-tilt]').forEach(card => {
             card.addEventListener('mousemove', (e) => {
                 const rect = card.getBoundingClientRect();
@@ -1553,9 +1565,7 @@
             });
         }
         
-        // --- 8. Scroll Reveal & Typewriter Logic ---
-        
-        // Function to type simple text preserving HTML tags (for About)
+        // --- 7. Scroll Reveal & Typewriter Logic ---
         function typeWriterHTML(element, html, speed) {
             element.classList.add('typewriter-cursor');
             element.innerHTML = '';
@@ -1584,24 +1594,21 @@
             type();
         }
 
-        // Function to type Contact Header specific structure
         function typeWriterContact(element) {
             const key = element.getAttribute('data-i18n');
             let htmlContent = element.innerHTML;
             
-            // Use translation if available and key exists
             if (key && translations && translations[currentLang] && translations[currentLang][key]) {
                 htmlContent = translations[currentLang][key];
             }
             
-            // Use a temp container to parse safely without regex fragility
             const tempDiv = document.createElement('div');
             tempDiv.innerHTML = htmlContent;
             const span = tempDiv.querySelector('span');
             
             if (span && tempDiv.childNodes.length > 0) {
-                 const part1 = tempDiv.childNodes[0].textContent; // e.g. "Laten we "
-                 const part2 = span.textContent; // e.g. "Samenwerken"
+                 const part1 = tempDiv.childNodes[0].textContent; 
+                 const part2 = span.textContent; 
                  const spanClass = span.className;
                  
                  element.classList.add('typewriter-cursor');
@@ -1632,7 +1639,6 @@
                 }
                 typePart1();
             } else {
-                // Fallback: just set HTML if structure is different
                 element.innerHTML = htmlContent;
                 element.classList.remove('typewriter-cursor');
             }
@@ -1646,26 +1652,17 @@
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    
-                    // Trigger About Typewriter - Capture text BEFORE reveal
                     const aboutTypewriter = entry.target.querySelector('#about-typewriter');
                     if (aboutTypewriter && !aboutTypewriter.dataset.typed) {
                         aboutTypewriter.dataset.typed = "true";
                         const originalHTML = aboutTypewriter.innerHTML.trim();
-                        // Clear immediately before revealing parent
                         aboutTypewriter.innerHTML = '';
-                        
-                        // Reveal parent
                         entry.target.classList.add('reveal-visible');
-
-                        // Adjusted speed: previously 5, now 4 (approx 0.85 factor faster/tuned)
                         typeWriterHTML(aboutTypewriter, originalHTML, 4);
                     } else {
-                        // Normal reveal for other elements
                         entry.target.classList.add('reveal-visible');
                     }
                     
-                    // Trigger Contact Typewriter
                     const contactTypewriter = entry.target.querySelector('#contact-typewriter');
                     if (contactTypewriter && !contactTypewriter.dataset.typed) {
                          contactTypewriter.dataset.typed = "true";
@@ -1679,8 +1676,7 @@
 
         document.querySelectorAll('.reveal-on-scroll').forEach(el => observer.observe(el));
 
-        // --- 9. Typewriter Effect (Hero) ---
-        // Reusable Generic Typewriter function
+        // --- 8. Typewriter Effect (Hero) ---
         function typeWriterGeneric(elementId, text, speed = 50) {
             const element = document.getElementById(elementId);
             if (!element) return;
@@ -1701,21 +1697,16 @@
             type();
         }
 
-        // Helper to start hero typewriter with correct language text
         function startHeroTypewriter() {
             const el = document.getElementById('typewriter-title');
             if(!el) return;
-            
-            // Determine text based on current language
             const text = (typeof translations !== 'undefined' && translations[currentLang]) 
                          ? translations[currentLang]['hero_title'] 
                          : "Business Strategy & Innovation Enthusiast";
-            
-            // Adjusted speed: previously 50, now 40 (approx 0.85 factor)
             typeWriterGeneric('typewriter-title', text, 40);
         }
 
-        // --- 10. Language Logic ---
+        // --- 9. Language Logic ---
         let currentLang = 'en';
         const translations = {
             en: {
@@ -1777,9 +1768,9 @@
                 rec_title: "Recommendations",
                 rec_mark_text: "\"As Ritchie's teacher, I got to know him as an independent and result-oriented student who fits well in the group. As a young professional, he will be an asset to many companies.\"",
                 rec_joel_text: "\"During the classes and workshops I taught him in the Commercial Economics program at Windesheim University of Applied Sciences, Ritchie was an involved student who continues to think critically and asks the right questions to get the most out of his projects for his clients in the field.\"",
-                rec_3_name: "LinkedIn Connection",
-                rec_3_role: "Role, Company",
-                rec_3_text: "\"Copy and paste the recommendation text from LinkedIn here...\"",
+                rec_3_name: "Antoinette Alma",
+                rec_3_role: "Speaker, Trainer & Lecturer",
+                rec_3_text: "\"I know Ritchie as a smart and inquisitive student. He asks sharp questions that stimulate further thinking in others. He actively seeks depth and quickly bridges the gap between theory and practice.<br><br>Collaboration is very important to him. He focuses not just on the result, but on the process of achieving it together. In a project group with varying levels of commitment, he remained calm and clear-headed. He addressed the issue openly, redistributed tasks, and checked what each member needed to contribute. His approach revitalized the team and ensured a fairer distribution of work.<br><br>Ritchie communicates openly and clearly. He listens well, summarizes effectively, and ensures agreements are concrete. This makes him a pleasant and reliable partner to work with.\"",
                 proj_1_title: "Vitens, Grootzakelijke markt: Market Needs, Positioning & Organisational Direction",
                 proj_1_title_short: "Vitens: Market Strategy",
                 proj_1_desc: `<div class="relative pl-6 border-l-2 border-zinc-800 ml-2">
@@ -1860,159 +1851,6 @@
                                 </div>
                               </div>`,
                 proj_4_desc_short: "We developed a focused whitepaper for Zonneplan to achieve their 2023 target of 3,000 EV charger sales.",
-                contact_title: "Let's work <span class=\"text-zinc-600 transition-colors group-hover:text-zinc-400\">Together</span>",
-                contact_desc: "Let’s connect and see how we can team up on new projects, strategic partnerships and innovation-oriented opportunities.",
-                btn_email: "Send Email",
-                btn_call: "Schedule Call",
-                modal_title: "All Projects",
-                contact_modal_title: "Choose Email Client",
-                btn_gmail: "Open Gmail",
-                btn_outlook: "Open Outlook",
-                btn_default_mail: "Default Mail App",
-                cv_modal_title: "Select Version",
-                cv_dutch_title: "Download Dutch Version",
-                cv_english_title: "Download English Version"
-            },
-            nl: {
-                nav_about: "Over mij",
-                nav_expertise: "Expertise",
-                nav_edu: "Opleiding",
-                nav_exp: "Ervaring",
-                nav_proj: "Projecten",
-                nav_contact: "Contact",
-                hero_badge: "Beschikbaar voor werk",
-                hero_title: "Business Strategy & Innovation Enthousiast",
-                hero_desc: "Ik help uw bedrijf om zakelijke uitdagingen om te zetten in datagedreven, mensgerichte en op duurzaamheid gerichte kansen.",
-                btn_view_work: "Bekijk Werk",
-                btn_download_cv: "Download CV",
-                based_in: "GEVESTIGD IN",
-                stat_edu: "Opleiding",
-                stat_edu_val: "Commerciële Economie (Marketing)",
-                stat_degree: "Graad",
-                stat_degree_val: "Bachelor",
-                stat_grade: "Gem. Cijfer",
-                ticker_1: "Strategische Innovatie",
-                ticker_2: "Design Thinking",
-                ticker_3: "Duurzaamheid",
-                ticker_4: "Business Modeling",
-                about_title: "Over mij",
-                about_text: "Ik ben een ambitieuze vierdejaars student Commerciële Economie aan Hogeschool Windesheim, 24 jaar oud, met een passie voor strategische innovatie. Tijdens mijn studie heb ik een Pre-master Business Administration en een minor Financiële Besluitvorming afgerond. Binnen mijn opleiding heb ik mij verder gespecialiseerd in Design Thinking en duurzame verdienmodellen.<br><br>Ik ben vooral geïnteresseerd in het maken van datagedreven beslissingen en het valideren van inzichten bij klanten om behoeften bloot te leggen die intern wellicht niet zichtbaar zijn. Begrijpen wat de klant écht wil is vandaag de dag steeds belangrijker, omdat het ervoor zorgt dat strategieën en innovaties relevant en effectief zijn en economische, ecologische en sociale waarde creëren.",
-                skills_title: "Expertise",
-                skills_cat_digital: "Digitale Vaardigheden",
-                skills_cat_1: "Strategische Analyse",
-                skills_cat_theories: "Theorieën & Modellen",
-                
-                edu_title: "Opleiding",
-                edu_1_school: "Universiteit Twente",
-                edu_1_desc: "Focus op Business Management en academische onderzoeksmethodologieën.",
-                edu_1_grade_label: "Gemiddelde:",
-                edu_2_school: "Windesheim",
-                edu_2_desc: "Ontwikkelen van vaardigheden in innovatief onderzoek, strategisch advies, design thinking en commercieel bewustzijn. <br> Minor: Financiële Besluitvorming",
-                edu_2_degree: "Bachelor, Commerciële Economie (Marketing)",
-                edu_3_school: "Windesheim",
-                edu_4_school: "ROC van Twente",
-                edu_4_degree: "Assistent Manager Internationale Handel",
-                edu_4_desc: "Opleiding versneld afgerond.",
-                exp_title: "Ervaring",
-                exp_1_role: "Research & Development (R&D)",
-                exp_1_desc: "Strategisch onderzoek naar nieuwe marktkansen en duurzame verdienmodellen.",
-                exp_2_role: "Stagiair Internationale Handel",
-                exp_2_desc: "Gericht op het opbouwen van relaties met architecten en aannemers. Beursstand bemand in Ahoy (Rotterdam) en gepersonaliseerde B2B-mailings beheerd voor leadgeneratie.",
-                exp_3_role: "Stagiair Internationale Handel",
-                exp_3_desc: "Internationale ervaring opgedaan op diverse afdelingen: Real Estate (via Molenbeek Invest), Onderhoud, Front Office en keukenwerkzaamheden bij Brass Boer.",
-                exp_other_title: "Eerdere Rollen",
-                role_temp: "Uitzendkracht",
-                role_landscaper: "Hovenier",
-                role_retail: "Winkelmedewerker",
-                proj_title: "Geselecteerde Projecten",
-                proj_view_all: "BEKIJK ALLES",
-                partners_title: "Samenwerkinspartners",
-                rec_title: "Aanbevelingen",
-                rec_mark_text: "\"Als docent heb ik Ritchie leren kennen als een zelfstandige en resultaatgerichte student die goed in de groep ligt. Als young professional zal hij een aanwinst zijn voor menig bedrijf.\"",
-                rec_joel_text: "\"Tijdens de lessen en workshops die ik hem gaf bij de opleiding Commerciële Economie aan Hogeschool Windesheim, was Ritchie een betrokken student die kritisch doorvraagt om het onderste uit de kan te halen voor zijn projecten voor opdrachtgevers in het werkveld.\"",
-                rec_3_name: "LinkedIn Connectie",
-                rec_3_role: "Functie, Bedrijf",
-                rec_3_text: "\"Kopieer en plak de aanbevelingstekst van LinkedIn hier...\"",
-                proj_1_title: "Vitens, Grootzakelijke markt: Market Needs, Positioning & Organisational Direction",
-                proj_1_title_short: "Vitens: Marktstrategie",
-                proj_1_desc: `<div class="relative pl-6 border-l-2 border-zinc-800 ml-2">
-                                <div class="mb-6 last:mb-0 relative">
-                                    <div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div>
-                                    <h4 class="text-accent font-mono text-xs uppercase mb-1">Challenge & Analysis</h4>
-                                    <p class="text-zinc-400 text-sm leading-relaxed">Diepgaand marktonderzoek uitgevoerd om de nieuwe 'Water-as-a-Service' divisie te positioneren. Concurrenten en klantbehoeften geanalyseerd om de scope van het portfolio te bepalen.</p>
-                                </div>
-                                <div class="mb-6 last:mb-0 relative">
-                                    <div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div>
-                                    <h4 class="text-accent font-mono text-xs uppercase mb-1">Strategic Insight</h4>
-                                    <p class="text-zinc-400 text-sm leading-relaxed">Kans geïdentificeerd om Vitens te onderscheiden door circulaire wateroplossingen en water stewardship, als brug tussen huidige diensten en een commerciële entiteit.</p>
-                                </div>
-                                <div class="mb-6 last:mb-0 relative">
-                                    <div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div>
-                                    <h4 class="text-accent font-mono text-xs uppercase mb-1">Advice & Outcome</h4>
-                                    <p class="text-zinc-400 text-sm leading-relaxed">Strategische roadmap opgeleverd voor naamgeving, branding en organisatievorm, om een veerkrachtige en duurzame toekomst voor het grootzakelijke segment te creëren.</p>
-                                </div>
-                              </div>`,
-                proj_1_desc_short: "Voor Vitens heb ik een diepgaand marktonderzoek uitgevoerd om te bepalen hoe een nieuwe 'Water-as-a-Service' divisie gepositioneerd, gestructureerd en in de markt gezet moet worden.",
-                proj_2_title: "Perron038, Factory NEXT: Strategic Commercial Positioning",
-                proj_2_title_short: "Perron038: Innovatie Hub",
-                proj_2_desc: `<div class="relative pl-6 border-l-2 border-zinc-800 ml-2">
-                                <div class="mb-6 last:mb-0 relative">
-                                    <div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div>
-                                    <h4 class="text-accent font-mono text-xs uppercase mb-1">Challenge & Analysis</h4>
-                                    <p class="text-zinc-400 text-sm leading-relaxed">Marktpotentieel bepaald voor 'Factory NEXT' als gedeelde innovatiefaciliteit. Concurrerende initiatieven in het Nederlandse maakindustrie-landschap geanalyseerd.</p>
-                                </div>
-                                <div class="mb-6 last:mb-0 relative">
-                                    <div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div>
-                                    <h4 class="text-accent font-mono text-xs uppercase mb-1">Strategic Insight</h4>
-                                    <p class="text-zinc-400 text-sm leading-relaxed">Segmenten geïdentificeerd voor 'test-before-invest' model. Design Thinking en klantvalidatie gebruikt om labs en technologie af te stemmen op marktbehoeften.</p>
-                                </div>
-                                <div class="mb-6 last:mb-0 relative">
-                                    <div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div>
-                                    <h4 class="text-accent font-mono text-xs uppercase mb-1">Advice & Outcome</h4>
-                                    <p class="text-zinc-400 text-sm leading-relaxed">Waardeproposities, verdienmodellen en messaging ontwikkeld om Factory NEXT te versterken als commercieel levensvatbare innovatiehub.</p>
-                                </div>
-                              </div>`,
-                proj_2_desc_short: "Bij Perron038 heb ik onderzocht hoe Factory NEXT commercieel gepositioneerd en aantrekkelijk gemaakt kan worden voor industriële partners.",
-                proj_3_title: "Unica, Smart Buildings Business Development: Value Proposition Optimization",
-                proj_3_title_short: "Unica: Smart Buildings",
-                proj_3_desc: `<div class="relative pl-6 border-l-2 border-zinc-800 ml-2">
-                                <div class="mb-6 last:mb-0 relative">
-                                    <div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div>
-                                    <h4 class="text-accent font-mono text-xs uppercase mb-1">Challenge & Analysis</h4>
-                                    <p class="text-zinc-400 text-sm leading-relaxed">Interne dynamiek (35 locaties vs 9 vestigingen) en externe factoren (EPBD III, tekort aan technici) in kaart gebracht. Business Model Canvas gebruikt om economische/sociale afhankelijkheden bloot te leggen.</p>
-                                </div>
-                                <div class="mb-6 last:mb-0 relative">
-                                    <div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div>
-                                    <h4 class="text-accent font-mono text-xs uppercase mb-1">Strategic Insight</h4>
-                                    <p class="text-zinc-400 text-sm leading-relaxed">Ideeënvorming via trendpiramides leidde tot 'SmartEase': instap-kits & VR-demo's om energiestromen te visualiseren en investeringsangst weg te nemen.</p>
-                                </div>
-                                <div class="mb-6 last:mb-0 relative">
-                                    <div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div>
-                                    <h4 class="text-accent font-mono text-xs uppercase mb-1">Advice & Outcome</h4>
-                                    <p class="text-zinc-400 text-sm leading-relaxed">Concepten geprototyped en gevalideerd met eindgebruikers. Impact canvas gemaakt met KPI's voor omzet en NPS, om Unica te positioneren als klantgericht leider.</p>
-                                </div>
-                              </div>`,
-                proj_3_desc_short: "We hebben voor Unica een strategisch adviestraject ontwikkeld via de Design Thinking cyclus om hun waardepropositie voor slimme gebouwen te optimaliseren.",
-                proj_4_title: "Zonneplan, EV Charging Sales Acceleration: Marketing Whitepaper",
-                proj_4_title_short: "Zonneplan: EV Sales",
-                proj_4_desc: `<div class="relative pl-6 border-l-2 border-zinc-800 ml-2">
-                                <div class="mb-6 last:mb-0 relative">
-                                    <div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div>
-                                    <h4 class="text-accent font-mono text-xs uppercase mb-1">Challenge & Analysis</h4>
-                                    <p class="text-zinc-400 text-sm leading-relaxed">Doel: 3.000 laadpaalverkopen. Barrières geïdentificeerd zoals complexe offerteprocessen (6-7 klikken) en gebrek aan klantbehoud na verkoop.</p>
-                                </div>
-                                <div class="mb-6 last:mb-0 relative">
-                                    <div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div>
-                                    <h4 class="text-accent font-mono text-xs uppercase mb-1">Strategic Insight</h4>
-                                    <p class="text-zinc-400 text-sm leading-relaxed">Pijnpunten van EV-bezitters blootgelegd (€0,50/kWh openbaar vs thuisladen). Klantreis gedefinieerd van bewustwording tot loyaliteit met behulp van persona's.</p>
-                                </div>
-                                <div class="mb-6 last:mb-0 relative">
-                                    <div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div>
-                                    <h4 class="text-accent font-mono text-xs uppercase mb-1">Advice & Outcome</h4>
-                                    <p class="text-zinc-400 text-sm leading-relaxed">Aanbevolen om SEO/SEA te optimaliseren voor 'laadpaal kopen', landingspagina's te vereenvoudigen en Trustpilot social proof te gebruiken. KPI's ingesteld voor snelle schaalbare groei.</p>
-                                </div>
-                              </div>`,
-                proj_4_desc_short: "Voor Zonneplan hebben we een gerichte whitepaper ontwikkeld om hun doelstelling van 3.000 laadpaalverkopen in 2023 te behalen.",
                 contact_title: "Laten we <span class=\"text-zinc-600 transition-colors group-hover:text-zinc-400\">Samenwerken</span>",
                 contact_desc: "Laten we connecten en kijken hoe we kunnen samenwerken aan nieuwe projecten, strategische partnerschappen en innovatiekansen.",
                 btn_email: "Stuur E-mail",
@@ -2024,7 +1862,10 @@
                 btn_default_mail: "Standaard Mail App",
                 cv_modal_title: "Kies Versie",
                 cv_dutch_title: "Download Nederlandse Versie",
-                cv_english_title: "Download Engelse Versie"
+                cv_english_title: "Download Engelse Versie",
+                rec_3_name: "Antoinette Alma",
+                rec_3_role: "Spreker, Trainer & Docent",
+                rec_3_text: "\"Ik ken Ritchie als een slimme en nieuwsgierige student. Hij stelt scherpe vragen die anderen verder helpen denken. Hij zoekt actief de verdieping op en maakt snel de stap van theorie naar praktijk.<br><br>Samenwerken vindt hij belangrijk. Hij kijkt niet alleen naar het resultaat, maar ook naar hoe je daar samen komt. In een projectgroep waar niet iedereen evenveel inzet liet zien, bleef hij rustig en duidelijk. Hij sprak dit open aan, verdeelde taken opnieuw en checkte tussendoor wat ieder nodig had om bij te dragen. Door zijn aanpak kwam er weer energie in het team en werd het werk eerlijker verdeeld.<br><br>Ritchie communiceert open en helder. Hij luistert goed, vat samen en zorgt dat afspraken concreet zijn. Dat maakt hem een fijne en betrouwbare samenwerkingspartner.\""
             }
         };
 
