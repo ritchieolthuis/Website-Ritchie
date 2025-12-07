@@ -264,9 +264,6 @@
              if(overlay) {
                  overlay.classList.remove('hidden');
                  document.body.style.overflow = 'hidden';
-             } else {
-                 // Fallback if no overlay
-                 window.location.href = 'expertise.html';
              }
         };
         window.closeExpertiseOverlay = function() {
@@ -635,19 +632,15 @@
                                 <span class="w-2 h-2 bg-accent rounded-full animate-pulse-fast"></span>
                                 <h3 class="text-xl font-display font-bold text-accent uppercase" data-i18n="skills_title">Expertise</h3>
                         </div>
-                        
-                        <!-- VIEW ALL BUTTON - EXPERTISE -->
-                        <button type="button" onclick="window.openExpertiseOverlay()" class="cursor-pointer text-xs font-mono font-bold text-accent hover:text-white flex items-center gap-1 transition-colors relative z-[60] p-2 hover:bg-zinc-800 rounded">
-                            <span data-i18n="proj_view_all">VIEW ALL</span> <i data-lucide="arrow-up-right" class="w-3 h-3"></i>
-                        </button>
+                        <!-- Removed View All Button as requested -->
                     </div>
 
-                    <div id="skills-card" class="bento-card p-8 group relative flex flex-col justify-between h-full min-h-[400px]">
+                    <div id="skills-card" class="bento-card p-6 md:p-8 group relative flex flex-col justify-between h-auto min-h-[300px]">
                         <div class="spotlight-overlay"></div>
                         
-                        <div class="space-y-6 relative z-10 flex-grow">
+                        <div class="space-y-4 relative z-10 flex-grow">
                             <div>
-                                <h4 class="text-xs font-mono uppercase text-zinc-500 mb-3" data-i18n="skills_cat_digital">Digital Skills</h4>
+                                <h4 class="text-xs font-mono uppercase text-zinc-500 mb-2" data-i18n="skills_cat_digital">Digital Skills</h4>
                                 <div class="flex flex-wrap gap-2">
                                     <span class="px-2 py-1 text-xs font-medium text-white bg-zinc-800/50 border border-zinc-700 rounded hover:border-accent hover:text-accent transition-colors">Excel / Power BI</span>
                                     <span class="px-2 py-1 text-xs font-medium text-white bg-zinc-800/50 border border-zinc-700 rounded hover:border-accent hover:text-accent transition-colors">Google Analytics</span>
@@ -655,7 +648,7 @@
                                 </div>
                             </div>
                             <div>
-                                <h4 class="text-xs font-mono uppercase text-zinc-500 mb-3" data-i18n="skills_cat_1">Strategic Analysis</h4>
+                                <h4 class="text-xs font-mono uppercase text-zinc-500 mb-2" data-i18n="skills_cat_1">Strategic Analysis</h4>
                                 <div class="flex flex-wrap gap-2">
                                     <span class="px-2 py-1 text-xs font-medium text-white bg-zinc-800/50 border border-zinc-700 rounded hover:border-accent hover:text-accent transition-colors" data-i18n="badge_swot">SWOT Analysis</span>
                                     <span class="px-2 py-1 text-xs font-medium text-white bg-zinc-800/50 border border-zinc-700 rounded hover:border-accent hover:text-accent transition-colors" data-i18n="badge_confrontation">Confrontation Matrix</span>
@@ -663,7 +656,7 @@
                                 </div>
                             </div>
                                 <div>
-                                <h4 class="text-xs font-mono uppercase text-zinc-500 mb-3" data-i18n="skills_cat_theories">Theories & Models</h4>
+                                <h4 class="text-xs font-mono uppercase text-zinc-500 mb-2" data-i18n="skills_cat_theories">Theories & Models</h4>
                                 <div class="flex flex-wrap gap-2">
                                     <span class="px-2 py-1 text-xs font-medium text-white bg-zinc-800/50 border border-zinc-700 rounded hover:border-accent hover:text-accent transition-colors">Business Model Canvas</span>
                                     <span class="px-2 py-1 text-xs font-medium text-white bg-zinc-800/50 border border-zinc-700 rounded hover:border-accent hover:text-accent transition-colors">Design Thinking</span>
@@ -672,8 +665,8 @@
                         </div>
 
                          <!-- Full Width "Tab" Button for Read More (Footer Style) -->
-                        <div class="mt-8 -mx-8 -mb-8 relative z-20">
-                            <button onclick="window.openExpertiseOverlay()" class="w-full py-4 bg-zinc-900/50 hover:bg-zinc-900 border-t border-zinc-800/50 hover:border-zinc-700 backdrop-blur-sm text-zinc-400 hover:text-white font-mono uppercase text-xs tracking-widest font-bold flex items-center justify-center gap-3 transition-all duration-300 group rounded-b-[1.5rem] cursor-pointer relative overflow-hidden data-hover-trigger">
+                        <div class="mt-6 -mx-6 -mb-6 md:-mx-8 md:-mb-8 relative z-20">
+                            <button onclick="window.openExpertiseOverlay()" class="w-full py-3 bg-zinc-900/50 hover:bg-zinc-900 border-t border-zinc-800/50 hover:border-zinc-700 backdrop-blur-sm text-zinc-400 hover:text-white font-mono uppercase text-xs tracking-widest font-bold flex items-center justify-center gap-3 transition-all duration-300 group rounded-b-[1.5rem] cursor-pointer relative overflow-hidden data-hover-trigger">
                                 <div class="absolute inset-0 bg-accent/5 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
                                 <span data-i18n="btn_read_more">Read more</span>
                                 <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
@@ -1168,26 +1161,53 @@
             </div>
         </div>
 
-        <!-- Trusted Partners (Marquee Slider) - MOVED HERE -->
-        <div class="mb-10 pt-16 border-t border-zinc-900 reveal-on-scroll">
-            <p class="text-center text-xs font-mono uppercase text-zinc-600 mb-8 tracking-widest" data-i18n="partners_title">Partnered with</p>
-            <div class="relative flex overflow-x-hidden group hover:pause-animation">
-                <div class="animate-marquee flex items-center gap-16 whitespace-nowrap py-4 px-4 group-hover:[animation-play-state:paused]">
-                    <!-- Logos Set 1 -->
-                    <img src="https://www.vitens.nl/-/media/Project/Vitens/VitensNl/vitens-logo.jpg" alt="Vitens" class="h-10 w-auto object-contain logo-filter">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0kTw7PhwMVs-IQmNdomH7h6oPquEiRAyCcw&s" alt="Perron038" class="h-10 w-auto object-contain logo-filter">
-                    <img src="https://www.duurzaam-ondernemen.nl/wordpress/wp-content/uploads/2025/07/unica.png" alt="Unica" class="h-10 w-auto object-contain logo-filter">
-                    <img src="https://www.overstappen.nl/assets/Zonneplan@2x.png" alt="Zonneplan" class="h-8 w-auto object-contain logo-filter">
-                    
-                    <!-- Logos Set 2 -->
-                    <img src="https://www.vitens.nl/-/media/Project/Vitens/VitensNl/vitens-logo.jpg" alt="Vitens" class="h-10 w-auto object-contain logo-filter">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0kTw7PhwMVs-IQmNdomH7h6oPquEiRAyCcw&s" alt="Perron038" class="h-10 w-auto object-contain logo-filter">
-                    <img src="https://www.duurzaam-ondernemen.nl/wordpress/wp-content/uploads/2025/07/unica.png" alt="Unica" class="h-10 w-auto object-contain logo-filter">
-                    <img src="https://www.overstappen.nl/assets/Zonneplan@2x.png" alt="Zonneplan" class="h-8 w-auto object-contain logo-filter">
-                </div>
+    </div>
+
+    <!-- Trusted Partners (Marquee Slider) - Updated to span full width -->
+    <div class="w-full border-t border-zinc-900 bg-[#050505] pt-16 pb-10 mb-10 overflow-hidden reveal-on-scroll">
+        <div class="max-w-[1400px] mx-auto px-4 md:px-8">
+             <p class="text-center text-xs font-mono uppercase text-zinc-600 mb-8 tracking-widest" data-i18n="partners_title">Partnered with</p>
+        </div>
+        <div class="relative flex overflow-x-hidden group hover:pause-animation w-full">
+            <!-- Increased duplicated items for seamless loop on all screen sizes -->
+            <div class="animate-marquee whitespace-nowrap flex items-center gap-24 py-4 px-4 w-max group-hover:[animation-play-state:paused]">
+                <!-- Logos Set 1 -->
+                <img src="https://www.vitens.nl/-/media/Project/Vitens/VitensNl/vitens-logo.jpg" alt="Vitens" class="h-14 w-auto object-contain logo-filter">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0kTw7PhwMVs-IQmNdomH7h6oPquEiRAyCcw&s" alt="Perron038" class="h-14 w-auto object-contain logo-filter">
+                <img src="https://www.duurzaam-ondernemen.nl/wordpress/wp-content/uploads/2025/07/unica.png" alt="Unica" class="h-14 w-auto object-contain logo-filter">
+                <img src="https://www.overstappen.nl/assets/Zonneplan@2x.png" alt="Zonneplan" class="h-12 w-auto object-contain logo-filter">
+                
+                <!-- Logos Set 2 -->
+                <img src="https://www.vitens.nl/-/media/Project/Vitens/VitensNl/vitens-logo.jpg" alt="Vitens" class="h-14 w-auto object-contain logo-filter">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0kTw7PhwMVs-IQmNdomH7h6oPquEiRAyCcw&s" alt="Perron038" class="h-14 w-auto object-contain logo-filter">
+                <img src="https://www.duurzaam-ondernemen.nl/wordpress/wp-content/uploads/2025/07/unica.png" alt="Unica" class="h-14 w-auto object-contain logo-filter">
+                <img src="https://www.overstappen.nl/assets/Zonneplan@2x.png" alt="Zonneplan" class="h-12 w-auto object-contain logo-filter">
+
+                <!-- Logos Set 3 -->
+                <img src="https://www.vitens.nl/-/media/Project/Vitens/VitensNl/vitens-logo.jpg" alt="Vitens" class="h-14 w-auto object-contain logo-filter">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0kTw7PhwMVs-IQmNdomH7h6oPquEiRAyCcw&s" alt="Perron038" class="h-14 w-auto object-contain logo-filter">
+                <img src="https://www.duurzaam-ondernemen.nl/wordpress/wp-content/uploads/2025/07/unica.png" alt="Unica" class="h-14 w-auto object-contain logo-filter">
+                <img src="https://www.overstappen.nl/assets/Zonneplan@2x.png" alt="Zonneplan" class="h-12 w-auto object-contain logo-filter">
+
+                <!-- Logos Set 4 -->
+                <img src="https://www.vitens.nl/-/media/Project/Vitens/VitensNl/vitens-logo.jpg" alt="Vitens" class="h-14 w-auto object-contain logo-filter">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0kTw7PhwMVs-IQmNdomH7h6oPquEiRAyCcw&s" alt="Perron038" class="h-14 w-auto object-contain logo-filter">
+                <img src="https://www.duurzaam-ondernemen.nl/wordpress/wp-content/uploads/2025/07/unica.png" alt="Unica" class="h-14 w-auto object-contain logo-filter">
+                <img src="https://www.overstappen.nl/assets/Zonneplan@2x.png" alt="Zonneplan" class="h-12 w-auto object-contain logo-filter">
+
+                <!-- Logos Set 5 -->
+                <img src="https://www.vitens.nl/-/media/Project/Vitens/VitensNl/vitens-logo.jpg" alt="Vitens" class="h-14 w-auto object-contain logo-filter">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0kTw7PhwMVs-IQmNdomH7h6oPquEiRAyCcw&s" alt="Perron038" class="h-14 w-auto object-contain logo-filter">
+                <img src="https://www.duurzaam-ondernemen.nl/wordpress/wp-content/uploads/2025/07/unica.png" alt="Unica" class="h-14 w-auto object-contain logo-filter">
+                <img src="https://www.overstappen.nl/assets/Zonneplan@2x.png" alt="Zonneplan" class="h-12 w-auto object-contain logo-filter">
+                
+                <!-- Logos Set 6 -->
+                <img src="https://www.vitens.nl/-/media/Project/Vitens/VitensNl/vitens-logo.jpg" alt="Vitens" class="h-14 w-auto object-contain logo-filter">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0kTw7PhwMVs-IQmNdomH7h6oPquEiRAyCcw&s" alt="Perron038" class="h-14 w-auto object-contain logo-filter">
+                <img src="https://www.duurzaam-ondernemen.nl/wordpress/wp-content/uploads/2025/07/unica.png" alt="Unica" class="h-14 w-auto object-contain logo-filter">
+                <img src="https://www.overstappen.nl/assets/Zonneplan@2x.png" alt="Zonneplan" class="h-12 w-auto object-contain logo-filter">
             </div>
         </div>
-
     </div>
 
     <!-- SERVICES MODAL (Detailed View) -->
@@ -1308,29 +1328,218 @@
         </div>
     </div>
     
-    <!-- Modals (Placeholders for script compatibility) -->
-    <div id="contact-modal" class="fixed inset-0 z-[100] hidden bg-black/80 flex items-center justify-center p-4">
-        <div class="bg-[#121212] p-8 rounded-2xl max-w-md w-full border border-zinc-800 text-center relative">
-            <button onclick="window.closeContactModal()" class="absolute top-4 right-4 text-zinc-500 hover:text-white"><i data-lucide="x"></i></button>
-            <h3 class="text-xl text-white font-bold mb-4">Contact</h3>
-            <p class="text-zinc-400 mb-6">ritchieolthuis@gmail.com</p>
-             <a href="mailto:ritchieolthuis@gmail.com" class="inline-block px-6 py-3 bg-accent text-black font-bold rounded-full">Open Mail Client</a>
+    <!-- EXPERTISE MODAL (New Content) -->
+    <div id="expertise-overlay" class="fixed inset-0 z-[100] hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+        <div class="absolute inset-0 bg-black/80 backdrop-blur-sm transition-opacity" onclick="window.closeExpertiseOverlay()"></div>
+        <div class="absolute inset-0 flex justify-center items-center p-4 sm:p-6 pointer-events-none">
+            <div class="w-full max-w-5xl h-full max-h-[85vh] bg-[#121212] border border-zinc-800 rounded-3xl shadow-2xl overflow-hidden flex flex-col pointer-events-auto relative transform transition-all animate-fade-in">
+                
+                <button onclick="window.closeExpertiseOverlay()" class="absolute top-6 right-6 z-50 text-zinc-500 hover:text-white transition-colors bg-zinc-900/50 rounded-full p-2 border border-zinc-800">
+                    <i data-lucide="x" class="w-6 h-6"></i>
+                </button>
+
+                <div class="overflow-y-auto custom-scrollbar p-8 md:p-10">
+                    <div class="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4">
+                        <h2 class="text-3xl md:text-4xl font-display font-bold text-white uppercase tracking-tight" data-i18n="exp_modal_title">Full Expertise</h2>
+                        <div class="px-4 py-2 bg-accent/10 border border-accent/20 rounded-full text-accent text-xs font-mono uppercase tracking-widest">Ritchie Olthuis</div>
+                    </div>
+                    
+                    <div class="space-y-12">
+                        <!-- 1. Digital Skills -->
+                        <div>
+                            <h3 class="text-xl font-bold text-accent mb-4 flex items-center gap-2" data-i18n="exp_modal_dig_title">1. Digital Skills</h3>
+                            <p class="text-zinc-400 text-sm mb-6 max-w-2xl" data-i18n="exp_modal_dig_desc">Essential tools and platforms for modern business analysis.</p>
+                            <div class="flex flex-wrap gap-3">
+                                <span class="px-4 py-2 bg-zinc-900 border border-zinc-700 rounded-lg text-white text-xs md:text-sm hover:border-zinc-500 transition-colors">Excel / Power BI</span>
+                                <span class="px-4 py-2 bg-zinc-900 border border-zinc-700 rounded-lg text-white text-xs md:text-sm hover:border-zinc-500 transition-colors">SEO / SEA / Google Ads</span>
+                                <span class="px-4 py-2 bg-zinc-900 border border-zinc-700 rounded-lg text-white text-xs md:text-sm hover:border-zinc-500 transition-colors">Google Analytics</span>
+                                <span class="px-4 py-2 bg-zinc-900 border border-zinc-700 rounded-lg text-white text-xs md:text-sm hover:border-zinc-500 transition-colors" data-i18n="dig_design">Design Tools (Canva, Figma)</span>
+                                <span class="px-4 py-2 bg-zinc-900 border border-zinc-700 rounded-lg text-white text-xs md:text-sm hover:border-zinc-500 transition-colors" data-i18n="dig_crm">CRM Tools (Salesforce, HubSpot)</span>
+                                <span class="px-4 py-2 bg-zinc-900 border border-zinc-700 rounded-lg text-white text-xs md:text-sm hover:border-zinc-500 transition-colors" data-i18n="dig_pm">Project Management (Asana, Trello)</span>
+                            </div>
+                        </div>
+
+                        <div class="h-px bg-zinc-800 w-full"></div>
+
+                        <!-- 2. Investigative Expertise -->
+                        <div>
+                            <h3 class="text-xl font-bold text-accent mb-8 flex items-center gap-2" data-i18n="exp_modal_biz_title">2. Investigative Expertise: Business Strategies</h3>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <!-- Analyses -->
+                                <div class="bg-zinc-900/50 p-6 rounded-2xl border border-zinc-800 hover:border-zinc-700 transition-colors">
+                                    <h4 class="text-white font-bold text-lg mb-2" data-i18n="exp_modal_ana_title">Analyses</h4>
+                                    <p class="text-zinc-500 text-xs mb-4 leading-relaxed" data-i18n="exp_modal_ana_desc">Analyses provide insight into the current situation and the environment in which an organization operates. They can be performed individually or delivered combined.</p>
+                                    <ul class="space-y-2 text-sm text-zinc-300">
+                                        <li class="flex items-center gap-3"><div class="w-1.5 h-1.5 rounded-full bg-accent"></div><span data-i18n="ana_1">Market Analysis</span></li>
+                                        <li class="flex items-center gap-3"><div class="w-1.5 h-1.5 rounded-full bg-accent"></div><span data-i18n="ana_2">Competitor Analysis</span></li>
+                                        <li class="flex items-center gap-3"><div class="w-1.5 h-1.5 rounded-full bg-accent"></div><span data-i18n="ana_3">Country Analysis</span></li>
+                                        <li class="flex items-center gap-3"><div class="w-1.5 h-1.5 rounded-full bg-accent"></div><span data-i18n="ana_4">Industry Analysis</span></li>
+                                        <li class="flex items-center gap-3"><div class="w-1.5 h-1.5 rounded-full bg-accent"></div><span data-i18n="ana_5">Customer Analysis</span></li>
+                                        <li class="flex items-center gap-3"><div class="w-1.5 h-1.5 rounded-full bg-accent"></div><span data-i18n="ana_6">Target Group Analysis</span></li>
+                                    </ul>
+                                </div>
+
+                                <!-- Designs -->
+                                <div class="bg-zinc-900/50 p-6 rounded-2xl border border-zinc-800 hover:border-zinc-700 transition-colors">
+                                    <h4 class="text-white font-bold text-lg mb-2" data-i18n="exp_modal_des_title">Designs</h4>
+                                    <p class="text-zinc-500 text-xs mb-4 leading-relaxed" data-i18n="exp_modal_des_desc">Designs are plans to move from the current to the desired situation, within predetermined frameworks.</p>
+                                    <ul class="space-y-2 text-sm text-zinc-300">
+                                        <li class="flex items-center gap-3"><div class="w-1.5 h-1.5 rounded-full bg-accent"></div><span data-i18n="des_1">Implementation Plan</span></li>
+                                        <li class="flex items-center gap-3"><div class="w-1.5 h-1.5 rounded-full bg-accent"></div><span data-i18n="des_2">MarCom Plan</span></li>
+                                        <li class="flex items-center gap-3"><div class="w-1.5 h-1.5 rounded-full bg-accent"></div><span data-i18n="des_3">Marketing Plan</span></li>
+                                        <li class="flex items-center gap-3"><div class="w-1.5 h-1.5 rounded-full bg-accent"></div><span data-i18n="des_4">Export Plan</span></li>
+                                        <li class="flex items-center gap-3"><div class="w-1.5 h-1.5 rounded-full bg-accent"></div><span data-i18n="des_5">Market Approach Plan</span></li>
+                                        <li class="flex items-center gap-3"><div class="w-1.5 h-1.5 rounded-full bg-accent"></div><span data-i18n="des_6">Sales Plan</span></li>
+                                    </ul>
+                                </div>
+
+                                <!-- Advice -->
+                                <div class="bg-zinc-900/50 p-6 rounded-2xl border border-zinc-800 hover:border-zinc-700 transition-colors">
+                                    <h4 class="text-white font-bold text-lg mb-2" data-i18n="exp_modal_adv_title">Advice</h4>
+                                    <p class="text-zinc-500 text-xs mb-4 leading-relaxed" data-i18n="exp_modal_adv_desc">Substantiated recommendations at a strategic or tactical level, aimed at achieving the desired situation.</p>
+                                    <ul class="space-y-2 text-sm text-zinc-300">
+                                        <li class="flex items-center gap-3"><div class="w-1.5 h-1.5 rounded-full bg-accent"></div><span data-i18n="adv_1">Positioning Strategy</span></li>
+                                        <li class="flex items-center gap-3"><div class="w-1.5 h-1.5 rounded-full bg-accent"></div><span data-i18n="adv_2">Market Approach Strategy</span></li>
+                                        <li class="flex items-center gap-3"><div class="w-1.5 h-1.5 rounded-full bg-accent"></div><span data-i18n="adv_3">Loyalty Strategy</span></li>
+                                        <li class="flex items-center gap-3"><div class="w-1.5 h-1.5 rounded-full bg-accent"></div><span data-i18n="adv_4">Growth Strategy</span></li>
+                                        <li class="flex items-center gap-3"><div class="w-1.5 h-1.5 rounded-full bg-accent"></div><span data-i18n="adv_5">Export/Entry Strategy</span></li>
+                                    </ul>
+                                </div>
+
+                                <!-- Models -->
+                                <div class="bg-zinc-900/50 p-6 rounded-2xl border border-zinc-800 hover:border-zinc-700 transition-colors">
+                                    <h4 class="text-white font-bold text-lg mb-2" data-i18n="exp_modal_mod_title">Theories & Models</h4>
+                                    <p class="text-zinc-500 text-xs mb-4 leading-relaxed" data-i18n="exp_modal_mod_desc">Proven theories and models used to substantiate choices and create value.</p>
+                                    <div class="flex flex-wrap gap-2">
+                                        <span class="px-2 py-1 text-xs text-white border border-zinc-700 rounded bg-zinc-800">Design Thinking</span>
+                                        <span class="px-2 py-1 text-xs text-white border border-zinc-700 rounded bg-zinc-800">Business Model Canvas (incl. Triple Layered)</span>
+                                        <span class="px-2 py-1 text-xs text-white border border-zinc-700 rounded bg-zinc-800">Value Proposition Canvas</span>
+                                        <span class="px-2 py-1 text-xs text-white border border-zinc-700 rounded bg-zinc-800" data-i18n="mod_confront">Confrontation Matrix</span>
+                                        <span class="px-2 py-1 text-xs text-white border border-zinc-700 rounded bg-zinc-800" data-i18n="mod_mvc">Multiple Value Creation</span>
+                                        <span class="px-2 py-1 text-xs text-white border border-zinc-700 rounded bg-zinc-800">SWOT</span>
+                                        <span class="px-2 py-1 text-xs text-white border border-zinc-700 rounded bg-zinc-800">Prototyping</span>
+                                        <span class="px-2 py-1 text-xs text-white border border-zinc-700 rounded bg-zinc-800">Customer Journey</span>
+                                        <span class="px-2 py-1 text-xs text-white border border-zinc-700 rounded bg-zinc-800">ESG</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-    <div id="call-modal" class="fixed inset-0 z-[100] hidden bg-black/80 flex items-center justify-center p-4">
-        <div class="bg-[#121212] p-8 rounded-2xl max-w-md w-full border border-zinc-800 text-center relative">
-            <button onclick="window.closeCallModal()" class="absolute top-4 right-4 text-zinc-500 hover:text-white"><i data-lucide="x"></i></button>
-            <h3 class="text-xl text-white font-bold mb-4">Schedule a Call</h3>
-            <p class="text-zinc-400 mb-6">Let's discuss opportunities.</p>
-            <a href="https://calendly.com/ritchieolthuis" target="_blank" class="inline-block px-6 py-3 bg-white text-black font-bold rounded-full">Open Calendar</a>
+    
+    <!-- Modals (Restored Multi-Option Layouts) -->
+    
+    <!-- Contact Modal -->
+    <div id="contact-modal" class="fixed inset-0 z-[100] hidden bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-[#121212] p-8 rounded-2xl max-w-sm w-full border border-zinc-800 relative shadow-2xl animate-fade-in">
+            <button onclick="window.closeContactModal()" class="absolute top-4 right-4 text-zinc-500 hover:text-white transition-colors">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+            
+            <h3 class="text-lg text-white font-bold mb-6 text-center">Choose Email Client</h3>
+            
+            <div class="space-y-3">
+                 <a href="https://mail.google.com/mail/?view=cm&fs=1&to=ritchieolthuis@gmail.com" target="_blank" class="flex items-center gap-4 w-full p-4 bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 hover:border-zinc-600 rounded-xl transition-all group">
+                     <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                        <!-- Gmail Icon Updated to Official Color Img -->
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/7/7e/Gmail_icon_%282020%29.svg" class="w-6 h-6" alt="Gmail">
+                     </div>
+                     <span class="text-white font-medium">Open Gmail</span>
+                 </a>
+                 
+                 <a href="https://outlook.live.com/mail/0/deeplink/compose?to=ritchieolthuis@gmail.com" target="_blank" class="flex items-center gap-4 w-full p-4 bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 hover:border-zinc-600 rounded-xl transition-all group">
+                     <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                        <!-- Outlook Icon Updated to Official Blue Logo -->
+                        <img src="https://brandlogos.net/wp-content/uploads/2025/10/microsoft_outlook_2025-logo_brandlogos.net_c6m2d-512x498.png" class="w-6 h-6" alt="Outlook">
+                     </div>
+                     <span class="text-white font-medium">Open Outlook</span>
+                 </a>
+
+                 <a href="mailto:ritchieolthuis@gmail.com" class="flex items-center gap-4 w-full p-4 bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 hover:border-zinc-600 rounded-xl transition-all group">
+                     <div class="w-10 h-10 rounded-full bg-zinc-700 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                         <i data-lucide="mail" class="w-5 h-5 text-white"></i>
+                     </div>
+                     <span class="text-white font-medium">Default Mail App</span>
+                 </a>
+            </div>
         </div>
     </div>
-     <div id="cv-modal" class="fixed inset-0 z-[100] hidden bg-black/80 flex items-center justify-center p-4">
-        <div class="bg-[#121212] p-8 rounded-2xl max-w-md w-full border border-zinc-800 text-center relative">
-            <button onclick="window.closeCVModal()" class="absolute top-4 right-4 text-zinc-500 hover:text-white"><i data-lucide="x"></i></button>
-            <h3 class="text-xl text-white font-bold mb-4">Download CV</h3>
-            <p class="text-zinc-400 mb-6">Get a copy of my resume.</p>
-            <a href="assets/CV_Ritchie_Olthuis.pdf" download class="inline-block px-6 py-3 bg-white text-black font-bold rounded-full">Download PDF</a>
+    
+    <!-- Schedule Call Modal -->
+    <div id="call-modal" class="fixed inset-0 z-[100] hidden bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-[#121212] p-8 rounded-2xl max-w-sm w-full border border-zinc-800 relative shadow-2xl animate-fade-in">
+            <button onclick="window.closeCallModal()" class="absolute top-4 right-4 text-zinc-500 hover:text-white transition-colors">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+            
+            <h3 class="text-lg text-white font-bold mb-6 text-center">Schedule a Call</h3>
+            
+            <div class="space-y-3">
+                 <!-- Google Calendar -->
+                 <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&add=ritchieolthuis@gmail.com&text=Meeting+with+Ritchie+Olthuis&details=Let's+discuss+business+opportunities." target="_blank" class="flex items-center gap-4 w-full p-4 bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 hover:border-zinc-600 rounded-xl transition-all group">
+                     <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                         <!-- Google Cal Icon Official -->
+                         <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Google_Calendar_icon_%282020%29.svg" class="w-6 h-6" alt="Google Calendar">
+                     </div>
+                     <span class="text-white font-medium">Google Calendar</span>
+                 </a>
+                 
+                 <!-- Outlook Calendar -->
+                 <a href="https://outlook.live.com/calendar/0/deeplink/compose?path=/calendar/action/compose&rru=addevent&to=ritchieolthuis@gmail.com&subject=Meeting%20with%20Ritchie&body=Let's%20discuss%20business%20opportunities." target="_blank" class="flex items-center gap-4 w-full p-4 bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 hover:border-zinc-600 rounded-xl transition-all group">
+                     <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                         <!-- Outlook Icon Official (Same as Mail) -->
+                         <img src="https://brandlogos.net/wp-content/uploads/2025/10/microsoft_outlook_2025-logo_brandlogos.net_c6m2d-512x498.png" class="w-6 h-6" alt="Outlook Calendar">
+                     </div>
+                     <span class="text-white font-medium">Outlook Calendar</span>
+                 </a>
+
+                 <!-- Send Email Request -->
+                 <a href="mailto:ritchieolthuis@gmail.com?subject=Schedule%20a%20Call&body=Hi%20Ritchie,%0A%0AI'd%20like%20to%20schedule%20a%20call%20to%20discuss..." class="flex items-center gap-4 w-full p-4 bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 hover:border-zinc-600 rounded-xl transition-all group">
+                     <div class="w-10 h-10 rounded-full bg-zinc-700 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                         <i data-lucide="mail-plus" class="w-5 h-5 text-white"></i>
+                     </div>
+                     <span class="text-white font-medium">Email Request</span>
+                 </a>
+            </div>
+        </div>
+    </div>
+    
+     <!-- CV Modal -->
+     <div id="cv-modal" class="fixed inset-0 z-[100] hidden bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-[#121212] p-8 rounded-2xl max-w-sm w-full border border-zinc-800 relative shadow-2xl animate-fade-in">
+            <button onclick="window.closeCVModal()" class="absolute top-4 right-4 text-zinc-500 hover:text-white transition-colors">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+            
+            <h3 class="text-lg text-white font-bold mb-6 text-center">Select CV Version</h3>
+            
+            <div class="space-y-3">
+                <a href="https://drive.google.com/file/d/1b1upJApvnbv6Iye-dXC8Cjx3pcG9uise/view?usp=drive_link" target="_blank" class="flex items-center gap-4 w-full p-4 bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 hover:border-zinc-600 rounded-xl transition-all group">
+                    <div class="w-10 h-10 rounded-full bg-zinc-800 border border-zinc-700 flex items-center justify-center text-xl flex-shrink-0 group-hover:scale-110 transition-transform">
+                        🇳🇱
+                    </div>
+                    <div>
+                        <div class="text-white font-bold text-sm">Nederlands</div>
+                        <div class="text-zinc-500 text-xs">Dutch Version</div>
+                    </div>
+                    <i data-lucide="download" class="w-4 h-4 text-zinc-500 ml-auto group-hover:text-white transition-colors"></i>
+                </a>
+
+                <a href="https://drive.google.com/file/d/1fYf3Qa561FvxvJuUkraMCjG0li8RWRI_/view?usp=drive_link" target="_blank" class="flex items-center gap-4 w-full p-4 bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 hover:border-zinc-600 rounded-xl transition-all group">
+                    <div class="w-10 h-10 rounded-full bg-zinc-800 border border-zinc-700 flex items-center justify-center text-xl flex-shrink-0 group-hover:scale-110 transition-transform">
+                         🇬🇧
+                    </div>
+                    <div>
+                        <div class="text-white font-bold text-sm">English</div>
+                        <div class="text-zinc-500 text-xs">English Version</div>
+                    </div>
+                    <i data-lucide="download" class="w-4 h-4 text-zinc-500 ml-auto group-hover:text-white transition-colors"></i>
+                </a>
+            </div>
         </div>
     </div>
 
@@ -1430,7 +1639,7 @@
             serv_modal_col1_li4: "Design Thinking and ESG-integrated advisory, from strategic concept to validated solution, with decision-making based on real customer and stakeholder insights.",
             serv_modal_col2_title: "Why work with me",
             serv_modal_col2_li1: "Academically anchored strategies, with a solid foundation in Business Administration and Commercial Economics, specializing in innovation, design thinking, and sustainable business architectures.",
-            serv_modal_col2_li2: "Direct translation from theory to practice, gained within projects in sectors like smart buildings, watermanagement, mobility, energy, and business services.",
+            serv_modal_col2_li2: "Direct translation from theory to practice, gained within projects in sectors like smart buildings, watermanagement, mobility, energy, and business services.</span>",
             serv_modal_col2_li3: "No standard advice, but tailored strategies; your organization gets a strategic structure aligned with the context that is immediately actionable.",
             serv_modal_col2_li4: "Innovation is organized concretely; strategies do not remain theoretical but are immediately applicable and effective in realizing sustainable growth and lasting impact.",
             serv_modal_col2_li5: "A fresh, independent perspective that offers focus, overview, and direction, with a result-oriented and pragmatic approach that delivers both commercial and societal value.",
@@ -1438,7 +1647,29 @@
             serv_modal_diff_text: "I focus on what organizations really need: clarity, overview, and substantiated insights. Where much advice remains stuck in abstraction or theory, I make it practical, applicable, and immediately usable.",
             serv_modal_expect_title: "What you can expect",
             serv_modal_expect_text: "You get an independent, analytical perspective on complex challenges. You get strategy that offers overview and direction, without new layers of complexity. You get a partner who helps focus on what is truly relevant, with a pragmatic approach and an eye for execution.",
-            serv_modal_quote: "\"I bring complex challenges back to clear, data-driven, and human-centered insights, so that your organization can make smart, sustainable, and future-proof choices.\""
+            serv_modal_quote: "\"I bring complex challenges back to clear, data-driven, and human-centered insights, so that your organization can make smart, sustainable, and future-proof choices.\"",
+            
+            // Expertise Modal Translations
+            exp_modal_title: "Full Expertise",
+            exp_modal_dig_title: "1. Digital Skills",
+            exp_modal_dig_desc: "Essential tools and platforms for modern business analysis.",
+            dig_design: "Design Tools (Canva, Figma)",
+            dig_crm: "CRM Tools (Salesforce, HubSpot)",
+            dig_pm: "Project Management (Asana, Trello)",
+            exp_modal_biz_title: "2. Investigative Expertise: Business Strategies",
+            exp_modal_ana_title: "Analyses",
+            exp_modal_ana_desc: "Analyses provide insight into the current situation and the environment in which an organization operates. They can be performed individually or delivered combined.",
+            ana_1: "Market Analysis", ana_2: "Competitor Analysis", ana_3: "Country Analysis", ana_4: "Industry Analysis", ana_5: "Customer Analysis", ana_6: "Target Group Analysis",
+            exp_modal_des_title: "Designs",
+            exp_modal_des_desc: "Designs are plans to move from the current to the desired situation, within predetermined frameworks.",
+            des_1: "Implementation Plan", des_2: "MarCom Plan", des_3: "Marketing Plan", des_4: "Export Plan", des_5: "Market Approach Plan", des_6: "Sales Plan",
+            exp_modal_adv_title: "Advice",
+            exp_modal_adv_desc: "Substantiated recommendations at a strategic or tactical level, aimed at achieving the desired situation.",
+            adv_1: "Positioning Strategy", adv_2: "Market Approach Strategy", adv_3: "Loyalty Strategy", adv_4: "Growth Strategy", adv_5: "Export/Entry Strategy",
+            exp_modal_mod_title: "Theories & Models",
+            exp_modal_mod_desc: "Proven theories and models used to substantiate choices and create value.",
+            mod_confront: "Confrontation Matrix",
+            mod_mvc: "Multiple Value Creation"
         },
         nl: {
             nav_about: "Over",
@@ -1536,8 +1767,30 @@
             serv_modal_diff_title: "Wat mij anders maakt",
             serv_modal_diff_text: "Ik focus op wat organisaties écht nodig hebben: helderheid, overzicht en onderbouwde inzichten. Waar veel advies blijft hangen in abstractie of theorie, maak ik het praktisch, toepasbaar en direct bruikbaar.",
             serv_modal_expect_title: "Wat je kunt verwachten",
-            serv_modal_expect_text: "Je krijgt een onafhankelijke, analytische blik op complexe uitdagingen. Je krijgt strategie die overzicht en richting biedt, zonder nieuwe lagen van complexiteit. Je krijgt een partner die helpt focussen op wat écht relevant is, met een pragmatische aanpak en oog voor uitvoering.",
-            serv_modal_quote: "\"Ik breng complexe uitdagingen terug naar heldere, datagedreven en mensgerichte inzichten, zodat jouw organisatie slimme, duurzame en toekomstbestendige keuzes kan maken.\""
+            serv_modal_expect_text: "Je krijgt een onafhankelijke, analytische blik op complexe uitdagingen. Je krijgt strategie die overzicht en richting biedt, zonder nieuwe lagen van complexiteit. Je krijgt een partner who helpt focussen op wat écht relevant is, met een pragmatische aanpak en oog voor uitvoering.",
+            serv_modal_quote: "\"Ik breng complexe uitdagingen terug naar heldere, datagedreven en mensgerichte inzichten, zodat jouw organisatie slimme, duurzame en toekomstbestendige keuzes kan maken.\"",
+            
+            // Expertise Modal Translations NL
+            exp_modal_title: "Volledige Expertise",
+            exp_modal_dig_title: "1. Digitale Vaardigheden",
+            exp_modal_dig_desc: "Essentiële tools en platformen voor moderne bedrijfsanalyse.",
+            dig_design: "Ontwerptools (Canva, Figma)",
+            dig_crm: "CRM-tools (Salesforce, HubSpot)",
+            dig_pm: "Projectmanagement (Asana, Trello)",
+            exp_modal_biz_title: "2. Onderzoeksexpertise: Bedrijfsstrategieën",
+            exp_modal_ana_title: "Analyses",
+            exp_modal_ana_desc: "Analyses geven inzicht in de huidige situatie en de omgeving waarin een organisatie opereert. Ze kunnen afzonderlijk of gecombineerd worden uitgevoerd.",
+            ana_1: "Marktanalyse", ana_2: "Concurrentenanalyse", ana_3: "Landenanalyse", ana_4: "Bedrijfstakanalyse", ana_5: "Afnemersanalyse", ana_6: "Doelgroepanalyse",
+            exp_modal_des_title: "Ontwerpen",
+            exp_modal_des_desc: "Ontwerpen zijn plannen om van de huidige naar de gewenste situatie te komen, binnen vooraf vastgestelde kaders.",
+            des_1: "Implementatieplan", des_2: "Marketingcommunicatieplan", des_3: "Marketingplan", des_4: "Exportplan", des_5: "Marktbewerkingsplan", des_6: "Verkoopplan",
+            exp_modal_adv_title: "Adviezen",
+            exp_modal_adv_desc: "Advies bestaat uit onderbouwde aanbevelingen op strategisch of tactisch niveau, gericht op het bereiken van de gewenste situatie.",
+            adv_1: "Advies voor een positioneringsstrategie", adv_2: "Advies voor een marktbewerkingsstrategie", adv_3: "Advies voor een loyaliteitsstrategie of -programma", adv_4: "Advies voor een groeistrategie", adv_5: "Advies voor een export- of entreestrategie",
+            exp_modal_mod_title: "Theorieën en Modellen",
+            exp_modal_mod_desc: "Bij het uitvoeren van analyses, ontwerpen en adviezen worden diverse bewezen theorieën en modellen gebruikt om keuzes te onderbouwen en waarde te creëren.",
+            mod_confront: "Confrontatiematrix",
+            mod_mvc: "Meervoudige Waardecreatie"
         }
       };
       
