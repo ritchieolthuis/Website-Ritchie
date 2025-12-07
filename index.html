@@ -256,6 +256,102 @@
         transition: transform 0.8s ease-in, opacity 0.8s ease-in, filter 0.8s ease-in;
       }
     </style>
+    
+    <!-- Define functions globally in head to ensure availability -->
+    <script>
+        window.openExpertiseOverlay = function() {
+             const overlay = document.getElementById('expertise-overlay');
+             if(overlay) {
+                 overlay.classList.remove('hidden');
+                 document.body.style.overflow = 'hidden';
+             } else {
+                 // Fallback if no overlay
+                 window.location.href = 'expertise.html';
+             }
+        };
+        window.closeExpertiseOverlay = function() {
+             const overlay = document.getElementById('expertise-overlay');
+             if(overlay) {
+                 overlay.classList.add('hidden');
+                 document.body.style.overflow = 'auto';
+             }
+        };
+
+        window.openProjectsModal = function() {
+             const modal = document.getElementById('projects-modal-unique');
+             if(modal) {
+                 modal.classList.remove('hidden');
+                 document.body.style.overflow = 'hidden';
+             }
+        };
+        window.closeProjectsModal = function() {
+             const modal = document.getElementById('projects-modal-unique');
+             if(modal) {
+                 modal.classList.add('hidden');
+                 document.body.style.overflow = 'auto';
+             }
+        };
+
+        window.openServicesModal = function() {
+             const modal = document.getElementById('services-modal');
+             if(modal) {
+                 modal.classList.remove('hidden');
+                 document.body.style.overflow = 'hidden';
+             }
+        };
+        window.closeServicesModal = function() {
+             const modal = document.getElementById('services-modal');
+             if(modal) {
+                 modal.classList.add('hidden');
+                 document.body.style.overflow = 'auto';
+             }
+        };
+
+        window.openContactModal = function() {
+             const modal = document.getElementById('contact-modal');
+             if(modal) {
+                 modal.classList.remove('hidden');
+                 document.body.style.overflow = 'hidden';
+             }
+        };
+        window.closeContactModal = function() {
+             const modal = document.getElementById('contact-modal');
+             if(modal) {
+                 modal.classList.add('hidden');
+                 document.body.style.overflow = 'auto';
+             }
+        };
+        
+        window.openCallModal = function() {
+             const modal = document.getElementById('call-modal');
+             if(modal) {
+                 modal.classList.remove('hidden');
+                 document.body.style.overflow = 'hidden';
+             }
+        };
+        window.closeCallModal = function() {
+             const modal = document.getElementById('call-modal');
+             if(modal) {
+                 modal.classList.add('hidden');
+                 document.body.style.overflow = 'auto';
+             }
+        };
+
+        window.openCVModal = function() {
+             const modal = document.getElementById('cv-modal');
+             if(modal) {
+                 modal.classList.remove('hidden');
+                 document.body.style.overflow = 'hidden';
+             }
+        };
+        window.closeCVModal = function() {
+             const modal = document.getElementById('cv-modal');
+             if(modal) {
+                 modal.classList.add('hidden');
+                 document.body.style.overflow = 'auto';
+             }
+        };
+    </script>
 </head>
 <body class="bg-background text-primary selection:bg-accent selection:text-black font-sans bg-grid-pattern pb-20 relative">
 
@@ -319,6 +415,7 @@
           
           <div class="hidden sm:flex items-center px-2 gap-4">
              <button onclick="document.getElementById('about').scrollIntoView({behavior: 'smooth'})" class="magnetic-btn text-sm font-medium text-zinc-400 hover:text-accent transition-colors p-2 data-hover-trigger" data-i18n="nav_about">About</button>
+             <button onclick="document.getElementById('services').scrollIntoView({behavior: 'smooth'})" class="magnetic-btn text-sm font-medium text-zinc-400 hover:text-accent transition-colors p-2 data-hover-trigger" data-i18n="nav_services">Services</button>
              <button onclick="document.getElementById('expertise').scrollIntoView({behavior: 'smooth'})" class="magnetic-btn text-sm font-medium text-zinc-400 hover:text-accent transition-colors p-2 data-hover-trigger" data-i18n="nav_expertise">Expertise</button>
              <button onclick="document.getElementById('education').scrollIntoView({behavior: 'smooth'})" class="magnetic-btn text-sm font-medium text-zinc-400 hover:text-accent transition-colors p-2 data-hover-trigger" data-i18n="nav_edu">Education</button>
              <button onclick="document.getElementById('experience').scrollIntoView({behavior: 'smooth'})" class="magnetic-btn text-sm font-medium text-zinc-400 hover:text-accent transition-colors p-2 data-hover-trigger" data-i18n="nav_exp">Experience</button>
@@ -370,7 +467,7 @@
                    <!-- Typewriter effect target -->
                    <h2 id="typewriter-title" class="text-xl md:text-2xl text-accent mb-4 font-medium" data-i18n="hero_title">Business Strategy & Innovation Enthusiast</h2>
                    <p class="text-zinc-400 leading-relaxed text-sm md:text-base mb-8 group-hover:text-zinc-300 transition-colors" data-i18n="hero_desc">
-                     Helping your organization transform business challenges into data-driven, human-centred, and sustainability-focused opportunities.
+                     I help organizations transform complex business challenges into data-driven, human-centered, and future-proof solutions. By bringing structure to abstract issues, I make strategies immediately actionable, allowing your organization to create sustainable value and grow efficiently.
                    </p>
                    
                    <div class="flex flex-wrap gap-3">
@@ -471,6 +568,32 @@
             </div>
         </div>
 
+        <!-- SERVICES / VALUE PROPOSITION SECTION (COMPACT) -->
+        <div id="services" class="mb-4 reveal-on-scroll scroll-mt-32 cursor-pointer group" onclick="window.openServicesModal()">
+          <div class="bento-card p-6 md:p-8 relative overflow-hidden flex flex-col justify-center" data-tilt>
+            <div class="spotlight-overlay"></div>
+            
+            <!-- Expand Icon -->
+            <div class="absolute top-6 right-6 text-zinc-500 group-hover:text-white transition-colors">
+                <i data-lucide="maximize-2" class="w-5 h-5"></i>
+            </div>
+
+            <h2 class="text-2xl md:text-3xl font-display font-bold text-white mb-3 uppercase leading-tight max-w-4xl" data-i18n="serv_title">
+                Transform Complex Challenges into Growth & Value
+            </h2>
+            
+            <p class="text-zinc-400 text-sm md:text-base leading-relaxed max-w-3xl mb-6" data-i18n="serv_card_desc">
+                I help organizations make complex issues clear and turn them into concrete actions. By thinking analytically while offering practical solutions, I bring structure to situations that are unclear or fragmented.
+            </p>
+
+            <div class="flex flex-wrap gap-2">
+                 <span class="px-4 py-2 rounded-full bg-zinc-900 border border-zinc-800 text-xs text-zinc-300 group-hover:border-accent group-hover:text-white transition-colors" data-i18n="serv_tag_1">Market & Competitive Analysis</span>
+                 <span class="px-4 py-2 rounded-full bg-zinc-900 border border-zinc-800 text-xs text-zinc-300 group-hover:border-accent group-hover:text-white transition-colors" data-i18n="serv_tag_2">Business Modeling</span>
+                 <span class="px-4 py-2 rounded-full bg-zinc-900 border border-zinc-800 text-xs text-zinc-300 group-hover:border-accent group-hover:text-white transition-colors" data-i18n="serv_tag_3">Strategic Roadmaps</span>
+            </div>
+          </div>
+        </div>
+
         <!-- CONTENT GRID -->
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
             
@@ -483,11 +606,17 @@
                         <i data-lucide="cpu" class="w-5 h-5"></i>
                     </div>
                     <h3 class="text-2xl font-display font-bold text-accent uppercase" data-i18n="about_title">About</h3>
-                    <p id="about-typewriter" class="text-zinc-400 text-sm leading-7 mb-6" data-i18n="about_text">
-                        I am an ambitious fourth-year Commercial Economics student at Windesheim University of Applied Sciences, 24 years old, with a passion for strategic innovation. During my studies, I completed a Pre-master in Business Administration as a minor and a minor in Financial Decision-Making. Throughout my Commercial Economics program, I further specialized in Design Thinking and sustainable business models.
-                        <br><br>
-                        I am particularly interested in making data-driven decisions and validating insights with customers to uncover needs that might not be visible internally. Understanding what the customer truly wants is increasingly important today, as it ensures that strategies and innovations are relevant, effective, and create economic, ecological, and social value.
-                    </p>
+                    <div class="max-h-[320px] overflow-y-auto pr-2 custom-scrollbar mb-6">
+                        <p id="about-typewriter" class="text-zinc-400 text-sm leading-7" data-i18n="about_text">
+                            I am an ambitious fourth-year Commercial Economics student at Windesheim University of Applied Sciences, 24 years old, with a passion for human-centered design and innovation processes. During my studies, I completed a Pre-master in Business Administration as a minor, alongside a minor in Financial Decision-Making, and further specialized in Design Thinking and sustainable business models.
+                            <br><br>
+                            With my analytical and creative skills, I support organizations in translating complex issues into clear insights and sustainable growth opportunities. I combine data, human-centered thinking, and future-proofing ensuring strategies don't just stay on paper but create actual impact.
+                            <br><br>
+                            My strength lies in structuring abstract challenges, uncovering hidden opportunities and risks, and helping organizations make well-founded choices that deliver economic, social, and ecological value.
+                            <br><br>
+                            Personally, I strive to get the best out of myself and empower others, so that everyone can optimally utilize their qualities to achieve the intended result and work together as a true team.
+                        </p>
+                    </div>
                     <div class="h-px w-full bg-zinc-800 mb-6 group-hover:bg-zinc-700 transition-colors"></div>
                     <div class="flex flex-wrap gap-2">
                         <span class="px-3 py-1 bg-zinc-900 rounded text-xs text-zinc-300 border border-zinc-800 hover:border-accent transition-colors">#Innovation</span>
@@ -499,7 +628,7 @@
 
                 <!-- Skills (Expertise) -->
                 <!-- ID added here for navigation scrolling -->
-                <div id="expertise" class="reveal-on-scroll scroll-mt-32">
+                <div id="expertise" class="reveal-on-scroll scroll-mt-32 h-full">
                     <!-- External Header (Similar to Projects) -->
                     <div class="flex items-center justify-between mb-3 relative z-20">
                         <div class="flex items-center gap-2">
@@ -507,16 +636,16 @@
                                 <h3 class="text-xl font-display font-bold text-accent uppercase" data-i18n="skills_title">Expertise</h3>
                         </div>
                         
-                        <!-- VIEW ALL BUTTON - EXPERTISE - FIXED with event delegation support -->
-                        <button type="button" id="view-all-expertise-btn" class="cursor-pointer text-xs font-mono font-bold text-accent hover:text-white flex items-center gap-1 transition-colors relative z-[60] p-2 hover:bg-zinc-800 rounded">
+                        <!-- VIEW ALL BUTTON - EXPERTISE -->
+                        <button type="button" onclick="window.openExpertiseOverlay()" class="cursor-pointer text-xs font-mono font-bold text-accent hover:text-white flex items-center gap-1 transition-colors relative z-[60] p-2 hover:bg-zinc-800 rounded">
                             <span data-i18n="proj_view_all">VIEW ALL</span> <i data-lucide="arrow-up-right" class="w-3 h-3"></i>
                         </button>
                     </div>
 
-                    <div id="skills-card" class="bento-card p-8 group relative">
+                    <div id="skills-card" class="bento-card p-8 group relative flex flex-col justify-between h-full min-h-[400px]">
                         <div class="spotlight-overlay"></div>
                         
-                        <div class="space-y-6 relative z-10">
+                        <div class="space-y-6 relative z-10 flex-grow">
                             <div>
                                 <h4 class="text-xs font-mono uppercase text-zinc-500 mb-3" data-i18n="skills_cat_digital">Digital Skills</h4>
                                 <div class="flex flex-wrap gap-2">
@@ -540,6 +669,15 @@
                                     <span class="px-2 py-1 text-xs font-medium text-white bg-zinc-800/50 border border-zinc-700 rounded hover:border-accent hover:text-accent transition-colors">Design Thinking</span>
                                 </div>
                             </div>
+                        </div>
+
+                         <!-- Full Width "Tab" Button for Read More (Footer Style) -->
+                        <div class="mt-8 -mx-8 -mb-8 relative z-20">
+                            <button onclick="window.openExpertiseOverlay()" class="w-full py-4 bg-zinc-900/50 hover:bg-zinc-900 border-t border-zinc-800/50 hover:border-zinc-700 backdrop-blur-sm text-zinc-400 hover:text-white font-mono uppercase text-xs tracking-widest font-bold flex items-center justify-center gap-3 transition-all duration-300 group rounded-b-[1.5rem] cursor-pointer relative overflow-hidden data-hover-trigger">
+                                <div class="absolute inset-0 bg-accent/5 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
+                                <span data-i18n="btn_read_more">Read more</span>
+                                <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -1018,7 +1156,7 @@
                                      <i data-lucide="quote" class="absolute -top-1 -left-1 w-4 h-4 text-zinc-700 fill-zinc-700 opacity-50 transform -scale-x-100"></i>
                                     <div class="overflow-y-auto max-h-[160px] custom-scrollbar pr-2">
                                          <p class="text-zinc-400 text-sm leading-relaxed pl-4 italic" data-i18n="rec_3_text">
-                                            "I know Ritchie as a smart and inquisitive student. He asks sharp questions that stimulate further thinking in others. He actively seeks depth and quickly bridges the gap between theory and practice.<br><br>Collaboration is very important to him. He focuses not just on the result, but on the process of achieving it together. In a project group with varying levels of commitment, he remained calm and clear-headed. He addressed the issue openly, redistributed tasks, and checked what each member needed to contribute. His approach revitalized the team and ensured a fairer distribution of work.<br><br>Ritchie communicates openly and clearly. He listens well, summarizes effectively, and ensures agreements are concrete. This makes him a pleasant and reliable partner to work with."
+                                            "I know Ritchie as a smart and inquisitive student. He asks sharp questions that stimulate further thinking in others. He actively seeks depth and quickly bridges the gap between theory and practice.<br><br>Collaboration is very important to him. He focuses not just on the result, but on the process of achieving it together. In a project group with varying levels of commitment, he remained calm and clear-headed. He addressed the issue openly, redistributed tasks, and checked what each member needed to contribute. His approach revitalized the team and ensured a fairer distribution of work.<br><br>Ritchie communiceert open en helder. Hij luistert goed, vat goed samen en zorgt dat afspraken concreet zijn. Dat maakt hem een prettige en betrouwbare partner om mee samen te werken."
                                         </p>
                                     </div>
                                 </div>
@@ -1046,1239 +1184,531 @@
                     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0kTw7PhwMVs-IQmNdomH7h6oPquEiRAyCcw&s" alt="Perron038" class="h-10 w-auto object-contain logo-filter">
                     <img src="https://www.duurzaam-ondernemen.nl/wordpress/wp-content/uploads/2025/07/unica.png" alt="Unica" class="h-10 w-auto object-contain logo-filter">
                     <img src="https://www.overstappen.nl/assets/Zonneplan@2x.png" alt="Zonneplan" class="h-8 w-auto object-contain logo-filter">
-
-                     <!-- Logos Set 3 -->
-                    <img src="https://www.vitens.nl/-/media/Project/Vitens/VitensNl/vitens-logo.jpg" alt="Vitens" class="h-10 w-auto object-contain logo-filter">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0kTw7PhwMVs-IQmNdomH7h6oPquEiRAyCcw&s" alt="Perron038" class="h-10 w-auto object-contain logo-filter">
-                    <img src="https://www.duurzaam-ondernemen.nl/wordpress/wp-content/uploads/2025/07/unica.png" alt="Unica" class="h-10 w-auto object-contain logo-filter">
-                    <img src="https://www.overstappen.nl/assets/Zonneplan@2x.png" alt="Zonneplan" class="h-8 w-auto object-contain logo-filter">
-
-                     <!-- Logos Set 4 (Added for seamless loop on wide screens) -->
-                    <img src="https://www.vitens.nl/-/media/Project/Vitens/VitensNl/vitens-logo.jpg" alt="Vitens" class="h-10 w-auto object-contain logo-filter">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0kTw7PhwMVs-IQmNdomH7h6oPquEiRAyCcw&s" alt="Perron038" class="h-10 w-auto object-contain logo-filter">
-                    <img src="https://www.duurzaam-ondernemen.nl/wordpress/wp-content/uploads/2025/07/unica.png" alt="Unica" class="h-10 w-auto object-contain logo-filter">
-                    <img src="https://www.overstappen.nl/assets/Zonneplan@2x.png" alt="Zonneplan" class="h-8 w-auto object-contain logo-filter">
                 </div>
             </div>
         </div>
-    </div>
-    
-    <!-- Footer at the bottom -->
-    <footer class="w-full text-center py-6 text-zinc-600 text-xs font-mono uppercase relative z-10">
-        © 2025 Ritchie Olthuis
-    </footer>
-    
-    <!-- CONTACT MODAL (Email Options) -->
-    <div id="contact-modal" class="fixed inset-0 z-[100] hidden">
-        <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" onclick="window.closeContactModal()"></div>
-        <div class="absolute inset-0 flex items-center justify-center p-4 pointer-events-none">
-            <div class="bg-[#121212] border border-zinc-800 rounded-3xl p-8 max-w-sm w-full shadow-2xl pointer-events-auto relative transform transition-all scale-100">
-                <button onclick="window.closeContactModal()" class="magnetic-btn absolute top-4 right-4 p-2 bg-zinc-900 rounded-full hover:bg-accent hover:text-black transition-colors text-white border border-zinc-800 data-hover-trigger">
-                    <i data-lucide="x" class="w-5 h-5"></i>
-                </button>
-                
-                <h3 class="text-xl font-display font-bold text-white mb-6 text-center" data-i18n="contact_modal_title">Choose Email Client</h3>
-                
-                <div class="flex flex-col gap-3">
-                     <!-- Gmail -->
-                     <a href="https://mail.google.com/mail/?view=cm&fs=1&to=ritchieolthuis@gmail.com" target="_blank" class="flex items-center gap-4 p-4 bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 rounded-xl transition-all group hover:scale-[1.02] hover:border-zinc-700">
-                        <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center shrink-0">
-                           <svg viewBox="0 0 24 24" class="w-6 h-6" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.91 1.528-1.145C21.69 2.28 24 3.434 24 5.457z" fill="#EA4335"/>
-                           </svg>
-                        </div>
-                        <span class="font-bold text-white group-hover:text-accent transition-colors" data-i18n="btn_gmail">Open Gmail</span>
-                     </a>
 
-                     <!-- Outlook -->
-                     <a href="https://outlook.office.com/mail/deeplink/compose?to=ritchieolthuis@gmail.com" target="_blank" class="flex items-center gap-4 p-4 bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 rounded-xl transition-all group hover:scale-[1.02] hover:border-zinc-700">
-                         <div class="w-10 h-10 rounded-full bg-[#0078D4] flex items-center justify-center shrink-0">
-                            <svg viewBox="0 0 24 24" class="w-6 h-6 text-white" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <rect width="20" height="16" x="2" y="4" rx="2"/>
-                                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
-                            </svg>
-                        </div>
-                        <span class="font-bold text-white group-hover:text-accent transition-colors" data-i18n="btn_outlook">Open Outlook</span>
-                     </a>
-
-                     <!-- Default -->
-                     <a href="mailto:ritchieolthuis@gmail.com" class="flex items-center gap-4 p-4 bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 rounded-xl transition-all group hover:scale-[1.02] hover:border-zinc-700">
-                         <div class="w-10 h-10 rounded-full bg-zinc-700 flex items-center justify-center shrink-0">
-                            <i data-lucide="mail" class="w-5 h-5 text-white"></i>
-                        </div>
-                        <span class="font-bold text-white group-hover:text-accent transition-colors" data-i18n="btn_default_mail">Default Mail App</span>
-                     </a>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    <!-- CALL SCHEDULING MODAL -->
-    <div id="call-modal" class="fixed inset-0 z-[100] hidden">
-        <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" onclick="window.closeCallModal()"></div>
-        <div class="absolute inset-0 flex items-center justify-center p-4 pointer-events-none">
-            <div class="bg-[#121212] border border-zinc-800 rounded-3xl p-8 max-w-sm w-full shadow-2xl pointer-events-auto relative transform transition-all scale-100">
-                <button onclick="window.closeCallModal()" class="magnetic-btn absolute top-4 right-4 p-2 bg-zinc-900 rounded-full hover:bg-accent hover:text-black transition-colors text-white border border-zinc-800 data-hover-trigger">
-                    <i data-lucide="x" class="w-5 h-5"></i>
-                </button>
-                
-                <!-- Updated Title with Hover Effect -->
-                <h3 class="text-xl font-display font-bold text-white mb-6 text-center hover:text-accent transition-colors cursor-default" data-i18n="call_modal_title">Schedule intro call with Ritchie</h3>
-                
-                <div class="flex flex-col gap-3">
-                     <!-- Google Calendar -->
-                     <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Intro+Call+with+Ritchie+Olthuis&details=Invitation+via+Portfolio&add=ritchieolthuis@gmail.com" target="_blank" class="flex items-center gap-4 p-4 bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 rounded-xl transition-all group hover:scale-[1.02] hover:border-zinc-700">
-                        <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center shrink-0">
-                           <!-- Google Calendar Icon -->
-                           <svg viewBox="0 0 24 24" class="w-6 h-6" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zm0-12H5V6h14v2zm-7 5h5v5h-5z" fill="#4285F4"/>
-                           </svg>
-                        </div>
-                        <span class="font-bold text-white group-hover:text-accent transition-colors" data-i18n="btn_google_cal">Google Calendar</span>
-                     </a>
-
-                     <!-- Outlook Online (Updated to add attendee) -->
-                     <a href="https://outlook.live.com/calendar/0/deeplink/compose?path=/calendar/action/compose&rru=addevent&subject=Intro%20Call%20with%20Ritchie%20Olthuis&body=Invitation%20via%20Portfolio&to=ritchieolthuis@gmail.com" target="_blank" class="flex items-center gap-4 p-4 bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 rounded-xl transition-all group hover:scale-[1.02] hover:border-zinc-700">
-                         <div class="w-10 h-10 rounded-full bg-[#0078D4] flex items-center justify-center shrink-0">
-                            <!-- Outlook Icon -->
-                            <svg viewBox="0 0 24 24" class="w-6 h-6 text-white" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <rect width="20" height="16" x="2" y="4" rx="2"/>
-                                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
-                            </svg>
-                        </div>
-                        <span class="font-bold text-white group-hover:text-accent transition-colors" data-i18n="btn_outlook_cal">Outlook.com</span>
-                     </a>
-                     
-                     <!-- REMOVED Office 365 Link as requested -->
-                </div>
-            </div>
-        </div>
     </div>
 
-    <!-- CV SELECTION MODAL -->
-    <div id="cv-modal" class="fixed inset-0 z-[100] hidden">
-        <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" onclick="window.closeCVModal()"></div>
-        <div class="absolute inset-0 flex items-center justify-center p-4 pointer-events-none">
-            <div class="bg-[#121212] border border-zinc-800 rounded-3xl p-8 max-w-sm w-full shadow-2xl pointer-events-auto relative transform transition-all scale-100">
-                <button onclick="window.closeCVModal()" class="magnetic-btn absolute top-4 right-4 p-2 bg-zinc-900 rounded-full hover:bg-accent hover:text-black transition-colors text-white border border-zinc-800 data-hover-trigger">
-                    <i data-lucide="x" class="w-5 h-5"></i>
-                </button>
-                
-                <h3 class="text-xl font-display font-bold text-white mb-6 text-center" data-i18n="cv_modal_title">Select Version</h3>
-                
-                <div class="flex flex-col gap-3">
-                     <!-- Dutch Version -->
-                     <a href="https://drive.google.com/file/d/1b1upJApvnbv6Iye-dXC8Cjx3pcG9uise/view?usp=sharing" target="_blank" class="flex items-center gap-4 p-4 bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 rounded-xl transition-all group hover:scale-[1.02] hover:border-zinc-700">
-                        <div class="w-10 h-10 rounded-full bg-zinc-800 flex items-center justify-center shrink-0 overflow-hidden relative">
-                           <!-- Dutch Flag SVG -->
-                           <svg viewBox="0 0 640 480" class="w-full h-full object-cover">
-                               <path fill="#21468b" d="M0 0h640v480H0z"/>
-                               <path fill="#fff" d="M0 0h640v320H0z"/>
-                               <path fill="#ae1c28" d="M0 0h640v160H0z"/>
-                           </svg>
-                        </div>
-                        <div>
-                             <span class="block font-bold text-white group-hover:text-accent transition-colors" data-i18n="cv_dutch_title">Download Dutch Version</span>
-                             <span class="text-xs text-zinc-500">PDF</span>
-                        </div>
-                     </a>
-
-                     <!-- English Version -->
-                     <a href="https://drive.google.com/file/d/1fYf3Qa561FvxvJuUkraMCjG0li8RWRI_/view?usp=sharing" target="_blank" class="flex items-center gap-4 p-4 bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 rounded-xl transition-all group hover:scale-[1.02] hover:border-zinc-700">
-                         <div class="w-10 h-10 rounded-full bg-zinc-800 flex items-center justify-center shrink-0 overflow-hidden relative">
-                            <!-- UK Flag SVG -->
-                            <svg viewBox="0 0 640 480" class="w-full h-full object-cover">
-                                <path fill="#012169" d="M0 0h640v480H0z"/>
-                                <path fill="#fff" d="M75 0l244 181L562 0h78v62L400 241l240 178v61h-80L320 301 81 480H0v-60l239-178L0 64V0h75z"/>
-                                <path fill="#c8102e" d="M424 281l216 159v40L369 281h55zm-184 20l6 35L54 480H0l240-179zM640 0v3L391 191l2-44L590 0h50zM0 0l239 176h-60L0 42V0z"/>
-                                <path fill="#fff" d="M241 0v480h160V0H241zM0 160v160h640V160H0z"/>
-                                <path fill="#c8102e" d="M0 193v96h640v-96H0zM273 0v480h96V0h-96z"/>
-                            </svg>
-                        </div>
-                        <div>
-                            <span class="block font-bold text-white group-hover:text-accent transition-colors" data-i18n="cv_english_title">Download English Version</span>
-                            <span class="text-xs text-zinc-500">PDF</span>
-                        </div>
-                     </a>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    <!-- PROJECTS MODAL (View All) - Unique ID for specific targeting -->
-    <div id="projects-modal-unique" class="fixed inset-0 z-[100] hidden">
+    <!-- SERVICES MODAL (Detailed View) -->
+    <div id="services-modal" class="fixed inset-0 z-[100] hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true">
         <!-- Backdrop -->
-        <div class="absolute inset-0 bg-black/90 backdrop-blur-sm" onclick="window.closeProjectsModal()"></div>
+        <div class="absolute inset-0 bg-black/80 backdrop-blur-sm transition-opacity" onclick="window.closeServicesModal()"></div>
         
-        <!-- Content -->
-        <div class="absolute inset-0 overflow-y-auto">
-            <div class="min-h-full flex items-center justify-center p-4 md:p-8">
-                <div class="relative w-full max-w-6xl bg-[#121212] border border-zinc-800 rounded-3xl p-6 md:p-10 shadow-2xl">
-                    <!-- Header -->
-                    <div class="flex justify-between items-center mb-8">
-                        <h2 class="text-3xl font-display font-bold text-white uppercase" data-i18n="modal_title">All Projects</h2>
-                        <button onclick="window.closeProjectsModal()" class="magnetic-btn p-2 bg-zinc-900 rounded-full hover:bg-accent hover:text-black transition-colors text-white border border-zinc-800 data-hover-trigger">
-                            <i data-lucide="x" class="w-6 h-6"></i>
-                        </button>
-                    </div>
-                    
-                    <!-- Grid -->
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <!-- Project 1 -->
-                        <div class="bento-card p-0 flex flex-col group h-full data-hover-trigger">
-                            <div class="relative h-48 w-full overflow-hidden">
-                                <div class="absolute top-3 left-3 z-20 px-2 py-1 bg-accent text-black text-[10px] font-bold uppercase rounded-full">Aug 2025 - Jan 2026</div>
-                                <img src="https://www.h2owaternetwerk.nl/images/2020/December/vitens_strategie_duurzaam.jpg" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500">
-                            </div>
-                            <div class="p-6 flex flex-col flex-grow">
-                                <h3 class="text-lg font-bold text-white group-hover:text-accent transition-colors mb-2" data-i18n="proj_1_title_short">Vitens: Market Strategy</h3>
-                                <p class="text-zinc-400 text-xs leading-relaxed mb-4 flex-grow line-clamp-3" data-i18n="proj_1_desc_short">For Vitens, I conducted an in-depth market study to determine how a new Water-as-a-Service division should be positioned, structured, and brought to market.</p>
-                                <a href="https://www.vitens.nl/Zakelijk" target="_blank" class="text-xs font-bold text-accent hover:underline flex items-center gap-1 data-hover-trigger">VIEW PROJECT <i data-lucide="arrow-right" class="w-3 h-3"></i></a>
-                            </div>
-                        </div>
+        <!-- Modal Panel -->
+        <div class="absolute inset-0 flex justify-center items-center p-4 sm:p-6 pointer-events-none">
+            <div class="w-full max-w-6xl h-full max-h-[90vh] bg-[#121212] border border-zinc-800 rounded-3xl shadow-2xl overflow-hidden flex flex-col pointer-events-auto relative transform transition-all animate-fade-in">
+                
+                <!-- Close Button -->
+                <button onclick="window.closeServicesModal()" class="absolute top-6 right-6 z-50 text-zinc-500 hover:text-white transition-colors bg-zinc-900/50 rounded-full p-2 border border-zinc-800">
+                    <i data-lucide="x" class="w-6 h-6"></i>
+                </button>
 
-                        <!-- Project 2 -->
-                         <div class="bento-card p-0 flex flex-col group h-full data-hover-trigger">
-                            <div class="relative h-48 w-full overflow-hidden">
-                                <div class="absolute top-3 left-3 z-20 px-2 py-1 bg-accent text-black text-[10px] font-bold uppercase rounded-full">Aug 2025 - Jan 2026</div>
-                                <img src="https://smartindustry.nl/hs-fs/hubfs/news/Factory_NEXT_Perron038_Robotopstelling_Coldspray.jpg?width=2048&height=1365&name=Factory_NEXT_Perron038_Robotopstelling_Coldspray.jpg" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500">
-                            </div>
-                            <div class="p-6 flex flex-col flex-grow">
-                                <h3 class="text-lg font-bold text-white group-hover:text-accent transition-colors mb-2" data-i18n="proj_2_title_short">Perron038: Innovation Hub</h3>
-                                <p class="text-zinc-400 text-xs leading-relaxed mb-4 flex-grow line-clamp-3" data-i18n="proj_2_desc_short">At Perron038, I explored how Factory NEXT can be commercially positioned and made attractive for industrial partners.</p>
-                                <a href="https://www.perron038.nl/factory-next/" target="_blank" class="text-xs font-bold text-accent hover:underline flex items-center gap-1 data-hover-trigger">VIEW PROJECT <i data-lucide="arrow-right" class="w-3 h-3"></i></a>
-                            </div>
-                        </div>
+                <!-- Scrollable Content -->
+                <div class="overflow-y-auto custom-scrollbar p-8 md:p-12">
+                     <!-- Header -->
+                     <h2 class="text-3xl md:text-5xl font-display font-bold text-white mb-8 uppercase leading-tight max-w-4xl" data-i18n="serv_modal_title">
+                        Transform Complex Challenges <br/>
+                        <span class="text-zinc-500">Into Growth & Value</span>
+                     </h2>
 
-                        <!-- Project 3 -->
-                         <div class="bento-card p-0 flex flex-col group h-full data-hover-trigger">
-                            <div class="relative h-48 w-full overflow-hidden">
-                                <div class="absolute top-3 left-3 z-20 px-2 py-1 bg-accent text-black text-[10px] font-bold uppercase rounded-full">Aug 2023 - Jan 2024</div>
-                                <img src="https://stapintechniek.nl/wp-content/uploads/2025/10/7r31189-scaled.jpg" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500">
-                            </div>
-                            <div class="p-6 flex flex-col flex-grow">
-                                <h3 class="text-lg font-bold text-white group-hover:text-accent transition-colors mb-2" data-i18n="proj_3_title_short">Unica: Smart Buildings</h3>
-                                <p class="text-zinc-400 text-xs leading-relaxed mb-4 flex-grow line-clamp-3" data-i18n="proj_3_desc_short">We developed a strategic advisory process for Unica using the Design Thinking cycle to optimize their value proposition for smart buildings.</p>
-                                <a href="https://www.unica.nl/over-ons/onze-bedrijven/unica-building-services" target="_blank" class="text-xs font-bold text-accent hover:underline flex items-center gap-1 data-hover-trigger">VIEW PROJECT <i data-lucide="arrow-right" class="w-3 h-3"></i></a>
-                            </div>
-                        </div>
+                     <!-- Intro Text -->
+                     <div class="prose prose-invert max-w-none text-zinc-400 mb-12 space-y-4 text-base md:text-lg leading-relaxed border-l-2 border-accent pl-6">
+                        <p data-i18n="serv_modal_intro_1">
+                            I help organizations make complex issues clear and turn them into concrete actions. By thinking analytically while offering practical solutions, I bring structure to situations that are unclear or fragmented. My focus is on uncovering hidden opportunities and threats, translating strategy into actionable steps, and creating clarity for teams and decision-makers.
+                        </p>
+                        <p data-i18n="serv_modal_intro_2">
+                            What distinguishes me is that my advice is always tailored: human-centered, pragmatic, and fully aligned with the specific context of your organization. Strategies do not remain theoretical but are immediately applicable and effective in realizing sustainable growth and lasting impact. Collaboration means a fresh, independent perspective and insights that truly work and deliver results.
+                        </p>
+                     </div>
 
-                         <!-- Project 4 -->
-                         <div class="bento-card p-0 flex flex-col group h-full data-hover-trigger">
-                            <div class="relative h-48 w-full overflow-hidden">
-                                <div class="absolute top-3 left-3 z-20 px-2 py-1 bg-accent text-black text-[10px] font-bold uppercase rounded-full">Feb 2023 - Jun 2023</div>
-                                <img src="https://zonneplan-site.s3.amazonaws.com/uploads/2024/05/zonnepanelen-header-hoeveel-kwh-e1716799873343.png" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500">
-                            </div>
-                            <div class="p-6 flex flex-col flex-grow">
-                                <h3 class="text-lg font-bold text-white group-hover:text-accent transition-colors mb-2" data-i18n="proj_4_title_short">Zonneplan: EV Sales</h3>
-                                <p class="text-zinc-400 text-xs leading-relaxed mb-4 flex-grow line-clamp-3" data-i18n="proj_4_desc_short">We developed a focused whitepaper for Zonneplan to achieve their 2023 target of 3,000 EV charger sales.</p>
-                                <a href="https://www.zonneplan.nl/" target="_blank" class="text-xs font-bold text-accent hover:underline flex items-center gap-1 data-hover-trigger">VIEW PROJECT <i data-lucide="arrow-right" class="w-3 h-3"></i></a>
-                            </div>
-                        </div>
-                    </div>
+                     <!-- Grid Layout -->
+                     <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 mb-12">
+                         
+                         <!-- Column 1: What I can do -->
+                         <div>
+                             <h3 class="text-accent font-bold uppercase tracking-wider mb-6 text-sm border-b border-zinc-800 pb-2" data-i18n="serv_modal_col1_title">What I can do for your organization</h3>
+                             <ul class="space-y-4 text-zinc-300 text-sm md:text-base leading-relaxed">
+                                 <li class="flex gap-3">
+                                     <i data-lucide="arrow-right-circle" class="w-5 h-5 text-accent flex-shrink-0 mt-0.5"></i>
+                                     <span data-i18n="serv_modal_col1_li1">Market and competitive analyses that not only uncover opportunities but also make commercial and strategic risks explicit.</span>
+                                 </li>
+                                 <li class="flex gap-3">
+                                     <i data-lucide="arrow-right-circle" class="w-5 h-5 text-accent flex-shrink-0 mt-0.5"></i>
+                                     <span data-i18n="serv_modal_col1_li2">Development of business models and value propositions in which profitability, sustainability, and societal value are designed integrally.</span>
+                                 </li>
+                                 <li class="flex gap-3">
+                                     <i data-lucide="arrow-right-circle" class="w-5 h-5 text-accent flex-shrink-0 mt-0.5"></i>
+                                     <span data-i18n="serv_modal_col1_li3">Strategic roadmaps and implementation architectures that deliver direction, priority, and concrete executability.</span>
+                                 </li>
+                                 <li class="flex gap-3">
+                                     <i data-lucide="arrow-right-circle" class="w-5 h-5 text-accent flex-shrink-0 mt-0.5"></i>
+                                     <span data-i18n="serv_modal_col1_li4">Design Thinking and ESG-integrated advisory, from strategic concept to validated solution, with decision-making based on real customer and stakeholder insights.</span>
+                                 </li>
+                             </ul>
+                         </div>
+
+                         <!-- Column 2: Why work with me -->
+                         <div>
+                             <h3 class="text-accent font-bold uppercase tracking-wider mb-6 text-sm border-b border-zinc-800 pb-2" data-i18n="serv_modal_col2_title">Why work with me</h3>
+                             <ul class="space-y-4 text-zinc-300 text-sm md:text-base leading-relaxed">
+                                 <li class="flex gap-3">
+                                     <i data-lucide="check-circle-2" class="w-5 h-5 text-accent flex-shrink-0 mt-0.5"></i>
+                                     <span data-i18n="serv_modal_col2_li1">Academically anchored strategies, with a solid foundation in Business Administration and Commercial Economics, specializing in innovation, design thinking, and sustainable business architectures.</span>
+                                 </li>
+                                 <li class="flex gap-3">
+                                     <i data-lucide="check-circle-2" class="w-5 h-5 text-accent flex-shrink-0 mt-0.5"></i>
+                                     <span data-i18n="serv_modal_col2_li2">Direct translation from theory to practice, gained within projects in sectors like smart buildings, watermanagement, mobility, energy, and business services.</span>
+                                 </li>
+                                 <li class="flex gap-3">
+                                     <i data-lucide="check-circle-2" class="w-5 h-5 text-accent flex-shrink-0 mt-0.5"></i>
+                                     <span data-i18n="serv_modal_col2_li3">No standard advice, but tailored strategies; your organization gets a strategic structure aligned with the context that is immediately actionable.</span>
+                                 </li>
+                                 <li class="flex gap-3">
+                                     <i data-lucide="check-circle-2" class="w-5 h-5 text-accent flex-shrink-0 mt-0.5"></i>
+                                     <span data-i18n="serv_modal_col2_li4">Innovation is organized concretely; strategies do not remain theoretical but are immediately applicable and effective in realizing sustainable growth and lasting impact.</span>
+                                 </li>
+                                 <li class="flex gap-3">
+                                     <i data-lucide="check-circle-2" class="w-5 h-5 text-accent flex-shrink-0 mt-0.5"></i>
+                                     <span data-i18n="serv_modal_col2_li5">A fresh, independent perspective that offers focus, overview, and direction, with a result-oriented and pragmatic approach that delivers both commercial and societal value.</span>
+                                 </li>
+                             </ul>
+                         </div>
+
+                     </div>
+
+                     <!-- Bottom Grid -->
+                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+                         <div class="bg-zinc-900/50 p-6 rounded-2xl border border-zinc-800">
+                             <h3 class="text-accent font-bold uppercase tracking-wider mb-3 text-xs flex items-center gap-2">
+                                <i data-lucide="sparkles" class="w-4 h-4"></i> <span data-i18n="serv_modal_diff_title">What makes me different</span>
+                             </h3>
+                             <p class="text-zinc-400 text-sm leading-relaxed" data-i18n="serv_modal_diff_text">
+                                I focus on what organizations really need: clarity, overview, and substantiated insights. Where much advice remains stuck in abstraction or theory, I make it practical, applicable, and immediately usable.
+                             </p>
+                         </div>
+                         <div class="bg-zinc-900/50 p-6 rounded-2xl border border-zinc-800">
+                             <h3 class="text-accent font-bold uppercase tracking-wider mb-3 text-xs flex items-center gap-2">
+                                 <i data-lucide="target" class="w-4 h-4"></i> <span data-i18n="serv_modal_expect_title">What you can expect</span>
+                             </h3>
+                             <p class="text-zinc-400 text-sm leading-relaxed" data-i18n="serv_modal_expect_text">
+                                You get an independent, analytical perspective on complex challenges. You get strategy that offers overview and direction, without new layers of complexity. You get a partner who helps focus on what is truly relevant, with a pragmatic approach and an eye for execution.
+                             </p>
+                         </div>
+                     </div>
+
+                     <!-- Footer Quote -->
+                     <div class="border-t border-zinc-800 pt-8 text-center bg-[#151515] rounded-xl p-8">
+                         <p class="text-white font-display font-bold text-lg md:text-xl max-w-3xl mx-auto" data-i18n="serv_modal_quote">
+                            "I bring complex challenges back to clear, data-driven, and human-centered insights, so that your organization can make smart, sustainable, and future-proof choices."
+                         </p>
+                     </div>
                 </div>
             </div>
         </div>
-
-        <!-- EXPERTISE MODAL (New) -->
-        <div id="expertise-overlay" class="fixed inset-0 z-[10001] hidden">
-            <!-- Backdrop -->
-            <div class="absolute inset-0 bg-[#050505]" onclick="closeExpertiseOverlay()"></div>
-            
-            <!-- Content -->
-            <div class="absolute inset-0 overflow-y-auto">
-                <div class="min-h-full flex items-center justify-center p-4 md:p-8">
-                    <div class="relative w-full max-w-4xl bg-[#121212] border border-zinc-800 rounded-3xl p-8 md:p-12 shadow-2xl">
-                        <!-- Header -->
-                        <div class="flex justify-between items-center mb-10">
-                            <h2 class="text-3xl md:text-4xl font-display font-bold text-white uppercase tracking-tight" data-i18n="skills_modal_title">EXPERTISE</h2>
-                            <button onclick="closeExpertiseOverlay()" class="magnetic-btn p-3 bg-zinc-900 rounded-full hover:bg-accent hover:text-black transition-colors text-white border border-zinc-800 data-hover-trigger">
-                                <i data-lucide="x" class="w-6 h-6"></i>
-                            </button>
-                        </div>
-                        
-                        <!-- Content Body -->
-                        <div class="space-y-12">
-                            
-                            <!-- Digitale Vaardigheden -->
-                            <div>
-                                <h3 class="text-xl font-bold text-accent mb-4 uppercase tracking-wide" data-i18n="exp_ov_digital_title">Digital Skills</h3>
-                                <div class="flex flex-wrap gap-3 text-sm text-zinc-300">
-                                     <span class="px-3 py-2 bg-zinc-900 border border-zinc-800 rounded-lg">Excel / Power BI</span>
-                                     <span class="px-3 py-2 bg-zinc-900 border border-zinc-800 rounded-lg">SEO / SEA / Google Ads</span>
-                                     <span class="px-3 py-2 bg-zinc-900 border border-zinc-800 rounded-lg">Google Analytics</span>
-                                     <span class="px-3 py-2 bg-zinc-900 border border-zinc-800 rounded-lg">Design Tools (Canva, Figma)</span>
-                                     <span class="px-3 py-2 bg-zinc-900 border border-zinc-800 rounded-lg">CRM-tools (Salesforce, HubSpot)</span>
-                                     <span class="px-3 py-2 bg-zinc-900 border border-zinc-800 rounded-lg">Projectmanagement (Asana, Trello)</span>
-                                </div>
-                            </div>
-
-                            <div class="h-px w-full bg-zinc-800"></div>
-
-                            <!-- ONDERZOEKENDE EXPERTISE -->
-                            <div>
-                                <h3 class="text-xl font-bold text-accent mb-8 uppercase tracking-wide" data-i18n="exp_ov_investigative_title">INVESTIGATIVE EXPERTISE: BUSINESS STRATEGIES</h3>
-                                
-                                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                                    
-                                    <!-- Analyses -->
-                                    <div class="bg-zinc-900/30 p-6 rounded-2xl border border-zinc-800/50">
-                                        <h4 class="text-lg font-bold text-white mb-2" data-i18n="exp_ov_analyses_title">Analyses</h4>
-                                        <p class="text-zinc-400 text-sm mb-4 leading-relaxed" data-i18n="exp_ov_analyses_text">
-                                            Analyses provide insight into the current situation and the environment in which an organization operates. They can be performed individually or delivered combined.
-                                        </p>
-                                        <ul class="space-y-2 text-sm text-zinc-300" data-i18n="exp_ov_analyses_list">
-                                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-accent rounded-full"></span>Market Analysis</li>
-                                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-accent rounded-full"></span>Competitor Analysis</li>
-                                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-accent rounded-full"></span>Country Analysis</li>
-                                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-accent rounded-full"></span>Industry Analysis</li>
-                                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-accent rounded-full"></span>Market Area Analysis</li>
-                                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-accent rounded-full"></span>Target Audience Analysis</li>
-                                        </ul>
-                                    </div>
-
-                                    <!-- Ontwerpen -->
-                                    <div class="bg-zinc-900/30 p-6 rounded-2xl border border-zinc-800/50">
-                                        <h4 class="text-lg font-bold text-white mb-2" data-i18n="exp_ov_designs_title">Designs</h4>
-                                        <p class="text-zinc-400 text-sm mb-4 leading-relaxed" data-i18n="exp_ov_designs_text">
-                                            Designs are plans to move from the current to the desired situation, serving as a framework.
-                                        </p>
-                                        <ul class="space-y-2 text-sm text-zinc-300" data-i18n="exp_ov_designs_list">
-                                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-accent rounded-full"></span>Implementation Plan</li>
-                                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-accent rounded-full"></span>Marketing Communication Plan</li>
-                                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-accent rounded-full"></span>Marketing Plan</li>
-                                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-accent rounded-full"></span>Export Plan</li>
-                                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-accent rounded-full"></span>Market Exploration Plan</li>
-                                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-accent rounded-full"></span>Sales Plan</li>
-                                        </ul>
-                                    </div>
-
-                                    <!-- Adviezen -->
-                                    <div class="bg-zinc-900/30 p-6 rounded-2xl border border-zinc-800/50">
-                                        <h4 class="text-lg font-bold text-white mb-2" data-i18n="exp_ov_advice_title">Advice</h4>
-                                        <p class="text-zinc-400 text-sm mb-4 leading-relaxed" data-i18n="exp_ov_advice_text">
-                                            Advice consists of substantiated recommendations at a strategic or tactical level, aimed at sustaining and growing the organization.
-                                        </p>
-                                        <ul class="space-y-2 text-sm text-zinc-300" data-i18n="exp_ov_advice_list">
-                                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-accent rounded-full"></span>Positioning Strategy Advice</li>
-                                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-accent rounded-full"></span>Market Strategy Advice</li>
-                                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-accent rounded-full"></span>Loyalty Strategy or Program Advice</li>
-                                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-accent rounded-full"></span>Growth Strategy Advice</li>
-                                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-accent rounded-full"></span>Export or Entry Strategy Advice</li>
-                                        </ul>
-                                    </div>
-
-                                    <!-- Theorieën en Modellen -->
-                                    <div class="bg-zinc-900/30 p-6 rounded-2xl border border-zinc-800/50">
-                                        <h4 class="text-lg font-bold text-white mb-2" data-i18n="exp_ov_theories_title">Theories & Models</h4>
-                                        <p class="text-zinc-400 text-sm mb-4 leading-relaxed" data-i18n="exp_ov_theories_text">
-                                            Theories and models are applied in analyses and advice to structure an organization and provide direction.
-                                        </p>
-                                        <div class="flex flex-wrap gap-2 text-sm text-zinc-300" data-i18n="exp_ov_theories_list">
-                                             <span class="px-2 py-1 bg-zinc-800 rounded border border-zinc-700">Design Thinking</span>
-                                             <span class="px-2 py-1 bg-zinc-800 rounded border border-zinc-700">Business Model Canvas (incl. Triple Layered)</span>
-                                             <span class="px-2 py-1 bg-zinc-800 rounded border border-zinc-700">Value Proposition Model</span>
-                                             <span class="px-2 py-1 bg-zinc-800 rounded border border-zinc-700">Multiple Value Creation</span>
-                                             <span class="px-2 py-1 bg-zinc-800 rounded border border-zinc-700">SWOT Analysis</span>
-                                             <span class="px-2 py-1 bg-zinc-800 rounded border border-zinc-700">Customer Journey</span>
-                                             <span class="px-2 py-1 bg-zinc-800 rounded border border-zinc-700">Organizational Mapping</span>
-                                             <span class="px-2 py-1 bg-zinc-800 rounded border border-zinc-700">Action Learning</span>
-                                             <span class="px-2 py-1 bg-zinc-800 rounded border border-zinc-700">Business Management</span>
-                                             <span class="px-2 py-1 bg-zinc-800 rounded border border-zinc-700">ESG</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
+    </div>
+    
+    <!-- Modals (Placeholders for script compatibility) -->
+    <div id="contact-modal" class="fixed inset-0 z-[100] hidden bg-black/80 flex items-center justify-center p-4">
+        <div class="bg-[#121212] p-8 rounded-2xl max-w-md w-full border border-zinc-800 text-center relative">
+            <button onclick="window.closeContactModal()" class="absolute top-4 right-4 text-zinc-500 hover:text-white"><i data-lucide="x"></i></button>
+            <h3 class="text-xl text-white font-bold mb-4">Contact</h3>
+            <p class="text-zinc-400 mb-6">ritchieolthuis@gmail.com</p>
+             <a href="mailto:ritchieolthuis@gmail.com" class="inline-block px-6 py-3 bg-accent text-black font-bold rounded-full">Open Mail Client</a>
         </div>
+    </div>
+    <div id="call-modal" class="fixed inset-0 z-[100] hidden bg-black/80 flex items-center justify-center p-4">
+        <div class="bg-[#121212] p-8 rounded-2xl max-w-md w-full border border-zinc-800 text-center relative">
+            <button onclick="window.closeCallModal()" class="absolute top-4 right-4 text-zinc-500 hover:text-white"><i data-lucide="x"></i></button>
+            <h3 class="text-xl text-white font-bold mb-4">Schedule a Call</h3>
+            <p class="text-zinc-400 mb-6">Let's discuss opportunities.</p>
+            <a href="https://calendly.com/ritchieolthuis" target="_blank" class="inline-block px-6 py-3 bg-white text-black font-bold rounded-full">Open Calendar</a>
+        </div>
+    </div>
+     <div id="cv-modal" class="fixed inset-0 z-[100] hidden bg-black/80 flex items-center justify-center p-4">
+        <div class="bg-[#121212] p-8 rounded-2xl max-w-md w-full border border-zinc-800 text-center relative">
+            <button onclick="window.closeCVModal()" class="absolute top-4 right-4 text-zinc-500 hover:text-white"><i data-lucide="x"></i></button>
+            <h3 class="text-xl text-white font-bold mb-4">Download CV</h3>
+            <p class="text-zinc-400 mb-6">Get a copy of my resume.</p>
+            <a href="assets/CV_Ritchie_Olthuis.pdf" download class="inline-block px-6 py-3 bg-white text-black font-bold rounded-full">Download PDF</a>
+        </div>
+    </div>
 
-        <!-- Floating Call Button - Links to dialer -->
-        <a href="tel:0641415887" class="magnetic-btn fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full shadow-[0_0_20px_rgba(204,255,0,0.4)] flex items-center justify-center border border-zinc-800 transition-all duration-300 hover:scale-105 active:scale-95 bg-accent text-black hover:bg-[#b3e600] data-hover-trigger">
-        <i data-lucide="phone" class="w-6 h-6"></i>
-    </a>
-
-    <!-- Scripts for Logic -->
+    <!-- Scripts -->
     <script>
-        // --- 0. Define Modal Functions Globally ---
-        // Moved to top and made robust
-        window.openExpertiseOverlay = function() {
-             console.log('Opening Expertise Overlay...');
-             const overlay = document.getElementById('expertise-overlay');
-             if(overlay) {
-                 overlay.classList.remove('hidden');
-                 // FORCE display and z-index to override any potential CSS conflicts
-                 overlay.style.display = 'block'; 
-                 overlay.style.zIndex = '10001';
-                 document.body.style.overflow = 'hidden';
-             } else {
-                 console.error('Expertise overlay element not found!');
-             }
-        };
-        window.closeExpertiseOverlay = function() {
-             const overlay = document.getElementById('expertise-overlay');
-             if(overlay) {
-                 overlay.classList.add('hidden');
-                 overlay.style.display = ''; // Reset inline display
-                 document.body.style.overflow = 'auto';
-             }
-        };
+      // Initialize Lucide Icons
+      lucide.createIcons();
 
-        window.openProjectsModal = function() {
-             const modal = document.getElementById('projects-modal-unique');
-             if(modal) {
-                 modal.classList.remove('hidden');
-                 document.body.style.overflow = 'hidden';
-             }
-        };
-        window.closeProjectsModal = function() {
-             const modal = document.getElementById('projects-modal-unique');
-             if(modal) {
-                 modal.classList.add('hidden');
-                 document.body.style.overflow = 'auto';
-             }
-        };
-
-        window.openContactModal = function() {
-             const modal = document.getElementById('contact-modal');
-             if(modal) {
-                 modal.classList.remove('hidden');
-                 document.body.style.overflow = 'hidden';
-             }
-        };
-        window.closeContactModal = function() {
-             const modal = document.getElementById('contact-modal');
-             if(modal) {
-                 modal.classList.add('hidden');
-                 document.body.style.overflow = 'auto';
-             }
-        };
-        
-        // NEW: Call Modal Logic
-        window.openCallModal = function() {
-             const modal = document.getElementById('call-modal');
-             if(modal) {
-                 modal.classList.remove('hidden');
-                 document.body.style.overflow = 'hidden';
-             }
-        };
-        window.closeCallModal = function() {
-             const modal = document.getElementById('call-modal');
-             if(modal) {
-                 modal.classList.add('hidden');
-                 document.body.style.overflow = 'auto';
-             }
-        };
-
-        window.openCVModal = function() {
-             const modal = document.getElementById('cv-modal');
-             if(modal) {
-                 modal.classList.remove('hidden');
-                 document.body.style.overflow = 'hidden';
-             }
-        };
-        window.closeCVModal = function() {
-             const modal = document.getElementById('cv-modal');
-             if(modal) {
-                 modal.classList.add('hidden');
-                 document.body.style.overflow = 'auto';
-             }
-        };
-
-        // Event Delegation for Expertise Button
-        document.addEventListener('click', function(e) {
-            // Check if the clicked element is the button or inside it
-            const trigger = e.target.closest('#view-all-expertise-btn');
-            if (trigger) {
-                e.preventDefault();
-                e.stopPropagation();
-                console.log('Delegated click detected on Expertise Button');
-                window.openExpertiseOverlay();
-            }
-        });
-
-        // --- 1. DOM Content Loaded Logic ---
-        document.addEventListener("DOMContentLoaded", () => {
-            
-            // NOTE: Removed previous direct listener to avoid conflicts with delegation
-
-            // Intro Animation Logic
-            const greetings = ["Hallo", "Hello", "Bonjour", "Hola", "Ciao", "Guten Tag"];
-            const introText = document.getElementById("intro-greeting");
-            const introScreen = document.getElementById("intro-screen");
-            const introContent = document.getElementById("intro-content");
-            let index = 0;
-            
-            // Clear hero title immediately so it reveals empty
-            const heroTitleEl = document.getElementById('typewriter-title');
-            if (heroTitleEl) heroTitleEl.innerHTML = '';
-
-            document.body.style.overflow = "hidden";
-
-            // Cycle greetings
-            const cycleGreetings = setInterval(() => {
-                index++;
-                if (index < greetings.length) {
-                    introText.textContent = greetings[index];
-                } else {
-                    clearInterval(cycleGreetings);
-                    
-                    // Trigger Exit Animation (Scale & Fade)
-                    if (introContent) {
-                        introContent.classList.add('scale-out-exit');
-                    }
-                    
-                    // Remove screen after animation completes
-                    setTimeout(() => {
-                        if(introScreen) {
-                             introScreen.style.opacity = "0";
-                             introScreen.style.pointerEvents = "none";
-                             setTimeout(() => {
-                                 introScreen.style.display = "none";
-                                 document.body.style.overflow = "auto";
-                                 
-                                 // Start typing now that loading screen is gone
-                                 startHeroTypewriter();
-                             }, 500);
-                        }
-                    }, 600); // Timing matches visual impact of scale-out
-                }
-            }, 300); // Slightly faster cycle for better pacing
-        });
-
-        // --- 2. Custom Cursor & Click Ripple Logic ---
-        const cursor = document.getElementById('custom-cursor');
-        
-        document.addEventListener('mousemove', (e) => {
-            cursor.style.left = e.clientX + 'px';
-            cursor.style.top = e.clientY + 'px';
-        });
-
-        // Click Ripple Effect
-        document.addEventListener('click', (e) => {
-            const ripple = document.createElement('div');
-            ripple.classList.add('click-ripple');
-            ripple.style.left = `${e.clientX}px`;
-            ripple.style.top = `${e.clientY}px`;
-            document.body.appendChild(ripple);
-            
-            setTimeout(() => {
-                ripple.remove();
-            }, 600); // match animation duration
-        });
-
-        // Hover expand effect for interactive elements
-        document.querySelectorAll('a, button, .data-hover-trigger, [onclick]').forEach(el => {
-            el.addEventListener('mouseenter', () => cursor.classList.add('hovered'));
-            el.addEventListener('mouseleave', () => cursor.classList.remove('hovered'));
-        });
-
-        // --- 3. Magnetic Buttons Logic ---
-        document.querySelectorAll('.magnetic-btn').forEach(btn => {
-            btn.addEventListener('mousemove', (e) => {
-                const rect = btn.getBoundingClientRect();
-                const x = e.clientX - rect.left - rect.width / 2;
-                const y = e.clientY - rect.top - rect.height / 2;
-                btn.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
-            });
-
-            btn.addEventListener('mouseleave', () => {
-                btn.style.transform = 'translate(0px, 0px)';
-            });
-        });
-
-        // --- 4. 3D Tilt Effect for Bento Cards ---
-        document.querySelectorAll('[data-tilt]').forEach(card => {
-            card.addEventListener('mousemove', (e) => {
-                const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                
-                // Spotlight pos
-                card.style.setProperty('--x', `${x}px`);
-                card.style.setProperty('--y', `${y}px`);
-
-                // Tilt calc
-                const centerX = rect.width / 2;
-                const centerY = rect.height / 2;
-                const rotateX = ((y - centerY) / centerY) * -2; // Max rotation deg
-                const rotateY = ((x - centerX) / centerX) * 2;
-
-                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-            });
-
-            card.addEventListener('mouseleave', () => {
-                card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)';
-            });
-        });
-
-        // --- 5. Initialize Icons ---
-        lucide.createIcons();
-
-        // --- 6. Projects Carousel Logic ---
-        let currentSlide = 0;
-        const track = document.getElementById('carousel-track');
-        const slides = document.querySelectorAll('.project-slide');
-        const totalSlides = slides.length;
-        const prevBtn = document.getElementById('prevBtn');
-        const nextBtn = document.getElementById('nextBtn');
-
-        function updateCarousel() {
-            if(track) {
-                track.style.transform = `translateX(-${currentSlide * 100}%)`;
-            }
+      // Translations Data
+      const translations = {
+        en: {
+            nav_about: "About",
+            nav_services: "Services",
+            nav_expertise: "Expertise",
+            nav_edu: "Education",
+            nav_exp: "Experience",
+            nav_proj: "Projects",
+            nav_contact: "Contact",
+            hero_badge: "Available for work",
+            hero_title: "Business Strategy & Innovation Enthusiast",
+            hero_desc: "I help organizations transform complex business challenges into data-driven, human-centered, and future-proof solutions. By bringing structure to abstract issues, I make strategies immediately actionable, allowing your organization to create sustainable value and grow efficiently.",
+            btn_view_work: "View Work",
+            btn_download_cv: "Download CV",
+            based_in: "BASED IN",
+            stat_edu: "Education",
+            stat_edu_val: "Commercial Economics (Marketing)",
+            stat_degree: "Degree",
+            stat_degree_val: "Bachelor Degree",
+            ticker_1: "Strategic Innovation",
+            ticker_2: "Design Thinking",
+            ticker_3: "Sustainability",
+            ticker_4: "Business Modeling",
+            serv_title: "TRANSFORM COMPLEX CHALLENGES INTO GROWTH & VALUE",
+            serv_card_desc: "I help organizations make complex issues clear and turn them into concrete actions. By thinking analytically while offering practical solutions, I bring structure to situations that are unclear or fragmented.",
+            serv_tag_1: "Market & Competitive Analysis",
+            serv_tag_2: "Business Modeling",
+            serv_tag_3: "Strategic Roadmaps",
+            about_title: "About",
+            about_text: "I am an ambitious fourth-year Commercial Economics student at Windesheim University of Applied Sciences, 24 years old, with a passion for human-centered design and innovation processes. During my studies, I completed a Pre-master in Business Administration as a minor, alongside a minor in Financial Decision-Making, and further specialized in Design Thinking and sustainable business models.<br><br>With my analytical and creative skills, I support organizations in translating complex issues into clear insights and sustainable growth opportunities. I combine data, human-centered thinking, and future-proofing ensuring strategies don't just stay on paper but create actual impact.<br><br>My strength lies in structuring abstract challenges, uncovering hidden opportunities and risks, and helping organizations make well-founded choices that deliver economic, social, and ecological value.<br><br>Personally, I strive to get the best out of myself and empower others, so that everyone can optimally utilize their qualities to achieve the intended result and work together as a true team.",
+            skills_title: "Expertise",
+            proj_view_all: "VIEW ALL",
+            skills_cat_digital: "Digital Skills",
+            skills_cat_1: "Strategic Analysis",
+            badge_swot: "SWOT Analysis",
+            badge_confrontation: "Confrontation Matrix",
+            badge_market_entry: "Market Entry",
+            skills_cat_theories: "Theories & Models",
+            btn_read_more: "Read more",
+            edu_title: "Education",
+            edu_1_school: "University of Twente",
+            edu_1_desc: "Focus on Business Management and academic research methodologies.",
+            edu_1_grade_label: "Average:",
+            edu_2_school: "Windesheim",
+            edu_2_degree: "Bachelor's degree, Commercial Economics (Marketing)",
+            edu_2_desc: "Developing skills in innovative research, strategic advice, design thinking, and commercial awareness. <br> Minor: Financiële Besluitvorming",
+            edu_3_school: "Windesheim",
+            edu_4_school: "ROC van Twente",
+            edu_4_degree: "Assistant Manager International Trade",
+            edu_4_desc: "Completed the program via an accelerated track.",
+            exp_title: "Experience",
+            exp_1_role: "Research & Development (R&D)",
+            exp_1_desc: "Strategic research into new market opportunities and sustainable business models.",
+            exp_2_role: "Intern International Trade",
+            exp_2_desc: "Focused on building relationships with architects and contractors. Staffed the stand at the Ahoy fair (Rotterdam) and managed personalized B2B mailings to generate leads.",
+            exp_3_role: "Intern International Trade",
+            exp_3_desc: "Gained international experience across various departments: Real Estate (via Molenbeek Invest), Maintenance, Front Office, and kitchen operations at Brass Boer.",
+            exp_other_title: "Previous Roles",
+            role_temp: "Temporary Worker",
+            role_landscaper: "Gardener",
+            role_retail: "Retail Staff",
+            proj_title: "Selected Projects",
+            proj_1_title: "Vitens, Grootzakelijke markt: Market Needs, Positioning & Organisational Direction",
+            proj_2_title: "Perron038, Factory NEXT: Strategic Commercial Positioning",
+            proj_3_title: "Unica, Smart Buildings Business Development: Value Proposition Optimization",
+            proj_4_title: "Zonneplan, EV Charging Sales Acceleration: Marketing Whitepaper",
+            contact_title: "Let's work <span class=\"text-zinc-600 transition-colors group-hover:text-zinc-400\">Together</span>",
+            contact_desc: "Let’s connect and see how we can team up on new projects, strategic partnerships and innovation-oriented opportunities.",
+            btn_email: "Send Email",
+            btn_call: "Schedule Call",
+            rec_title: "Recommendations",
+            rec_joel_role: "Lecturer Commercial Economics, Windesheim",
+            rec_joel_text: "\"During the classes and workshops I taught him in the Commercial Economics program at Windesheim University of Applied Sciences, Ritchie was an involved student who continues to think critically and asks the right questions to get the most out of his projects for his clients in the field.\"",
+            rec_mark_role: "Senior Marketer KNGF / Lecturer Marketing Windesheim",
+            rec_mark_text: "\"As Ritchie's teacher, I got to know him as an independent and result-oriented student who fits well in the group. As a young professional, he will be an asset to many companies.\"",
+            rec_3_name: "Antoinette Alma",
+            rec_3_role: "Speaker, Trainer & Lecturer",
+            rec_3_text: "\"I know Ritchie as a smart and inquisitive student. He asks sharp questions that stimulate further thinking in others. He actively seeks depth and quickly bridges the gap between theory and practice.<br><br>Collaboration is very important to him. He focuses not just on the result, but on the process of achieving it together. In a project group with varying levels of commitment, he remained calm and clear-headed. He addressed the issue openly, redistributed tasks, and checked what each member needed to contribute. His approach revitalized the team and ensured a fairer distribution of work.<br><br>Ritchie communicates openly and clearly. He listens well, summarizes effectively, and ensures agreements are concrete. That makes him a pleasant and reliable partner to work with.\"",
+            partners_title: "Partnered with",
+            // Modal Translations
+            serv_modal_title: "Transform Complex Challenges <br/><span class=\"text-zinc-500\">Into Growth & Value</span>",
+            serv_modal_intro_1: "I help organizations make complex issues clear and turn them into concrete actions. By thinking analytically while offering practical solutions, I bring structure to situations that are unclear or fragmented. My focus is on uncovering hidden opportunities and threats, translating strategy into actionable steps, and creating clarity for teams and decision-makers.",
+            serv_modal_intro_2: "What distinguishes me is that my advice is always tailored: human-centered, pragmatic, and fully aligned with the specific context of your organization. Strategies do not remain theoretical but are immediately applicable and effective in realizing sustainable growth and lasting impact. Collaboration means a fresh, independent perspective and insights that truly work and deliver results.",
+            serv_modal_col1_title: "What I can do for your organization",
+            serv_modal_col1_li1: "Market and competitive analyses that not only uncover opportunities but also make commercial and strategic risks explicit.",
+            serv_modal_col1_li2: "Development of business models and value propositions in which profitability, sustainability, and societal value are designed integrally.",
+            serv_modal_col1_li3: "Strategic roadmaps and implementation architectures that deliver direction, priority, and concrete executability.",
+            serv_modal_col1_li4: "Design Thinking and ESG-integrated advisory, from strategic concept to validated solution, with decision-making based on real customer and stakeholder insights.",
+            serv_modal_col2_title: "Why work with me",
+            serv_modal_col2_li1: "Academically anchored strategies, with a solid foundation in Business Administration and Commercial Economics, specializing in innovation, design thinking, and sustainable business architectures.",
+            serv_modal_col2_li2: "Direct translation from theory to practice, gained within projects in sectors like smart buildings, watermanagement, mobility, energy, and business services.",
+            serv_modal_col2_li3: "No standard advice, but tailored strategies; your organization gets a strategic structure aligned with the context that is immediately actionable.",
+            serv_modal_col2_li4: "Innovation is organized concretely; strategies do not remain theoretical but are immediately applicable and effective in realizing sustainable growth and lasting impact.",
+            serv_modal_col2_li5: "A fresh, independent perspective that offers focus, overview, and direction, with a result-oriented and pragmatic approach that delivers both commercial and societal value.",
+            serv_modal_diff_title: "What makes me different",
+            serv_modal_diff_text: "I focus on what organizations really need: clarity, overview, and substantiated insights. Where much advice remains stuck in abstraction or theory, I make it practical, applicable, and immediately usable.",
+            serv_modal_expect_title: "What you can expect",
+            serv_modal_expect_text: "You get an independent, analytical perspective on complex challenges. You get strategy that offers overview and direction, without new layers of complexity. You get a partner who helps focus on what is truly relevant, with a pragmatic approach and an eye for execution.",
+            serv_modal_quote: "\"I bring complex challenges back to clear, data-driven, and human-centered insights, so that your organization can make smart, sustainable, and future-proof choices.\""
+        },
+        nl: {
+            nav_about: "Over",
+            nav_services: "Diensten",
+            nav_expertise: "Expertise",
+            nav_edu: "Opleiding",
+            nav_exp: "Ervaring",
+            nav_proj: "Projecten",
+            nav_contact: "Contact",
+            hero_badge: "Beschikbaar voor werk",
+            hero_title: "Business Strategy & Innovation Enthusiast",
+            hero_desc: "Ik help organisaties complexe bedrijfsuitdagingen om te zetten in datagedreven, mensgerichte en toekomstbestendige oplossingen. Door abstracte vraagstukken structuur te geven, maak ik strategieën direct toepasbaar, zodat jouw organisatie duurzame waarde creëert en efficiënt kan groeien.",
+            btn_view_work: "Bekijk Werk",
+            btn_download_cv: "Download CV",
+            based_in: "GEVESTIGD IN",
+            stat_edu: "Opleiding",
+            stat_edu_val: "Commerciële Economie (Marketing)",
+            stat_degree: "Graad",
+            stat_degree_val: "Bachelor Diploma",
+            ticker_1: "Strategische Innovatie",
+            ticker_2: "Design Thinking",
+            ticker_3: "Duurzaamheid",
+            ticker_4: "Business Modeling",
+            serv_title: "ZET COMPLEXE UITDAGINGEN OM IN GROEI & WAARDE",
+            serv_card_desc: "Ik help organisaties complexe vraagstukken helder te maken en om te zetten in concrete acties. Door analytisch te denken en praktische oplossingen te bieden, breng ik structuur in situaties die onduidelijk of versnipperd zijn.",
+            serv_tag_1: "Markt- & Concurrentieanalyse",
+            serv_tag_2: "Business Modeling",
+            serv_tag_3: "Strategische Roadmaps",
+            about_title: "Over Mij",
+            about_text: "Ik ben een ambitieuze vierdejaarsstudent Commerciële Economie aan Hogeschool Windesheim, 24 jaar oud, met een passie voor human-centered design en innovatieprocessen. Tijdens mijn studie heb ik als minor een Pre-master Bedrijfskunde afgerond, naast een minor Financiële Besluitvorming, en mij verder verdiept in Design Thinking en duurzame business modellen.<br><br>Met mijn analytische en creatieve vaardigheden ondersteun ik organisaties bij het vertalen van complexe vraagstukken naar heldere inzichten en duurzame groeikansen. Ik combineer data, mensgericht denken en toekomstbestendigheid, zodat strategieën niet op papier blijven, maar daadwerkelijk impact maken.<br><br>Mijn kracht ligt in het structureren van abstracte uitdagingen, het blootleggen van verborgen kansen en risico’s, en het helpen van organisaties om gefundeerde keuzes te maken die economische, sociale en ecologische waarde leveren.<br><br>Persoonlijk streef ik ernaar het beste uit mezelf te halen en anderen in hun kracht te zetten, zodat iedereen zijn kwaliteiten optimaal kan benutten om het beoogde resultaat te behalen en als een hecht team samen te werken.",
+            skills_title: "Expertise",
+            proj_view_all: "BEKIJK ALLES",
+            skills_cat_digital: "Digitale Vaardigheden",
+            skills_cat_1: "Strategische Analyse",
+            badge_swot: "SWOT Analyse",
+            badge_confrontation: "Confrontatiematrix",
+            badge_market_entry: "Marktentree",
+            skills_cat_theories: "Theorieën & Modellen",
+            btn_read_more: "Lees meer",
+            edu_title: "Opleiding",
+            edu_1_school: "Universiteit Twente",
+            edu_1_desc: "Focus op Business Management en academische onderzoeksmethodologieën.",
+            edu_1_grade_label: "Gemiddelde:",
+            edu_2_school: "Windesheim",
+            edu_2_degree: "Bachelor, Commerciële Economie (Marketing)",
+            edu_2_desc: "Ontwikkelen van vaardigheden in innovatief onderzoek, strategisch advies, design thinking en commercieel bewustzijn. <br> Minor: Financiële Besluitvorming",
+            edu_3_school: "Windesheim",
+            edu_4_school: "ROC van Twente",
+            edu_4_degree: "Assistent Manager Internationale Handel",
+            edu_4_desc: "Opleiding versneld afgerond.",
+            exp_title: "Ervaring",
+            exp_1_role: "Research & Development (R&D)",
+            exp_1_desc: "Strategisch onderzoek naar nieuwe marktkansen en duurzame businessmodellen.",
+            exp_2_role: "Stagiair Internationale Handel",
+            exp_2_desc: "Gericht op het opbouwen van relaties met architecten en aannemers. Beursstand bemand op de Ahoy (Rotterdam) en gepersonaliseerde B2B mailings beheerd voor leadgeneratie.",
+            exp_3_role: "Stagiair Internationale Handel",
+            exp_3_desc: "Internationale ervaring opgedaan op diverse afdelingen: Vastgoed (via Molenbeek Invest), Technische Dienst, Receptie en keuken bij Brass Boer.",
+            exp_other_title: "Vorige Rollen",
+            role_temp: "Uitzendkracht",
+            role_landscaper: "Hovenier",
+            role_retail: "Verkoopmedewerker",
+            proj_title: "Geselecteerde Projecten",
+            proj_1_title: "Vitens, Grootzakelijke markt: Market Needs, Positioning & Organisational Direction",
+            proj_2_title: "Perron038, Factory NEXT: Strategic Commercial Positioning",
+            proj_3_title: "Unica, Smart Buildings Business Development: Value Proposition Optimization",
+            proj_4_title: "Zonneplan, EV Charging Sales Acceleration: Marketing Whitepaper",
+            contact_title: "Laten we <span class=\"text-zinc-600 transition-colors group-hover:text-zinc-400\">Samenwerken</span>",
+            contact_desc: "Laten we connecten en kijken hoe we kunnen samenwerken aan nieuwe projecten, strategische partnerschappen en innovatiegerichte kansen.",
+            btn_email: "Stuur Email",
+            btn_call: "Plan Gesprek",
+            rec_title: "Aanbevelingen",
+            rec_joel_role: "Docent Commerciële Economie, Windesheim",
+            rec_joel_text: "\"Tijdens de lessen en workshops die ik hem gaf bij de opleiding Commerciële Economie aan Hogeschool Windesheim, was Ritchie een betrokken student die kritisch blijft nadenken en de juiste vragen stelt om het maximale uit zijn projecten te halen voor zijn opdrachtgevers in het werkveld.\"",
+            rec_mark_role: "Senior Marketeer KNGF / Docent Marketing Windesheim",
+            rec_mark_text: "\"Als docent van Ritchie heb ik hem leren kennen als een zelfstandige en resultaatgerichte student die goed in de groep ligt. Als young professional zal hij een aanwinst zijn voor menig bedrijf.\"",
+            rec_3_name: "Antoinette Alma",
+            rec_3_role: "Spreker, Trainer & Docent",
+            rec_3_text: "\"Ik ken Ritchie als een slimme en onderzoekende student. Hij stelt scherpe vragen die anderen aanzetten tot verder denken. Hij zoekt actief de diepgang op en slaat snel de brug tussen theorie en praktijk.<br><br>Samenwerken vindt hij erg belangrijk. Hij heeft niet alleen oog voor het resultaat, maar ook voor het proces om daar samen te komen. In een projectgroep met wisselende inzet bleef hij rustig en helder. Hij maakte het probleem bespreekbaar, verdeelde de taken opnieuw en checkte wat ieder nodig had om zijn bijdrage te leveren. Zijn aanpak trok het team vlot en zorgde voor een eerlijkere verdeling.<br><br>Ritchie communiceert open en helder. Hij luistert goed, vat goed samen en zorgt dat afspraken concreet zijn. Dat maakt hem een prettige en betrouwbare partner om mee samen te werken.\"",
+            partners_title: "Samenwerkingen",
+            // Modal Translations NL
+            serv_modal_title: "Zet Complexe Uitdagingen Om <br/><span class=\"text-zinc-500\">In Groei & Waarde</span>",
+            serv_modal_intro_1: "Ik help organisaties complexe vraagstukken helder te maken en om te zetten in concrete acties. Door analytisch te denken en praktische oplossingen te bieden, breng ik structuur in situaties die onduidelijk of versnipperd zijn. Mijn focus ligt op het blootleggen van verborgen kansen en bedreigingen, het vertalen van strategie naar actie, en het creëren van duidelijkheid voor teams en beslissers.",
+            serv_modal_intro_2: "Wat mij onderscheidt, is dat mijn advies altijd maatwerk is: mensgericht, pragmatisch en volledig afgestemd op de specifieke context van jouw organisatie. Strategieën blijven niet theoretisch, maar zijn direct toepasbaar en effectief in het realiseren van duurzame groei en blijvende impact. Samenwerken betekent een frisse, onafhankelijke blik en inzichten die echt werken en resultaat opleveren.",
+            serv_modal_col1_title: "Wat ik voor jouw organisatie kan doen",
+            serv_modal_col1_li1: "Markt- en concurrentieanalyses die niet alleen kansen blootleggen maar ook commerciële en strategische risico's expliciet maken.",
+            serv_modal_col1_li2: "Ontwikkeling van businessmodellen en waardeproposities waarin winstgevendheid, duurzaamheid en maatschappelijke waarde integraal zijn ontworpen.",
+            serv_modal_col1_li3: "Strategische roadmaps en implementatie-architecturen die richting, prioriteit en concrete uitvoerbaarheid leveren.",
+            serv_modal_col1_li4: "Design Thinking en ESG-geïntegreerd advies, van strategisch concept tot gevalideerde oplossing, met besluitvorming op basis van echte klant- en stakeholderinzichten.",
+            serv_modal_col2_title: "Waarom met mij werken",
+            serv_modal_col2_li1: "Academisch verankerde strategieën, met een solide basis in Bedrijfskunde en Commerciële Economie, gespecialiseerd in innovatie, design thinking en duurzame bedrijfsarchitecturen.",
+            serv_modal_col2_li2: "Directe vertaling van theorie naar praktijk, opgedaan binnen projecten in sectoren als smart buildings, watermanagement, mobiliteit, energie en zakelijke dienstverlening.",
+            serv_modal_col2_li3: "Geen standaardadvies, maar strategieën op maat; jouw organisatie krijgt een strategische structuur die past bij de context en direct toepasbaar is.",
+            serv_modal_col2_li4: "Innovatie wordt concreet georganiseerd; strategieën blijven niet theoretisch maar zijn direct toepasbaar en effectief in het realiseren van duurzame groei en blijvende impact.",
+            serv_modal_col2_li5: "Een frisse, onafhankelijke blik die focus, overzicht en richting biedt, met een resultaatgerichte en pragmatische aanpak die zowel commerciële als maatschappelijke waarde levert.",
+            serv_modal_diff_title: "Wat mij anders maakt",
+            serv_modal_diff_text: "Ik focus op wat organisaties écht nodig hebben: helderheid, overzicht en onderbouwde inzichten. Waar veel advies blijft hangen in abstractie of theorie, maak ik het praktisch, toepasbaar en direct bruikbaar.",
+            serv_modal_expect_title: "Wat je kunt verwachten",
+            serv_modal_expect_text: "Je krijgt een onafhankelijke, analytische blik op complexe uitdagingen. Je krijgt strategie die overzicht en richting biedt, zonder nieuwe lagen van complexiteit. Je krijgt een partner die helpt focussen op wat écht relevant is, met een pragmatische aanpak en oog voor uitvoering.",
+            serv_modal_quote: "\"Ik breng complexe uitdagingen terug naar heldere, datagedreven en mensgerichte inzichten, zodat jouw organisatie slimme, duurzame en toekomstbestendige keuzes kan maken.\""
         }
+      };
+      
+      let currentLang = 'en';
 
-        if(prevBtn && nextBtn && track) {
-            nextBtn.addEventListener('click', () => {
-                currentSlide = (currentSlide + 1) % totalSlides;
-                updateCarousel();
-            });
+      function toggleLanguage() {
+          currentLang = currentLang === 'en' ? 'nl' : 'en';
+          
+          // Button text
+          document.getElementById('lang-toggle').textContent = currentLang === 'en' ? 'NL' : 'EN';
+          
+          // Update all elements with data-i18n
+          document.querySelectorAll('[data-i18n]').forEach(el => {
+              const key = el.getAttribute('data-i18n');
+              if (translations[currentLang][key]) {
+                  // Use innerHTML to allow HTML tags in strings (like <br>)
+                  el.innerHTML = translations[currentLang][key];
+              }
+          });
+      }
 
-            prevBtn.addEventListener('click', () => {
-                currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
-                updateCarousel();
-            });
-        }
-        
-        // --- 6.5 Recommendations Carousel Logic ---
-        let recCurrentIndex = 0;
-        const recTrack = document.getElementById('rec-track');
-        // Select direct children of track that are cards (divs)
-        const recItems = document.querySelectorAll('#rec-track > div');
-        const recPrevBtn = document.getElementById('recPrevBtn');
-        const recNextBtn = document.getElementById('recNextBtn');
+      // --- Interaction Logic ---
+      
+      // Intro Animation
+      window.addEventListener('load', () => {
+          setTimeout(() => {
+             const intro = document.getElementById('intro-screen');
+             const content = document.getElementById('intro-content');
+             content.classList.add('scale-out-exit');
+             setTimeout(() => {
+                 intro.style.opacity = '0';
+                 setTimeout(() => {
+                     intro.style.display = 'none';
+                 }, 500);
+             }, 600);
+          }, 2000);
+      });
 
-        function getVisibleRecs() {
-            if (window.innerWidth >= 1024) return 3;
-            if (window.innerWidth >= 768) return 2;
-            return 1;
-        }
+      // Scroll Reveal
+      const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+              if(entry.isIntersecting) {
+                  entry.target.classList.add('reveal-visible');
+              }
+          });
+      }, { threshold: 0.1 });
+      
+      document.querySelectorAll('.reveal-on-scroll').forEach(el => observer.observe(el));
+      
+      // Typewriter Effect for Title
+      const titleText = "Business Strategy & Innovation Enthusiast";
+      const titleEl = document.getElementById('typewriter-title');
+      let i = 0;
+      titleEl.innerHTML = "";
+      
+      setTimeout(() => {
+          const typeInterval = setInterval(() => {
+              titleEl.innerHTML += titleText.charAt(i);
+              i++;
+              if(i >= titleText.length) {
+                  clearInterval(typeInterval);
+                  titleEl.classList.remove('typewriter-cursor');
+              }
+          }, 50); // Speed
+      }, 3500); // Start after intro
 
-        function updateRecCarousel() {
-            if (!recTrack) return;
-            const itemWidth = 100 / getVisibleRecs();
-            recTrack.style.transform = `translateX(-${recCurrentIndex * itemWidth}%)`;
-        }
+      // Custom Cursor Logic
+      const cursor = document.getElementById('custom-cursor');
+      document.addEventListener('mousemove', (e) => {
+          cursor.style.left = e.clientX + 'px';
+          cursor.style.top = e.clientY + 'px';
+      });
+      
+      document.querySelectorAll('.data-hover-trigger, a, button, .bento-card').forEach(el => {
+          el.addEventListener('mouseenter', () => cursor.classList.add('hovered'));
+          el.addEventListener('mouseleave', () => cursor.classList.remove('hovered'));
+      });
+      
+      // Click Ripple
+      document.addEventListener('click', (e) => {
+          const ripple = document.createElement('div');
+          ripple.classList.add('click-ripple');
+          ripple.style.left = e.clientX + 'px';
+          ripple.style.top = e.clientY + 'px';
+          document.body.appendChild(ripple);
+          setTimeout(() => ripple.remove(), 600);
+      });
+      
+      // Magnetic Buttons
+      document.querySelectorAll('.magnetic-btn').forEach(btn => {
+          btn.addEventListener('mousemove', (e) => {
+              const rect = btn.getBoundingClientRect();
+              const x = e.clientX - rect.left - rect.width / 2;
+              const y = e.clientY - rect.top - rect.height / 2;
+              
+              btn.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
+          });
+          
+          btn.addEventListener('mouseleave', () => {
+              btn.style.transform = 'translate(0px, 0px)';
+          });
+      });
+      
+      // Carousel Logic (Projects)
+      const track = document.getElementById('carousel-track');
+      const prevBtn = document.getElementById('prevBtn');
+      const nextBtn = document.getElementById('nextBtn');
+      const slides = document.querySelectorAll('.project-slide');
+      let currentIndex = 0;
+      
+      function updateCarousel() {
+          const width = slides[0].getBoundingClientRect().width;
+          track.style.transform = `translateX(-${currentIndex * width}px)`;
+      }
+      
+      nextBtn.addEventListener('click', () => {
+          currentIndex = (currentIndex + 1) % slides.length;
+          updateCarousel();
+      });
+      
+      prevBtn.addEventListener('click', () => {
+          currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+          updateCarousel();
+      });
 
-        if(recPrevBtn && recNextBtn && recTrack) {
-            recNextBtn.addEventListener('click', () => {
-                const visible = getVisibleRecs();
-                const maxIndex = recItems.length - visible;
-                if (recCurrentIndex < maxIndex) {
-                    recCurrentIndex++;
-                } else {
-                    recCurrentIndex = 0; // Loop back
-                }
-                updateRecCarousel();
-            });
+      window.addEventListener('resize', updateCarousel);
+      
+      // Rec Carousel
+      const recTrack = document.getElementById('rec-track');
+      const recPrev = document.getElementById('recPrevBtn');
+      const recNext = document.getElementById('recNextBtn');
+      let recIndex = 0;
 
-            recPrevBtn.addEventListener('click', () => {
-                const visible = getVisibleRecs();
-                const maxIndex = recItems.length - visible;
-                if (recCurrentIndex > 0) {
-                    recCurrentIndex--;
-                } else {
-                    recCurrentIndex = maxIndex; // Loop to end
-                }
-                updateRecCarousel();
-            });
-            
-            window.addEventListener('resize', updateRecCarousel);
-        }
-        
-        // --- 7. Scroll Reveal & Typewriter Logic ---
-        function typeWriterHTML(element, html, speed) {
-            element.classList.add('typewriter-cursor');
-            element.innerHTML = '';
-            let i = 0;
-            function type() {
-                if (i < html.length) {
-                    let char = html.charAt(i);
-                    if (char === '<') {
-                        let tag = '';
-                        while (html.charAt(i) !== '>' && i < html.length) {
-                            tag += html.charAt(i);
-                            i++;
-                        }
-                        tag += '>';
-                        i++;
-                        element.innerHTML += tag;
-                    } else {
-                        element.innerHTML += char;
-                        i++;
-                    }
-                    setTimeout(type, speed);
-                } else {
-                    element.classList.remove('typewriter-cursor');
-                }
-            }
-            type();
-        }
+      recNext.addEventListener('click', () => {
+          // Simplistic logic: slide by 1/3 or 100% depending on screen
+          const cardWidth = recTrack.children[0].getBoundingClientRect().width;
+          recIndex++;
+          if(recIndex > 2) recIndex = 0; 
+          recTrack.style.transform = `translateX(-${recIndex * cardWidth}px)`;
+      });
+       recPrev.addEventListener('click', () => {
+          const cardWidth = recTrack.children[0].getBoundingClientRect().width;
+          recIndex--;
+          if(recIndex < 0) recIndex = 2;
+          recTrack.style.transform = `translateX(-${recIndex * cardWidth}px)`;
+      });
 
-        function typeWriterContact(element) {
-            const key = element.getAttribute('data-i18n');
-            let htmlContent = element.innerHTML;
-            
-            if (key && translations && translations[currentLang] && translations[currentLang][key]) {
-                htmlContent = translations[currentLang][key];
-            }
-            
-            const tempDiv = document.createElement('div');
-            tempDiv.innerHTML = htmlContent;
-            const span = tempDiv.querySelector('span');
-            
-            if (span && tempDiv.childNodes.length > 0) {
-                 const part1 = tempDiv.childNodes[0].textContent; 
-                 const part2 = span.textContent; 
-                 const spanClass = span.className;
-                 
-                 element.classList.add('typewriter-cursor');
-                 element.innerHTML = '';
-                 
-                 let i = 0;
-                 function typePart1() {
-                    if (i < part1.length) {
-                        element.innerHTML += part1.charAt(i);
-                        i++;
-                        setTimeout(typePart1, 50);
-                    } else {
-                        const newSpan = document.createElement('span');
-                        newSpan.className = spanClass;
-                        element.appendChild(newSpan);
-                        let j = 0;
-                        function typePart2() {
-                            if (j < part2.length) {
-                                newSpan.textContent += part2.charAt(j);
-                                j++;
-                                setTimeout(typePart2, 100); 
-                            } else {
-                                element.classList.remove('typewriter-cursor');
-                            }
-                        }
-                        typePart2();
-                    }
-                }
-                typePart1();
-            } else {
-                element.innerHTML = htmlContent;
-                element.classList.remove('typewriter-cursor');
-            }
-        }
+      // 3D Tilt Effect
+      document.querySelectorAll('[data-tilt]').forEach(card => {
+          card.addEventListener('mousemove', (e) => {
+              const rect = card.getBoundingClientRect();
+              const x = e.clientX - rect.left;
+              const y = e.clientY - rect.top;
+              
+              // Set CSS vars for spotlight
+              card.style.setProperty('--x', `${x}px`);
+              card.style.setProperty('--y', `${y}px`);
+              
+              // Calculate rotation
+              const centerX = rect.width / 2;
+              const centerY = rect.height / 2;
+              const rotateX = ((y - centerY) / centerY) * -2; // Max 2deg
+              const rotateY = ((x - centerX) / centerX) * 2;
 
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const aboutTypewriter = entry.target.querySelector('#about-typewriter');
-                    if (aboutTypewriter && !aboutTypewriter.dataset.typed) {
-                        aboutTypewriter.dataset.typed = "true";
-                        const originalHTML = aboutTypewriter.innerHTML.trim();
-                        aboutTypewriter.innerHTML = '';
-                        entry.target.classList.add('reveal-visible');
-                        typeWriterHTML(aboutTypewriter, originalHTML, 4);
-                    } else {
-                        entry.target.classList.add('reveal-visible');
-                    }
-                    
-                    const contactTypewriter = entry.target.querySelector('#contact-typewriter');
-                    if (contactTypewriter && !contactTypewriter.dataset.typed) {
-                         contactTypewriter.dataset.typed = "true";
-                         typeWriterContact(contactTypewriter);
-                    }
-
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.reveal-on-scroll').forEach(el => observer.observe(el));
-
-        // --- 8. Typewriter Effect (Hero) ---
-        function typeWriterGeneric(elementId, text, speed = 50) {
-            const element = document.getElementById(elementId);
-            if (!element) return;
-            
-            element.innerHTML = '';
-            element.classList.add('typewriter-cursor');
-            
-            let i = 0;
-            function type() {
-                if (i < text.length) {
-                    element.innerHTML += text.charAt(i);
-                    i++;
-                    setTimeout(type, speed);
-                } else {
-                    element.classList.remove('typewriter-cursor');
-                }
-            }
-            type();
-        }
-
-        function startHeroTypewriter() {
-            const el = document.getElementById('typewriter-title');
-            if(!el) return;
-            const text = (typeof translations !== 'undefined' && translations[currentLang]) 
-                         ? translations[currentLang]['hero_title'] 
-                         : "Business Strategy & Innovation Enthusiast";
-            typeWriterGeneric('typewriter-title', text, 40);
-        }
-
-        // --- 9. Language Logic ---
-        let currentLang = 'en';
-        const translations = {
-            en: {
-                nav_about: "About",
-                nav_expertise: "Expertise",
-                nav_edu: "Education",
-                nav_exp: "Experience",
-                nav_proj: "Projects",
-                nav_contact: "Contact",
-                hero_badge: "Available for work",
-                hero_title: "Business Strategy & Innovation Enthusiast",
-                hero_desc: "Helping your organization transform business challenges into data-driven, human-centred, and sustainability-focused opportunities.",
-                btn_view_work: "View Work",
-                btn_download_cv: "Download CV",
-                based_in: "BASED IN",
-                stat_edu: "Education",
-                stat_edu_val: "Commercial Economics (Marketing)",
-                stat_degree: "Degree",
-                stat_degree_val: "Bachelor Degree",
-                stat_grade: "Avg. Grade",
-                ticker_1: "Strategic Innovation",
-                ticker_2: "Design Thinking",
-                ticker_3: "Sustainability",
-                ticker_4: "Business Modeling",
-                about_title: "About",
-                about_text: "I am an ambitious fourth-year Commercial Economics student at Windesheim University of Applied Sciences, 24 years old, with a passion for strategic innovation. During my studies, I completed a Pre-master in Business Administration as a minor and a minor in Financial Decision-Making. Throughout my Commercial Economics program, I further specialized in Design Thinking and sustainable business models.<br><br>I am particularly interested in making data-driven decisions and validating insights with customers to uncover needs that might not be visible internally. Understanding what the customer truly wants is increasingly important today, as it ensures that strategies and innovations are relevant, effective, and create economic, ecological, and social value.",
-                skills_title: "Expertise",
-                skills_cat_digital: "Digital Skills",
-                skills_cat_1: "Strategic Analysis",
-                skills_cat_theories: "Theories & Models",
-                
-                edu_title: "Education",
-                edu_1_school: "University of Twente",
-                edu_1_desc: "Focus on Business Management and academic research methodologies.",
-                edu_1_grade_label: "Average:",
-                edu_2_school: "Windesheim",
-                edu_2_desc: "Developing skills in innovative research, strategic advice, design thinking, and commercial awareness. <br> Minor: Financiële Besluitvorming",
-                edu_2_degree: "Bachelor's degree, Commercial Economics (Marketing)",
-                edu_3_school: "Windesheim",
-                edu_4_school: "ROC van Twente",
-                edu_4_degree: "Assistant Manager International Trade",
-                edu_4_desc: "Completed the program via an accelerated track.",
-                exp_title: "Experience",
-                exp_1_role: "Research & Development (R&D)",
-                exp_1_desc: "Strategic research into new market opportunities and sustainable business models.",
-                exp_2_role: "Intern International Trade",
-                exp_2_desc: "Focused on building relationships with architects and contractors. Staffed the stand at the Ahoy fair (Rotterdam) and managed personalized B2B mailings to generate leads.",
-                exp_3_role: "Intern International Trade",
-                exp_3_desc: "Gained international experience across various departments: Real Estate (via Molenbeek Invest), Maintenance, Front Office, and kitchen operations at Brass Boer.",
-                exp_other_title: "Previous Roles",
-                role_assist_manager: "Assistant Manager Int. Trade",
-                role_agency: "Agency Worker",
-                role_temp: "Temporary Worker",
-                role_landscaper: "Gardener",
-                role_retail: "Retail Staff",
-                proj_title: "Selected Projects",
-                proj_view_all: "VIEW ALL",
-                partners_title: "Partnered with",
-                rec_title: "Recommendations",
-                rec_mark_text: "\"As Ritchie's teacher, I got to know him as an independent and result-oriented student who fits well in the group. As a young professional, he will be an asset to many companies.\"",
-                rec_mark_role: "Senior Marketer KNGF / Lecturer Marketing Windesheim",
-                rec_joel_text: "\"During the classes and workshops I taught him in the Commercial Economics program at Windesheim University of Applied Sciences, Ritchie was an involved student who continues to think critically and asks the right questions to get the most out of his projects for his clients in the field.\"",
-                rec_joel_role: "Lecturer Commercial Economics, Windesheim",
-                rec_3_name: "Antoinette Alma",
-                rec_3_role: "Speaker, Trainer & Lecturer",
-                rec_3_text: "\"I know Ritchie as a smart and inquisitive student. He asks sharp questions that stimulate further thinking in others. He actively seeks depth and quickly bridges the gap between theory and practice.<br><br>Collaboration is very important to him. He focuses not just on the result, but on the process of achieving it together. In a project group with varying levels of commitment, he remained calm and clear-headed. He addressed the issue openly, redistributed tasks, and checked what each member needed to contribute. His approach revitalized the team and ensured a fairer distribution of work.<br><br>Ritchie communiceert openly and clearly. He listens well, summarizes effectively, and ensures agreements are concrete. This makes him a pleasant and reliable partner to work with.\"",
-                
-                // Badges
-                badge_swot: "SWOT Analysis",
-                badge_confrontation: "Confrontation Matrix",
-                badge_market_entry: "Market Entry",
-                
-                proj_1_title: "Vitens, Grootzakelijke markt: Market Needs, Positioning & Organisational Direction",
-                proj_1_title_short: "Vitens: Market Strategy",
-                proj_1_desc: `<div class="relative pl-6 border-l-2 border-zinc-800 ml-2">
-                                <div class="mb-6 last:mb-0 relative">
-                                    <div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div>
-                                    <h4 class="text-accent font-mono text-xs uppercase mb-1">Challenge & Analysis</h4>
-                                    <p class="text-zinc-400 text-sm leading-relaxed">Conducted in-depth market study to position new 'Water-as-a-Service' division. Analyzed competitors and customer needs to define the scope of the portfolio.</p>
-                                </div>
-                                <div class="mb-6 last:mb-0 relative">
-                                    <div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div>
-                                    <h4 class="text-accent font-mono text-xs uppercase mb-1">Strategic Insight</h4>
-                                    <p class="text-zinc-400 text-sm leading-relaxed">Identified opportunity to distinguish Vitens through circular water solutions and water stewardship, bridging current services to a commercial entity.</p>
-                                </div>
-                                <div class="mb-6 last:mb-0 relative">
-                                    <div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div>
-                                    <h4 class="text-accent font-mono text-xs uppercase mb-1">Advice & Outcome</h4>
-                                    <p class="text-zinc-400 text-sm leading-relaxed">Delivered strategic roadmap for naming, branding, and organizational form, creating a resilient and sustainable future for the large business segment.</p>
-                                </div>
-                              </div>`,
-                proj_1_desc_short: "For Vitens, I conducted an in-depth market study to determine how a new Water-as-a-Service division should be positioned, structured, and brought to market.",
-                proj_2_title: "Perron038, Factory NEXT: Strategic Commercial Positioning",
-                proj_2_title_short: "Perron038: Innovation Hub",
-                proj_2_desc: `<div class="relative pl-6 border-l-2 border-zinc-800 ml-2">
-                                <div class="mb-6 last:mb-0 relative">
-                                    <div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div>
-                                    <h4 class="text-accent font-mono text-xs uppercase mb-1">Challenge & Analysis</h4>
-                                    <p class="text-zinc-400 text-sm leading-relaxed">Determined market potential for 'Factory NEXT' as a shared innovation facility. Analyzed competing initiatives in the Dutch manufacturing landscape.</p>
-                                </div>
-                                <div class="mb-6 last:mb-0 relative">
-                                    <div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div>
-                                    <h4 class="text-accent font-mono text-xs uppercase mb-1">Strategic Insight</h4>
-                                    <p class="text-zinc-400 text-sm leading-relaxed">Identified segments for "test-before-invest" model. Used Design Thinking and customer validation to align labs and technology with market needs.</p>
-                                </div>
-                                <div class="mb-6 last:mb-0 relative">
-                                    <div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div>
-                                    <h4 class="text-accent font-mono text-xs uppercase mb-1">Advice & Outcome</h4>
-                                    <p class="text-zinc-400 text-sm leading-relaxed">Developed value propositions, revenue models, and messaging to strengthen Factory NEXT as a commercially viable innovation hub.</p>
-                                </div>
-                              </div>`,
-                proj_2_desc_short: "At Perron038, I explored how Factory NEXT can be commercially positioned and made attractive for industrial partners.",
-                proj_3_title: "Unica, Smart Buildings Business Development: Value Proposition Optimization",
-                proj_3_title_short: "Unica: Smart Buildings",
-                proj_3_desc: `<div class="relative pl-6 border-l-2 border-zinc-800 ml-2">
-                                <div class="mb-6 last:mb-0 relative">
-                                    <div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div>
-                                    <h4 class="text-accent font-mono text-xs uppercase mb-1">Challenge & Analysis</h4>
-                                    <p class="text-zinc-400 text-sm leading-relaxed">Mapped internal dynamics (35 locations vs 9 branches) and external factors (EPBD III, technician scarcity). Used Business Model Canvas to reveal economic/social dependencies.</p>
-                                </div>
-                                <div class="mb-6 last:mb-0 relative">
-                                    <div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div>
-                                    <h4 class="text-accent font-mono text-xs uppercase mb-1">Strategic Insight</h4>
-                                    <p class="text-zinc-400 text-sm leading-relaxed">Ideation via trend pyramids led to 'SmartEase': entry-level kits & VR demos to visualize energy flows, removing customer capex fears.</p>
-                                </div>
-                                <div class="mb-6 last:mb-0 relative">
-                                    <div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div>
-                                    <h4 class="text-accent font-mono text-xs uppercase mb-1">Advice & Outcome</h4>
-                                    <p class="text-zinc-400 text-sm leading-relaxed">Prototyped and validated concepts with end-users. Created rollout impact canvas with KPIs for revenue and NPS, positioning Unica for customer-centric leadership.</p>
-                                </div>
-                              </div>`,
-                proj_3_desc_short: "We developed a strategic advisory process for Unica using the Design Thinking cycle to optimize their value proposition for smart buildings.",
-                proj_4_title: "Zonneplan, EV Charging Sales Acceleration: Marketing Whitepaper",
-                proj_4_title_short: "Zonneplan: EV Sales",
-                proj_4_desc: `<div class="relative pl-6 border-l-2 border-zinc-800 ml-2">
-                                <div class="mb-6 last:mb-0 relative">
-                                    <div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div>
-                                    <h4 class="text-accent font-mono text-xs uppercase mb-1">Challenge & Analysis</h4>
-                                    <p class="text-zinc-400 text-sm leading-relaxed">Goal: 3,000 EV charger sales. Identified barriers like complex quote processes (6-7 clicks) and lack of post-sale retention.</p>
-                                </div>
-                                <div class="mb-6 last:mb-0 relative">
-                                    <div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div>
-                                    <h4 class="text-accent font-mono text-xs uppercase mb-1">Strategic Insight</h4>
-                                    <p class="text-zinc-400 text-sm leading-relaxed">Pinpointed EV owner pains (€0.50/kWh public vs home charging). Defined a journey from awareness to loyalty using personas.</p>
-                                </div>
-                                <div class="mb-6 last:mb-0 relative">
-                                    <div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div>
-                                    <h4 class="text-accent font-mono text-xs uppercase mb-1">Advice & Outcome</h4>
-                                    <p class="text-zinc-400 text-sm leading-relaxed">Recommended optimizing SEO/SEA for "laadpaal kopen", simplifying landing pages, and using Trustpilot social proof. KPIs set for rapid scalable growth.</p>
-                                </div>
-                              </div>`,
-                proj_4_desc_short: "We developed a focused whitepaper for Zonneplan to achieve their 2023 target of 3,000 EV charger sales.",
-                contact_title: "Let's work <span class=\"text-zinc-600 transition-colors group-hover:text-zinc-400\">Together</span>",
-                contact_desc: "I invite you to connect and discuss how we can collaborate on new projects, strategic partnerships, and innovation-oriented opportunities.",
-                btn_email: "Send Email",
-                btn_call: "Schedule Call",
-                modal_title: "All Projects",
-                contact_modal_title: "Choose Email Client",
-                call_modal_title: "Schedule intro call with Ritchie",
-                btn_gmail: "Open Gmail",
-                btn_outlook: "Open Outlook",
-                btn_google_cal: "Google Calendar",
-                btn_outlook_cal: "Outlook.com",
-                btn_office_cal: "Office 365",
-                btn_default_mail: "Default Mail App",
-                cv_modal_title: "Select Version",
-                cv_dutch_title: "Download Dutch Version",
-                cv_english_title: "Download English Version",
-                
-                // Expertise Modal
-                exp_ov_digital_title: "Digital Skills",
-                exp_ov_investigative_title: "INVESTIGATIVE EXPERTISE: BUSINESS STRATEGIES",
-                exp_ov_analyses_title: "Analyses",
-                exp_ov_analyses_text: "Analyses provide insight into the current situation and the environment in which an organization operates. They can be performed individually or delivered combined.",
-                exp_ov_analyses_list: `<li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-accent rounded-full"></span>Market Analysis</li>
-                                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-accent rounded-full"></span>Competitor Analysis</li>
-                                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-accent rounded-full"></span>Country Analysis</li>
-                                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-accent rounded-full"></span>Industry Analysis</li>
-                                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-accent rounded-full"></span>Market Area Analysis</li>
-                                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-accent rounded-full"></span>Target Audience Analysis</li>`,
-                exp_ov_designs_title: "Designs",
-                exp_ov_designs_text: "Designs are plans to move from the current to the desired situation, serving as a framework.",
-                exp_ov_designs_list: `<li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-accent rounded-full"></span>Implementation Plan</li>
-                                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-accent rounded-full"></span>Marketing Communication Plan</li>
-                                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-accent rounded-full"></span>Marketing Plan</li>
-                                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-accent rounded-full"></span>Export Plan</li>
-                                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-accent rounded-full"></span>Market Exploration Plan</li>
-                                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-accent rounded-full"></span>Sales Plan</li>`,
-                exp_ov_advice_title: "Advice",
-                exp_ov_advice_text: "Advice consists of substantiated recommendations at a strategic or tactical level, aimed at sustaining and growing the organization.",
-                exp_ov_advice_list: `<li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-accent rounded-full"></span>Positioning Strategy Advice</li>
-                                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-accent rounded-full"></span>Market Strategy Advice</li>
-                                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-accent rounded-full"></span>Loyalty Strategy or Program Advice</li>
-                                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-accent rounded-full"></span>Growth Strategy Advice</li>
-                                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-accent rounded-full"></span>Export or Entry Strategy Advice</li>`,
-                exp_ov_theories_title: "Theories & Models",
-                exp_ov_theories_text: "Theories and models are applied in analyses and advice to structure an organization and provide direction.",
-                exp_ov_theories_list: `<span class="px-2 py-1 bg-zinc-800 rounded border border-zinc-700">Design Thinking</span>
-                                             <span class="px-2 py-1 bg-zinc-800 rounded border border-zinc-700">Business Model Canvas (incl. Triple Layered)</span>
-                                             <span class="px-2 py-1 bg-zinc-800 rounded border border-zinc-700">Value Proposition Model</span>
-                                             <span class="px-2 py-1 bg-zinc-800 rounded border border-zinc-700">Multiple Value Creation</span>
-                                             <span class="px-2 py-1 bg-zinc-800 rounded border border-zinc-700">SWOT Analysis</span>
-                                             <span class="px-2 py-1 bg-zinc-800 rounded border border-zinc-700">Customer Journey</span>
-                                             <span class="px-2 py-1 bg-zinc-800 rounded border border-zinc-700">Organizational Mapping</span>
-                                             <span class="px-2 py-1 bg-zinc-800 rounded border border-zinc-700">Action Learning</span>
-                                             <span class="px-2 py-1 bg-zinc-800 rounded border border-zinc-700">Business Management</span>
-                                             <span class="px-2 py-1 bg-zinc-800 rounded border border-zinc-700">ESG</span>`
-            },
-            nl: {
-                nav_about: "Over mij",
-                nav_expertise: "Expertise",
-                nav_edu: "Opleiding",
-                nav_exp: "Ervaring",
-                nav_proj: "Projecten",
-                nav_contact: "Contact",
-                hero_badge: "Beschikbaar voor werk",
-                hero_title: "Business Strategy & Innovation Enthusiast",
-                hero_desc: "Ik help uw organisatie om zakelijke uitdagingen om te zetten in datagedreven, mensgerichte en op duurzaamheid gerichte kansen.",
-                btn_view_work: "Bekijk Werk",
-                btn_download_cv: "Download CV",
-                based_in: "GEVESTIGD IN",
-                stat_edu: "Opleiding",
-                stat_edu_val: "Commerciële Economie (Marketing)",
-                stat_degree: "Diploma",
-                stat_degree_val: "Bachelor",
-                stat_grade: "Gemiddelde",
-                ticker_1: "Strategische Innovatie",
-                ticker_2: "Design Thinking",
-                ticker_3: "Duurzaamheid",
-                ticker_4: "Business Modeling",
-                about_title: "Over mij",
-                about_text: "Ik ben een ambitieuze vierdejaars student Commerciële Economie aan Hogeschool Windesheim, 24 jaar oud, met een passie voor strategische innovatie. Tijdens mijn studie heb ik een Pre-master Bedrijfskunde als minor afgerond en een minor Financiële Besluitvorming gevolgd. Gedurende mijn opleiding Commerciële Economie heb ik mij verder gespecialiseerd in Design Thinking en duurzame bedrijfsmodellen.<br><br>Ik ben vooral geïnteresseerd in het nemen van datagedreven beslissingen en het valideren van inzichten bij klanten om behoeften bloot te leggen die intern wellicht niet zichtbaar zijn. Begrijpen wat de klant écht wil is vandaag de dag steeds belangrijker; het zorgt ervoor dat strategieën en innovaties relevant en effectief zijn en economische, ecologische en sociale waarde creëren.",
-                skills_title: "Expertise",
-                skills_cat_digital: "Digitale Vaardigheden",
-                skills_cat_1: "Strategische Analyse",
-                skills_cat_theories: "Theorieën & Modellen",
-                
-                edu_title: "Opleiding",
-                edu_1_school: "Universiteit Twente",
-                edu_1_desc: "Focus op Business Management en academische onderzoeksvaardigheden.",
-                edu_1_grade_label: "Gemiddelde:",
-                edu_2_school: "Windesheim",
-                edu_2_desc: "Ontwikkelen van vaardigheden in innovatief onderzoek, strategisch advies, design thinking en commercieel bewustzijn. <br> Minor: Financiële Besluitvorming",
-                edu_2_degree: "Bachelor, Commerciële Economie (Marketing)",
-                edu_3_school: "Windesheim",
-                edu_4_school: "ROC van Twente",
-                edu_4_degree: "Assistent Manager Internationale Handel",
-                edu_4_desc: "Opleiding versneld afgerond.",
-                
-                exp_title: "Ervaring",
-                exp_1_role: "Research & Development (R&D)",
-                exp_1_desc: "Strategisch onderzoek naar nieuwe marktkansen en duurzame verdienmodellen.",
-                exp_2_role: "Stagiair Internationale Handel",
-                exp_2_desc: "Focus op relatiebeheer met architecten en aannemers. Beursdeelname Ahoy (Rotterdam) en beheer van gepersonaliseerde B2B mailings voor leadgeneratie.",
-                exp_3_role: "Stagiair Internationale Handel",
-                exp_3_desc: "Internationale ervaring opgedaan op diverse afdelingen: Real Estate (via Molenbeek Invest), Technische Dienst, Front Office en keukenwerkzaamheden bij Brass Boer.",
-                exp_other_title: "Eerdere Rollen",
-                role_assist_manager: "Assistent Manager Int. Handel",
-                role_agency: "Uitzendkracht",
-                role_temp: "Tijdelijk Medewerker",
-                role_landscaper: "Hovenier",
-                role_retail: "Retail Medewerker",
-                
-                proj_title: "Geselecteerde Projecten",
-                proj_view_all: "BEKIJK ALLES",
-                partners_title: "Samengewerkt met",
-                rec_title: "Aanbevelingen",
-                rec_mark_text: "\"Als docent van Ritchie heb ik hem leren kennen als een zelfstandige en resultaatgerichte student die goed in de groep ligt. Als young professional zal hij een aanwinst zijn voor menig bedrijf.\"",
-                rec_mark_role: "Senior Marketeer KNGF / Docent Marketing Windesheim",
-                rec_joel_text: "\"Tijdens de lessen en workshops die ik hem gaf bij de opleiding Commerciële Economie aan Hogeschool Windesheim was Ritchie een betrokken student die kritisch doorvraagt en de juiste vragen stelt om het meeste uit zijn projecten voor zijn opdrachtgevers uit het werkveld te halen.\"",
-                rec_joel_role: "Docent Commerciële Economie, Windesheim",
-                rec_3_name: "Antoinette Alma",
-                rec_3_role: "Spreker, Trainer & Docent",
-                rec_3_text: "\"Ik ken Ritchie als een slimme en nieuwsgierige student. Hij stelt scherpe vragen die anderen verder helpen denken. Hij zoekt actief de verdieping op en maakt snel de stap van theorie naar praktijk.<br><br>Samenwerken vindt hij belangrijk. Hij kijkt niet alleen naar het resultaat, maar ook naar hoe je daar samen komt. In een projectgroep waar niet iedereen evenveel inzet liet zien, bleef hij rustig en duidelijk. Hij sprak dit open aan, verdeelde taken opnieuw en checkte tussendoor wat ieder nodig had om bij te dragen. Door zijn aanpak kwam er weer energie in het team en werd het werk eerlijker verdeeld.<br><br>Ritchie communiceert open en helder. Hij luistert goed, vat samen en zorgt dat afspraken concreet zijn. Dat maakt hem een fijne en betrouwbare samenwerkingspartner.\"",
-                
-                // Badges
-                badge_swot: "SWOT-analyse",
-                badge_confrontation: "Confrontatiematrix",
-                badge_market_entry: "Markttoetreding",
-
-                proj_1_title: "Vitens, Grootzakelijke markt: Market Needs, Positioning & Organisational Direction",
-                proj_1_title_short: "Vitens: Marktstrategie",
-                proj_1_desc: `<div class="relative pl-6 border-l-2 border-zinc-800 ml-2">
-                                <div class="mb-6 last:mb-0 relative">
-                                    <div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div>
-                                    <h4 class="text-accent font-mono text-xs uppercase mb-1">Uitdaging & Analyse</h4>
-                                    <p class="text-zinc-400 text-sm leading-relaxed">Diepgaand marktonderzoek uitgevoerd om de nieuwe divisie 'Water-as-a-Service' te positioneren. Concurrenten en klantbehoeften geanalyseerd om de scope van het portfolio te bepalen.</p>
-                                </div>
-                                <div class="mb-6 last:mb-0 relative">
-                                    <div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div>
-                                    <h4 class="text-accent font-mono text-xs uppercase mb-1">Strategisch Inzicht</h4>
-                                    <p class="text-zinc-400 text-sm leading-relaxed">Kans geïdentificeerd om Vitens te onderscheiden via circulaire wateroplossingen en water stewardship, als brug tussen huidige diensten en een commerciële entiteit.</p>
-                                </div>
-                                <div class="mb-6 last:mb-0 relative">
-                                    <div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div>
-                                    <h4 class="text-accent font-mono text-xs uppercase mb-1">Advies & Resultaat</h4>
-                                    <p class="text-zinc-400 text-sm leading-relaxed">Strategische roadmap opgeleverd voor naamgeving, branding en organisatievorm, wat zorgt voor een veerkrachtige en duurzame toekomst voor het grootzakelijke segment.</p>
-                                </div>
-                              </div>`,
-                proj_1_desc_short: "Voor Vitens heb ik een diepgaand marktonderzoek uitgevoerd om te bepalen hoe een nieuwe divisie Water-as-a-Service gepositioneerd, ingericht en in de markt gezet moet worden.",
-                
-                proj_2_title: "Perron038, Factory NEXT: Strategic Commercial Positioning",
-                proj_2_title_short: "Perron038: Innovatiehub",
-                proj_2_desc: `<div class="relative pl-6 border-l-2 border-zinc-800 ml-2">
-                                <div class="mb-6 last:mb-0 relative">
-                                    <div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div>
-                                    <h4 class="text-accent font-mono text-xs uppercase mb-1">Uitdaging & Analyse</h4>
-                                    <p class="text-zinc-400 text-sm leading-relaxed">Marktpotentieel bepaald voor 'Factory NEXT' als gedeelde innovatiefaciliteit. Concurrerende initiatieven in het Nederlandse maaklandschap geanalyseerd.</p>
-                                </div>
-                                <div class="mb-6 last:mb-0 relative">
-                                    <div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div>
-                                    <h4 class="text-accent font-mono text-xs uppercase mb-1">Strategisch Inzicht</h4>
-                                    <p class="text-zinc-400 text-sm leading-relaxed">Segmenten geïdentificeerd voor het "test-before-invest" model. Design Thinking en klantvalidatie gebruikt om labs en technologie af te stemmen op marktbehoeften.</p>
-                                </div>
-                                <div class="mb-6 last:mb-0 relative">
-                                    <div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div>
-                                    <h4 class="text-accent font-mono text-xs uppercase mb-1">Advies & Resultaat</h4>
-                                    <p class="text-zinc-400 text-sm leading-relaxed">Waardeproposities, verdienmodellen en messaging ontwikkeld om Factory NEXT te versterken als een commercieel levensvatbare innovatiehub.</p>
-                                </div>
-                              </div>`,
-                proj_2_desc_short: "Bij Perron038 heb ik onderzocht hoe Factory NEXT commercieel gepositioneerd kan worden en aantrekkelijk gemaakt kan worden voor industriële partners.",
-
-                proj_3_title: "Unica, Smart Buildings Business Development: Value Proposition Optimization",
-                proj_3_title_short: "Unica: Smart Buildings",
-                proj_3_desc: `<div class="relative pl-6 border-l-2 border-zinc-800 ml-2">
-                                <div class="mb-6 last:mb-0 relative">
-                                    <div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div>
-                                    <h4 class="text-accent font-mono text-xs uppercase mb-1">Uitdaging & Analyse</h4>
-                                    <p class="text-zinc-400 text-sm leading-relaxed">Interne dynamiek (35 locaties vs 9 vestigingen) en externe factoren (EPBD III, tekort aan technici) in kaart gebracht. Business Model Canvas gebruikt om economische/sociale afhankelijkheden te tonen.</p>
-                                </div>
-                                <div class="mb-6 last:mb-0 relative">
-                                    <div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div>
-                                    <h4 class="text-accent font-mono text-xs uppercase mb-1">Strategisch Inzicht</h4>
-                                    <p class="text-zinc-400 text-sm leading-relaxed">Ideevorming via trendpiramides leidde tot 'SmartEase': instapklare kits & VR-demo's om energiestromen te visualiseren en investeringsangst weg te nemen.</p>
-                                </div>
-                                <div class="mb-6 last:mb-0 relative">
-                                    <div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div>
-                                    <h4 class="text-accent font-mono text-xs uppercase mb-1">Advies & Resultaat</h4>
-                                    <p class="text-zinc-400 text-sm leading-relaxed">Concepten geprototypet en gevalideerd met eindgebruikers. Impact canvas gemaakt met KPI's voor omzet en NPS, om Unica te positioneren als klantgericht leider.</p>
-                                </div>
-                              </div>`,
-                proj_3_desc_short: "Voor Unica hebben we een strategisch adviestraject ontwikkeld waarbij we de Design Thinking cyclus hebben doorlopen om hun waardepropositie voor smart buildings te optimaliseren.",
-                
-                proj_4_title: "Zonneplan, EV Charging Sales Acceleration: Marketing Whitepaper",
-                proj_4_title_short: "Zonneplan: EV Sales",
-                proj_4_desc: `<div class="relative pl-6 border-l-2 border-zinc-800 ml-2">
-                                <div class="mb-6 last:mb-0 relative">
-                                    <div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div>
-                                    <h4 class="text-accent font-mono text-xs uppercase mb-1">Uitdaging & Analyse</h4>
-                                    <p class="text-zinc-400 text-sm leading-relaxed">Doel: 3.000 laadpaalverkopen. Barrières geïdentificeerd zoals complexe offerteprocessen (6-7 klikken) en gebrek aan retentie na aankoop.</p>
-                                </div>
-                                <div class="mb-6 last:mb-0 relative">
-                                    <div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div>
-                                    <h4 class="text-accent font-mono text-xs uppercase mb-1">Strategisch Inzicht</h4>
-                                    <p class="text-zinc-400 text-sm leading-relaxed">Pijnpunten van EV-bezitters blootgelegd (€0,50/kWh openbaar vs thuisladen). Klantreis gedefinieerd van bewustwording tot loyaliteit m.b.v. persona's.</p>
-                                </div>
-                                <div class="mb-6 last:mb-0 relative">
-                                    <div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div>
-                                    <h4 class="text-accent font-mono text-xs uppercase mb-1">Advies & Resultaat</h4>
-                                    <p class="text-zinc-400 text-sm leading-relaxed">Aanbevolen om SEO/SEA te optimaliseren voor "laadpaal kopen", landingspagina's te vereenvoudigen en Trustpilot social proof te gebruiken. KPI's ingesteld voor snelle schaalbare groei.</p>
-                                </div>
-                              </div>`,
-                proj_4_desc_short: "Voor Zonneplan hebben we een gericht whitepaper ontwikkeld om hun doelstelling van 3.000 laadpaalverkopen in 2023 te realiseren.",
-
-                contact_title: "Laten we <span class=\"text-zinc-600 transition-colors group-hover:text-zinc-400\">Samenwerken</span>",
-                contact_desc: "Neem contact op om te bespreken hoe wij kunnen samenwerken aan nieuwe projecten, strategische partnerschappen en innovatiekansen.",
-                btn_email: "Stuur E-mail",
-                btn_call: "Plan Gesprek",
-                modal_title: "Alle Projecten",
-                contact_modal_title: "Kies E-mail Programma",
-                call_modal_title: "Plan introductiegesprek met Ritchie",
-                btn_gmail: "Open Gmail",
-                btn_outlook: "Open Outlook",
-                btn_google_cal: "Google Agenda",
-                btn_outlook_cal: "Outlook.com",
-                btn_office_cal: "Office 365",
-                btn_default_mail: "Standaard Mail App",
-                cv_modal_title: "Kies Versie",
-                cv_dutch_title: "Download Nederlandse Versie",
-                cv_english_title: "Download Engelse Versie",
-                
-                // Expertise Modal
-                skills_modal_title: "Expertise",
-                exp_ov_digital_title: "Digitale Vaardigheden",
-                exp_ov_investigative_title: "ONDERZOEKENDE EXPERTISE: BEDRIJFSSTRATEGIEËN",
-                exp_ov_analyses_title: "Analyses",
-                exp_ov_analyses_text: "Analyses geven inzicht in de huidige situatie en de omgeving waarin een organisatie opereert. Ze kunnen afzonderlijk worden uitgevoerd of gecombineerd worden opgeleverd.",
-                exp_ov_analyses_list: `<li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-accent rounded-full"></span>Marktanalyse</li>
-                                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-accent rounded-full"></span>Concurrentieanalyse</li>
-                                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-accent rounded-full"></span>Landenanalyse</li>
-                                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-accent rounded-full"></span>Bedrijfstakanalyse</li>
-                                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-accent rounded-full"></span>Afzetruimteanalyse</li>
-                                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-accent rounded-full"></span>Doelgroepanalyse</li>`,
-                exp_ov_designs_title: "Ontwerpen",
-                exp_ov_designs_text: "Ontwerpen zijn plannen om van de huidige naar de gewenste situatie te bewegen, binnen vooraf bepaalde kaders.",
-                exp_ov_designs_list: `<li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-accent rounded-full"></span>Implementatieplan</li>
-                                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-accent rounded-full"></span>Marketingcommunicatieplan</li>
-                                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-accent rounded-full"></span>Marketingplan</li>
-                                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-accent rounded-full"></span>Exportplan</li>
-                                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-accent rounded-full"></span>Marktverkenningsplan</li>
-                                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-accent rounded-full"></span>Verkoopplan</li>`,
-                exp_ov_advice_title: "Adviezen",
-                exp_ov_advice_text: "Advies bestaat uit onderbouwde aanbevelingen op strategisch of tactisch niveau, gericht op het bereiken van de gewenste situatie.",
-                exp_ov_advice_list: `<li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-accent rounded-full"></span>Advies voor een positioneringsstrategie</li>
-                                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-accent rounded-full"></span>Advies voor een marktbewerkingsstrategie</li>
-                                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-accent rounded-full"></span>Advies voor een loyaliteitsstrategie of -programma</li>
-                                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-accent rounded-full"></span>Advies voor een groeistrategie</li>
-                                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-accent rounded-full"></span>Advies voor een export- of entreestrategie</li>`,
-                exp_ov_theories_title: "Theorieën en Modellen",
-                exp_ov_theories_text: "Bij het uitvoeren van analyses, ontwerpen en adviezen worden diverse bewezen theorieën en modellen gebruikt om keuzes te onderbouwen en waarde te creëren.",
-                exp_ov_theories_list: `<span class="px-2 py-1 bg-zinc-800 rounded border border-zinc-700">Design Thinking</span>
-                                             <span class="px-2 py-1 bg-zinc-800 rounded border border-zinc-700">Business Model Canvas (incl. Triple Layered)</span>
-                                             <span class="px-2 py-1 bg-zinc-800 rounded border border-zinc-700">Value Proposition Model</span>
-                                             <span class="px-2 py-1 bg-zinc-800 rounded border border-zinc-700">Meervoudige Waardecreatie</span>
-                                             <span class="px-2 py-1 bg-zinc-800 rounded border border-zinc-700">SWOT-analyse</span>
-                                             <span class="px-2 py-1 bg-zinc-800 rounded border border-zinc-700">Customer Journey</span>
-                                             <span class="px-2 py-1 bg-zinc-800 rounded border border-zinc-700">Organizational Mapping</span>
-                                             <span class="px-2 py-1 bg-zinc-800 rounded border border-zinc-700">Action Learning</span>
-                                             <span class="px-2 py-1 bg-zinc-800 rounded border border-zinc-700">Business Management</span>
-                                             <span class="px-2 py-1 bg-zinc-800 rounded border border-zinc-700">ESG</span>`
-            }
-        };
-
-        window.toggleLanguage = () => {
-            currentLang = currentLang === 'en' ? 'nl' : 'en';
-            
-            const btn = document.getElementById('lang-toggle');
-            btn.textContent = currentLang === 'en' ? 'NL' : 'EN';
-            
-            document.querySelectorAll('[data-i18n]').forEach(el => {
-                const key = el.getAttribute('data-i18n');
-                if (translations[currentLang][key]) {
-                   // Special handling for Hero Title Typewriter (Apply new text with effect)
-                   if (key === 'hero_title') {
-                       typeWriterGeneric('typewriter-title', translations[currentLang][key], 40);
-                   }
-                   // Special handling for Contact Title (contains HTML span)
-                   // The element with data-i18n is the H2, so innerHTML replacement is correct.
-                   else if (key === 'contact_title') {
-                       el.innerHTML = translations[currentLang][key];
-                   } 
-                   else {
-                       el.innerHTML = translations[currentLang][key];
-                   }
-                }
-            });
-        };
+              card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+          });
+          
+          card.addEventListener('mouseleave', () => {
+              card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)';
+          });
+      });
     </script>
 </body>
 </html>
