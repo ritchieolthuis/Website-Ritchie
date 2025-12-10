@@ -1077,11 +1077,11 @@
             
             <!-- Recommendations Carousel -->
             <div class="relative group">
-                <!-- Buttons -->
-                <button id="recPrevBtn" class="magnetic-btn absolute -left-2 md:-left-12 top-1/2 -translate-y-1/2 z-30 w-10 h-10 rounded-full bg-zinc-900/80 border border-zinc-700 text-accent flex items-center justify-center hover:bg-accent hover:text-black transition-all hover:scale-110 data-hover-trigger">
+                <!-- Buttons - REMOVED magnetic-btn to fix shifting/working issue -->
+                <button id="recPrevBtn" class="absolute -left-2 md:-left-12 top-1/2 -translate-y-1/2 z-30 w-10 h-10 rounded-full bg-zinc-900/80 border border-zinc-700 text-accent flex items-center justify-center hover:bg-accent hover:text-black transition-all hover:scale-110 data-hover-trigger cursor-pointer">
                     <i data-lucide="chevron-left" class="w-6 h-6"></i>
                 </button>
-                <button id="recNextBtn" class="magnetic-btn absolute -right-2 md:-right-12 top-1/2 -translate-y-1/2 z-30 w-10 h-10 rounded-full bg-zinc-900/80 border border-zinc-700 text-accent flex items-center justify-center hover:bg-accent hover:text-black transition-all hover:scale-110 data-hover-trigger">
+                <button id="recNextBtn" class="absolute -right-2 md:-right-12 top-1/2 -translate-y-1/2 z-30 w-10 h-10 rounded-full bg-zinc-900/80 border border-zinc-700 text-accent flex items-center justify-center hover:bg-accent hover:text-black transition-all hover:scale-110 data-hover-trigger cursor-pointer">
                     <i data-lucide="chevron-right" class="w-6 h-6"></i>
                 </button>
 
@@ -1090,7 +1090,7 @@
                         
                         <!-- Rec 1 -->
                         <div class="w-full md:w-1/2 lg:w-1/3 flex-shrink-0 p-2">
-                            <a href="https://www.linkedin.com/in/joelrepko/?locale=nl" target="_blank" class="bento-card p-6 flex flex-col gap-4 group h-full bg-[#151515] hover:border-zinc-600 transition-colors data-hover-trigger" data-tilt>
+                            <a href="https://www.linkedin.com/in/joelrepko/?locale=nl" target="_blank" class="bento-card p-6 flex flex-col gap-4 group h-full bg-[#151515] hover:border-zinc-600 transition-colors data-hover-trigger">
                                 <div class="spotlight-overlay"></div>
                                 <div class="flex items-center gap-3">
                                      <div class="w-12 h-12 rounded-full bg-zinc-800 border border-zinc-700 overflow-hidden flex-shrink-0">
@@ -1103,16 +1103,18 @@
                                 </div>
                                 <div class="relative flex-grow">
                                      <i data-lucide="quote" class="absolute -top-1 -left-1 w-4 h-4 text-zinc-700 fill-zinc-700 opacity-50 transform -scale-x-100"></i>
-                                    <p class="text-zinc-400 text-sm leading-relaxed pl-4 italic" data-i18n="rec_joel_text">
-                                        "During the classes and workshops I taught him in the Commercial Economics program at Windesheim University of Applied Sciences, Ritchie was an involved student who continues to think critically and asks the right questions to get the most out of his projects for his clients in the field."
-                                    </p>
+                                     <div class="h-[180px] overflow-y-auto custom-scrollbar pr-2">
+                                        <p class="text-zinc-400 text-sm leading-relaxed pl-4 italic" data-i18n="rec_joel_text">
+                                            "During the classes and workshops I taught him in the Commercial Economics program at Windesheim University of Applied Sciences, Ritchie was an involved student who continues to think critically and asks the right questions to get the most out of his projects for his clients in the field."
+                                        </p>
+                                     </div>
                                 </div>
                             </a>
                         </div>
 
                         <!-- Rec 2 -->
                         <div class="w-full md:w-1/2 lg:w-1/3 flex-shrink-0 p-2">
-                            <a href="https://www.linkedin.com/in/markversluis/" target="_blank" class="bento-card p-6 flex flex-col gap-4 group h-full bg-[#151515] hover:border-zinc-600 transition-colors data-hover-trigger" data-tilt>
+                            <a href="https://www.linkedin.com/in/markversluis/" target="_blank" class="bento-card p-6 flex flex-col gap-4 group h-full bg-[#151515] hover:border-zinc-600 transition-colors data-hover-trigger">
                                 <div class="spotlight-overlay"></div>
                                 <div class="flex items-center gap-3">
                                      <div class="w-12 h-12 rounded-full bg-zinc-800 border border-zinc-700 overflow-hidden flex-shrink-0">
@@ -1125,16 +1127,18 @@
                                 </div>
                                 <div class="relative flex-grow">
                                      <i data-lucide="quote" class="absolute -top-1 -left-1 w-4 h-4 text-zinc-700 fill-zinc-700 opacity-50 transform -scale-x-100"></i>
-                                    <p class="text-zinc-400 text-sm leading-relaxed pl-4 italic" data-i18n="rec_mark_text">
-                                        "As Ritchie's teacher, I got to know him as an independent and result-oriented student who fits well in the group. As a young professional, he will be an asset to many companies."
-                                    </p>
+                                     <div class="h-[180px] overflow-y-auto custom-scrollbar pr-2">
+                                        <p class="text-zinc-400 text-sm leading-relaxed pl-4 italic" data-i18n="rec_mark_text">
+                                            "As Ritchie's teacher, I got to know him as an independent and result-oriented student who fits well in the group. As a young professional, he will be an asset to many companies."
+                                        </p>
+                                     </div>
                                 </div>
                             </a>
                         </div>
 
                         <!-- Rec 3: Antoinette Alma -->
                         <div class="w-full md:w-1/2 lg:w-1/3 flex-shrink-0 p-2">
-                            <a href="https://www.linkedin.com/in/antoinettealma/" target="_blank" class="bento-card p-6 flex flex-col gap-4 group h-full bg-[#151515] hover:border-zinc-600 transition-colors data-hover-trigger" data-tilt>
+                            <a href="https://www.linkedin.com/in/antoinettealma/" target="_blank" class="bento-card p-6 flex flex-col gap-4 group h-full bg-[#151515] hover:border-zinc-600 transition-colors data-hover-trigger">
                                 <div class="spotlight-overlay"></div>
                                 <div class="flex items-center gap-3">
                                      <div class="w-12 h-12 rounded-full bg-zinc-800 border border-zinc-700 overflow-hidden flex-shrink-0">
@@ -1147,9 +1151,57 @@
                                 </div>
                                 <div class="relative">
                                      <i data-lucide="quote" class="absolute -top-1 -left-1 w-4 h-4 text-zinc-700 fill-zinc-700 opacity-50 transform -scale-x-100"></i>
-                                    <div class="overflow-y-auto max-h-[160px] custom-scrollbar pr-2">
+                                    <div class="h-[180px] overflow-y-auto custom-scrollbar pr-2">
                                          <p class="text-zinc-400 text-sm leading-relaxed pl-4 italic" data-i18n="rec_3_text">
-                                            "I know Ritchie as a smart and inquisitive student. He asks sharp questions that stimulate further thinking in others. He actively seeks depth and quickly bridges the gap between theory and practice.<br><br>Collaboration is very important to him. He focuses not just on the result, but on the process of achieving it together. In a project group with varying levels of commitment, he remained calm and clear-headed. He addressed the issue openly, redistributed tasks, and checked what each member needed to contribute. His approach revitalized the team and ensured a fairer distribution of work.<br><br>Ritchie communiceert open en helder. Hij luistert goed, vat goed samen en zorgt dat afspraken concreet zijn. Dat maakt hem een prettige en betrouwbare partner om mee samen te werken."
+                                            "I know Ritchie as a smart and inquisitive student. He asks sharp questions that stimulate further thinking in others. He actively seeks depth and quickly bridges the gap between theory and practice.<br><br>Collaboration is very important to him. He focuses not just on the result, but on the process of achieving it together. In a project group with varying levels of commitment, he remained calm and clear-headed. He addressed the issue openly, redistributed tasks, and checked what each member needed to contribute. His approach revitalized the team and ensured a fairer distribution of work.<br><br>Ritchie communicates openly and clearly. He listens well, summarizes well, and ensures agreements are concrete. That makes him a pleasant and reliable partner to work with."
+                                        </p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        
+                        <!-- Rec 4: Elmar van Brakel -->
+                        <div class="w-full md:w-1/2 lg:w-1/3 flex-shrink-0 p-2">
+                            <a href="https://www.linkedin.com/in/elmar-van-brakel-33362710/" target="_blank" class="bento-card p-6 flex flex-col gap-4 group h-full bg-[#151515] hover:border-zinc-600 transition-colors data-hover-trigger">
+                                <div class="spotlight-overlay"></div>
+                                <div class="flex items-center gap-3">
+                                     <div class="w-12 h-12 rounded-full bg-zinc-800 border border-zinc-700 overflow-hidden flex-shrink-0">
+                                        <img src="https://media.licdn.com/dms/image/v2/C5603AQEtbc-9HmikSg/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1517727248745?e=1767225600&v=beta&t=GcKl_LlXjHukBUUc9bCJDOrzuvXSmExkab4E3jk9Go8" alt="Elmar van Brakel" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all">
+                                     </div>
+                                     <div>
+                                         <h4 class="text-white font-bold text-sm group-hover:text-accent transition-colors flex items-center gap-1"><span data-i18n="rec_4_name">Elmar van Brakel</span> <i data-lucide="external-link" class="w-3 h-3 text-zinc-600"></i></h4>
+                                         <p class="text-zinc-500 text-xs line-clamp-2" data-i18n="rec_4_role">Trainer I docent I coach I sales I customer experience I persoonlijke ontwikkeling I teamontwikkeling I profile dynamics consultant I</p>
+                                     </div>
+                                </div>
+                                <div class="relative">
+                                     <i data-lucide="quote" class="absolute -top-1 -left-1 w-4 h-4 text-zinc-700 fill-zinc-700 opacity-50 transform -scale-x-100"></i>
+                                    <div class="h-[180px] overflow-y-auto custom-scrollbar pr-2">
+                                         <p class="text-zinc-400 text-sm leading-relaxed pl-4 italic" data-i18n="rec_4_text">
+                                            "I have had Ritchie in training several times over the past few years during the CE program at Windesheim Zwolle. Currently in the 4th year Young Professional program... and that is exactly what he shows. Knows his responsibilities, seeks depth in his assignments, shows ownership and works well with other students. Moreover, a nice guy to deal with."
+                                        </p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        
+                        <!-- Rec 5: Marcel Logtenberg -->
+                         <div class="w-full md:w-1/2 lg:w-1/3 flex-shrink-0 p-2">
+                            <a href="https://www.linkedin.com/in/marcellogtenberg/" target="_blank" class="bento-card p-6 flex flex-col gap-4 group h-full bg-[#151515] hover:border-zinc-600 transition-colors data-hover-trigger">
+                                <div class="spotlight-overlay"></div>
+                                <div class="flex items-center gap-3">
+                                     <div class="w-12 h-12 rounded-full bg-zinc-800 border border-zinc-700 overflow-hidden flex-shrink-0">
+                                        <img src="https://media.licdn.com/dms/image/v2/D4E03AQGUgwKS0vpQ_Q/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1689663050281?e=1767225600&v=beta&t=FN7uXhd4mKFt1jbx9P24nwsQ4jiTUXVI9PM-ZHYLsqU" alt="Marcel Logtenberg" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all">
+                                     </div>
+                                     <div>
+                                         <h4 class="text-white font-bold text-sm group-hover:text-accent transition-colors flex items-center gap-1"><span data-i18n="rec_5_name">Marcel Logtenberg</span> <i data-lucide="external-link" class="w-3 h-3 text-zinc-600"></i></h4>
+                                         <p class="text-zinc-500 text-xs" data-i18n="rec_5_role">Analist • Coach • Projectmanager</p>
+                                     </div>
+                                </div>
+                                <div class="relative">
+                                     <i data-lucide="quote" class="absolute -top-1 -left-1 w-4 h-4 text-zinc-700 fill-zinc-700 opacity-50 transform -scale-x-100"></i>
+                                    <div class="h-[180px] overflow-y-auto custom-scrollbar pr-2">
+                                         <p class="text-zinc-400 text-sm leading-relaxed pl-4 italic" data-i18n="rec_5_text">
+                                            "I experienced Ritchie as a committed student who actively contributes to lectures. He asked good questions and took the initiative in conducting a good dialogue. In addition, he put a lot of effort into delivering a good report. And he has shown that he is willing to go the extra mile to achieve a good result."
                                         </p>
                                     </div>
                                 </div>
@@ -1626,7 +1678,13 @@
             rec_mark_text: "\"As Ritchie's teacher, I got to know him as an independent and result-oriented student who fits well in the group. As a young professional, he will be an asset to many companies.\"",
             rec_3_name: "Antoinette Alma",
             rec_3_role: "Speaker, Trainer & Lecturer",
-            rec_3_text: "\"I know Ritchie as a smart and inquisitive student. He asks sharp questions that stimulate further thinking in others. He actively seeks depth and quickly bridges the gap between theory and practice.<br><br>Collaboration is very important to him. He focuses not just on the result, but on the process of achieving it together. In a project group with varying levels of commitment, he remained calm and clear-headed. He addressed the issue openly, redistributed tasks, and checked what each member needed to contribute. His approach revitalized the team and ensured a fairer distribution of work.<br><br>Ritchie communiceert open en helder. Hij luistert goed, vat goed samen en zorgt dat afspraken concreet zijn. Dat maakt hem een prettige en betrouwbare partner om mee samen te werken.\"",
+            rec_3_text: "\"I know Ritchie as a smart and inquisitive student. He asks sharp questions that stimulate further thinking in others. He actively seeks depth and quickly bridges the gap between theory and practice.<br><br>Collaboration is very important to him. He focuses not just on the result, but on the process of achieving it together. In a project group with varying levels of commitment, he remained calm and clear-headed. He addressed the issue openly, redistributed tasks, and checked what each member needed to contribute. His approach revitalized the team and ensured a fairer distribution of work.<br><br>Ritchie communicates openly and clearly. He listens well, summarizes well, and ensures agreements are concrete. That makes him a pleasant and reliable partner to work with.\"",
+            rec_4_name: "Elmar van Brakel",
+            rec_4_role: "Trainer I docent I coach I sales I customer experience I persoonlijke ontwikkeling I teamontwikkeling I profile dynamics consultant I",
+            rec_4_text: "\"I have had Ritchie in training several times over the past few years during the CE program at Windesheim Zwolle. Currently in the 4th year Young Professional program... and that is exactly what he shows. Knows his responsibilities, seeks depth in his assignments, shows ownership and works well with other students. Moreover, a nice guy to deal with.\"",
+            rec_5_name: "Marcel Logtenberg",
+            rec_5_role: "Analist • Coach • Projectmanager",
+            rec_5_text: "\"I experienced Ritchie as a committed student who actively contributes to lectures. He asked good questions and took the initiative in conducting a good dialogue. In addition, he put a lot of effort into delivering a good report. And he has shown that he is willing to go the extra mile to achieve a good result.\"",
             partners_title: "Partnered with",
             // Modal Translations
             serv_modal_title: "Transform Complex Challenges <br/><span class=\"text-zinc-500\">Into Growth & Value</span>",
@@ -1748,6 +1806,12 @@
             rec_3_name: "Antoinette Alma",
             rec_3_role: "Spreker, Trainer & Docent",
             rec_3_text: "\"Ik ken Ritchie als een slimme en onderzoekende student. Hij stelt scherpe vragen die anderen aanzetten tot verder denken. Hij zoekt actief de diepgang op en slaat snel de brug tussen theorie en praktijk.<br><br>Samenwerken vindt hij erg belangrijk. Hij heeft niet alleen oog voor het resultaat, maar ook voor het proces om daar samen te komen. In een projectgroep met wisselende inzet bleef hij rustig en helder. Hij maakte het probleem bespreekbaar, verdeelde de taken opnieuw en checkte wat ieder nodig had om zijn bijdrage te leveren. Zijn aanpak trok het team vlot en zorgde voor een eerlijkere verdeling.<br><br>Ritchie communiceert open en helder. Hij luistert goed, vat goed samen en zorgt dat afspraken concreet zijn. Dat maakt hem een prettige en betrouwbare partner om mee samen te werken.\"",
+            rec_4_name: "Elmar van Brakel",
+            rec_4_role: "Trainer I docent I coach I sales I customer experience I persoonlijke ontwikkeling I teamontwikkeling I profile dynamics consultant I",
+            rec_4_text: "\"Ik heb Ritchie de afgelopen jaren tijdens de opleiding CE bij Windesheim Zwolle meerdere keren in een training gehad. Op dit moment in het 4e jaars programma Young Professional…en dat is precies wat hij laat zien. Kent zijn verantwoordelijkheden, zoekt de verdieping in zijn opdrachten, toont eigenaarschap en werkt prima samen met andere studenten. Bovendien een fijne jongen in de omgang.\"",
+            rec_5_name: "Marcel Logtenberg",
+            rec_5_role: "Analist • Coach • Projectmanager",
+            rec_5_text: "\"Ritchie heb ik ervaren als een betrokken student die een actieve bijdrage levert aan de colleges. Hij stelde goede vragen en nam het initiatief in het voeren van een goede dialoog. Hiernaast heeft hij veel moeite gestoken in het opleveren van een goede rapportage. En heeft hij laten zien dat hij bereid is om een stap extra te doen om tot een goed resultaat te komen.\"",
             partners_title: "Samenwerkingen",
             // Modal Translations NL
             serv_modal_title: "Zet Complexe Uitdagingen Om <br/><span class=\"text-zinc-500\">In Groei & Waarde</span>",
@@ -1936,18 +2000,33 @@
       const recNext = document.getElementById('recNextBtn');
       let recIndex = 0;
 
+      function updateRecCarousel() {
+          const cardWidth = recTrack.children[0].getBoundingClientRect().width;
+          recTrack.style.transform = `translateX(-${recIndex * cardWidth}px)`;
+      }
+
       recNext.addEventListener('click', () => {
-          // Simplistic logic: slide by 1/3 or 100% depending on screen
-          const cardWidth = recTrack.children[0].getBoundingClientRect().width;
+          // Move 1 by 1
+          const totalItems = recTrack.children.length;
+          // Loop
           recIndex++;
-          if(recIndex > 2) recIndex = 0; 
-          recTrack.style.transform = `translateX(-${recIndex * cardWidth}px)`;
+          if(recIndex >= totalItems) {
+            recIndex = 0;
+          }
+          updateRecCarousel();
       });
+      
        recPrev.addEventListener('click', () => {
-          const cardWidth = recTrack.children[0].getBoundingClientRect().width;
+          const totalItems = recTrack.children.length;
           recIndex--;
-          if(recIndex < 0) recIndex = 2;
-          recTrack.style.transform = `translateX(-${recIndex * cardWidth}px)`;
+          if(recIndex < 0) {
+              recIndex = totalItems - 1;
+          }
+          updateRecCarousel();
+      });
+
+      window.addEventListener('resize', () => {
+          updateRecCarousel();
       });
 
       // 3D Tilt Effect
