@@ -208,11 +208,11 @@
         mix-blend-mode: normal;
       }
 
-      /* Magnetic Button Effect */
+      /* Magnetic Button Effect (Transition Only, No Position Shift on Hover) */
       .magnetic-btn {
         display: inline-block;
         transition: transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        cursor: pointer; /* Ensure pointer cursor */
+        cursor: pointer; 
       }
 
       /* Click Ripple Effect */
@@ -407,6 +407,7 @@
     <!-- Top Navigation -->
     <div class="fixed top-6 left-0 right-0 z-50 flex justify-center pointer-events-none px-4 fade-in-nav">
         <nav class="pointer-events-auto bg-[#121212]/80 backdrop-blur-xl border border-white/10 rounded-full px-2 py-2 flex items-center gap-1 shadow-2xl">
+          <!-- Button without scale hover -->
           <button onclick="window.scrollTo({ top: 0, behavior: 'smooth' })" class="magnetic-btn w-10 h-10 rounded-full bg-zinc-900 flex items-center justify-center text-white font-serif italic border border-zinc-800 hover:border-accent transition-colors data-hover-trigger">
             R
           </button>
@@ -859,19 +860,19 @@
             <div class="relative bento-card p-0 overflow-hidden group h-auto md:h-[420px]" data-tilt>
                 <div class="spotlight-overlay"></div>
                 
-                <!-- Navigation Buttons -->
-                <button id="prevBtn" class="magnetic-btn absolute left-4 top-1/2 -translate-y-1/2 z-30 w-10 h-10 rounded-full bg-zinc-900/80 border border-zinc-700 text-white flex items-center justify-center hover:bg-accent hover:text-black transition-all hover:scale-110 data-hover-trigger">
+                <!-- Navigation Buttons (Removed Scale Hover) -->
+                <button id="prevBtn" class="magnetic-btn absolute left-4 top-1/2 -translate-y-1/2 z-30 w-10 h-10 rounded-full bg-zinc-900/80 border border-zinc-700 text-white flex items-center justify-center hover:bg-accent hover:text-black transition-all data-hover-trigger">
                     <i data-lucide="chevron-left" class="w-6 h-6"></i>
                 </button>
-                <button id="nextBtn" class="magnetic-btn absolute right-4 top-1/2 -translate-y-1/2 z-30 w-10 h-10 rounded-full bg-zinc-900/80 border border-zinc-700 text-white flex items-center justify-center hover:bg-accent hover:text-black transition-all hover:scale-110 data-hover-trigger">
+                <button id="nextBtn" class="magnetic-btn absolute right-4 top-1/2 -translate-y-1/2 z-30 w-10 h-10 rounded-full bg-zinc-900/80 border border-zinc-700 text-white flex items-center justify-center hover:bg-accent hover:text-black transition-all data-hover-trigger">
                     <i data-lucide="chevron-right" class="w-6 h-6"></i>
                 </button>
 
-                <!-- Track -->
+                <!-- Track (Removed w-full to allow flex children to determine width) -->
                 <div id="carousel-track" class="flex transition-transform duration-500 ease-in-out h-full">
                     
-                    <!-- Slide 1: Vitens -->
-                    <div class="project-slide w-full flex-shrink-0 flex flex-col md:flex-row h-full group/slide data-hover-trigger">
+                    <!-- Slide 1: Vitens (Added min-w-full) -->
+                    <div class="project-slide w-full min-w-full flex-shrink-0 flex flex-col md:flex-row h-full group/slide data-hover-trigger">
                         <!-- Image Side -->
                         <div class="w-full md:w-1/2 h-64 md:h-full relative border-b md:border-b-0 md:border-r border-zinc-800">
                              <!-- Date Label -->
@@ -879,7 +880,8 @@
                                 Aug 2025 - Jan 2026 · 6 months
                             </div>
                             <img src="https://www.h2owaternetwerk.nl/images/2020/December/vitens_strategie_duurzaam.jpg" alt="Vitens Project" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700">
-                            <a href="https://www.vitens.nl/Zakelijk" target="_blank" class="magnetic-btn absolute top-4 right-4 p-3 bg-white text-black rounded-full hover:scale-110 transition-transform z-20 data-hover-trigger">
+                            <!-- Link Button (Removed Scale Hover) -->
+                            <a href="https://www.vitens.nl/Zakelijk" target="_blank" class="magnetic-btn absolute top-4 right-4 p-3 bg-white text-black rounded-full hover:bg-zinc-200 transition-colors z-20 data-hover-trigger">
                                 <i data-lucide="external-link" class="w-5 h-5"></i>
                             </a>
                         </div>
@@ -913,15 +915,15 @@
                         </div>
                     </div>
 
-                    <!-- Slide 2: Perron038 -->
-                    <div class="project-slide w-full flex-shrink-0 flex flex-col md:flex-row h-full group/slide data-hover-trigger">
+                    <!-- Slide 2: Perron038 (Added min-w-full) -->
+                    <div class="project-slide w-full min-w-full flex-shrink-0 flex flex-col md:flex-row h-full group/slide data-hover-trigger">
                         <div class="w-full md:w-1/2 h-64 md:h-full relative border-b md:border-b-0 md:border-r border-zinc-800">
                              <!-- Date Label -->
                             <div class="absolute top-4 left-4 z-20 px-3 py-1 bg-accent text-black text-xs font-bold uppercase tracking-wider rounded-full">
                                 Aug 2025 - Jan 2026 · 6 months
                             </div>
                             <img src="https://smartindustry.nl/hs-fs/hubfs/news/Factory_NEXT_Perron038_Robotopstelling_Coldspray.jpg?width=2048&height=1365&name=Factory_NEXT_Perron038_Robotopstelling_Coldspray.jpg" alt="Perron038 Project" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700">
-                            <a href="https://www.perron038.nl/factory-next/" target="_blank" class="magnetic-btn absolute top-4 right-4 p-3 bg-white text-black rounded-full hover:scale-110 transition-transform z-20 data-hover-trigger">
+                            <a href="https://www.perron038.nl/factory-next/" target="_blank" class="magnetic-btn absolute top-4 right-4 p-3 bg-white text-black rounded-full hover:bg-zinc-200 transition-colors z-20 data-hover-trigger">
                                 <i data-lucide="external-link" class="w-5 h-5"></i>
                             </a>
                         </div>
@@ -954,15 +956,15 @@
                         </div>
                     </div>
 
-                    <!-- Slide 3: Unica -->
-                    <div class="project-slide w-full flex-shrink-0 flex flex-col md:flex-row h-full group/slide data-hover-trigger">
+                    <!-- Slide 3: Unica (Added min-w-full) -->
+                    <div class="project-slide w-full min-w-full flex-shrink-0 flex flex-col md:flex-row h-full group/slide data-hover-trigger">
                         <div class="w-full md:w-1/2 h-64 md:h-full relative border-b md:border-b-0 md:border-r border-zinc-800">
                              <!-- Date Label -->
                             <div class="absolute top-4 left-4 z-20 px-3 py-1 bg-accent text-black text-xs font-bold uppercase tracking-wider rounded-full">
                                 Aug 2023 - Jan 2024 · 6 months
                             </div>
                             <img src="https://stapintechniek.nl/wp-content/uploads/2025/10/7r31189-scaled.jpg" alt="Unica Project" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700">
-                            <a href="https://www.unica.nl/over-ons/onze-bedrijven/unica-building-services" target="_blank" class="magnetic-btn absolute top-4 right-4 p-3 bg-white text-black rounded-full hover:scale-110 transition-transform z-20 data-hover-trigger">
+                            <a href="https://www.unica.nl/over-ons/onze-bedrijven/unica-building-services" target="_blank" class="magnetic-btn absolute top-4 right-4 p-3 bg-white text-black rounded-full hover:bg-zinc-200 transition-colors z-20 data-hover-trigger">
                                 <i data-lucide="external-link" class="w-5 h-5"></i>
                             </a>
                         </div>
@@ -995,15 +997,15 @@
                         </div>
                     </div>
 
-                    <!-- Slide 4: Zonneplan -->
-                    <div class="project-slide w-full flex-shrink-0 flex flex-col md:flex-row h-full group/slide data-hover-trigger">
+                    <!-- Slide 4: Zonneplan (Added min-w-full) -->
+                    <div class="project-slide w-full min-w-full flex-shrink-0 flex flex-col md:flex-row h-full group/slide data-hover-trigger">
                         <div class="w-full md:w-1/2 h-64 md:h-full relative border-b md:border-b-0 md:border-r border-zinc-800">
                              <!-- Date Label -->
                             <div class="absolute top-4 left-4 z-20 px-3 py-1 bg-accent text-black text-xs font-bold uppercase tracking-wider rounded-full">
                                 February 2023 - April 2023 · 3 MONTHS
                             </div>
                             <img src="https://zonneplan-site.s3.amazonaws.com/uploads/2024/05/zonnepanelen-header-hoeveel-kwh-e1716799873343.png" alt="Zonneplan Project" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500">
-                            <a href="https://www.zonneplan.nl/" target="_blank" class="magnetic-btn absolute top-4 right-4 p-3 bg-white text-black rounded-full hover:scale-110 transition-transform z-20 data-hover-trigger">
+                            <a href="https://www.zonneplan.nl/" target="_blank" class="magnetic-btn absolute top-4 right-4 p-3 bg-white text-black rounded-full hover:bg-zinc-200 transition-colors z-20 data-hover-trigger">
                                 <i data-lucide="external-link" class="w-5 h-5"></i>
                             </a>
                         </div>
@@ -1077,11 +1079,11 @@
             
             <!-- Recommendations Carousel -->
             <div class="relative group">
-                <!-- Buttons - REMOVED magnetic-btn to fix shifting/working issue -->
-                <button id="recPrevBtn" class="absolute -left-2 md:-left-12 top-1/2 -translate-y-1/2 z-30 w-10 h-10 rounded-full bg-zinc-900/80 border border-zinc-700 text-accent flex items-center justify-center hover:bg-accent hover:text-black transition-all hover:scale-110 data-hover-trigger cursor-pointer">
+                <!-- Buttons - Removed Hover Scale -->
+                <button id="recPrevBtn" class="absolute -left-2 md:-left-12 top-1/2 -translate-y-1/2 z-30 w-10 h-10 rounded-full bg-zinc-900/80 border border-zinc-700 text-accent flex items-center justify-center hover:bg-accent hover:text-black transition-all data-hover-trigger cursor-pointer">
                     <i data-lucide="chevron-left" class="w-6 h-6"></i>
                 </button>
-                <button id="recNextBtn" class="absolute -right-2 md:-right-12 top-1/2 -translate-y-1/2 z-30 w-10 h-10 rounded-full bg-zinc-900/80 border border-zinc-700 text-accent flex items-center justify-center hover:bg-accent hover:text-black transition-all hover:scale-110 data-hover-trigger cursor-pointer">
+                <button id="recNextBtn" class="absolute -right-2 md:-right-12 top-1/2 -translate-y-1/2 z-30 w-10 h-10 rounded-full bg-zinc-900/80 border border-zinc-700 text-accent flex items-center justify-center hover:bg-accent hover:text-black transition-all data-hover-trigger cursor-pointer">
                     <i data-lucide="chevron-right" class="w-6 h-6"></i>
                 </button>
 
@@ -1153,7 +1155,7 @@
                                      <i data-lucide="quote" class="absolute -top-1 -left-1 w-4 h-4 text-zinc-700 fill-zinc-700 opacity-50 transform -scale-x-100"></i>
                                     <div class="h-[180px] overflow-y-auto custom-scrollbar pr-2">
                                          <p class="text-zinc-400 text-sm leading-relaxed pl-4 italic" data-i18n="rec_3_text">
-                                            "I know Ritchie as a smart and inquisitive student. He asks sharp questions that stimulate further thinking in others. He actively seeks depth and quickly bridges the gap between theory and practice.<br><br>Collaboration is very important to him. He focuses not just on the result, but on the process of achieving it together. In a project group with varying levels of commitment, he remained calm and clear-headed. He addressed the issue openly, redistributed tasks, and checked what each member needed to contribute. His approach revitalized the team and ensured a fairer distribution of work.<br><br>Ritchie communicates openly and clearly. He listens well, summarizes well, and ensures agreements are concrete. That makes him a pleasant and reliable partner to work with."
+                                            "I know Ritchie as a smart and inquisitive student. He asks sharp questions that stimulate further thinking in others. He actively seeks depth and quickly bridges the gap between theory and practice.<br><br>Collaboration is very important to him. He focuses not just on the result, but on the process of achieving it together. In a project group with varying levels of commitment, he remained calm and clear-headed. He addressed the issue openly, redistributed tasks, and checked what each member needed to contribute. His approach revitalized the team and ensured a fairer distribution of work.<br><br>Ritchie communiceert open en helder. Hij luistert goed, vat goed samen en zorgt dat afspraken concreet zijn. Dat maakt hem een prettige en betrouwbare partner om mee samen te werken."
                                         </p>
                                     </div>
                                 </div>
@@ -1207,6 +1209,30 @@
                                 </div>
                             </a>
                         </div>
+                        
+                        <!-- Rec 6: Bas de Leve -->
+                        <div class="w-full md:w-1/2 lg:w-1/3 flex-shrink-0 p-2">
+                            <a href="https://www.linkedin.com/in/bas-de-leve-4a625615/" target="_blank" class="bento-card p-6 flex flex-col gap-4 group h-full bg-[#151515] hover:border-zinc-600 transition-colors data-hover-trigger">
+                                <div class="spotlight-overlay"></div>
+                                <div class="flex items-center gap-3">
+                                     <div class="w-12 h-12 rounded-full bg-zinc-800 border border-zinc-700 overflow-hidden flex-shrink-0">
+                                        <img src="https://media.licdn.com/dms/image/v2/C4D03AQHYhRKwL0qDOA/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1632229718870?e=1767225600&v=beta&t=mp094Eo7-_WmXlWdN64cCIYgOKDmhUVdWuysO4bZMBE" alt="Bas de Leve" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all">
+                                     </div>
+                                     <div>
+                                         <h4 class="text-white font-bold text-sm group-hover:text-accent transition-colors flex items-center gap-1"><span data-i18n="rec_6_name">Bas de Leve</span> <i data-lucide="external-link" class="w-3 h-3 text-zinc-600"></i></h4>
+                                         <p class="text-zinc-500 text-xs" data-i18n="rec_6_role">English Language Instructor and Trainer Communicative Skills at Windesheim, Zwolle</p>
+                                     </div>
+                                </div>
+                                <div class="relative">
+                                     <i data-lucide="quote" class="absolute -top-1 -left-1 w-4 h-4 text-zinc-700 fill-zinc-700 opacity-50 transform -scale-x-100"></i>
+                                    <div class="h-[180px] overflow-y-auto custom-scrollbar pr-2">
+                                         <p class="text-zinc-400 text-sm leading-relaxed pl-4 italic" data-i18n="rec_6_text">
+                                            "An ambitious, intelligent, and motivated student, Ritchie, is always eager to investigate possibilities. He is also introspective, and very friendly. In short, an asset for every organisation."
+                                        </p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
 
                     </div>
                 </div>
@@ -1242,18 +1268,6 @@
                 <img src="https://www.overstappen.nl/assets/Zonneplan@2x.png" alt="Zonneplan" class="h-12 w-auto object-contain logo-filter">
 
                 <!-- Logos Set 4 -->
-                <img src="https://www.vitens.nl/-/media/Project/Vitens/VitensNl/vitens-logo.jpg" alt="Vitens" class="h-14 w-auto object-contain logo-filter">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0kTw7PhwMVs-IQmNdomH7h6oPquEiRAyCcw&s" alt="Perron038" class="h-14 w-auto object-contain logo-filter">
-                <img src="https://www.duurzaam-ondernemen.nl/wordpress/wp-content/uploads/2025/07/unica.png" alt="Unica" class="h-14 w-auto object-contain logo-filter">
-                <img src="https://www.overstappen.nl/assets/Zonneplan@2x.png" alt="Zonneplan" class="h-12 w-auto object-contain logo-filter">
-
-                <!-- Logos Set 5 -->
-                <img src="https://www.vitens.nl/-/media/Project/Vitens/VitensNl/vitens-logo.jpg" alt="Vitens" class="h-14 w-auto object-contain logo-filter">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0kTw7PhwMVs-IQmNdomH7h6oPquEiRAyCcw&s" alt="Perron038" class="h-14 w-auto object-contain logo-filter">
-                <img src="https://www.duurzaam-ondernemen.nl/wordpress/wp-content/uploads/2025/07/unica.png" alt="Unica" class="h-14 w-auto object-contain logo-filter">
-                <img src="https://www.overstappen.nl/assets/Zonneplan@2x.png" alt="Zonneplan" class="h-12 w-auto object-contain logo-filter">
-                
-                <!-- Logos Set 6 -->
                 <img src="https://www.vitens.nl/-/media/Project/Vitens/VitensNl/vitens-logo.jpg" alt="Vitens" class="h-14 w-auto object-contain logo-filter">
                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0kTw7PhwMVs-IQmNdomH7h6oPquEiRAyCcw&s" alt="Perron038" class="h-14 w-auto object-contain logo-filter">
                 <img src="https://www.duurzaam-ondernemen.nl/wordpress/wp-content/uploads/2025/07/unica.png" alt="Unica" class="h-14 w-auto object-contain logo-filter">
@@ -1496,7 +1510,7 @@
             
             <div class="space-y-3">
                  <a href="https://mail.google.com/mail/?view=cm&fs=1&to=ritchieolthuis@gmail.com" target="_blank" class="flex items-center gap-4 w-full p-4 bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 hover:border-zinc-600 rounded-xl transition-all group">
-                     <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                     <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center flex-shrink-0 transition-transform">
                         <!-- Gmail Icon Updated to Official Color Img -->
                         <img src="https://upload.wikimedia.org/wikipedia/commons/7/7e/Gmail_icon_%282020%29.svg" class="w-6 h-6" alt="Gmail">
                      </div>
@@ -1504,7 +1518,7 @@
                  </a>
                  
                  <a href="https://outlook.live.com/mail/0/deeplink/compose?to=ritchieolthuis@gmail.com" target="_blank" class="flex items-center gap-4 w-full p-4 bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 hover:border-zinc-600 rounded-xl transition-all group">
-                     <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                     <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center flex-shrink-0 transition-transform">
                         <!-- Outlook Icon Updated to Official Blue Logo -->
                         <img src="https://brandlogos.net/wp-content/uploads/2025/10/microsoft_outlook_2025-logo_brandlogos.net_c6m2d-512x498.png" class="w-6 h-6" alt="Outlook">
                      </div>
@@ -1512,7 +1526,7 @@
                  </a>
 
                  <a href="mailto:ritchieolthuis@gmail.com" class="flex items-center gap-4 w-full p-4 bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 hover:border-zinc-600 rounded-xl transition-all group">
-                     <div class="w-10 h-10 rounded-full bg-zinc-700 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                     <div class="w-10 h-10 rounded-full bg-zinc-700 flex items-center justify-center flex-shrink-0 transition-transform">
                          <i data-lucide="mail" class="w-5 h-5 text-white"></i>
                      </div>
                      <span class="text-white font-medium">Default Mail App</span>
@@ -1533,7 +1547,7 @@
             <div class="space-y-3">
                  <!-- Google Calendar -->
                  <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&add=ritchieolthuis@gmail.com&text=Meeting+with+Ritchie+Olthuis&details=Let's+discuss+business+opportunities." target="_blank" class="flex items-center gap-4 w-full p-4 bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 hover:border-zinc-600 rounded-xl transition-all group">
-                     <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                     <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center flex-shrink-0 transition-transform">
                          <!-- Google Cal Icon Official -->
                          <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Google_Calendar_icon_%282020%29.svg" class="w-6 h-6" alt="Google Calendar">
                      </div>
@@ -1542,7 +1556,7 @@
                  
                  <!-- Outlook Calendar -->
                  <a href="https://outlook.live.com/calendar/0/deeplink/compose?path=/calendar/action/compose&rru=addevent&to=ritchieolthuis@gmail.com&subject=Meeting%20with%20Ritchie&body=Let's%20discuss%20business%20opportunities." target="_blank" class="flex items-center gap-4 w-full p-4 bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 hover:border-zinc-600 rounded-xl transition-all group">
-                     <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                     <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center flex-shrink-0 transition-transform">
                          <!-- Outlook Icon Official (Same as Mail) -->
                          <img src="https://brandlogos.net/wp-content/uploads/2025/10/microsoft_outlook_2025-logo_brandlogos.net_c6m2d-512x498.png" class="w-6 h-6" alt="Outlook Calendar">
                      </div>
@@ -1551,7 +1565,7 @@
 
                  <!-- Send Email Request -->
                  <a href="mailto:ritchieolthuis@gmail.com?subject=Schedule%20a%20Call&body=Hi%20Ritchie,%0A%0AI'd%20like%20to%20schedule%20a%20call%20to%20discuss..." class="flex items-center gap-4 w-full p-4 bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 hover:border-zinc-600 rounded-xl transition-all group">
-                     <div class="w-10 h-10 rounded-full bg-zinc-700 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                     <div class="w-10 h-10 rounded-full bg-zinc-700 flex items-center justify-center flex-shrink-0 transition-transform">
                          <i data-lucide="mail-plus" class="w-5 h-5 text-white"></i>
                      </div>
                      <span class="text-white font-medium">Email Request</span>
@@ -1571,7 +1585,7 @@
             
             <div class="space-y-3">
                 <a href="https://drive.google.com/file/d/1b1upJApvnbv6Iye-dXC8Cjx3pcG9uise/view?usp=drive_link" target="_blank" class="flex items-center gap-4 w-full p-4 bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 hover:border-zinc-600 rounded-xl transition-all group">
-                    <div class="w-10 h-10 rounded-full bg-zinc-800 border border-zinc-700 flex items-center justify-center text-xl flex-shrink-0 group-hover:scale-110 transition-transform">
+                    <div class="w-10 h-10 rounded-full bg-zinc-800 border border-zinc-700 flex items-center justify-center text-xl flex-shrink-0 transition-transform">
                         🇳🇱
                     </div>
                     <div>
@@ -1582,7 +1596,7 @@
                 </a>
 
                 <a href="https://drive.google.com/file/d/1fYf3Qa561FvxvJuUkraMCjG0li8RWRI_/view?usp=drive_link" target="_blank" class="flex items-center gap-4 w-full p-4 bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 hover:border-zinc-600 rounded-xl transition-all group">
-                    <div class="w-10 h-10 rounded-full bg-zinc-800 border border-zinc-700 flex items-center justify-center text-xl flex-shrink-0 group-hover:scale-110 transition-transform">
+                    <div class="w-10 h-10 rounded-full bg-zinc-800 border border-zinc-700 flex items-center justify-center text-xl flex-shrink-0 transition-transform">
                          🇬🇧
                     </div>
                     <div>
@@ -1600,7 +1614,7 @@
       // Initialize Lucide Icons
       lucide.createIcons();
 
-      // Translations Data
+      // Translations Data (Abbreviated for brevity, full content preserved in logic)
       const translations = {
         en: {
             nav_about: "About",
@@ -1678,13 +1692,16 @@
             rec_mark_text: "\"As Ritchie's teacher, I got to know him as an independent and result-oriented student who fits well in the group. As a young professional, he will be an asset to many companies.\"",
             rec_3_name: "Antoinette Alma",
             rec_3_role: "Speaker, Trainer & Lecturer",
-            rec_3_text: "\"I know Ritchie as a smart and inquisitive student. He asks sharp questions that stimulate further thinking in others. He actively seeks depth and quickly bridges the gap between theory and practice.<br><br>Collaboration is very important to him. He focuses not just on the result, but on the process of achieving it together. In a project group with varying levels of commitment, he remained calm and clear-headed. He addressed the issue openly, redistributed tasks, and checked what each member needed to contribute. His approach revitalized the team and ensured a fairer distribution of work.<br><br>Ritchie communicates openly and clearly. He listens well, summarizes well, and ensures agreements are concrete. That makes him a pleasant and reliable partner to work with.\"",
+            rec_3_text: "\"I know Ritchie as a smart and inquisitive student. He asks sharp questions that stimulate further thinking in others. He actively seeks depth and quickly bridges the gap between theory and practice.<br><br>Collaboration is very important to him. He focuses not just on the result, but on the process of achieving it together. In a project group with varying levels of commitment, he remained calm and clear-headed. He addressed the issue openly, redistributed tasks, and checked what each member needed to contribute. His approach revitalized the team and ensured a fairer distribution of work.<br><br>Ritchie communiceert open en helder. Hij luistert goed, vat goed samen en zorgt dat afspraken concreet zijn. Dat maakt hem een prettige en betrouwbare partner om mee samen te werken.\"",
             rec_4_name: "Elmar van Brakel",
-            rec_4_role: "Trainer I docent I coach I sales I customer experience I persoonlijke ontwikkeling I teamontwikkeling I profile dynamics consultant I",
+            rec_4_role: "Trainer | Lecturer | Coach | Sales | Customer Experience | Personal Development | Team Development | Profile Dynamics Consultant",
             rec_4_text: "\"I have had Ritchie in training several times over the past few years during the CE program at Windesheim Zwolle. Currently in the 4th year Young Professional program... and that is exactly what he shows. Knows his responsibilities, seeks depth in his assignments, shows ownership and works well with other students. Moreover, a nice guy to deal with.\"",
             rec_5_name: "Marcel Logtenberg",
-            rec_5_role: "Analist • Coach • Projectmanager",
+            rec_5_role: "Analyst • Coach • Project Manager",
             rec_5_text: "\"I experienced Ritchie as a committed student who actively contributes to lectures. He asked good questions and took the initiative in conducting a good dialogue. In addition, he put a lot of effort into delivering a good report. And he has shown that he is willing to go the extra mile to achieve a good result.\"",
+            rec_6_name: "Bas de Leve",
+            rec_6_role: "English Language Instructor and Trainer Communicative Skills at Windesheim, Zwolle",
+            rec_6_text: "\"An ambitious, intelligent, and motivated student, Ritchie, is always eager to investigate possibilities. He is also introspective, and very friendly. In short, an asset for every organisation.\"",
             partners_title: "Partnered with",
             // Modal Translations
             serv_modal_title: "Transform Complex Challenges <br/><span class=\"text-zinc-500\">Into Growth & Value</span>",
@@ -1812,6 +1829,9 @@
             rec_5_name: "Marcel Logtenberg",
             rec_5_role: "Analist • Coach • Projectmanager",
             rec_5_text: "\"Ritchie heb ik ervaren als een betrokken student die een actieve bijdrage levert aan de colleges. Hij stelde goede vragen en nam het initiatief in het voeren van een goede dialoog. Hiernaast heeft hij veel moeite gestoken in het opleveren van een goede rapportage. En heeft hij laten zien dat hij bereid is om een stap extra te doen om tot een goed resultaat te komen.\"",
+            rec_6_name: "Bas de Leve",
+            rec_6_role: "Docent Engels en Trainer Communicatieve Vaardigheden bij Windesheim, Zwolle",
+            rec_6_text: "\"Een ambitieuze, intelligente en gemotiveerde student, Ritchie, is altijd gretig om mogelijkheden te onderzoeken. Hij is ook introspectief en erg vriendelijk. Kortom, een aanwinst voor elke organisatie.\"",
             partners_title: "Samenwerkingen",
             // Modal Translations NL
             serv_modal_title: "Zet Complexe Uitdagingen Om <br/><span class=\"text-zinc-500\">In Groei & Waarde</span>",
@@ -1955,21 +1975,6 @@
           setTimeout(() => ripple.remove(), 600);
       });
       
-      // Magnetic Buttons
-      document.querySelectorAll('.magnetic-btn').forEach(btn => {
-          btn.addEventListener('mousemove', (e) => {
-              const rect = btn.getBoundingClientRect();
-              const x = e.clientX - rect.left - rect.width / 2;
-              const y = e.clientY - rect.top - rect.height / 2;
-              
-              btn.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
-          });
-          
-          btn.addEventListener('mouseleave', () => {
-              btn.style.transform = 'translate(0px, 0px)';
-          });
-      });
-      
       // Carousel Logic (Projects)
       const track = document.getElementById('carousel-track');
       const prevBtn = document.getElementById('prevBtn');
@@ -1978,7 +1983,7 @@
       let currentIndex = 0;
       
       function updateCarousel() {
-          const width = slides[0].getBoundingClientRect().width;
+          const width = slides[0].offsetWidth; // Use offsetWidth for robust sizing
           track.style.transform = `translateX(-${currentIndex * width}px)`;
       }
       
@@ -2001,26 +2006,39 @@
       let recIndex = 0;
 
       function updateRecCarousel() {
+          if (!recTrack.children.length) return;
           const cardWidth = recTrack.children[0].getBoundingClientRect().width;
           recTrack.style.transform = `translateX(-${recIndex * cardWidth}px)`;
       }
 
       recNext.addEventListener('click', () => {
-          // Move 1 by 1
+          if (!recTrack.children.length) return;
+          const cardWidth = recTrack.children[0].getBoundingClientRect().width;
+          const containerWidth = recTrack.parentElement.getBoundingClientRect().width;
+          const visibleItems = Math.round(containerWidth / cardWidth);
           const totalItems = recTrack.children.length;
-          // Loop
+          
+          // Calculate max index so we don't scroll into empty space
+          const maxIndex = Math.max(0, totalItems - visibleItems);
+
           recIndex++;
-          if(recIndex >= totalItems) {
-            recIndex = 0;
+          if(recIndex > maxIndex) {
+            recIndex = 0; // Seamlessly loop back to start
           }
           updateRecCarousel();
       });
       
        recPrev.addEventListener('click', () => {
+          if (!recTrack.children.length) return;
+          const cardWidth = recTrack.children[0].getBoundingClientRect().width;
+          const containerWidth = recTrack.parentElement.getBoundingClientRect().width;
+          const visibleItems = Math.round(containerWidth / cardWidth);
           const totalItems = recTrack.children.length;
+          const maxIndex = Math.max(0, totalItems - visibleItems);
+
           recIndex--;
           if(recIndex < 0) {
-              recIndex = totalItems - 1;
+              recIndex = maxIndex;
           }
           updateRecCarousel();
       });

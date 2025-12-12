@@ -72,7 +72,7 @@
           linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
       }
       
-      /* Magnetic Button Effect */
+      /* Magnetic Button Effect (Transition Only) */
       .magnetic-btn {
         display: inline-block;
         transition: transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -85,7 +85,7 @@
     <!-- Top Navigation -->
     <div class="fixed top-6 left-0 right-0 z-50 flex justify-center px-4">
         <nav class="bg-[#121212]/80 backdrop-blur-xl border border-white/10 rounded-full px-2 py-2 flex items-center gap-2 shadow-2xl">
-            <!-- Back Button -->
+            <!-- Back Button (Removed Scale Hover) -->
             <a href="index.html" class="magnetic-btn w-10 h-10 rounded-full bg-zinc-900 flex items-center justify-center text-white border border-zinc-800 hover:border-accent hover:text-accent transition-colors">
                 <i data-lucide="arrow-left" class="w-5 h-5"></i>
             </a>
@@ -210,20 +210,6 @@
     <script>
         lucide.createIcons();
         
-        // --- Magnetic Buttons Logic (Copied from index) ---
-        document.querySelectorAll('.magnetic-btn').forEach(btn => {
-            btn.addEventListener('mousemove', (e) => {
-                const rect = btn.getBoundingClientRect();
-                const x = e.clientX - rect.left - rect.width / 2;
-                const y = e.clientY - rect.top - rect.height / 2;
-                btn.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
-            });
-
-            btn.addEventListener('mouseleave', () => {
-                btn.style.transform = 'translate(0px, 0px)';
-            });
-        });
-
         // --- Language Logic ---
         let currentLang = 'en';
         const translations = {
