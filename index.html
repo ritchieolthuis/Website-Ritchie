@@ -256,6 +256,11 @@
         filter: blur(10px);
         transition: transform 0.8s ease-in, opacity 0.8s ease-in, filter 0.8s ease-in;
       }
+      
+      .fade-out {
+          opacity: 0;
+          pointer-events: none;
+      }
     </style>
     
     <!-- Define functions globally in head to ensure availability -->
@@ -379,15 +384,15 @@
         </div>
     </div>
 
-    <!-- Intro Loading Screen -->
+    <!-- Intro Loading Screen & Language Selection -->
     <div id="intro-screen" class="fixed inset-0 z-[100] bg-[#050505] flex items-center justify-center overflow-hidden transition-opacity duration-500">
         <!-- Background Glow -->
         <div class="absolute inset-0 flex items-center justify-center pointer-events-none opacity-20">
             <div class="w-[60vw] h-[60vw] bg-accent/5 rounded-full blur-[100px]"></div>
         </div>
 
-        <!-- Content Container (Ring + Text) -->
-        <div id="intro-content" class="relative flex items-center justify-center w-[300px] h-[300px] md:w-[500px] md:h-[500px] will-change-transform">
+        <!-- Greeting Content -->
+        <div id="intro-content" class="relative flex items-center justify-center w-[300px] h-[300px] md:w-[500px] md:h-[500px] will-change-transform transition-opacity duration-500">
              <!-- Rotating Ring SVG -->
              <svg class="absolute inset-0 w-full h-full animate-spin-medium" viewBox="0 0 100 100" fill="none">
                  <!-- Main Ring with Gap -->
@@ -401,6 +406,19 @@
              <h1 id="intro-greeting" class="relative z-10 text-4xl md:text-6xl font-display font-bold text-white tracking-widest text-center min-w-[200px]">
                 Hallo
              </h1>
+        </div>
+        
+        <!-- Language Selection (Hidden by default) -->
+        <div id="lang-selection" class="hidden absolute inset-0 flex-col items-center justify-center z-20 animate-fade-in">
+             <h1 class="text-3xl md:text-5xl font-display font-bold text-white mb-10 tracking-wider">Choose Language</h1>
+             <div class="flex flex-col sm:flex-row gap-6">
+                 <button onclick="window.selectLanguage('en')" class="magnetic-btn px-8 py-4 rounded-full border border-zinc-700 bg-zinc-900/50 hover:bg-accent hover:text-black hover:border-accent text-white font-bold transition-all text-lg min-w-[160px] data-hover-trigger">
+                     English
+                 </button>
+                 <button onclick="window.selectLanguage('nl')" class="magnetic-btn px-8 py-4 rounded-full border border-zinc-700 bg-zinc-900/50 hover:bg-accent hover:text-black hover:border-accent text-white font-bold transition-all text-lg min-w-[160px] data-hover-trigger">
+                     Nederlands
+                 </button>
+             </div>
         </div>
     </div>
 
@@ -442,7 +460,7 @@
         <div class="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-6 gap-4 mb-4">
             
             <!-- 1. Name Block -->
-            <div class="bento-card col-span-1 md:col-span-4 lg:col-span-4 row-span-2 p-6 md:p-10 flex flex-col justify-between group reveal-on-scroll overflow-hidden" data-tilt>
+            <div class="bento-card col-span-1 md:col-span-4 lg:col-span-4 row-span-2 p-6 md:p-10 flex flex-col justify-between group reveal-on-scroll overflow-y-auto custom-scrollbar" data-tilt>
                 <div class="spotlight-overlay"></div>
                 
                 <div class="absolute top-0 right-0 p-32 bg-accent/5 rounded-full blur-3xl -mr-16 -mt-16 pointer-events-none transition-all duration-700 group-hover:bg-accent/10"></div>
@@ -466,7 +484,7 @@
                    <!-- Typewriter effect target -->
                    <h2 id="typewriter-title" class="text-xl md:text-2xl text-accent mb-4 font-medium" data-i18n="hero_title">Business Strategy & Innovation Enthusiast</h2>
                    <p class="text-zinc-400 leading-relaxed text-sm md:text-base mb-8 group-hover:text-zinc-300 transition-colors" data-i18n="hero_desc">
-                     I help organizations transform complex business challenges into data-driven, human-centered, and future-proof solutions.
+                     I help organizations turn complex market insights into clear, actionable strategies that truly make an impact.
                    </p>
                    
                    <div class="flex flex-wrap gap-3">
@@ -568,7 +586,7 @@
 
         <!-- SERVICES / VALUE PROPOSITION SECTION (COMPACT) -->
         <div id="services" class="mb-4 reveal-on-scroll scroll-mt-32 cursor-pointer group" onclick="window.openServicesModal()">
-          <div class="bento-card p-6 md:p-8 relative overflow-hidden flex flex-col justify-center" data-tilt>
+          <div class="bento-card p-6 md:p-8 relative overflow-hidden flex flex-col justify-center">
             <div class="spotlight-overlay"></div>
             
             <!-- Expand Icon -->
@@ -577,11 +595,11 @@
             </div>
 
             <h2 class="text-2xl md:text-3xl font-display font-bold text-white mb-3 uppercase leading-tight max-w-4xl" data-i18n="serv_title">
-                Transform Complex Challenges into Growth & Value
+                TRANSFORMING COMPLEX CHALLENGES INTO DATA-DRIVEN, HUMAN-CENTERED STRATEGIES THAT WORK
             </h2>
             
             <p class="text-zinc-400 text-sm md:text-base leading-relaxed max-w-3xl mb-6" data-i18n="serv_card_desc">
-                I help organizations make complex issues clear and turn them into concrete actions. By thinking analytically while offering practical solutions, I bring structure to situations that are unclear or fragmented.
+                I help organizations translate complex challenges into clear, actionable strategies. By combining analytical insight with practical solutions, I bring structure to situations that are unclear or consist of unstructured data.
             </p>
 
             <div class="flex flex-wrap gap-2">
@@ -604,15 +622,11 @@
                         <i data-lucide="cpu" class="w-5 h-5"></i>
                     </div>
                     <h3 class="text-2xl font-display font-bold text-accent uppercase" data-i18n="about_title">About</h3>
-                    <div class="max-h-[320px] overflow-y-auto pr-2 custom-scrollbar mb-6">
-                        <p id="about-typewriter" class="text-zinc-400 text-sm leading-7" data-i18n="about_text">
-                            I am an ambitious fourth-year Commercial Economics student at Windesheim University of Applied Sciences, 24 years old, with a passion for human-centered design and innovation processes. During my studies, I completed a Pre-master in Business Administration as a minor, alongside a minor in Financial Decision-Making, and further specialized in Design Thinking and sustainable business models.
-                            <br><br>
-                            With my analytical and creative skills, I support organizations in translating complex issues into clear insights and sustainable growth opportunities. I combine data, human-centered thinking, and future-proofing ensuring strategies don't just stay on paper but create actual impact.
-                            <br><br>
-                            My strength lies in structuring abstract challenges, uncovering hidden opportunities and risks, and helping organizations make well-founded choices that deliver economic, social, and ecological value.
-                            <br><br>
-                            Personally, I strive to get the best out of myself and empower others, so that everyone can optimally utilize their qualities to achieve the intended result and work together as a true team.
+                    <!-- Modified Height for better readability without excessive scrolling -->
+                    <div class="h-[240px] overflow-y-auto pr-4 custom-scrollbar mb-6 text-zinc-400 text-sm leading-relaxed" data-i18n="about_text">
+                        <p>
+                            I am an ambitious fourth-year Commercial Economics student at Windesheim University of Applied Sciences, 24 years old, with a passion for human-centered design and innovation processes. During my studies, I completed a Pre-master in Business Administration as a minor, a minor in Financial Decision-Making, and further specialized in Design Thinking and sustainable business models.<br><br>
+                            For me, it’s all about discovering opportunities in the unknown and finding solutions where others see mostly challenges. I aim not only to bring out the best in myself but also to inspire others to leverage their unique strengths. In this way, I help organizations make well-informed decisions and create impact that is meaningful for people, businesses, and the world around us.
                         </p>
                     </div>
                     <div class="h-px w-full bg-zinc-800 mb-6 group-hover:bg-zinc-700 transition-colors"></div>
@@ -850,14 +864,12 @@
             <div class="flex items-center justify-between py-4">
                 <h3 class="text-2xl font-display font-bold text-accent uppercase" data-i18n="proj_title">Selected Projects</h3>
                 
-                <!-- PROJECTS BUTTON - Uses window.openProjectsModal -->
-                <button type="button" onclick="window.openProjectsModal()" class="cursor-pointer text-xs font-mono text-zinc-500 hover:text-white flex items-center gap-1 transition-colors magnetic-btn data-hover-trigger">
-                    <span data-i18n="proj_view_all">VIEW ALL</span> <i data-lucide="arrow-up-right" class="w-3 h-3"></i>
-                </button>
+                <!-- PROJECTS BUTTON REMOVED -->
             </div>
 
             <!-- Carousel Container - Adjusted height for wider look -->
-            <div class="relative bento-card p-0 overflow-hidden group h-auto md:h-[420px]" data-tilt>
+            <!-- Removed data-tilt from here to disable hover movement -->
+            <div class="relative bento-card p-0 overflow-hidden group h-auto md:h-[420px]">
                 <div class="spotlight-overlay"></div>
                 
                 <!-- Navigation Buttons (Removed Scale Hover) -->
@@ -981,7 +993,7 @@
                                     <div class="mb-6 last:mb-0 relative">
                                         <div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div>
                                         <h4 class="text-accent font-mono text-xs uppercase mb-1">Strategic Insight</h4>
-                                        <p class="text-zinc-400 text-sm leading-relaxed">Ideation via trend pyramids led to 'SmartEase': entry-level kits & VR demos to visualize energy flows, removing customer capex fears.</p>
+                                        <p class="text-zinc-400 text-sm leading-relaxed">Ideation via trendpiramides leidde tot 'SmartEase': entry-level kits & VR demos to visualize energy flows, removing customer capex fears.</p>
                                     </div>
                                      <div class="mb-6 last:mb-0 relative">
                                         <div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div>
@@ -1049,7 +1061,7 @@
                 <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-accent to-transparent opacity-50"></div>
                 <div class="relative z-10 translate-z-20">
                     <h2 id="contact-typewriter" class="text-4xl md:text-6xl font-display font-bold text-accent uppercase mb-6 tracking-tight typewriter-cursor" data-i18n="contact_title">
-                        Let's work <span class="text-zinc-600 transition-colors group-hover:text-zinc-400">Together</span>
+                         <!-- Initial content is empty, filled by JS typewriter -->
                     </h2>
                     <p class="text-zinc-400 max-w-xl mx-auto mb-10 text-lg" data-i18n="contact_desc">
                         Let’s connect and see how we can team up on new projects, strategic partnerships and innovation-oriented opportunities.
@@ -1595,7 +1607,7 @@
       // Initialize Lucide Icons
       lucide.createIcons();
 
-      // Translations Data (Abbreviated for brevity, full content preserved in logic)
+      // Translations Data
       const translations = {
         en: {
             nav_about: "About",
@@ -1607,7 +1619,7 @@
             nav_contact: "Contact",
             hero_badge: "Available for work",
             hero_title: "Business Strategy & Innovation Enthusiast",
-            hero_desc: "I help organizations transform complex business challenges into data-driven, human-centered, and future-proof solutions.",
+            hero_desc: "I help organizations turn complex market insights into clear, actionable strategies that truly make an impact.",
             btn_view_work: "View Work",
             btn_download_cv: "Download CV",
             based_in: "BASED IN",
@@ -1619,13 +1631,13 @@
             ticker_2: "Design Thinking",
             ticker_3: "Sustainability",
             ticker_4: "Business Modeling",
-            serv_title: "TRANSFORM COMPLEX CHALLENGES INTO GROWTH & VALUE",
-            serv_card_desc: "I help organizations make complex issues clear and turn them into concrete actions. By thinking analytically while offering practical solutions, I bring structure to situations that are unclear or fragmented.",
+            serv_title: "TURNING COMPLEX CHALLENGES INTO DATA-DRIVEN, HUMAN-CENTERED STRATEGIES THAT DELIVER RESULTS",
+            serv_card_desc: "I help organizations translate complex challenges into clear and actionable strategies. By combining analytical insight with practical solutions, I bring structure to unclear situations and scattered data.",
             serv_tag_1: "Market & Competitive Analysis",
             serv_tag_2: "Business Modeling",
             serv_tag_3: "Strategic Roadmaps",
             about_title: "About",
-            about_text: "I am an ambitious fourth-year Commercial Economics student at Windesheim University of Applied Sciences, 24 years old, with a passion for human-centered design and innovation processes. During my studies, I completed a Pre-master in Business Administration as a minor, alongside a minor in Financial Decision-Making, and further specialized in Design Thinking and sustainable business models.<br><br>With my analytical and creative skills, I support organizations in translating complex issues into clear insights and sustainable growth opportunities. I combine data, human-centered thinking, and future-proofing ensuring strategies don't just stay on paper but create actual impact.<br><br>My strength lies in structuring abstract challenges, uncovering hidden opportunities and risks, and helping organizations make well-founded choices that deliver economic, social, and ecological value.<br><br>Personally, I strive to get the best out of myself and empower others, so that everyone can optimally utilize their qualities to achieve the intended result and work together as a true team.",
+            about_text: "I am an ambitious fourth-year Commercial Economics student at Windesheim University of Applied Sciences, 24 years old, with a passion for human-centered design and innovation processes. During my studies, I completed a Pre-master in Business Administration as a minor, a minor in Financial Decision-Making, and further specialized in Design Thinking and sustainable business models.<br><br>For me, it’s all about discovering opportunities in the unknown and finding solutions where others see mostly challenges. I aim not only to bring out the best in myself but also to inspire others to leverage their unique strengths. In this way, I help organizations make well-informed decisions and create impact that is meaningful for people, businesses, and the world around us.",
             skills_title: "Expertise",
             proj_view_all: "VIEW ALL",
             skills_cat_digital: "Digital Skills",
@@ -1658,12 +1670,22 @@
             role_landscaper: "Gardener",
             role_retail: "Retail Staff",
             proj_title: "Selected Projects",
+            
+            // ENGLISH PROJECTS
             proj_1_title: "Vitens, Grootzakelijke markt: Market Needs, Positioning & Organisational Direction",
+            proj_1_desc: `<div class="relative pl-6 border-l-2 border-zinc-800 ml-2"><div class="mb-6 last:mb-0 relative"><div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div><h4 class="text-accent font-mono text-xs uppercase mb-1">Challenge & Analysis</h4><p class="text-zinc-400 text-sm leading-relaxed">Conducted in-depth market study to position new 'Water-as-a-Service' division. Analyzed competitors and customer needs to define the scope of the portfolio.</p></div><div class="mb-6 last:mb-0 relative"><div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div><h4 class="text-accent font-mono text-xs uppercase mb-1">Strategic Insight</h4><p class="text-zinc-400 text-sm leading-relaxed">Identified opportunity to distinguish Vitens through circular water solutions and water stewardship, bridging current services to a commercial entity.</p></div><div class="mb-6 last:mb-0 relative"><div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div><h4 class="text-accent font-mono text-xs uppercase mb-1">Advice & Outcome</h4><p class="text-zinc-400 text-sm leading-relaxed">Delivered strategic roadmap for naming, branding, and organizational form, creating a resilient and sustainable future for the large business segment.</p></div></div>`,
+            
             proj_2_title: "Perron038, Factory NEXT: Strategic Commercial Positioning",
+            proj_2_desc: `<div class="relative pl-6 border-l-2 border-zinc-800 ml-2"><div class="mb-6 last:mb-0 relative"><div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div><h4 class="text-accent font-mono text-xs uppercase mb-1">Challenge & Analysis</h4><p class="text-zinc-400 text-sm leading-relaxed">Determined market potential for 'Factory NEXT' as a shared innovation facility. Analyzed competing initiatives in the Dutch manufacturing landscape.</p></div><div class="mb-6 last:mb-0 relative"><div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div><h4 class="text-accent font-mono text-xs uppercase mb-1">Strategic Insight</h4><p class="text-zinc-400 text-sm leading-relaxed">Identified segments for "test-before-invest" model. Used Design Thinking and customer validation to align labs and technology with market needs.</p></div><div class="mb-6 last:mb-0 relative"><div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div><h4 class="text-accent font-mono text-xs uppercase mb-1">Advice & Outcome</h4><p class="text-zinc-400 text-sm leading-relaxed">Developed value propositions, revenue models, and messaging to strengthen Factory NEXT as a commercially viable innovation hub.</p></div></div>`,
+            
             proj_3_title: "Unica, Smart Buildings Business Development: Value Proposition Optimization",
+            proj_3_desc: `<div class="relative pl-6 border-l-2 border-zinc-800 ml-2"><div class="mb-6 last:mb-0 relative"><div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div><h4 class="text-accent font-mono text-xs uppercase mb-1">Challenge & Analysis</h4><p class="text-zinc-400 text-sm leading-relaxed">Mapped internal dynamics (35 locations vs 9 branches) and external factors (EPBD III, technician scarcity). Used Business Model Canvas to reveal economic/social dependencies.</p></div><div class="mb-6 last:mb-0 relative"><div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div><h4 class="text-accent font-mono text-xs uppercase mb-1">Strategic Insight</h4><p class="text-zinc-400 text-sm leading-relaxed">Ideation via trendpiramides leidde tot 'SmartEase': entry-level kits & VR demos to visualize energy flows, removing customer capex fears.</p></div><div class="mb-6 last:mb-0 relative"><div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div><h4 class="text-accent font-mono text-xs uppercase mb-1">Advice & Outcome</h4><p class="text-zinc-400 text-sm leading-relaxed">Prototyped and validated concepts with end-users. Created rollout impact canvas with KPIs for revenue and NPS, positioning Unica for customer-centric leadership.</p></div></div>`,
+            
             proj_4_title: "Zonneplan, EV Charging Sales Acceleration: Marketing Whitepaper",
-            contact_title: "Let's work <span class=\"text-zinc-600 transition-colors group-hover:text-zinc-400\">Together</span>",
-            contact_desc: "Let’s connect and see how we can team up on new projects, strategic partnerships and innovation-oriented opportunities.",
+            proj_4_desc: `<div class="relative pl-6 border-l-2 border-zinc-800 ml-2"><div class="mb-6 last:mb-0 relative"><div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div><h4 class="text-accent font-mono text-xs uppercase mb-1">Challenge & Analysis</h4><p class="text-zinc-400 text-sm leading-relaxed">Goal: 3,000 EV charger sales. Identified barriers like complex quote processes (6-7 clicks) and lack of post-sale retention.</p></div><div class="mb-6 last:mb-0 relative"><div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div><h4 class="text-accent font-mono text-xs uppercase mb-1">Strategic Insight</h4><p class="text-zinc-400 text-sm leading-relaxed">Pinpointed EV owner pains (€0.50/kWh public vs home charging). Defined a journey from awareness to loyalty using personas.</p></div><div class="mb-6 last:mb-0 relative"><div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div><h4 class="text-accent font-mono text-xs uppercase mb-1">Advice & Outcome</h4><p class="text-zinc-400 text-sm leading-relaxed">Recommended optimizing SEO/SEA for "laadpaal kopen", simplifying landing pages, and using Trustpilot social proof. KPIs set for rapid scalable growth.</p></div></div>`,
+
+            contact_title: "Let's Work <span class=\"text-zinc-600 transition-colors group-hover:text-zinc-400\">Together</span>",
+            contact_desc: "Feel free to reach out to explore new projects, partnerships, and innovation opportunities.",
             btn_email: "Send Email",
             btn_call: "Schedule Call",
             rec_title: "Recommendations",
@@ -1689,20 +1711,20 @@
             serv_modal_intro_1: "I help organizations make complex issues clear and turn them into concrete actions. By thinking analytically while offering practical solutions, I bring structure to situations that are unclear or fragmented. My focus is on uncovering hidden opportunities and threats, translating strategy into actionable steps, and creating clarity for teams and decision-makers.",
             serv_modal_intro_2: "What distinguishes me is that my advice is always tailored: human-centered, pragmatic, and fully aligned with the specific context of your organization. Strategies do not remain theoretical but are immediately applicable and effective in realizing sustainable growth and lasting impact. Collaboration means a fresh, independent perspective and insights that truly work and deliver results.",
             serv_modal_col1_title: "What I can do for your organization",
-            serv_modal_col1_li1: "Market and competitive analyses that not only uncover opportunities but also make commercial and strategic risks explicit.",
-            serv_modal_col1_li2: "Development of business models and value propositions in which profitability, sustainability, and societal value are designed integrally.",
-            serv_modal_col1_li3: "Strategic roadmaps and implementation architectures that deliver direction, priority, and concrete executability.",
-            serv_modal_col1_li4: "Design Thinking and ESG-integrated advisory, from strategic concept to validated solution, with decision-making based on real customer and stakeholder insights.",
+            serv_modal_col1_li1: "I help analyze markets and competitors so opportunities and risks are clear.",
+            serv_modal_col1_li2: "I design business models and value propositions where profit, sustainability, and societal value come together.",
+            serv_modal_col1_li3: "I create strategic roadmaps and plans that are ready to use and provide direction.",
+            serv_modal_col1_li4: "I work with Design Thinking and ESG, from idea to solution, based on what customers and stakeholders truly need.",
             serv_modal_col2_title: "Why work with me",
-            serv_modal_col2_li1: "Academically anchored strategies, with a solid foundation in Business Administration and Commercial Economics, specializing in innovation, design thinking, and sustainable business architectures.",
-            serv_modal_col2_li2: "Direct translation from theory to practice, gained within projects in sectors like smart buildings, watermanagement, mobility, energy, and business services.</span>",
-            serv_modal_col2_li3: "No standard advice, but tailored strategies; your organization gets a strategic structure aligned with the context that is immediately actionable.",
-            serv_modal_col2_li4: "Innovation is organized concretely; strategies do not remain theoretical but are immediately applicable and effective in realizing sustainable growth and lasting impact.",
-            serv_modal_col2_li5: "A fresh, independent perspective that offers focus, overview, and direction, with a result-oriented and pragmatic approach that delivers both commercial and societal value.",
+            serv_modal_col2_li1: "I combine academic knowledge with practical experience in innovation, design thinking, and sustainable business models.",
+            serv_modal_col2_li2: "Everything I suggest can be applied immediately, in sectors like smart buildings, water management, mobility, energy, and business services.</span>",
+            serv_modal_col2_li3: "No generic advice, only strategies tailored to your situation that can be used right away.",
+            serv_modal_col2_li4: "Innovation is organized practically, so it really works.",
+            serv_modal_col2_li5: "I provide a fresh, independent perspective, clarity and focus, with a pragmatic approach that delivers both commercial and societal value.",
             serv_modal_diff_title: "What makes me different",
-            serv_modal_diff_text: "I focus on what organizations really need: clarity, overview, and substantiated insights. Where much advice remains stuck in abstraction or theory, I make it practical, applicable, and immediately usable.",
+            serv_modal_diff_text: "I focus on what organizations really need: clarity, overview, and practical insights. Where others get stuck in theory, I make it concrete and usable.",
             serv_modal_expect_title: "What you can expect",
-            serv_modal_expect_text: "You get an independent, analytical perspective on complex challenges. You get strategy that offers overview and direction, without new layers of complexity. You get a partner who helps focus on what is truly relevant, with a pragmatic approach and an eye for execution.",
+            serv_modal_expect_text: "An analytical perspective on complex challenges. Strategies that give overview and direction. A partner who helps focus on what matters, with a pragmatic approach and attention to execution.",
             serv_modal_quote: "\"I bring complex challenges back to clear, data-driven, and human-centered insights, so that your organization can make smart, sustainable, and future-proof choices.\"",
             
             // Expertise Modal Translations
@@ -1736,8 +1758,8 @@
             nav_proj: "Projecten",
             nav_contact: "Contact",
             hero_badge: "Beschikbaar voor werk",
-            hero_title: "Business Strategy & Innovation Enthusiast",
-            hero_desc: "Ik help organisaties complexe bedrijfsuitdagingen om te zetten in datagedreven, mensgerichte en toekomstbestendige oplossingen.",
+            hero_title: "Gedreven door Bedrijfsstrategie & Innovatie",
+            hero_desc: "Ik help organisaties complexe marktinzichten om te zetten in duidelijke, toepasbare strategieën die echt impact maken.",
             btn_view_work: "Bekijk Werk",
             btn_download_cv: "Download CV",
             based_in: "GEVESTIGD IN",
@@ -1749,13 +1771,13 @@
             ticker_2: "Design Thinking",
             ticker_3: "Duurzaamheid",
             ticker_4: "Business Modeling",
-            serv_title: "ZET COMPLEXE UITDAGINGEN OM IN GROEI & WAARDE",
-            serv_card_desc: "Ik help organisaties complexe vraagstukken helder te maken en om te zetten in concrete acties. Door analytisch te denken en praktische oplossingen te bieden, breng ik structuur in situaties die onduidelijk of versnipperd zijn.",
+            serv_title: "COMPLEXE VRAAGSTUKKEN OMZETTEN IN DATAGEDREVEN, MENSGERICHTE STRATEGIEËN DIE WERKEN",
+            serv_card_desc: "Ik help organisaties complexe uitdagingen te vertalen naar duidelijke en toepasbare strategieën. Door analytisch inzicht te combineren met praktische oplossingen, breng ik structuur in onduidelijke situaties en verspreide data.",
             serv_tag_1: "Markt- & Concurrentieanalyse",
             serv_tag_2: "Business Modeling",
             serv_tag_3: "Strategische Roadmaps",
             about_title: "Over Mij",
-            about_text: "Ik ben een ambitieuze vierdejaarsstudent Commerciële Economie aan Hogeschool Windesheim, 24 jaar oud, met een passie voor human-centered design en innovatieprocessen. Tijdens mijn studie heb ik als minor een Pre-master Bedrijfskunde afgerond, naast een minor Financiële Besluitvorming, en mij verder verdiept in Design Thinking en duurzame business modellen.<br><br>Met mijn analytische en creatieve vaardigheden ondersteun ik organisaties bij het vertalen van complexe vraagstukken naar heldere inzichten en duurzame groeikansen. Ik combineer data, mensgericht denken en toekomstbestendigheid, zodat strategieën niet op papier blijven, maar daadwerkelijk impact maken.<br><br>Mijn kracht ligt in het structureren van abstracte uitdagingen, het blootleggen van verborgen kansen en risico’s, en het helpen van organisaties om gefundeerde keuzes te maken die economische, sociale en ecologische waarde leveren.<br><br>Persoonlijk streef ik ernaar het beste uit mezelf te halen en anderen in hun kracht te zetten, zodat iedereen zijn kwaliteiten optimaal kan benutten om het beoogde resultaat te behalen en als een hecht team samen te werken.",
+            about_text: "Ik ben een ambitieuze vierdejaarsstudent Commerciële Economie aan Hogeschool Windesheim, 24 jaar oud, met een passie voor mensgericht ontwerp en innovatieprocessen. Tijdens mijn studie heb ik een pre-master Bedrijfskunde gevolgd als minor, een minor Financiële Besluitvorming, en ik heb mij verder gespecialiseerd in Design Thinking en duurzame businessmodellen.<br><br>Voor mij draait alles om het ontdekken van mogelijkheden in het onbekende en het vinden van oplossingen waar anderen vooral uitdagingen zien. Ik wil niet alleen het beste uit mezelf halen, maar ook anderen inspireren om hun unieke kwaliteiten in te zetten. Zo help ik organisaties weloverwogen keuzes te maken en impact te creëren op een manier die betekenisvol is voor mensen, bedrijven én de wereld om ons heen.",
             skills_title: "Expertise",
             proj_view_all: "BEKIJK ALLES",
             skills_cat_digital: "Digitale Vaardigheden",
@@ -1788,12 +1810,22 @@
             role_landscaper: "Hovenier",
             role_retail: "Verkoopmedewerker",
             proj_title: "Geselecteerde Projecten",
-            proj_1_title: "Vitens, Grootzakelijke markt: Market Needs, Positioning & Organisational Direction",
-            proj_2_title: "Perron038, Factory NEXT: Strategic Commercial Positioning",
-            proj_3_title: "Unica, Smart Buildings Business Development: Value Proposition Optimization",
-            proj_4_title: "Zonneplan, EV Charging Sales Acceleration: Marketing Whitepaper",
-            contact_title: "Laten we <span class=\"text-zinc-600 transition-colors group-hover:text-zinc-400\">Samenwerken</span>",
-            contact_desc: "Laten we connecten en kijken hoe we kunnen samenwerken aan nieuwe projecten, strategische partnerschappen en innovatiegerichte kansen.",
+            
+            // DUTCH PROJECT TRANSLATIONS
+            proj_1_title: "Vitens, Grootzakelijke markt: Marktbehoeften, Positionering & Organisatorische Richting",
+            proj_1_desc: `<div class="relative pl-6 border-l-2 border-zinc-800 ml-2"><div class="mb-6 last:mb-0 relative"><div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div><h4 class="text-accent font-mono text-xs uppercase mb-1">Uitdaging & Analyse</h4><p class="text-zinc-400 text-sm leading-relaxed">Uitgebreid marktonderzoek uitgevoerd om de nieuwe divisie 'Water-as-a-Service' te positioneren. Concurrenten en klantbehoeften geanalyseerd om de scope van het portfolio te bepalen.</p></div><div class="mb-6 last:mb-0 relative"><div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div><h4 class="text-accent font-mono text-xs uppercase mb-1">Strategisch Inzicht</h4><p class="text-zinc-400 text-sm leading-relaxed">Kans geïdentificeerd om Vitens te onderscheiden door circulaire wateroplossingen en waterbeheer, waarbij huidige diensten worden overbrugd naar een commerciële entiteit.</p></div><div class="mb-6 last:mb-0 relative"><div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div><h4 class="text-accent font-mono text-xs uppercase mb-1">Advies & Resultaat</h4><p class="text-zinc-400 text-sm leading-relaxed">Strategische roadmap opgeleverd voor naamgeving, branding en organisatievorm, wat zorgt voor een veerkrachtige en duurzame toekomst voor het grootzakelijke segment.</p></div></div>`,
+            
+            proj_2_title: "Perron038, Factory NEXT: Strategische Commerciële Positionering",
+            proj_2_desc: `<div class="relative pl-6 border-l-2 border-zinc-800 ml-2"><div class="mb-6 last:mb-0 relative"><div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div><h4 class="text-accent font-mono text-xs uppercase mb-1">Uitdaging & Analyse</h4><p class="text-zinc-400 text-sm leading-relaxed">Marktpotentieel bepaald voor 'Factory NEXT' als gedeelde innovatiefaciliteit. Concurrerende initiatieven in het Nederlandse maakindustrie-landschap geanalyseerd.</p></div><div class="mb-6 last:mb-0 relative"><div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div><h4 class="text-accent font-mono text-xs uppercase mb-1">Strategisch Inzicht</h4><p class="text-zinc-400 text-sm leading-relaxed">Segmenten geïdentificeerd voor 'test-before-invest' model. Design Thinking en klantvalidatie gebruikt om labs en technologie af te stemmen op marktbehoeften.</p></div><div class="mb-6 last:mb-0 relative"><div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div><h4 class="text-accent font-mono text-xs uppercase mb-1">Advies & Resultaat</h4><p class="text-zinc-400 text-sm leading-relaxed">Waardeproposities, verdienmodellen en messaging ontwikkeld om Factory NEXT te versterken als een commercieel levensvatbare innovatiehub.</p></div></div>`,
+            
+            proj_3_title: "Unica, Smart Buildings Business Development: Optimalisatie Waardepropositie",
+            proj_3_desc: `<div class="relative pl-6 border-l-2 border-zinc-800 ml-2"><div class="mb-6 last:mb-0 relative"><div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div><h4 class="text-accent font-mono text-xs uppercase mb-1">Uitdaging & Analyse</h4><p class="text-zinc-400 text-sm leading-relaxed">Interne dynamiek (35 locaties vs 9 vestigingen) en externe factoren (EPBD III, schaarste technici) in kaart gebracht. Business Model Canvas gebruikt om economische/sociale afhankelijkheden bloot te leggen.</p></div><div class="mb-6 last:mb-0 relative"><div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div><h4 class="text-accent font-mono text-xs uppercase mb-1">Strategisch Inzicht</h4><p class="text-zinc-400 text-sm leading-relaxed">Ideatie via trendpiramides leidde tot 'SmartEase': instap-kits & VR-demo's om energiestromen te visualiseren en investeringsangst bij klanten weg te nemen.</p></div><div class="mb-6 last:mb-0 relative"><div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div><h4 class="text-accent font-mono text-xs uppercase mb-1">Advies & Resultaat</h4><p class="text-zinc-400 text-sm leading-relaxed">Concepten geprototyped en gevalideerd met eindgebruikers. Impact canvas voor uitrol gemaakt met KPI's voor omzet en NPS, om Unica te positioneren als klantgericht leider.</p></div></div>`,
+            
+            proj_4_title: "Zonneplan, Verkoopversnelling EV-laden: Marketing Whitepaper",
+            proj_4_desc: `<div class="relative pl-6 border-l-2 border-zinc-800 ml-2"><div class="mb-6 last:mb-0 relative"><div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div><h4 class="text-accent font-mono text-xs uppercase mb-1">Uitdaging & Analyse</h4><p class="text-zinc-400 text-sm leading-relaxed">Doel: 3.000 verkopen van EV-laders. Barrières geïdentificeerd zoals complexe offerteprocessen (6-7 klikken) en gebrek aan retentie na verkoop.</p></div><div class="mb-6 last:mb-0 relative"><div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div><h4 class="text-accent font-mono text-xs uppercase mb-1">Strategisch Inzicht</h4><p class="text-zinc-400 text-sm leading-relaxed">Pijnpunten van EV-bezitters vastgesteld (€0,50/kWh openbaar vs thuisladen). Een reis gedefinieerd van bewustwording naar loyaliteit met behulp van persona's.</p></div><div class="mb-6 last:mb-0 relative"><div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div><h4 class="text-accent font-mono text-xs uppercase mb-1">Advies & Resultaat</h4><p class="text-zinc-400 text-sm leading-relaxed">Aanbevolen om SEO/SEA te optimaliseren voor 'laadpaal kopen', landingspagina's te vereenvoudigen en Trustpilot social proof te gebruiken. KPI's ingesteld voor snelle schaalbare groei.</p></div></div>`,
+
+            contact_title: "Laten we <span class=\"text-zinc-600 transition-colors group-hover:text-zinc-400\">samenwerken</span>",
+            contact_desc: "Neem gerust contact op om nieuwe projecten, partnerships en innovatieve kansen te verkennen.",
             btn_email: "Stuur Email",
             btn_call: "Plan Gesprek",
             rec_title: "Aanbevelingen",
@@ -1818,21 +1850,21 @@
             serv_modal_title: "Zet Complexe Uitdagingen Om <br/><span class=\"text-zinc-500\">In Groei & Waarde</span>",
             serv_modal_intro_1: "Ik help organisaties complexe vraagstukken helder te maken en om te zetten in concrete acties. Door analytisch te denken en praktische oplossingen te bieden, breng ik structuur in situaties die onduidelijk of versnipperd zijn. Mijn focus ligt op het blootleggen van verborgen kansen en bedreigingen, het vertalen van strategie naar actie, en het creëren van duidelijkheid voor teams en beslissers.",
             serv_modal_intro_2: "Wat mij onderscheidt, is dat mijn advies mensgericht is, pragmatisch en afgestemd op de specifieke context van uw organisatie. Strategieën blijven niet theoretisch, maar zijn direct toepasbaar en effectief in het realiseren van duurzame groei en blijvende impact. Samenwerken betekent een frisse, onafhankelijke blik en inzichten die echt werken en resultaat opleveren.",
-            serv_modal_col1_title: "Wat ik voor uw organisatie kan betekenen",
-            serv_modal_col1_li1: "Markt- en concurrentieanalyses die niet alleen kansen blootleggen maar ook commerciële en strategische risico's expliciet maken.",
-            serv_modal_col1_li2: "Ontwikkeling van businessmodellen en waardeproposities waarin winstgevendheid, duurzaamheid en maatschappelijke waarde integraal zijn ontworpen.",
-            serv_modal_col1_li3: "Strategische roadmaps en implementatie-architecturen die richting, prioriteit en concrete uitvoerbaarheid leveren.",
-            serv_modal_col1_li4: "Design Thinking en ESG-geïntegreerd advies, van strategisch concept tot gevalideerde oplossing, met besluitvorming op basis van echte klant- en stakeholderinzichten.",
+            serv_modal_col1_title: "Wat ik voor uw organisatie kan doen",
+            serv_modal_col1_li1: "Ik help markten en concurrenten te analyseren, zodat kansen en risico’s duidelijk zijn.",
+            serv_modal_col1_li2: "Ik ontwerp businessmodellen en waardeproposities waarin winst, duurzaamheid en maatschappelijke waarde samenkomen.",
+            serv_modal_col1_li3: "Ik maak strategische roadmaps en plannen die direct toepasbaar zijn en richting geven.",
+            serv_modal_col1_li4: "Ik werk met Design Thinking en ESG, van idee tot oplossing, gebaseerd op wat klanten en stakeholders écht nodig hebben.",
             serv_modal_col2_title: "Waarom met mij werken",
-            serv_modal_col2_li1: "Academisch verankerde strategieën, met een solide basis in Bedrijfskunde en Commerciële Economie, gespecialiseerd in innovatie, design thinking en duurzame bedrijfsarchitecturen.",
-            serv_modal_col2_li2: "Directe vertaling van theorie naar praktijk, opgedaan binnen projecten in sectoren als smart buildings, watermanagement, mobiliteit, energie en zakelijke dienstverlening.",
-            serv_modal_col2_li3: "Geen standaardadvies, maar strategieën op maat; uw organisatie krijgt een strategische structuur die past bij de context en direct toepasbaar is.",
-            serv_modal_col2_li4: "Innovatie wordt concreet georganiseerd; strategieën blijven niet theoretisch maar zijn direct toepasbaar en effectief in het realiseren van duurzame groei en blijvende impact.",
-            serv_modal_col2_li5: "Een frisse, onafhankelijke blik die focus, overzicht en richting biedt, met een resultaatgerichte en pragmatische aanpak die zowel commerciële als maatschappelijke waarde levert.",
+            serv_modal_col2_li1: "Ik combineer een academische basis met praktijkervaring in innovatie, design thinking en duurzame businessmodellen.",
+            serv_modal_col2_li2: "Alles wat ik voorstel kan direct in de praktijk worden gebruikt, in sectoren zoals smart buildings, watermanagement, mobiliteit, energie en zakelijke dienstverlening.",
+            serv_modal_col2_li3: "Geen standaardadvies, alleen strategie die past bij jullie situatie en direct uitvoerbaar is.",
+            serv_modal_col2_li4: "Innovatie wordt concreet georganiseerd, zodat het echt werkt.",
+            serv_modal_col2_li5: "Ik bied een frisse, onafhankelijke blik, overzicht en focus, met een pragmatische aanpak die zowel commerciële als maatschappelijke waarde oplevert.",
             serv_modal_diff_title: "Wat mij anders maakt",
-            serv_modal_diff_text: "Ik focus op wat organisaties écht nodig hebben: helderheid, overzicht en onderbouwde inzichten. Waar veel advies blijft hangen in abstractie of theorie, maak ik het praktisch, toepasbaar en direct bruikbaar.",
+            serv_modal_diff_text: "Ik richt me op wat organisaties echt nodig hebben: duidelijkheid, overzicht en praktische inzichten. Waar anderen blijven hangen in theorie, maak ik het concreet en bruikbaar.",
             serv_modal_expect_title: "Wat u kunt verwachten",
-            serv_modal_expect_text: "U krijgt een onafhankelijke, analytische blik op complexe uitdagingen. U krijgt strategie die overzicht en richting biedt, zonder nieuwe lagen van complexiteit. U krijgt een partner who helpt focussen op wat écht relevant is, met een pragmatische aanpak en oog voor uitvoering.",
+            serv_modal_expect_text: "Een analytische blik op complexe uitdagingen. Strategieën die overzicht en richting geven. Een partner die helpt te focussen op wat belangrijk is, met een pragmatische aanpak en oog voor uitvoering.",
             serv_modal_quote: "\"Ik breng complexe uitdagingen terug naar heldere, datagedreven en mensgerichte inzichten, zodat uw organisatie slimme, duurzame en toekomstbestendige keuzes kan maken.\"",
             
             // Expertise Modal Translations NL
@@ -1863,7 +1895,10 @@
 
       function toggleLanguage() {
           currentLang = currentLang === 'en' ? 'nl' : 'en';
-          
+          updateLanguageUI();
+      }
+
+      function updateLanguageUI() {
           // Button text
           document.getElementById('lang-toggle').textContent = currentLang === 'en' ? 'NL' : 'EN';
           
@@ -1877,9 +1912,30 @@
           });
       }
 
+      // Explicit language selection function for Intro Screen
+      window.selectLanguage = function(lang) {
+          if (lang !== currentLang) {
+              currentLang = lang;
+              updateLanguageUI();
+          }
+          
+          // Fade out intro screen
+          const intro = document.getElementById('intro-screen');
+          intro.classList.add('scale-out-exit');
+          setTimeout(() => {
+              intro.style.opacity = '0';
+              setTimeout(() => {
+                  intro.style.display = 'none';
+              }, 500);
+          }, 600);
+
+          // Start Hero Typewriter after delay
+          setTimeout(startHeroTypewriter, 1000);
+      };
+
       // --- Interaction Logic ---
       
-      // Intro Animation
+      // Intro Animation & Flow
       window.addEventListener('load', () => {
           const greetings = ["Hallo", "Hello", "Hola", "Bonjour", "Hej", "Привет", "こんにちは"];
           const greetingEl = document.getElementById('intro-greeting');
@@ -1892,15 +1948,15 @@
 
           setTimeout(() => {
              clearInterval(cycleInterval);
-             const intro = document.getElementById('intro-screen');
-             const content = document.getElementById('intro-content');
-             content.classList.add('scale-out-exit');
+             // Instead of hiding the whole screen, hide the greeting and show language selection
+             const introContent = document.getElementById('intro-content');
+             introContent.classList.add('fade-out'); // Add CSS class to fade out
              setTimeout(() => {
-                 intro.style.opacity = '0';
-                 setTimeout(() => {
-                     intro.style.display = 'none';
-                 }, 500);
-             }, 600);
+                 introContent.style.display = 'none';
+                 const langSelection = document.getElementById('lang-selection');
+                 langSelection.classList.remove('hidden');
+                 langSelection.style.display = 'flex'; // Ensure flex
+             }, 500);
           }, 2500);
       });
 
@@ -1915,13 +1971,14 @@
       
       document.querySelectorAll('.reveal-on-scroll').forEach(el => observer.observe(el));
       
-      // Typewriter Effect for Title
-      const titleText = "Business Strategy & Innovation Enthusiast";
-      const titleEl = document.getElementById('typewriter-title');
-      let i = 0;
-      titleEl.innerHTML = "";
-      
-      setTimeout(() => {
+      // Typewriter Effect for Hero Title (Triggered manually after intro)
+      function startHeroTypewriter() {
+          const titleText = "Business Strategy & Innovation Enthusiast";
+          const titleEl = document.getElementById('typewriter-title');
+          let i = 0;
+          titleEl.innerHTML = "";
+          titleEl.classList.add('typewriter-cursor');
+          
           const typeInterval = setInterval(() => {
               titleEl.innerHTML += titleText.charAt(i);
               i++;
@@ -1929,8 +1986,72 @@
                   clearInterval(typeInterval);
                   titleEl.classList.remove('typewriter-cursor');
               }
-          }, 50); // Speed
-      }, 3500); // Start after intro
+          }, 50); 
+      }
+
+      // Typewriter Effect for Contact Title
+      const contactObserver = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                  startContactTypewriter();
+                  contactObserver.disconnect(); // Run once
+              }
+          });
+      }, { threshold: 0.3 });
+
+      const contactSection = document.getElementById('contact');
+      if (contactSection) contactObserver.observe(contactSection);
+
+      function startContactTypewriter() {
+           const el = document.getElementById('contact-typewriter');
+           if (!el) return;
+           
+           // Get HTML string from translations based on current lang
+           let rawHTML = translations[currentLang].contact_title;
+           // Expected format: "Prefix <span class="...">Suffix</span>"
+           // Regex to extract parts. Handles class with quotes.
+           const regex = /^(.*?)<span class="(.*?)">(.*?)<\/span>$/;
+           const match = rawHTML.match(regex);
+           
+           if(!match) {
+               el.innerHTML = rawHTML; // Fallback if format doesn't match
+               return;
+           }
+           
+           const prefix = match[1]; // "Let's work " or "Laten we "
+           const spanClass = match[2];
+           const spanText = match[3]; // "Together" or "Samenwerken"
+           
+           el.innerHTML = "";
+           el.classList.add('typewriter-cursor');
+           
+           let i = 0;
+           
+           function typePrefix() {
+               if (i < prefix.length) {
+                   el.innerHTML += prefix.charAt(i);
+                   i++;
+                   setTimeout(typePrefix, 50);
+               } else {
+                   // Start typing span part
+                   const span = document.createElement('span');
+                   span.className = spanClass;
+                   el.appendChild(span);
+                   let j = 0;
+                   function typeSpan() {
+                       if(j < spanText.length) {
+                           span.textContent += spanText.charAt(j);
+                           j++;
+                           setTimeout(typeSpan, 50);
+                       } else {
+                           el.classList.remove('typewriter-cursor');
+                       }
+                   }
+                   typeSpan();
+               }
+           }
+           typePrefix();
+      }
 
       // Custom Cursor Logic
       const cursor = document.getElementById('custom-cursor');
