@@ -8,6 +8,9 @@
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -355,6 +358,7 @@
              }
         };
     </script>
+<link rel="stylesheet" href="/index.css">
 </head>
 <body class="bg-background text-primary selection:bg-accent selection:text-black font-sans bg-grid-pattern pb-20 relative">
 
@@ -426,33 +430,67 @@
     <div class="fixed top-6 left-0 right-0 z-50 flex justify-center pointer-events-none px-4 fade-in-nav">
         <nav class="pointer-events-auto bg-[#121212]/80 backdrop-blur-xl border border-white/10 rounded-full px-2 py-2 flex items-center gap-1 shadow-2xl">
           <!-- Button without scale hover -->
-          <button onclick="window.scrollTo({ top: 0, behavior: 'smooth' })" class="magnetic-btn w-10 h-10 rounded-full bg-zinc-900 flex items-center justify-center text-white font-serif italic border border-zinc-800 hover:border-accent transition-colors data-hover-trigger">
+          <button onclick="window.scrollTo({ top: 0, behavior: 'smooth' })" class="magnetic-btn w-10 h-10 rounded-full bg-zinc-900 flex items-center justify-center text-white font-serif italic border border-zinc-800 hover:border-accent transition-colors data-hover-trigger flex-shrink-0">
             R
           </button>
           
-          <div class="hidden sm:flex items-center px-2 gap-4">
-             <button onclick="document.getElementById('about').scrollIntoView({behavior: 'smooth'})" class="magnetic-btn text-sm font-medium text-zinc-400 hover:text-accent transition-colors p-2 data-hover-trigger" data-i18n="nav_about">About</button>
-             <button onclick="document.getElementById('services').scrollIntoView({behavior: 'smooth'})" class="magnetic-btn text-sm font-medium text-zinc-400 hover:text-accent transition-colors p-2 data-hover-trigger" data-i18n="nav_services">Services</button>
-             <button onclick="document.getElementById('expertise').scrollIntoView({behavior: 'smooth'})" class="magnetic-btn text-sm font-medium text-zinc-400 hover:text-accent transition-colors p-2 data-hover-trigger" data-i18n="nav_expertise">Expertise</button>
-             <button onclick="document.getElementById('education').scrollIntoView({behavior: 'smooth'})" class="magnetic-btn text-sm font-medium text-zinc-400 hover:text-accent transition-colors p-2 data-hover-trigger" data-i18n="nav_edu">Education</button>
-             <button onclick="document.getElementById('experience').scrollIntoView({behavior: 'smooth'})" class="magnetic-btn text-sm font-medium text-zinc-400 hover:text-accent transition-colors p-2 data-hover-trigger" data-i18n="nav_exp">Experience</button>
-             <button onclick="document.getElementById('projects').scrollIntoView({behavior: 'smooth'})" class="magnetic-btn text-sm font-medium text-zinc-400 hover:text-accent transition-colors p-2 data-hover-trigger" data-i18n="nav_proj">Projects</button>
+          <!-- View Switcher Toggle -->
+          <div class="flex items-center bg-black/40 border border-white/5 rounded-full p-0.5 gap-1 mx-1">
+              <button id="toggle-view-cv" onclick="window.switchView('cv')" class="px-3 py-1.5 rounded-full text-[10px] sm:text-xs font-bold uppercase tracking-wider transition-all duration-300 bg-accent text-black shadow-[0_0_15px_rgba(204,255,0,0.3)] data-hover-trigger flex-shrink-0">
+                  <span class="hidden md:inline">CV Portfolio</span><span class="md:hidden">CV</span>
+              </button>
+              <button id="toggle-view-pdb" onclick="window.switchView('pdb')" class="px-3 py-1.5 rounded-full text-[10px] sm:text-xs font-bold uppercase tracking-wider transition-all duration-300 text-zinc-400 hover:text-white data-hover-trigger flex-shrink-0">
+                  <span class="hidden md:inline">Branding Dossier</span><span class="md:hidden">PDB</span>
+              </button>
+              <button id="toggle-view-portfolio" onclick="window.switchView('portfolio')" class="px-3 py-1.5 rounded-full text-[10px] sm:text-xs font-bold uppercase tracking-wider transition-all duration-300 text-zinc-400 hover:text-white data-hover-trigger flex-shrink-0">
+                  <span class="hidden md:inline">Bewijsstukken</span><span class="md:hidden">Portfolio</span>
+              </button>
+          </div>
+          
+          <!-- CV Scroll Links -->
+          <div id="cv-nav-links" class="hidden xl:flex items-center px-2 gap-2 transition-all duration-300">
+             <button onclick="document.getElementById('about').scrollIntoView({behavior: 'smooth'})" class="magnetic-btn text-[11px] font-medium text-zinc-400 hover:text-accent transition-colors p-1.5 data-hover-trigger" data-i18n="nav_about">About</button>
+             <button onclick="document.getElementById('services').scrollIntoView({behavior: 'smooth'})" class="magnetic-btn text-[11px] font-medium text-zinc-400 hover:text-accent transition-colors p-1.5 data-hover-trigger" data-i18n="nav_services">Services</button>
+             <button onclick="document.getElementById('expertise').scrollIntoView({behavior: 'smooth'})" class="magnetic-btn text-[11px] font-medium text-zinc-400 hover:text-accent transition-colors p-1.5 data-hover-trigger" data-i18n="nav_expertise">Expertise</button>
+             <button onclick="document.getElementById('education').scrollIntoView({behavior: 'smooth'})" class="magnetic-btn text-[11px] font-medium text-zinc-400 hover:text-accent transition-colors p-1.5 data-hover-trigger" data-i18n="nav_edu">Education</button>
+             <button onclick="document.getElementById('experience').scrollIntoView({behavior: 'smooth'})" class="magnetic-btn text-[11px] font-medium text-zinc-400 hover:text-accent transition-colors p-1.5 data-hover-trigger" data-i18n="nav_exp">Experience</button>
+             <button onclick="document.getElementById('projects').scrollIntoView({behavior: 'smooth'})" class="magnetic-btn text-[11px] font-medium text-zinc-400 hover:text-accent transition-colors p-1.5 data-hover-trigger" data-i18n="nav_proj">Projects</button>
           </div>
 
-          <div class="flex items-center gap-2">
+          <!-- PDB Scroll Links -->
+          <div id="pdb-nav-links" class="hidden items-center px-2 gap-2 transition-all duration-300">
+             <button onclick="document.getElementById('pdb-intro').scrollIntoView({behavior: 'smooth'})" class="magnetic-btn text-[11px] font-medium text-zinc-400 hover:text-accent transition-colors p-1.5 data-hover-trigger">Intro</button>
+             <button onclick="document.getElementById('pdb-leervragen').scrollIntoView({behavior: 'smooth'})" class="magnetic-btn text-[11px] font-medium text-zinc-400 hover:text-accent transition-colors p-1.5 data-hover-trigger">Leervragen</button>
+             <button onclick="document.getElementById('pdb-praktijk').scrollIntoView({behavior: 'smooth'})" class="magnetic-btn text-[11px] font-medium text-zinc-400 hover:text-accent transition-colors p-1.5 data-hover-trigger">Praktijk</button>
+             <button onclick="document.getElementById('pdb-identiteit').scrollIntoView({behavior: 'smooth'})" class="magnetic-btn text-[11px] font-medium text-zinc-400 hover:text-accent transition-colors p-1.5 data-hover-trigger">Identiteit</button>
+             <button onclick="document.getElementById('pdb-ikigai').scrollIntoView({behavior: 'smooth'})" class="magnetic-btn text-[11px] font-medium text-zinc-400 hover:text-accent transition-colors p-1.5 data-hover-trigger">Ikigai</button>
+             <button onclick="document.getElementById('pdb-bronnen').scrollIntoView({behavior: 'smooth'})" class="magnetic-btn text-[11px] font-medium text-zinc-400 hover:text-accent transition-colors p-1.5 data-hover-trigger">Bronnen</button>
+          </div>
+          
+          <!-- Portfolio Scroll Links -->
+          <div id="portfolio-nav-links" class="hidden items-center px-2 gap-2 transition-all duration-300">
+             <button onclick="document.getElementById('port-jaar1').scrollIntoView({behavior: 'smooth'})" class="magnetic-btn text-[11px] font-medium text-zinc-400 hover:text-accent transition-colors p-1.5 data-hover-trigger">Jaar 1</button>
+             <button onclick="document.getElementById('port-jaar2').scrollIntoView({behavior: 'smooth'})" class="magnetic-btn text-[11px] font-medium text-zinc-400 hover:text-accent transition-colors p-1.5 data-hover-trigger">Jaar 2</button>
+             <button onclick="document.getElementById('port-jaar3').scrollIntoView({behavior: 'smooth'})" class="magnetic-btn text-[11px] font-medium text-zinc-400 hover:text-accent transition-colors p-1.5 data-hover-trigger">Jaar 3</button>
+             <button onclick="document.getElementById('port-jaar4').scrollIntoView({behavior: 'smooth'})" class="magnetic-btn text-[11px] font-medium text-zinc-400 hover:text-accent transition-colors p-1.5 data-hover-trigger">Jaar 4</button>
+             <button onclick="document.getElementById('port-afstuderen').scrollIntoView({behavior: 'smooth'})" class="magnetic-btn text-[11px] font-medium text-zinc-400 hover:text-accent transition-colors p-1.5 data-hover-trigger">Afstuderen</button>
+          </div>
+
+          <div class="flex items-center gap-1.5 ml-auto">
             <!-- Language Toggle -->
-            <button id="lang-toggle" onclick="toggleLanguage()" class="magnetic-btn cursor-pointer px-3 py-2.5 bg-zinc-900 text-zinc-400 text-xs font-bold rounded-full hover:text-accent border border-zinc-800 transition-colors w-[60px] data-hover-trigger">
+            <button id="lang-toggle" onclick="toggleLanguage()" class="magnetic-btn cursor-pointer px-3 py-2 bg-zinc-900 text-zinc-400 text-xs font-bold rounded-full hover:text-accent border border-zinc-800 transition-colors w-[55px] data-hover-trigger flex-shrink-0">
                 NL
             </button>
 
-            <button onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})" class="magnetic-btn px-5 py-2.5 bg-white text-black text-sm font-bold rounded-full hover:bg-accent transition-colors flex items-center gap-2 data-hover-trigger">
-                <i data-lucide="mail" class="w-4 h-4"></i>
+            <button onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})" class="magnetic-btn px-4 py-2 bg-white text-black text-xs font-bold rounded-full hover:bg-accent transition-colors flex items-center gap-1.5 data-hover-trigger flex-shrink-0">
+                <i data-lucide="mail" class="w-3.5 h-3.5"></i>
                 <span class="hidden sm:inline" data-i18n="nav_contact">Contact</span>
             </button>
           </div>
         </nav>
     </div>
 
+    <div id="cv-section" class="transition-all duration-500 opacity-100 scale-100 block">
     <!-- Main Content -->
     <div class="max-w-[1400px] mx-auto pt-24 md:pt-32 px-4 md:px-8 relative z-10">
         
@@ -507,7 +545,7 @@
                 
                 <img 
                   id="profile-img"
-                  src="https://media.licdn.com/dms/image/v2/D4E03AQFvRaUgv6dExQ/profile-displayphoto-crop_800_800/B4EZtngvCRGcAM-/0/1766968193816?e=1768435200&v=beta&t=Im1aL1Pld3lqc_ya5QDnjm9m3qQDqyhfIxWprYRYgRA" 
+                  src="/assets/profile.jpg" 
                   alt="Ritchie Olthuis" 
                   class="w-full h-full object-cover transition-all duration-300 grayscale group-hover:grayscale-0 relative z-10"
                 >
@@ -621,7 +659,7 @@
                     <div class="w-10 h-10 rounded-full bg-zinc-900 flex items-center justify-center text-accent mb-6 border border-zinc-800 group-hover:scale-110 group-hover:shadow-[0_0_15px_rgba(204,255,0,0.3)] transition-transform">
                         <i data-lucide="cpu" class="w-5 h-5"></i>
                     </div>
-                    <h3 class="text-2xl font-display font-bold text-accent uppercase" data-i18n="about_title">About</h3>
+                    <h3 class="text-2xl font-display font-bold text-white uppercase" data-i18n="about_title">About</h3>
                     <!-- Modified Height for better readability without excessive scrolling -->
                     <div class="h-[240px] overflow-y-auto pr-4 custom-scrollbar mb-6 text-zinc-400 text-sm leading-relaxed" data-i18n="about_text">
                         <p>
@@ -698,7 +736,7 @@
                 <div id="education" class="bento-card p-8 group reveal-on-scroll" data-tilt>
                     <div class="spotlight-overlay"></div>
                     <div class="flex items-center justify-between mb-8">
-                        <h3 class="text-2xl font-display font-bold text-accent uppercase" data-i18n="edu_title">Education</h3>
+                        <h3 class="text-2xl font-display font-bold text-white uppercase" data-i18n="edu_title">Education</h3>
                         <i data-lucide="graduation-cap" class="text-zinc-600 group-hover:text-white transition-colors"></i>
                     </div>
                     <div class="space-y-8">
@@ -883,7 +921,47 @@
                 <!-- Track (Removed w-full to allow flex children to determine width) -->
                 <div id="carousel-track" class="flex transition-transform duration-500 ease-in-out h-full">
                     
-                    <!-- Slide 1: Vitens (Added min-w-full) -->
+                    <!-- Slide 1: Axelio -->
+                    <div class="project-slide w-full min-w-full flex-shrink-0 flex flex-col md:flex-row h-full group/slide data-hover-trigger">
+                        <!-- Image Side -->
+                        <div class="w-full md:w-1/2 h-64 md:h-full relative border-b md:border-b-0 md:border-r border-zinc-800">
+                             <!-- Date Label -->
+                            <div class="absolute top-4 left-4 z-20 px-3 py-1 bg-accent text-black text-xs font-bold uppercase tracking-wider rounded-full">
+                                Feb 2026 - Jul 2026 · 6 months
+                            </div>
+                            <img src="https://axelio-prod.s3.nl-ams.scw.cloud/Axelio_corporate_foto_a9f672c561.jpg" alt="Axelio Project" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700">
+                        </div>
+                        <!-- Text Side (Roadmap Style) -->
+                        <div class="w-full md:w-1/2 p-6 md:p-10 flex flex-col justify-center bg-[#121212]">
+                            <h3 class="text-xl font-bold text-white group-hover/slide:text-accent transition-colors font-display uppercase tracking-tight mb-4" data-i18n="proj_axel_title">Axelio, Graduation Internship: Agrio Entry-Strategy UK Market</h3>
+                            <div class="overflow-y-auto pr-2 custom-scrollbar flex-grow max-h-[200px] md:max-h-none" data-i18n="proj_axel_desc">
+                                <!-- Roadmap Timeline Structure -->
+                                <div class="relative pl-6 border-l-2 border-zinc-800 ml-2">
+                                    <div class="mb-6 last:mb-0 relative">
+                                        <div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div>
+                                        <h4 class="text-accent font-mono text-xs uppercase mb-1">Challenge & Analysis</h4>
+                                        <p class="text-zinc-400 text-sm leading-relaxed">Conducted research into the UK market for Agrio. Analyzed competitive landscape and identified key potential customers.</p>
+                                    </div>
+                                    <div class="mb-6 last:mb-0 relative">
+                                        <div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div>
+                                        <h4 class="text-accent font-mono text-xs uppercase mb-1">Expert Engagement</h4>
+                                        <p class="text-zinc-400 text-sm leading-relaxed">Engaged with UK market experts to validate assumptions and gather deep market insights crucial for successful entry.</p>
+                                    </div>
+                                     <div class="mb-6 last:mb-0 relative">
+                                        <div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div>
+                                        <h4 class="text-accent font-mono text-xs uppercase mb-1">Advice & Outcome</h4>
+                                        <p class="text-zinc-400 text-sm leading-relaxed">Delivered a comprehensive UK market entry strategy plan for Agrio, providing actionable steps and prioritizing key focus areas.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex flex-wrap gap-2 mt-4 pt-4 border-t border-zinc-800">
+                                <span class="px-3 py-1 text-[10px] uppercase tracking-wider font-bold rounded-full bg-zinc-900 text-zinc-400 border border-zinc-800">Market Entry</span>
+                                <span class="px-3 py-1 text-[10px] uppercase tracking-wider font-bold rounded-full bg-zinc-900 text-zinc-400 border border-zinc-800">UK Market</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 2: Vitens (Added min-w-full) -->
                     <div class="project-slide w-full min-w-full flex-shrink-0 flex flex-col md:flex-row h-full group/slide data-hover-trigger">
                         <!-- Image Side -->
                         <div class="w-full md:w-1/2 h-64 md:h-full relative border-b md:border-b-0 md:border-r border-zinc-800">
@@ -922,7 +1000,6 @@
                             </div>
                             <div class="flex flex-wrap gap-2 mt-4 pt-4 border-t border-zinc-800">
                                 <span class="px-3 py-1 text-[10px] uppercase tracking-wider font-bold rounded-full bg-zinc-900 text-zinc-400 border border-zinc-800">Market Strategy</span>
-                                <span class="px-3 py-1 text-[10px] uppercase tracking-wider font-bold rounded-full bg-zinc-900 text-zinc-400 border border-zinc-800">Water-as-a-Service</span>
                             </div>
                         </div>
                     </div>
@@ -1245,6 +1322,54 @@
                                 </div>
                             </a>
                         </div>
+                        
+                        <!-- Rec 7: Martijn Olde Weghuis -->
+                        <div class="w-full md:w-1/2 lg:w-1/3 flex-shrink-0 p-2">
+                            <a href="https://www.linkedin.com/in/martijnoldeweghuis/?locale=nl" target="_blank" class="bento-card p-6 flex flex-col gap-4 group h-full bg-[#151515] hover:border-zinc-600 transition-colors data-hover-trigger">
+                                <div class="spotlight-overlay"></div>
+                                <div class="flex items-center gap-3">
+                                     <div class="w-12 h-12 rounded-full bg-zinc-800 border border-zinc-700 overflow-hidden flex-shrink-0">
+                                        <img src="/assets/martijn_oldeweghuis.jpg" alt="Martijn Olde Weghuis" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all">
+                                     </div>
+                                     <div>
+                                         <h4 class="text-white font-bold text-sm group-hover:text-accent transition-colors flex items-center gap-1"><span data-i18n="rec_7_name">Martijn Olde Weghuis</span> <i data-lucide="external-link" class="w-3 h-3 text-zinc-600"></i></h4>
+                                         <p class="text-zinc-500 text-xs" data-i18n="rec_7_role">Directeur bij Axelio | Agrio Software | Microsoft-partner | Aanjager van digitale groei en innovatie</p>
+                                     </div>
+                                </div>
+                                <div class="relative">
+                                     <i data-lucide="quote" class="absolute -top-1 -left-1 w-4 h-4 text-zinc-700 fill-zinc-700 opacity-50 transform -scale-x-100"></i>
+                                    <div class="h-[180px] overflow-y-auto custom-scrollbar pr-2">
+                                         <p class="text-zinc-400 text-sm leading-relaxed pl-4 italic" data-i18n="rec_7_text">
+                                            "Jullie hebben er samen een mooi onderzoek van gemaakt en zijn uiteindelijk met een goed advies gekomen. Ook mooie nieuwe inzichten gekregen die wij zelf nog niet hadden."
+                                        </p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        
+                        <!-- Rec 8: Eric Vredeveldt -->
+                        <div class="w-full md:w-1/2 lg:w-1/3 flex-shrink-0 p-2">
+                            <a href="https://www.linkedin.com/in/eric-vredeveldt-a7b4b815/" target="_blank" class="bento-card p-6 flex flex-col gap-4 group h-full bg-[#151515] hover:border-zinc-600 transition-colors data-hover-trigger">
+                                <div class="spotlight-overlay"></div>
+                                <div class="flex items-center gap-3">
+                                     <div class="w-12 h-12 rounded-full bg-zinc-800 border border-zinc-700 overflow-hidden flex-shrink-0">
+                                        <img src="/assets/eric_vredeveldt.jpg" alt="Eric Vredeveldt" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all">
+                                     </div>
+                                     <div>
+                                         <h4 class="text-white font-bold text-sm group-hover:text-accent transition-colors flex items-center gap-1"><span data-i18n="rec_8_name">Eric Vredeveldt</span> <i data-lucide="external-link" class="w-3 h-3 text-zinc-600"></i></h4>
+                                         <p class="text-zinc-500 text-xs" data-i18n="rec_8_role">Business Development Manager bij Vitens</p>
+                                     </div>
+                                </div>
+                                <div class="relative">
+                                     <i data-lucide="quote" class="absolute -top-1 -left-1 w-4 h-4 text-zinc-700 fill-zinc-700 opacity-50 transform -scale-x-100"></i>
+                                    <div class="h-[180px] overflow-y-auto custom-scrollbar pr-2">
+                                         <p class="text-zinc-400 text-sm leading-relaxed pl-4 italic" data-i18n="rec_8_text">
+                                            "Ritchie is een positieve en doordachte student die graag eerst goed inzicht krijgt voordat hij tot resultaat komt. Op de werkvloer zet hij die houding effectief in, waardoor hij een waardevolle aanvulling is op ieder team."
+                                        </p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
 
                     </div>
                 </div>
@@ -1262,29 +1387,671 @@
             <!-- Increased duplicated items for seamless loop on all screen sizes -->
             <div class="animate-marquee whitespace-nowrap flex items-center gap-24 py-4 px-4 w-max group-hover:[animation-play-state:paused]">
                 <!-- Logos Set 1 -->
+                <img src="/assets/axelio.jpg" alt="Axelio" class="h-14 w-auto object-contain logo-filter">
                 <img src="https://www.vitens.nl/-/media/Project/Vitens/VitensNl/vitens-logo.jpg" alt="Vitens" class="h-14 w-auto object-contain logo-filter">
                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0kTw7PhwMVs-IQmNdomH7h6oPquEiRAyCcw&s" alt="Perron038" class="h-14 w-auto object-contain logo-filter">
                 <img src="https://www.duurzaam-ondernemen.nl/wordpress/wp-content/uploads/2025/07/unica.png" alt="Unica" class="h-14 w-auto object-contain logo-filter">
                 <img src="https://www.overstappen.nl/assets/Zonneplan@2x.png" alt="Zonneplan" class="h-12 w-auto object-contain logo-filter">
                 
                 <!-- Logos Set 2 -->
+                <img src="/assets/axelio.jpg" alt="Axelio" class="h-14 w-auto object-contain logo-filter">
                 <img src="https://www.vitens.nl/-/media/Project/Vitens/VitensNl/vitens-logo.jpg" alt="Vitens" class="h-14 w-auto object-contain logo-filter">
                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0kTw7PhwMVs-IQmNdomH7h6oPquEiRAyCcw&s" alt="Perron038" class="h-14 w-auto object-contain logo-filter">
                 <img src="https://www.duurzaam-ondernemen.nl/wordpress/wp-content/uploads/2025/07/unica.png" alt="Unica" class="h-14 w-auto object-contain logo-filter">
                 <img src="https://www.overstappen.nl/assets/Zonneplan@2x.png" alt="Zonneplan" class="h-12 w-auto object-contain logo-filter">
 
                 <!-- Logos Set 3 -->
+                <img src="/assets/axelio.jpg" alt="Axelio" class="h-14 w-auto object-contain logo-filter">
                 <img src="https://www.vitens.nl/-/media/Project/Vitens/VitensNl/vitens-logo.jpg" alt="Vitens" class="h-14 w-auto object-contain logo-filter">
                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0kTw7PhwMVs-IQmNdomH7h6oPquEiRAyCcw&s" alt="Perron038" class="h-14 w-auto object-contain logo-filter">
                 <img src="https://www.duurzaam-ondernemen.nl/wordpress/wp-content/uploads/2025/07/unica.png" alt="Unica" class="h-14 w-auto object-contain logo-filter">
                 <img src="https://www.overstappen.nl/assets/Zonneplan@2x.png" alt="Zonneplan" class="h-12 w-auto object-contain logo-filter">
 
                 <!-- Logos Set 4 -->
+                <img src="/assets/axelio.jpg" alt="Axelio" class="h-14 w-auto object-contain logo-filter">
                 <img src="https://www.vitens.nl/-/media/Project/Vitens/VitensNl/vitens-logo.jpg" alt="Vitens" class="h-14 w-auto object-contain logo-filter">
                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0kTw7PhwMVs-IQmNdomH7h6oPquEiRAyCcw&s" alt="Perron038" class="h-14 w-auto object-contain logo-filter">
                 <img src="https://www.duurzaam-ondernemen.nl/wordpress/wp-content/uploads/2025/07/unica.png" alt="Unica" class="h-14 w-auto object-contain logo-filter">
                 <img src="https://www.overstappen.nl/assets/Zonneplan@2x.png" alt="Zonneplan" class="h-12 w-auto object-contain logo-filter">
             </div>
+        </div>
+    </div>
+    </div> <!-- Close cv-section -->
+
+    <!-- Personal Branding Dossier (PDB) Page -->
+    <div id="pdb-section" class="hidden opacity-0 scale-95 transition-all duration-500">
+        <div class="max-w-[1400px] mx-auto pt-24 md:pt-32 px-4 md:px-8 relative z-10 animate-fade-in pb-24">
+            
+            <!-- PERSONAL BRANDING DOSSIER STORY -->
+            
+            <!-- NEW: SEMESTER EVIDENCE GRID -->
+            <div id="pdb-semester-evidence" class="mb-12 scroll-mt-28">
+               <h2 class="text-2xl font-display font-bold uppercase text-accent mb-6">Bewijsstukken & Portfolio Semester</h2>
+               <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                  <div onclick="window.showSemesterPage('jaar1')" class="bento-card p-6 cursor-pointer hover:border-accent group">
+                     <h3 class="text-lg font-display text-accent font-bold">Jaar 1</h3>
+                     <p class="text-zinc-400 text-sm mt-2">Fundament & Professionele Ontwikkeling</p>
+                  </div>
+                  <div onclick="window.showSemesterPage('jaar2')" class="bento-card p-6 cursor-pointer hover:border-accent group">
+                     <h3 class="text-lg font-display text-accent font-bold">Jaar 2</h3>
+                     <p class="text-zinc-400 text-sm mt-2">Business Development | Unica Building Services</p>
+                  </div>
+                  <div onclick="window.showSemesterPage('jaar3')" class="bento-card p-6 cursor-pointer hover:border-accent group">
+                     <h3 class="text-lg font-display text-accent font-bold">Jaar 3</h3>
+                     <p class="text-zinc-400 text-sm mt-2">Minor Financiële & Pre-master</p>
+                  </div>
+                  <div onclick="window.showSemesterPage('jaar4')" class="bento-card p-6 cursor-pointer hover:border-accent group">
+                     <h3 class="text-lg font-display text-accent font-bold">Jaar 4</h3>
+                     <p class="text-zinc-400 text-sm mt-2">Young Professional Commerce</p>
+                  </div>
+                  <div onclick="window.showSemesterPage('afstuderen')" class="bento-card p-6 cursor-pointer hover:border-accent group">
+                     <h3 class="text-lg font-display text-accent font-bold">Afstuderen</h3>
+                     <p class="text-zinc-400 text-sm mt-2">Axelio / Agrio UK Market Entry</p>
+                  </div>
+               </div>
+            </div>
+
+            <!-- Semester Pages Container -->
+            <div id="pdb-semester-pages" class="hidden mb-12">
+                <button onclick="window.hideSemesterPages()" class="text-zinc-400 hover:text-accent mb-6 flex items-center gap-2">
+                    <i data-lucide="arrow-left"></i> Terug naar Dossier
+                </button>
+                
+                <!-- Jaar 1 page -->
+                <div id="page-jaar1" class="semester-page hidden space-y-6 text-white max-w-4xl mx-auto">
+                    <h2 class="text-3xl font-display font-bold text-accent">Jaar 1 – Fundament & Professionele Ontwikkeling</h2>
+                    <h3 class="text-xl font-display font-bold">Ontwikkeling van academische basisvaardigheden, professionele werkhouding en succesvolle overgang van mbo naar hbo</h3>
+                    <p class="text-zinc-400 text-base leading-relaxed">Het eerste studiejaar stond voornamelijk in het teken van de overgang van mbo naar hbo en het ontwikkelen van een professionele basis binnen de opleiding Commerciële Economie. Hierbij lag de focus sterk op discipline, structuur, analytisch denken en verantwoordelijkheid binnen projectmatig werken.</p>
+                    <p class="text-zinc-400 text-base leading-relaxed">Binnen groepsprojecten werd al vroeg verantwoordelijkheid genomen voor planning, kwaliteit en voortgang. Tegelijkertijd ontstond inzicht in de eigen werkwijze, waarbij de focus vaak sterk lag op analyse, voorbereiding en controle voordat daadwerkelijk tot uitvoering werd overgegaan. Hierdoor werd duidelijk dat verdere ontwikkeling vooral lag in het sneller vertalen van analyses naar concrete acties en besluitvorming.</p>
+                    <p class="text-zinc-400 text-base leading-relaxed">Daarnaast werd in jaar 1 aanvullende Nederlandse bijles gevolgd om academische schrijfvaardigheid, grammatica en professionele communicatie verder te versterken als ondersteuning voor tentamens, rapportages en hbo-niveau.</p>
+                    <p class="text-zinc-400 text-base leading-relaxed">Het behalen van de propedeuse binnen één jaar vormde uiteindelijk een belangrijke bevestiging van de succesvolle overstap naar het hbo en de professionele ontwikkeling gedurende het eerste studiejaar.</p>
+                </div>
+
+                <!-- Jaar 2 page -->
+                <div id="page-jaar2" class="semester-page hidden space-y-6 text-white max-w-4xl mx-auto">
+                    <h2 class="text-3xl font-display font-bold text-accent">Jaar 2 – Business Development | Unica Building Services</h2>
+                    <h3 class="text-xl font-display font-bold">Strategische analyse en ontwikkeling van een Smart Building-propositie binnen de markt voor verduurzaming en digitalisering</h3>
+                    <p class="text-zinc-400 text-base leading-relaxed">Tijdens het tweede jaar werd samen met Hugo Fransen gewerkt aan een Business Development-project voor Unica Building Services. Binnen dit project stond de positionering en waardepropositie van Smart Building-oplossingen centraal binnen de snel veranderende markt van verduurzaming, energietransitie en digitalisering van gebouwen.</p>
+                    <p class="text-zinc-400 text-base leading-relaxed">De eerste fase van het project bestond uit een uitgebreide interne en externe analyse. Hierbij werden marktontwikkelingen onderzocht rondom Smart Buildings, energiemanagement, duurzaamheid en technologische innovatie binnen de gebouwde omgeving.</p>
+                    <p class="text-zinc-400 text-base leading-relaxed">Binnen de analyse kwamen meerdere sterke punten van Unica naar voren:</p>
+                    <ul class="list-disc pl-5 text-zinc-400 space-y-2">
+                        <li>Sterke marktpositie binnen de technische dienstverlening</li>
+                        <li>Langdurige klantrelaties</li>
+                        <li>Expertise op het gebied van duurzaamheid</li>
+                        <li>Innovatieve oplossingen zoals Building Insights</li>
+                        <li>Focus op gezondheid, veiligheid en energie-efficiëntie</li>
+                    </ul>
+                    <p class="text-zinc-400 text-base leading-relaxed">Daarnaast werden ook belangrijke uitdagingen zichtbaar:</p>
+                    <ul class="list-disc pl-5 text-zinc-400 space-y-2">
+                        <li>Personeelstekorten binnen de technische sector</li>
+                        <li>Toenemende concurrentie</li>
+                        <li>Stijgende kosten van duurzame oplossingen</li>
+                        <li>Complexiteit rondom regelgeving</li>
+                        <li>De uitdaging om Smart Building-oplossingen toegankelijker en schaalbaarder te maken voor klanten</li>
+                    </ul>
+                     <p class="text-zinc-400 text-base leading-relaxed">Vervolgens werd een uitgebreide doelgroepanalyse uitgevoerd waarbij persona’s en customer journeys werden ontwikkeld voor facilitair managers en organisaties die actief bezig zijn met verduurzaming en energiebesparing.</p>
+                     <p class="text-zinc-400 text-base leading-relaxed">Hierbij werd onderzocht welke behoeften organisaties hebben rondom: Energie-inzicht, Operationele efficiëntie, Duurzaamheid, Compliance, Binnenklimaat en gebruikerservaring.</p>
+                     <p class="text-zinc-400 text-base leading-relaxed">Vanuit deze strategische vraag werden meerdere oplossingsrichtingen ontwikkeld. De belangrijkste uitwerking was het concept SmartEase by Unica. Dit concept richtte zich op een laagdrempelige Smart Building-propositie waarmee organisaties eenvoudiger inzicht konden krijgen in energiestromen, gebouwprestaties en verduurzamingsmogelijkheden.</p>
+                     <p class="text-zinc-400 text-base leading-relaxed">Het concept speelde specifiek in op organisaties die wel wilden verduurzamen, maar onvoldoende kennis, capaciteit of budget hadden om direct complexe Smart Building-oplossingen te implementeren.</p>
+                     <p class="text-zinc-400 text-base leading-relaxed">Binnen dit project werd intensief gewerkt volgens Design Thinking-methodieken waarbij analyse, ideation, prototyping en testing centraal stonden. Hierdoor ontstond verdere ontwikkeling in strategisch denken, innovatie, klantgericht werken en het vertalen van complexe analyses naar concrete commerciële oplossingen.</p>
+                </div>
+
+                <!-- Jaar 3 page -->
+                <div id="page-jaar3" class="semester-page hidden space-y-6 text-white max-w-4xl mx-auto">
+                    <h2 class="text-3xl font-display font-bold text-accent">Jaar 3 – Minor Financiële Besluitvorming & Pre-master Business Administration</h2>
+                    <h3 class="text-xl font-display font-bold">Verdieping in financiële besluitvorming, academisch onderzoek en strategische analyse binnen een universitaire Business Administration-omgeving</h3>
+                    <p class="text-zinc-400 text-base leading-relaxed">In jaar 3 lag de focus op verdere verdieping binnen financiële, strategische en academische vraagstukken. Daarom werd de minor Financiële Besluitvorming gecombineerd met de Business Administration Transfer Minor van de Universiteit Twente als voorbereiding op de Master of Science Business Administration.</p>
+                    <p class="text-zinc-400 text-base leading-relaxed">De minor Financiële Besluitvorming richtte zich op financiële analyses, strategische besluitvorming en bedrijfseconomische vraagstukken binnen organisaties. Hierbij werd gewerkt met praktijkgerichte casuïstiek, financiële kengetallen, jaarverslagen en bedrijfssimulaties waarin commerciële en financiële keuzes directe invloed hadden op organisatieresultaten.</p>
+                    <p class="text-zinc-400 text-base leading-relaxed">Daarnaast werd gewerkt met financiële software en datagedreven analyses om beter inzicht te krijgen in de manier waarop organisaties financiële informatie gebruiken binnen strategische besluitvorming.</p>
+                    <p class="text-zinc-400 text-base leading-relaxed">Parallel hieraan werd de pre-master Business Administration aan de Universiteit Twente gevolgd. Deze universitaire transfer minor richtte zich op academisch onderzoek, business management, strategische analyse en onderzoeksmethodologie op universitair niveau.</p>
+                    <p class="text-zinc-400 text-base leading-relaxed">Binnen de pre-master werden onder andere de volgende vakken gevolgd: Organization Theory, Research Methodology and Descriptive Statistics, Academic Skills, Inferential Statistics, Global Entrepreneurship & Business, Researching Strategy & Marketing.</p>
+                    <p class="text-zinc-400 text-base leading-relaxed">Omdat de overstap vanuit het mbo via het hbo naar een universitaire pre-master aanvullende toelatingseisen vereiste, moesten vooraf extra deficiënties worden weggewerkt. Hiervoor werden aanvullende cursussen gevolgd in: Wiskunde, Statistiek, Engels.</p>
+                    <p class="text-zinc-400 text-base leading-relaxed">Deze voorbereidende vakken werden in de avonduren gevolgd naast de minor Financiële Besluitvorming. Iedere dinsdagavond werden aanvullende colleges gevolgd en aanvullende tentamens succesvol afgerond als formele toelatingseis voor deelname aan de pre-master aan de Universiteit Twente.</p>
+                    <p class="text-zinc-400 text-base leading-relaxed">Deze periode zorgde voor verdere ontwikkeling in: Kritisch denken, Strategische analyse, Onderzoekend vermogen, Financieel inzicht, Academisch schrijven, Besluitvorming binnen complexe vraagstukken.</p>
+                    <p class="text-zinc-400 text-base leading-relaxed">Daarnaast werd gedurende deze periode steeds duidelijker dat de grootste ontwikkelstap niet lag in motivatie of ambitie, maar juist in het sneller vertalen van analyses en ideeën naar concrete uitvoering en besluitvorming binnen complexe projecten en onderzoeken.</p>
+                </div>
+
+                <!-- Jaar 4 page -->
+                <div id="page-jaar4" class="semester-page hidden space-y-6 text-white max-w-4xl mx-auto">
+                    <h2 class="text-3xl font-display font-bold text-accent">Jaar 4 – Young Professional Commerce Programme</h2>
+                    <h3 class="text-xl font-display font-bold">Strategische praktijkvraagstukken rondom positionering, commerciële optimalisatie en stakeholdermanagement voor Vitens en Perron038</h3>
+                    <p class="text-zinc-400 text-base leading-relaxed">Tijdens het Young Professional Commerce Programme werd samen met Hugo Fransen en Thijmen Kelder gewerkt aan strategische praktijkvraagstukken voor Vitens en Perron038.</p>
+                    <p class="text-zinc-400 text-base leading-relaxed">Voor Perron038 lag de focus op de positionering van Factory NEXT als innovatiehub binnen de maakindustrie. Binnen het project werden klantgedrag, marketingactiviteiten, leadopvolging en interne processen onderzocht. Uit interviews en analyses bleek dat organisaties vooral behoefte hadden aan concrete toepasbaarheid, snelheid en directe meerwaarde.</p>
+                    <p class="text-zinc-400 text-base leading-relaxed">Op basis van deze inzichten werden strategische aanbevelingen ontwikkeld rondom positionering, messaging en commerciële opvolging. Daarbij werd onder andere geadviseerd om gebruik te maken van Google Tag Manager, Google Analytics en een CRM-systeem om leadopvolging professioneler en beter meetbaar in te richten.</p>
+                    <p class="text-zinc-400 text-base leading-relaxed">Voor Vitens richtte het project zich op de ontwikkeling van een commerciëlere positionering binnen de grootzakelijke markt. Hierbij stond de transitie richting een Water as a Service-propositie centraal.</p>
+                     <p class="text-zinc-400 text-base leading-relaxed">Door middel van marktonderzoek, stakeholderanalyses en interviews werden klantbehoeften, concurrentie en positioneringsmogelijkheden onderzocht. Uiteindelijk werd een strategische richting ontwikkeld waarbij Vitens een aparte commerciële entiteit kon positioneren met behoud van het vertrouwen van het moedermerk.</p>
+                     <p class="text-zinc-400 text-base leading-relaxed">Binnen dit semester ontstond verdere ontwikkeling op het gebied van: Strategisch denken, Stakeholdermanagement, Samenwerking binnen multidisciplinaire projecten, Positioneringsvraagstukken, Vertalen van marktinzichten naar concrete commerciële adviezen.</p>
+                </div>
+
+                <!-- Afstuderen page -->
+                <div id="page-afstuderen" class="semester-page hidden space-y-6 text-white max-w-4xl mx-auto">
+                    <h2 class="text-3xl font-display font-bold text-accent">Jaar 4 – Afstuderen | Axelio / Agrio UK Market Entry</h2>
+                    <h3 class="text-xl font-display font-bold">Internationale marktanalyse en strategisch marktentreeadvies voor de Britse aardappelmarkt binnen de agri- en ERP-sector</h3>
+                    <p class="text-zinc-400 text-base leading-relaxed">Het laatste halfjaar van de opleiding staat volledig in het teken van het afstudeeronderzoek bij Axelio voor Agrio, de sectorspecifieke ERP-oplossing voor de aardappel- en uiensector binnen Microsoft Dynamics 365 Business Central.</p>
+                    <p class="text-zinc-400 text-base leading-relaxed">Binnen dit onderzoek staat de internationale markttoetreding van Agrio centraal, met specifieke focus op de Britse aardappelmarkt. De aanleiding voor het onderzoek ligt in de beperkte schaalbaarheid van de Nederlandse en Belgische markt. Door de relatief kleine doelgroep, lange ERP-vervangcycli en bestaande concurrentie is verdere groei binnen de thuismarkt beperkt.</p>
+                    <p class="text-zinc-400 text-base leading-relaxed">Binnen het onderzoek werd een uitgebreide markt- en sectoranalyse uitgevoerd naar: De structuur van de UK-aardappelmarkt, Ketencomplexiteit binnen handel, verwerking en pootgoed, ERP-landschappen binnen de sector, Operationele pijnpunten, Koopcriteria, Concurrentiepositie, Regelgeving en traceability-eisen, Segmentfit voor Agrio binnen de UK-markt.</p>
+                    <p class="text-zinc-400 text-base leading-relaxed">Op basis van de analyse werd uiteindelijk een volledig markttoetredingsadvies ontwikkeld voor Axelio. Hierbij werd geadviseerd om: De UK-markt gefaseerd te betreden, Eerst te focussen op consumptieaardappelen in Oost Engeland en Schotland, Agrio te positioneren als sectorspecifieke supply chain-oplossing in plaats van generiek ERP-systeem, Agrio zowel als volledig ERP-systeem én als aanvullende supply chain-laag naast bestaande ERP-landschappen te positioneren.</p>
+                    <p class="text-zinc-400 text-base leading-relaxed">Daarnaast werd een concreet go-to-marketplan ontwikkeld voor de introductie van Agrio binnen de UK-markt. Hierbij lag de focus op commerciële positionering, leadgeneratie en internationale marktbenadering.</p>
+                     <p class="text-zinc-400 text-base leading-relaxed">Binnen dit afstudeertraject ontstond verdere ontwikkeling in: Strategische analyse, Zelfstandig onderzoek, Internationale stakeholdercommunicatie, Besluitvorming onder onzekerheid, Structureren van complexe datasets, Vertalen van analyses naar concrete commerciële adviezen, Strategische positionering binnen een internationale marktcontext.</p>
+                </div>
+            </div>
+
+            <script>
+                window.showSemesterPage = function(pageId) {
+                    document.getElementById('pdb-semester-evidence').classList.add('hidden');
+                    document.getElementById('pdb-semester-pages').classList.remove('hidden');
+                    document.querySelectorAll('.semester-page').forEach(el => el.classList.add('hidden'));
+                    document.getElementById('page-' + pageId).classList.remove('hidden');
+                    lucide.createIcons();
+                };
+                window.hideSemesterPages = function() {
+                    document.getElementById('pdb-semester-evidence').classList.remove('hidden');
+                    document.getElementById('pdb-semester-pages').classList.add('hidden');
+                };
+            </script>
+            
+            <div id="pdb-story-container" class="max-w-6xl mx-auto space-y-8 py-12 animate-fade-in">                
+
+                <!-- STORY CHAPTER: FOUNDATION -->
+                <div class="reveal-on-scroll space-y-4">
+                    <div class="flex items-center gap-4">
+                        <div class="w-8 h-8 rounded-full bg-accent text-black flex items-center justify-center font-bold text-xs">01</div>
+                        <h2 class="text-xl md:text-2xl font-display font-bold uppercase text-accent">De Fundering: Ambitie met Controle</h2>
+                    </div>
+                    <div class="pl-12 border-l border-zinc-800 space-y-4">
+                        <p class="text-zinc-400 text-sm md:text-base leading-relaxed">
+                            Mijn reis begon met een sterke drive om de overstap van mbo naar hbo te bewijzen. In die periode legde ik de basis voor mijn werkhouding: <strong>ambitieus, gedisciplineerd en sterk gefocust op structuur</strong>. Ik nam automatisch de leiding in projectgroepen, waarbij ik de rol vervulde van de 'bewaker' van kwaliteit en overzicht.
+                        </p>
+                        <div class="text-xs p-4 bg-black rounded-lg text-accent font-semibold border border-accent">
+                             "Ik had de neiging om opdrachten volledig te willen begrijpen en dichttimmeren voordat ik begon. Mijn zekerheid lag in voorbereiding."
+                        </div>
+                    </div>
+                </div>
+
+                <!-- STORY CHAPTER: GROWTH PAINS -->
+                <div class="reveal-on-scroll space-y-4">
+                    <div class="flex items-center gap-4">
+                        <div class="w-8 h-8 rounded-full bg-zinc-800 text-white flex items-center justify-center font-bold text-xs">02</div>
+                        <h2 class="text-xl md:text-2xl font-display font-bold uppercase text-accent">De Spiegel: De Keerzijde van Perfectionisme</h2>
+                    </div>
+                    <div class="pl-12 border-l border-zinc-800 space-y-4">
+                        <p class="text-zinc-400 text-sm md:text-base leading-relaxed">
+                            Gaandeweg merkte ik dat mijn focus op controle en voorbereiding een valkuil werd. Door mijn perfectionisme bleef ik soms <strong>hangen in analyse</strong> wanneer actie nodig was. Theoretische kaders zoals het <strong>DISC-model</strong> hielpen mij inzien dat mijn drang naar structuur soms ten koste ging van de snelheid van uitvoering.
+                        </p>
+                        <div class="grid grid-cols-2 gap-4 text-xs">
+                             <div class="p-3 bg-zinc-900/50 rounded-lg border border-zinc-800 text-zinc-300"><strong>Covey (1989):</strong> Verschuiving van controle naar proactieve invloed.</div>
+                             <div class="p-3 bg-zinc-900/50 rounded-lg border border-zinc-800 text-zinc-300"><strong>DISC (1928):</strong> Bewustwording van dominantieneigingen.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- STORY CHAPTER: PRACTICE -->
+                <div class="reveal-on-scroll space-y-4">
+                    <div class="flex items-center gap-4">
+                        <div class="w-8 h-8 rounded-full bg-zinc-800 text-white flex items-center justify-center font-bold text-xs">03</div>
+                        <h2 class="text-xl md:text-2xl font-display font-bold uppercase text-accent">De Praktijk: Iteratief Handelen</h2>
+                    </div>
+                    <div class="pl-12 border-l border-zinc-800 space-y-4">
+                        <p class="text-zinc-400 text-sm md:text-base leading-relaxed">
+                            Door projecten zoals <strong class="text-white">Vitens</strong>, <strong class="text-white">Perron038</strong> en <strong class="text-white">Unica</strong> heb ik geleerd dat perfectie niet bestaat in innovatie. Hier leerde ik de kracht van <strong>Design Thinking (Brown, 2009)</strong>: sneller testen, uitvoeren en bijsturen.
+                        </p>
+                        <div class="text-accent text-sm p-4 bg-black rounded-lg border border-accent font-semibold">
+                            <strong>Mijn belangrijkste aanpassing:</strong> Wanneer een aanpak niet werkte, stopte ik met eindeloos herschrijven van plannen en hanteerde ik directer contact en snellere validatie. Dit leidde tot betere resultaten en meer rust in het proces.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- STORY CHAPTER: MATURITY -->
+                <div class="reveal-on-scroll space-y-4">
+                    <div class="flex items-center gap-4">
+                        <div class="w-8 h-8 rounded-full bg-white text-black flex items-center justify-center font-bold text-xs">04</div>
+                        <h2 class="text-xl md:text-2xl font-display font-bold uppercase text-accent">Wie Ik Nu Ben</h2>
+                    </div>
+                    <div class="pl-12 border-l border-zinc-800 space-y-4">
+                        <p class="text-zinc-300 text-sm md:text-base leading-relaxed">
+                            Vandaag de dag ben ik een professional die analyse combineert met <strong>besluitvaardigheid</strong>. Ik balanceer mijn natuurlijke behoefte aan structuur met de noodzaak om in complexe omgevingen iteratief te blijven werken en verantwoordelijkheid te dragen voor het resultaat.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- SECTION: SKILLS VISUALIZATION -->
+                <div id="skills-viz-section" class="bg-zinc-900/50 p-6 rounded-2xl border border-zinc-800 space-y-6 mt-12">
+                    <h3 class="text-2xl font-bold text-white mb-4" data-i18n="skills_viz_title">Skills Visualization</h3>
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                        <div class="h-96 w-full">
+                           <canvas id="skillsChart"></canvas>
+                        </div>
+                        <div class="flex flex-col">
+                            <div class="overflow-x-auto flex-grow">
+                                <table class="w-full text-left text-zinc-300">
+                                    <thead class="text-zinc-500 uppercase text-[10px]">
+                                        <tr>
+                                            <th class="pb-2">Vaardigheid</th>
+                                            <th class="pb-2 text-right">Gemiddelde</th>
+                                            <th class="pb-2 text-right">%</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="skills-table-body" class="text-xs">
+                                        <!-- Rows added dynamically -->
+                                    </tbody>
+                                </table>
+                            </div>
+                            <p class="text-[10px] text-zinc-500 mt-4 border-t border-zinc-800 pt-2 text-center">* Windesheim. (2026). Skills Guide. Data ingevuld door Hugo, Thijmen en Ritchie.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <!-- SECTION 3: REFLECTIE OP ONTWIkKELING -->
+            <div id="pdb-reflectie-ontwikkeling" class="mb-12 scroll-mt-28">
+                <div class="flex items-center gap-3 border-b border-zinc-800 pb-3 mb-6">
+                    <span class="text-accent text-lg font-bold">#03</span>
+                    <h2 class="text-2xl md:text-3xl font-display font-bold uppercase tracking-tight text-white">Reflectie op mijn ontwikkeling</h2>
+                </div>
+
+                <div class="bento-card p-8 md:p-10 relative overflow-hidden group">
+                    <div class="spotlight-overlay"></div>
+                    <div class="absolute -bottom-16 -right-16 w-64 h-64 bg-accent/2 rounded-full blur-3xl pointer-events-none"></div>
+                    <div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                        <div class="lg:col-span-8 space-y-4">
+                            <p class="text-zinc-300 text-sm md:text-base leading-relaxed font-sans">
+                                Wanneer ik terugkijk op mijn ontwikkeling tussen jaar 1 en jaar 4 zie ik vooral groei in:
+                            </p>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm text-zinc-300">
+                                <div class="flex items-start gap-2">
+                                    <i data-lucide="check" class="w-4 h-4 text-accent mt-0.5 flex-shrink-0"></i>
+                                    <span>Sneller Handelen Binnen Onzekerheid</span>
+                                </div>
+                                <div class="flex items-start gap-1.5">
+                                    <i data-lucide="check" class="w-4 h-4 text-accent mt-0.5 flex-shrink-0"></i>
+                                    <span>Keuzes Durven Maken Zonder Volledige Zekerheid</span>
+                                </div>
+                                <div class="flex items-start gap-1.5">
+                                    <i data-lucide="check" class="w-4 h-4 text-accent mt-0.5 flex-shrink-0"></i>
+                                    <span>Omgaan Met Feedback</span>
+                                </div>
+                                <div class="flex items-start gap-1.5">
+                                    <i data-lucide="check" class="w-4 h-4 text-accent mt-0.5 flex-shrink-0"></i>
+                                    <span>Concreter Communiceren</span>
+                                </div>
+                                <div class="flex items-start gap-1.5">
+                                    <i data-lucide="check" class="w-4 h-4 text-accent mt-0.5 flex-shrink-0"></i>
+                                    <span>Verantwoordelijkheid Nemen Binnen Complexe Projecten</span>
+                                </div>
+                                <div class="flex items-start gap-1.5">
+                                    <i data-lucide="check" class="w-4 h-4 text-accent mt-0.5 flex-shrink-0"></i>
+                                    <span>Sneller Bijsturen Wanneer Iets Niet Werkt</span>
+                                </div>
+                            </div>
+                            <p class="text-zinc-400 text-sm leading-relaxed pt-2">
+                                Tegelijkertijd merk ik dat perfectionisme en controle aandachtspunten blijven
+                            </p>
+                        </div>
+                        <div class="lg:col-span-4 bg-zinc-950 p-6 rounded-2xl border border-zinc-850 flex flex-col justify-center h-full">
+                            <i data-lucide="quote" class="text-accent w-10 h-10 mb-4 opacity-50"></i>
+                            <h4 class="text-xs font-mono text-zinc-500 uppercase tracking-widest mb-1">Centraal Inzicht</h4>
+                            <p class="text-white text-sm font-bold font-display italic leading-relaxed text-zinc-200">
+                                "Mijn belangrijkste inzicht is dat ontwikkeling voor mij niet betekent dat ik minder analytisch moet worden, maar dat ik analyse sneller moet omzetten naar uitvoering en concrete actie"
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECTION 4: ONDERZOEK JE PROFESSIONELE IDENTITEIT -->
+            <div id="pdb-identiteit" class="space-y-6 mb-12 scroll-mt-28">
+                <div class="flex items-center gap-3 border-b border-zinc-800 pb-3 mb-6">
+                    <span class="text-accent text-lg font-bold">#04</span>
+                    <h2 class="text-2xl md:text-3xl font-display font-bold uppercase tracking-tight text-white">Onderzoek je professionele identiteit</h2>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Persoonlijke omgeving -->
+                    <div class="bento-card p-6 md:p-8 relative overflow-hidden group">
+                        <div class="spotlight-overlay"></div>
+                        <div class="relative z-10">
+                            <div class="flex items-center gap-2 mb-4">
+                                <div class="w-8 h-8 rounded-full bg-zinc-900 flex items-center justify-center text-accent border border-zinc-850">
+                                    <i data-lucide="heart" class="w-4 h-4"></i>
+                                </div>
+                                <h3 class="text-lg font-display font-bold text-white uppercase tracking-wider">Persoonlijke omgeving</h3>
+                            </div>
+                            <div class="text-zinc-300 text-sm leading-relaxed space-y-4 font-sans">
+                                <p>
+                                    Uit gesprekken met mensen uit mijn persoonlijke omgeving kwam vooral naar voren dat ik veel verantwoordelijkheid neem en serieus bezig ben met mijn ontwikkeling Ook werd benoemd dat ik hoge eisen aan mezelf stel en lang kan nadenken over keuzes voordat ik actie onderneem
+                                </p>
+                                <p>
+                                    De overstap van mbo naar hbo speelde hierin een belangrijke rol Omdat ik vanuit het mbo begon aan het hbo, voelde ik sterk de behoefte om te bewijzen dat ik het niveau aankon Het behalen van mijn propedeuse in één jaar voelde daardoor als bevestiging dat ik het niveau aankon
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Professionele omgeving -->
+                    <div class="bento-card p-6 md:p-8 relative overflow-hidden group">
+                        <div class="spotlight-overlay"></div>
+                        <div class="relative z-10 flex flex-col justify-between h-full">
+                            <div>
+                                <div class="flex items-center gap-2 mb-4">
+                                    <div class="w-8 h-8 rounded-full bg-zinc-900 flex items-center justify-center text-accent border border-zinc-850">
+                                        <i data-lucide="briefcase" class="w-4 h-4"></i>
+                                    </div>
+                                    <h3 class="text-lg font-display font-bold text-white uppercase tracking-wider">Professionele omgeving</h3>
+                                </div>
+                                <div class="text-zinc-300 text-sm leading-relaxed space-y-4 font-sans mb-4">
+                                    <p>
+                                        Voor mijn professionele gesprek heb ik gesproken met mijn mentor Tristan Nijboer Volgens Tristan werkte ik vanaf het eerste jaar doelgericht en gedisciplineerd en nam ik veel verantwoordelijkheid binnen projecten (T. Nijboer, persoonlijke communicatie, 2026)
+                                    </p>
+                                    <p>
+                                        Daarnaast gaf hij aan dat mijn reflectieve houding zowel een kwaliteit als een aandachtspunt is Ik ben sterk in analyseren en kritisch nadenken, maar kan daardoor soms te lang blijven nadenken voordat ik handel
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="pt-4 border-t border-zinc-850 text-xs">
+                                <div class="text-zinc-500 font-mono mb-2">Gekoppelde CE-competenties:</div>
+                                <div class="flex flex-wrap gap-1.5">
+                                    <span class="px-2 py-0.5 bg-zinc-950 border border-zinc-850 rounded font-medium text-accent">Leiderschap</span>
+                                    <span class="px-2 py-0.5 bg-zinc-950 border border-zinc-850 rounded font-medium text-accent">Samenwerken</span>
+                                    <span class="px-2 py-0.5 bg-zinc-950 border border-zinc-850 rounded font-medium text-accent">Communiceren</span>
+                                    <span class="px-2 py-0.5 bg-zinc-950 border border-zinc-850 rounded font-medium text-accent">Verantwoordelijkheid</span>
+                                    <span class="px-2 py-0.5 bg-zinc-950 border border-zinc-850 rounded font-medium text-accent">Kritisch denken</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Theory Connection -->
+                <div class="bento-card p-6 md:p-8 relative overflow-hidden group">
+                    <div class="spotlight-overlay"></div>
+                    <div class="relative z-10 space-y-8">
+                        <div class="flex items-center gap-2">
+                            <div class="w-8 h-8 rounded-full bg-zinc-900 flex items-center justify-center text-accent border border-zinc-850">
+                                <i data-lucide="book" class="w-4 h-4"></i>
+                            </div>
+                            <h3 class="text-lg font-display font-bold text-white uppercase tracking-wider">Professionele identiteit gekoppeld aan theorie</h3>
+                        </div>
+
+                        <!-- DISC description card -->
+                        <div class="bg-zinc-950 border border-zinc-850 p-6 rounded-2xl">
+                            <h4 class="text-accent uppercase font-display font-bold text-base mb-3 leading-none">DISC-model</h4>
+                            <p class="text-zinc-300 text-sm leading-relaxed font-sans">
+                                Binnen projecten herken ik vooral gedrag waarbij ik snel verantwoordelijkheid neem, structuur aanbreng en richting probeer te creëren Daardoor pak ik automatisch rollen waarin overzicht, overkoepelend overzicht, analyse en voortgang centraal staan
+                            </p>
+                            <p class="text-zinc-300 text-sm leading-relaxed font-sans mt-3">
+                                Tegelijkertijd merkte ik gedurende mijn opleiding dat dit ook een valkuil heeft Omdat ik kwaliteit belangrijk vind, blijf ik soms te lang bezig met voorbereiding en controle voordat ik daadwerkelijk uitvoer
+                            </p>
+                            <p class="text-zinc-300 text-sm leading-relaxed font-sans mt-3">
+                                Dit werd zichtbaar tijdens projecten voor Unica, Vitens, Perron038 en tijdens mijn afstudeeronderzoek Mijn ontwikkeling zat daarom niet in minder verantwoordelijkheid nemen, maar in sneller handelen, eerder communiceren en meer vertrouwen hebben in iteratief werken (Marston, 1928)
+                            </p>
+                        </div>
+
+                        <!-- Ruijters Model with Beautiful High-Contrast Table -->
+                        <div>
+                            <div class="flex items-center gap-2 mb-4 pl-1">
+                                <span class="w-1.5 h-3 bg-accent rounded"></span>
+                                <h4 class="text-white uppercase font-display font-bold text-sm tracking-wider">Model van Ruijters</h4>
+                            </div>
+                            <div class="overflow-x-auto rounded-xl border border-zinc-800 bg-black/40">
+                                <table class="w-full text-left border-collapse">
+                                    <thead>
+                                        <tr class="border-b border-zinc-800 bg-zinc-900/40 font-mono text-xs uppercase text-zinc-400">
+                                            <th class="p-4 md:p-5 font-bold tracking-wider w-1/4">Frame van Ruijters</th>
+                                            <th class="p-4 md:p-5 font-bold tracking-wider">Toepassing op mijn ontwikkeling</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="divide-y divide-zinc-850 text-sm">
+                                        <tr class="hover:bg-zinc-900/30 transition-colors">
+                                            <td class="p-4 md:p-5 font-bold text-accent font-display align-top">Institutioneel frame</td>
+                                            <td class="p-4 md:p-5 text-zinc-300 leading-relaxed font-sans">Ontwikkeling binnen Windesheim, praktijkprojecten en de pre-master</td>
+                                        </tr>
+                                        <tr class="hover:bg-zinc-900/30 transition-colors">
+                                            <td class="p-4 md:p-5 font-bold text-accent font-display align-top">Professioneel frame</td>
+                                            <td class="p-4 md:p-5 text-zinc-300 leading-relaxed font-sans">De waarde die ik wil toevoegen binnen strategie, onderzoek en innovatie</td>
+                                        </tr>
+                                        <tr class="hover:bg-zinc-900/30 transition-colors">
+                                            <td class="p-4 md:p-5 font-bold text-accent font-display align-top">Professionele zelf</td>
+                                            <td class="p-4 md:p-5 text-zinc-300 leading-relaxed font-sans">Hoe ik verantwoordelijkheid neem en structuur aanbreng binnen projecten</td>
+                                        </tr>
+                                        <tr class="hover:bg-zinc-900/30 transition-colors">
+                                            <td class="p-4 md:p-5 font-bold text-accent font-display align-top">Persoonlijke zelf</td>
+                                            <td class="p-4 md:p-5 text-zinc-300 leading-relaxed font-sans">Mijn ambitie, perfectionisme en behoefte aan ontwikkeling</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <p class="text-[11px] text-zinc-500 italic mt-2 pl-1">Bron: Ruijters (2015)</p>
+                        </div>
+
+                        <!-- Core values and motivations block -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-4 border-t border-zinc-850">
+                            <div class="bg-zinc-900/30 p-5 rounded-xl border border-zinc-850">
+                                <h5 class="text-white text-xs font-mono uppercase tracking-widest text-zinc-400 mb-3 uppercase">Mijn belangrijkste waarden zijn:</h5>
+                                <div class="flex flex-wrap gap-2 text-sm text-zinc-300">
+                                    <span class="px-3 py-1.5 bg-zinc-950 border border-zinc-900 rounded-full flex items-center gap-1.5">
+                                        <span class="w-1.5 h-1.5 rounded-full bg-accent"></span> Verantwoordelijkheid
+                                    </span>
+                                    <span class="px-3 py-1.5 bg-zinc-950 border border-zinc-900 rounded-full flex items-center gap-1.5">
+                                        <span class="w-1.5 h-1.5 rounded-full bg-accent"></span> Ontwikkeling
+                                    </span>
+                                    <span class="px-3 py-1.5 bg-zinc-950 border border-zinc-900 rounded-full flex items-center gap-1.5">
+                                        <span class="w-1.5 h-1.5 rounded-full bg-accent"></span> Betrouwbaarheid
+                                    </span>
+                                    <span class="px-3 py-1.5 bg-zinc-950 border border-zinc-900 rounded-full flex items-center gap-1.5">
+                                        <span class="w-1.5 h-1.5 rounded-full bg-accent"></span> Samenwerking
+                                    </span>
+                                    <span class="px-3 py-1.5 bg-zinc-950 border border-zinc-900 rounded-full flex items-center gap-1.5">
+                                        <span class="w-1.5 h-1.5 rounded-full bg-accent"></span> Kwaliteit
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="bg-zinc-900/30 p-5 rounded-xl border border-zinc-850">
+                                <h5 class="text-white text-xs font-mono uppercase tracking-widest text-zinc-400 mb-3 uppercase">Mijn belangrijkste drijfveren zijn:</h5>
+                                <ul class="text-sm text-zinc-300 space-y-2 font-sans pl-1">
+                                    <li class="flex items-center gap-2">
+                                        <i data-lucide="chevron-right" class="w-3.5 h-3.5 text-accent"></i>
+                                        <span>Mezelf Blijven Ontwikkelen</span>
+                                    </li>
+                                    <li class="flex items-center gap-2">
+                                        <i data-lucide="chevron-right" class="w-3.5 h-3.5 text-accent"></i>
+                                        <span>Inhoudelijke Diepgang Zoeken</span>
+                                    </li>
+                                    <li class="flex items-center gap-2">
+                                        <i data-lucide="chevron-right" class="w-3.5 h-3.5 text-accent"></i>
+                                        <span>Impact Maken Binnen Projecten</span>
+                                    </li>
+                                    <li class="flex items-center gap-2">
+                                        <i data-lucide="chevron-right" class="w-3.5 h-3.5 text-accent"></i>
+                                        <span>Structuur En Overzicht Creëren</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECTION 5: REFLECTIE PROFESSIONELE IDENTITEIT -->
+            <div id="pdb-reflectie-identiteit" class="mb-12 scroll-mt-28">
+                <div class="flex items-center gap-3 border-b border-zinc-800 pb-3 mb-6">
+                    <span class="text-accent text-lg font-bold">#05</span>
+                    <h2 class="text-2xl md:text-3xl font-display font-bold uppercase tracking-tight text-white">Reflectie professionele identiteit</h2>
+                </div>
+
+                <div class="bento-card p-6 md:p-8 relative overflow-hidden group bg-gradient-to-r from-zinc-900/30 to-black/30">
+                    <div class="spotlight-overlay"></div>
+                    <div class="relative z-10 flex gap-4 md:gap-6 items-start font-sans">
+                        <div class="hidden sm:flex w-12 h-12 rounded-full border border-accent/20 items-center justify-center text-accent bg-accent/5 flex-shrink-0">
+                            <i data-lucide="refresh-cw" class="w-5 h-5"></i>
+                        </div>
+                        <div class="space-y-4 text-zinc-300 text-sm md:text-base leading-relaxed">
+                            <p>
+                                Wanneer ik nu terugkijk op mijn ontwikkeling merk ik dat veel inzichten nog steeds relevant zijn Vooral het analytische denken, kritisch reflecteren en verantwoordelijkheid nemen zijn eigenschappen die gedurende de opleiding zichtbaar zijn gebleven
+                            </p>
+                            <p>
+                                Tegelijkertijd zie ik ook duidelijke ontwikkeling Tijdens mijn afstudeerperiode merkte ik dat ik beter leerde omgaan met onzekerheid en sneller keuzes durfde te maken wanneer projecten veranderden
+                            </p>
+                            <p class="font-semibold text-white">
+                                Mijn ontwikkeling zit daarom niet in minder analytisch worden, maar in het beter leren inzetten van deze eigenschappen zonder erin vast te lopen
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECTION 6: KEUZES MAKEN MET HET IKIGAI-MODEL -->
+            <div id="pdb-ikigai" class="space-y-6 mb-12 scroll-mt-28">
+                <div class="flex items-center gap-3 border-b border-zinc-800 pb-3 mb-6">
+                    <span class="text-accent text-lg font-bold">#06</span>
+                    <h2 class="text-2xl md:text-3xl font-display font-bold uppercase tracking-tight text-white">Keuzes maken met het Ikigai-model</h2>
+                </div>
+
+                <!-- Ikigai Table -->
+                <div class="bento-card p-6 md:p-8 relative overflow-hidden group">
+                    <div class="spotlight-overlay"></div>
+                    <div class="relative z-10 space-y-6">
+                        <div class="flex items-center gap-2">
+                            <div class="w-8 h-8 rounded-full bg-zinc-900 flex items-center justify-center text-accent border border-zinc-850">
+                                <i data-lucide="target" class="w-4 h-4"></i>
+                            </div>
+                            <h3 class="text-lg font-display font-bold text-white uppercase tracking-wider">Mijn Ikigai</h3>
+                        </div>
+
+                        <div class="overflow-x-auto rounded-xl border border-zinc-800 bg-black/40">
+                            <table class="w-full text-left border-collapse">
+                                <thead>
+                                    <tr class="border-b border-zinc-800 bg-zinc-900/40 font-mono text-xs uppercase text-zinc-400">
+                                        <th class="p-4 md:p-5 font-bold tracking-wider w-1/4">Onderdeel</th>
+                                        <th class="p-4 md:p-5 font-bold tracking-wider">Inhoud</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-zinc-850 text-sm">
+                                    <tr class="hover:bg-zinc-900/30 transition-colors">
+                                        <td class="p-4 md:p-5 font-bold text-accent font-display align-top flex items-center gap-2">
+                                            <span class="w-2 h-2 rounded-full bg-red-500"></span> Wat ik leuk vind
+                                        </td>
+                                        <td class="p-4 md:p-5 text-zinc-300 leading-relaxed font-sans">
+                                            Ontwikkeling, strategisch nadenken, sport, persoonlijke groei en sociale contacten
+                                        </td>
+                                    </tr>
+                                    <tr class="hover:bg-zinc-900/30 transition-colors">
+                                        <td class="p-4 md:p-5 font-bold text-accent font-display align-top flex items-center gap-2">
+                                            <span class="w-2 h-2 rounded-full bg-blue-500"></span> Waar ik goed in ben
+                                        </td>
+                                        <td class="p-4 md:p-5 text-zinc-300 leading-relaxed font-sans">
+                                            Analytisch denken, structuur aanbrengen, kritisch reflecteren en verantwoordelijkheid nemen
+                                        </td>
+                                    </tr>
+                                    <tr class="hover:bg-zinc-900/30 transition-colors">
+                                        <td class="p-4 md:p-5 font-bold text-accent font-display align-top flex items-center gap-2">
+                                            <span class="w-2 h-2 rounded-full bg-yellow-400"></span> Wat de wereld nodig heeft
+                                        </td>
+                                        <td class="p-4 md:p-5 text-zinc-300 leading-relaxed font-sans">
+                                            Betrouwbare samenwerking, kritisch denkende professionals en structuur
+                                        </td>
+                                    </tr>
+                                    <tr class="hover:bg-zinc-900/30 transition-colors">
+                                        <td class="p-4 md:p-5 font-bold text-accent font-display align-top flex items-center gap-2">
+                                            <span class="w-2 h-2 rounded-full bg-green-500"></span> Waar ik voor betaald kan worden
+                                        </td>
+                                        <td class="p-4 md:p-5 text-zinc-300 leading-relaxed font-sans">
+                                            Strategie, marketing, onderzoek, consultancy en projectmanagement
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="text-xs text-zinc-500 font-sans pl-1 flex items-center gap-2 flex-wrap">
+                            <span>Deze eigenschappen sluiten aan bij CE Skills zoals:</span>
+                            <span class="px-2 py-0.5 bg-zinc-950 border border-zinc-900 text-zinc-400 rounded">Kritisch denken</span>
+                            <span class="px-2 py-0.5 bg-zinc-950 border border-zinc-900 text-zinc-400 rounded">Leiderschap</span>
+                            <span class="px-2 py-0.5 bg-zinc-950 border border-zinc-900 text-zinc-400 rounded">Verantwoordelijkheid</span>
+                            <span class="px-2 py-0.5 bg-zinc-950 border border-zinc-900 text-zinc-400 rounded">Oordeelsvorming</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Reflectie Ikigai -->
+                <div class="bento-card p-6 md:p-8 relative overflow-hidden group">
+                    <div class="spotlight-overlay"></div>
+                    <div class="relative z-10">
+                        <div class="flex items-center gap-2 mb-4">
+                            <div class="w-8 h-8 rounded-full bg-zinc-900 flex items-center justify-center text-accent border border-zinc-850">
+                                <i data-lucide="award" class="w-4 h-4"></i>
+                            </div>
+                            <h3 class="text-lg font-display font-bold text-white uppercase tracking-wider">Reflectie Ikigai</h3>
+                        </div>
+                        <div class="text-zinc-300 text-sm leading-relaxed space-y-4 font-sans mb-4" id="ikigai-reflection" data-i18n="ikigai_reflection">
+                            <p>Wat vooral naar voren komt binnen mijn Ikigai, is dat ontwikkeling en uitdaging in vrijwel alle onderdelen centraal staan.</p>
+                            <p>Energie haal ik voornamelijk uit situaties waarin strategisch en inhoudelijk denken wordt gecombineerd met verantwoordelijkheid en persoonlijke groei.</p>
+                            <p>Daarnaast is gebleken dat de grootste uitdaging ligt in het versnellen van de vertaalslag van ideeën en analyses naar concrete uitvoering. De focus ligt hierbij op het versterken van besluitvaardigheid, adequaat handelen in onzekere situaties en het efficiënt omzetten van strategische inzichten naar resultaat.</p>
+                        </div>
+                        <div class="bg-zinc-950 border border-zinc-850 p-5 rounded-xl">
+                            <h4 class="text-xs font-mono text-zinc-500 uppercase tracking-widest mb-3">Mijn ontwikkeling zit daarom vooral in:</h4>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 font-sans text-xs">
+                                <div class="p-3 bg-zinc-900/60 border border-zinc-900 rounded flex items-center gap-2 font-medium">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-accent"></span> Sneller Keuzes Maken
+                                </div>
+                                <div class="p-3 bg-zinc-900/60 border border-zinc-900 rounded flex items-center gap-2 font-medium">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-accent"></span> Eerder Handelen
+                                </div>
+                                <div class="p-3 bg-zinc-900/60 border border-zinc-900 rounded flex items-center gap-2 font-medium">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-accent"></span> Beter Omgaan Met Onzekerheid
+                                </div>
+                                <div class="p-3 bg-zinc-900/60 border border-zinc-900 rounded flex items-center gap-2 font-medium">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-accent"></span> Meer Vertrouwen Hebben In Iteratief Werken
+                                </div>
+                                <div class="p-3 bg-zinc-900/60 border border-zinc-900 rounded flex items-center gap-2 font-medium col-span-1 sm:col-span-2 md:col-span-1">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-accent"></span> Minder Blijven Hangen In Voorbereiding
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECTION 7: BRONNENLIJST -->
+            <div id="pdb-bronnen" class="space-y-6 mb-12 scroll-mt-28">
+                <div class="flex items-center gap-3 border-b border-zinc-800 pb-3 mb-6">
+                    <span class="text-accent text-lg font-bold">#07</span>
+                    <h2 class="text-2xl md:text-3xl font-display font-bold uppercase tracking-tight text-white">Bronnenlijst</h2>
+                </div>
+
+                <div class="bento-card p-6 md:p-8 relative overflow-hidden group bg-zinc-950/40">
+                    <div class="spotlight-overlay"></div>
+                    <div class="relative z-10">
+                        <div class="flex items-center gap-2 mb-4">
+                            <div class="w-8 h-8 rounded-full bg-zinc-900 flex items-center justify-center text-accent border border-zinc-850">
+                                <i data-lucide="bookmark" class="w-4 h-4"></i>
+                            </div>
+                            <h3 class="text-lg font-display font-bold text-white uppercase tracking-wider">Literatuur & Referenties</h3>
+                        </div>
+                        <ul class="text-zinc-400 text-xs md:text-sm font-sans space-y-3.5 pl-1 leading-relaxed">
+                            <li class="pl-4 -indent-4">
+                                Argyris, C., & Schön, D. A. (1978). <span class="italic">Organizational learning: A theory of action perspective</span>. Addison-Wesley
+                            </li>
+                            <li class="pl-4 -indent-4">
+                                Brown, T. (2009). <span class="italic">Change by design: How design thinking creates new alternatives for business and society</span>. HarperBusiness
+                            </li>
+                            <li class="pl-4 -indent-4">
+                                Covey, S. R. (1989). <span class="italic">The 7 habits of highly effective people: Restoring the character ethic</span>. Free Press
+                            </li>
+                            <li class="pl-4 -indent-4">
+                                Marston, W. M. (1928). <span class="italic">Emotions of normal people</span>. Harcourt, Brace <a href="https://www.abundantlife.nl/disc/uitleg-disc-model" target="_blank" class="text-accent hover:underline break-all inline-block mt-0.5">https://www.abundantlife.nl/disc/uitleg-disc-model</a>
+                            </li>
+                            <li class="pl-4 -indent-4">
+                                Ruijters, M. C. P. (2015). <span class="italic">Mijn binnenste buiten: Over leren, ontwikkelen en identiteit</span>. Vakmedianet
+                            </li>
+                            <li class="pl-4 -indent-4">
+                                Windesheim. (2026). <span class="italic">Skills Guide</span>. Data ingevuld door Hugo, Thijmen en Ritchie.
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 
@@ -1610,6 +2377,7 @@
       // Translations Data
       const translations = {
         en: {
+            ikigai_reflection: '<p>What stands out most within my Ikigai is that development and challenge are central to virtually all areas.</p><p>I derive energy primarily from situations where strategic and substantive thinking are combined with responsibility and personal growth.</p><p>It has become clear that the greatest challenge lies not in motivation or ambition, but in accelerating the translation of ideas and analyses into concrete execution. Therefore, the focus is on strengthening decisiveness, acting swiftly amidst uncertainty, and efficiently converting insights into actionable results.</p>',
             nav_about: "About",
             nav_services: "Services",
             nav_expertise: "Expertise",
@@ -1673,7 +2441,7 @@
             
             // ENGLISH PROJECTS
             proj_1_title: "Vitens, Grootzakelijke markt: Market Needs, Positioning & Organisational Direction",
-            proj_1_desc: `<div class="relative pl-6 border-l-2 border-zinc-800 ml-2"><div class="mb-6 last:mb-0 relative"><div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div><h4 class="text-accent font-mono text-xs uppercase mb-1">Challenge & Analysis</h4><p class="text-zinc-400 text-sm leading-relaxed">Conducted in-depth market study to position new 'Water-as-a-Service' division. Analyzed competitors and customer needs to define the scope of the portfolio.</p></div><div class="mb-6 last:mb-0 relative"><div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div><h4 class="text-accent font-mono text-xs uppercase mb-1">Strategic Insight</h4><p class="text-zinc-400 text-sm leading-relaxed">Identified opportunity to distinguish Vitens through circular water solutions and water stewardship, bridging current services to a commercial entity.</p></div><div class="mb-6 last:mb-0 relative"><div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div><h4 class="text-accent font-mono text-xs uppercase mb-1">Advice & Outcome</h4><p class="text-zinc-400 text-sm leading-relaxed">Delivered strategic roadmap for naming, branding, and organizational form, creating a resilient and sustainable future for the large business segment.</p></div></div>`,
+            proj_1_desc: `<div class="mb-5 p-3 bg-zinc-900/40 rounded-lg border border-zinc-800 text-zinc-300"><div class="flex items-center gap-2 mb-1.5 font-mono text-[10px] uppercase tracking-widest text-accent"><i data-lucide="bar-chart-2" class="w-3 h-3"></i> Quick Summary</div><p class="text-[11px] leading-relaxed">Bridging traditional utilities to commercial 'Water-as-a-Service'.</p></div><div class="relative pl-6 border-l-2 border-zinc-800 ml-2"><div class="mb-6 last:mb-0 relative"><div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div><h4 class="text-accent font-mono text-xs uppercase mb-1">Challenge & Analysis</h4><p class="text-zinc-400 text-sm leading-relaxed">Conducted in-depth market study to position new 'Water-as-a-Service' division. Analyzed competitors and customer needs to define the scope of the portfolio.</p></div><div class="mb-6 last:mb-0 relative"><div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div><h4 class="text-accent font-mono text-xs uppercase mb-1">Strategic Insight</h4><p class="text-zinc-400 text-sm leading-relaxed">Identified opportunity to distinguish Vitens through circular water solutions and water stewardship, bridging current services to a commercial entity.</p></div><div class="mb-6 last:mb-0 relative"><div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div><h4 class="text-accent font-mono text-xs uppercase mb-1">Advice & Outcome</h4><p class="text-zinc-400 text-sm leading-relaxed">Delivered strategic roadmap for naming, branding, and organizational form, creating a resilient and sustainable future for the large business segment.</p></div></div>`,
             
             proj_2_title: "Perron038, Factory NEXT: Strategic Commercial Positioning",
             proj_2_desc: `<div class="relative pl-6 border-l-2 border-zinc-800 ml-2"><div class="mb-6 last:mb-0 relative"><div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div><h4 class="text-accent font-mono text-xs uppercase mb-1">Challenge & Analysis</h4><p class="text-zinc-400 text-sm leading-relaxed">Determined market potential for 'Factory NEXT' as a shared innovation facility. Analyzed competing initiatives in the Dutch manufacturing landscape.</p></div><div class="mb-6 last:mb-0 relative"><div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div><h4 class="text-accent font-mono text-xs uppercase mb-1">Strategic Insight</h4><p class="text-zinc-400 text-sm leading-relaxed">Identified segments for "test-before-invest" model. Used Design Thinking and customer validation to align labs and technology with market needs.</p></div><div class="mb-6 last:mb-0 relative"><div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div><h4 class="text-accent font-mono text-xs uppercase mb-1">Advice & Outcome</h4><p class="text-zinc-400 text-sm leading-relaxed">Developed value propositions, revenue models, and messaging to strengthen Factory NEXT as a commercially viable innovation hub.</p></div></div>`,
@@ -1705,6 +2473,12 @@
             rec_6_name: "Bas de Leve",
             rec_6_role: "English Language Instructor and Trainer Communicative Skills at Windesheim, Zwolle",
             rec_6_text: "\"An ambitious, intelligent, and motivated student, Ritchie, is always eager to investigate possibilities. He is also introspective, and very friendly. In short, an asset for every organisation.\"",
+            rec_7_name: "Martijn Olde Weghuis",
+            rec_7_role: "Directeur bij Axelio | Agrio Software | Microsoft-partner | Aanjager van digitale groei en innovatie",
+            rec_7_text: "You have done a great job with the research together and finally came up with some good advice, as well as new insights we didn't have ourselves.",
+            rec_8_name: "Eric Vredeveldt",
+            rec_8_role: "Business Development Manager bij Vitens",
+            rec_8_text: "Ritchie is a positive and thoughtful student who likes to get good insight first before coming to results. He effectively applies this attitude on the work floor, making him a valuable addition to every team.",
             partners_title: "Partnered with",
             // Modal Translations
             serv_modal_title: "Transform Complex Challenges <br/><span class=\"text-zinc-500\">Into Growth & Value</span>",
@@ -1747,9 +2521,26 @@
             exp_modal_mod_title: "Theories & Models",
             exp_modal_mod_desc: "Proven theories and models used to substantiate choices and create value.",
             mod_confront: "Confrontation Matrix",
-            mod_mvc: "Multiple Value Creation"
+            mod_mvc: "Multiple Value Creation",
+            pdb_nav_intro: "Identity",
+            pdb_nav_values: "Core Values",
+            pdb_nav_strategic: "Strategy",
+            pdb_badge: "Personal Branding Dossier",
+            pdb_desc: "A dedicated, high-end conceptual framework mapping my professional identity, core strategic values, value proposition models, and future growth objectives. Prepared for integration & depth.",
+            pdb_canvas_title: "PDB Canvas Active",
+            pdb_canvas_desc: "This page is successfully split from your Curriculum Vitae and set up as a custom branding workspace. The structure below is ready to be fully populated, expanded, and customized in our next steps.",
+            pdb_archetype_title: "Brand Identity & Positioning",
+            pdb_archetype_text: "A detailed mapping of professional values, strategic positioning in commerce, and personal branding archetypes. Ready to be documented with custom assets, core brand matrices, and specialized vision outlines.",
+            pdb_values_title: "Core Brand Values",
+            pdb_values_text: "Deep articulation of personal and business motivators: sustainable value creation, structural foresight, and human-centric commercial methodologies.",
+            pdb_strategic_title: "Strategic Matrix",
+            pdb_strategic_text: "Synthesizing multiple business frameworks and structural design models to show how innovation-thinking maps to commercial results.",
+            pdb_sandbox_title: "Interactive Branding Sandbox",
+            pdb_sandbox_text: "Use this interactive terminal mock-up to preview ideas or test core values. Type your custom branding tagline or focal keywords below:",
+            pdb_ready: "Ready for expansion"
         },
         nl: {
+            ikigai_reflection: '<p>Wat vooral naar voren komt binnen mijn Ikigai, is dat ontwikkeling en uitdaging in vrijwel alle onderdelen centraal staan.</p><p>Energie haal ik voornamelijk uit situaties waarin strategisch en inhoudelijk denken wordt gecombineerd met verantwoordelijkheid en persoonlijke groei.</p><p>Daarnaast is gebleken dat de grootste uitdaging ligt in het versnellen van de vertaalslag van ideeën en analyses naar concrete uitvoering. De focus ligt hierbij op het versterken van besluitvaardigheid, adequaat handelen in onzekere situaties en het efficiënt omzetten van strategische inzichten naar resultaat.</p>',
             nav_about: "Over",
             nav_services: "Diensten",
             nav_expertise: "Expertise",
@@ -1812,8 +2603,11 @@
             proj_title: "Geselecteerde Projecten",
             
             // DUTCH PROJECT TRANSLATIONS
+            proj_axel_title: "Axelio, Afstudeerstage: Agrio Entry-Strategy UK Markt",
+            proj_axel_desc: `<div class="relative pl-6 border-l-2 border-zinc-800 ml-2"><div class="mb-6 last:mb-0 relative"><div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div><h4 class="text-accent font-mono text-xs uppercase mb-1">Uitdaging & Analyse</h4><p class="text-zinc-400 text-sm leading-relaxed">Onderzoek gedaan naar de Britse markt voor Agrio. Het concurrentielandschap geanalyseerd en belangrijke potentiële klanten in kaart gebracht.</p></div><div class="mb-6 last:mb-0 relative"><div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div><h4 class="text-accent font-mono text-xs uppercase mb-1">Expert Betrokkenheid</h4><p class="text-zinc-400 text-sm leading-relaxed">Gesproken met experts op de Britse markt om aannames te valideren en diepgaande marktinzichten te verzamelen die cruciaal zijn voor een succesvolle entree.</p></div><div class="mb-6 last:mb-0 relative"><div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div><h4 class="text-accent font-mono text-xs uppercase mb-1">Advies & Resultaat</h4><p class="text-zinc-400 text-sm leading-relaxed">Een uitgebreid marktentree-strategieplan opgeleverd voor Agrio, met concrete stappen en focusgebieden voor de Britse markt.</p></div></div>`,
+            
             proj_1_title: "Vitens, Grootzakelijke markt: Marktbehoeften, Positionering & Organisatorische Richting",
-            proj_1_desc: `<div class="relative pl-6 border-l-2 border-zinc-800 ml-2"><div class="mb-6 last:mb-0 relative"><div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div><h4 class="text-accent font-mono text-xs uppercase mb-1">Uitdaging & Analyse</h4><p class="text-zinc-400 text-sm leading-relaxed">Uitgebreid marktonderzoek uitgevoerd om de nieuwe divisie 'Water-as-a-Service' te positioneren. Concurrenten en klantbehoeften geanalyseerd om de scope van het portfolio te bepalen.</p></div><div class="mb-6 last:mb-0 relative"><div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div><h4 class="text-accent font-mono text-xs uppercase mb-1">Strategisch Inzicht</h4><p class="text-zinc-400 text-sm leading-relaxed">Kans geïdentificeerd om Vitens te onderscheiden door circulaire wateroplossingen en waterbeheer, waarbij huidige diensten worden overbrugd naar een commerciële entiteit.</p></div><div class="mb-6 last:mb-0 relative"><div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div><h4 class="text-accent font-mono text-xs uppercase mb-1">Advies & Resultaat</h4><p class="text-zinc-400 text-sm leading-relaxed">Strategische roadmap opgeleverd voor naamgeving, branding en organisatievorm, wat zorgt voor een veerkrachtige en duurzame toekomst voor het grootzakelijke segment.</p></div></div>`,
+            proj_1_desc: `<div class="mb-5 p-3 bg-zinc-900/40 rounded-lg border border-zinc-800 text-zinc-300"><div class="flex items-center gap-2 mb-1.5 font-mono text-[10px] uppercase tracking-widest text-accent"><i data-lucide="bar-chart-2" class="w-3 h-3"></i> Snel Overzicht</div><p class="text-[11px] leading-relaxed">Transformatie van nutsbedrijf naar commerciële 'Water-as-a-Service'-entiteit.</p></div><div class="relative pl-6 border-l-2 border-zinc-800 ml-2"><div class="mb-6 last:mb-0 relative"><div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div><h4 class="text-accent font-mono text-xs uppercase mb-1">Uitdaging & Analyse</h4><p class="text-zinc-400 text-sm leading-relaxed">Uitgebreid marktonderzoek uitgevoerd om de nieuwe divisie 'Water-as-a-Service' te positioneren. Concurrenten en klantbehoeften geanalyseerd om de scope van het portfolio te bepalen.</p></div><div class="mb-6 last:mb-0 relative"><div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div><h4 class="text-accent font-mono text-xs uppercase mb-1">Strategisch Inzicht</h4><p class="text-zinc-400 text-sm leading-relaxed">Kans geïdentificeerd om Vitens te onderscheiden door circulaire wateroplossingen en waterbeheer, waarbij huidige diensten worden overbrugd naar een commerciële entiteit.</p></div><div class="mb-6 last:mb-0 relative"><div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div><h4 class="text-accent font-mono text-xs uppercase mb-1">Advies & Resultaat</h4><p class="text-zinc-400 text-sm leading-relaxed">Strategische roadmap opgeleverd voor naamgeving, branding en organisatievorm, wat zorgt voor een veerkrachtige en duurzame toekomst voor het grootzakelijke segment.</p></div></div>`,
             
             proj_2_title: "Perron038, Factory NEXT: Strategische Commerciële Positionering",
             proj_2_desc: `<div class="relative pl-6 border-l-2 border-zinc-800 ml-2"><div class="mb-6 last:mb-0 relative"><div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div><h4 class="text-accent font-mono text-xs uppercase mb-1">Uitdaging & Analyse</h4><p class="text-zinc-400 text-sm leading-relaxed">Marktpotentieel bepaald voor 'Factory NEXT' als gedeelde innovatiefaciliteit. Concurrerende initiatieven in het Nederlandse maakindustrie-landschap geanalyseerd.</p></div><div class="mb-6 last:mb-0 relative"><div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div><h4 class="text-accent font-mono text-xs uppercase mb-1">Strategisch Inzicht</h4><p class="text-zinc-400 text-sm leading-relaxed">Segmenten geïdentificeerd voor 'test-before-invest' model. Design Thinking en klantvalidatie gebruikt om labs en technologie af te stemmen op marktbehoeften.</p></div><div class="mb-6 last:mb-0 relative"><div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-zinc-900 border-2 border-accent"></div><h4 class="text-accent font-mono text-xs uppercase mb-1">Advies & Resultaat</h4><p class="text-zinc-400 text-sm leading-relaxed">Waardeproposities, verdienmodellen en messaging ontwikkeld om Factory NEXT te versterken als een commercieel levensvatbare innovatiehub.</p></div></div>`,
@@ -1845,6 +2639,12 @@
             rec_6_name: "Bas de Leve",
             rec_6_role: "Docent Engels en Trainer Communicatieve Vaardigheden bij Windesheim, Zwolle",
             rec_6_text: "\"Een ambitieuze, intelligente en gemotiveerde student, Ritchie, is altijd gretig om mogelijkheden te onderzoeken. Hij is ook introspectief en erg vriendelijk. Kortom, een aanwinst voor elke organisatie.\"",
+            rec_7_name: "Martijn Olde Weghuis",
+            rec_7_role: "Directeur bij Axelio | Agrio Software | Microsoft-partner | Aanjager van digitale groei en innovatie",
+            rec_7_text: "Jullie hebben er samen een mooi onderzoek van gemaakt en zijn uiteindelijk met een goed advies gekomen. Ook mooie nieuwe inzichten gekregen die wij zelf nog niet hadden.",
+            rec_8_name: "Eric Vredeveldt",
+            rec_8_role: "Business Development Manager bij Vitens",
+            rec_8_text: "Ritchie is een positieve en doordachte student die graag eerst goed inzicht krijgt voordat hij tot resultaat komt. Op de werkvloer zet hij die houding effectief in, waardoor hij een waardevolle aanvulling is op ieder team.",
             partners_title: "Samenwerkingen",
             // Modal Translations NL
             serv_modal_title: "Zet Complexe Uitdagingen Om <br/><span class=\"text-zinc-500\">In Groei & Waarde</span>",
@@ -1887,7 +2687,23 @@
             exp_modal_mod_title: "Theorieën en Modellen",
             exp_modal_mod_desc: "Bij het uitvoeren van analyses, ontwerpen en adviezen worden diverse bewezen theorieën en modellen gebruikt om keuzes te onderbouwen en waarde te creëren.",
             mod_confront: "Confrontatiematrix",
-            mod_mvc: "Meervoudige Waardecreatie"
+            mod_mvc: "Meervoudige Waardecreatie",
+            pdb_nav_intro: "Identiteit",
+            pdb_nav_values: "Kernwaarden",
+            pdb_nav_strategic: "Strategie",
+            pdb_badge: "Personal Branding Dossier",
+            pdb_desc: "Een speciaal, hoogwaardig conceptueel kader dat mijn professionele identiteit, strategische kernwaarden, waardepropositiemodellen en toekomstige groeidoelstellingen in kaart brengt. Klaar voor verdieping.",
+            pdb_canvas_title: "PDB Canvas Actief",
+            pdb_canvas_desc: "Deze pagina is succesvol gesplitst van je Curriculum Vitae en ingericht als een aangepaste branding workspace. De onderstaande structuur staat klaar om in onze volgende stappen volledig te worden gevuld, uitgebreid en aangepast.",
+            pdb_archetype_title: "Merkidentiteit & Positionering",
+            pdb_archetype_text: "Een gedetailleerde weergave van professionele waarden, strategische positionering in de handel en persoonlijke merk-archetypen. Klaar om te worden ingevuld met eigen content, merkmatrices en visies.",
+            pdb_values_title: "Merk-Kernwaarden",
+            pdb_values_text: "Diepgaande verwoording van persoonlijke en zakelijke drijfveren: duurzame waardecreatie, structurele vooruitziendheid en mensgerichte commerciële methodologieën.",
+            pdb_strategic_title: "Strategische Matrix",
+            pdb_strategic_text: "Synthetiseren van meerdere bedrijfs- en ontwerpraamwerken om te laten zien hoe innovatief denken zich vertaalt naar commerciële resultaten.",
+            pdb_sandbox_title: "Interactieve Branding Sandbox",
+            pdb_sandbox_text: "Gebruik deze interactieve terminal mock-up om ideeën voor te vertonen of kernwaarden te testen. Typ hieronder je eigen branding tagline of trefwoorden:",
+            pdb_ready: "Gereed voor uitbreiding"
         }
       };
       
@@ -1896,6 +2712,15 @@
       function toggleLanguage() {
           currentLang = currentLang === 'en' ? 'nl' : 'en';
           updateLanguageUI();
+          
+          // Update Chart
+          if (myChart) {
+              myChart.data.labels = skillsData.map(s => s[currentLang]);
+              myChart.data.datasets[0].label = currentLang === 'en' ? 'Competence Score' : 'Competentie Score';
+              myChart.update();
+          }
+          // Update Table
+          updatePdbTable();
       }
 
       function updateLanguageUI() {
@@ -1911,6 +2736,102 @@
               }
           });
       }
+
+      // Switch view function between CV profile and PDB Dossier
+      window.switchView = function(view) {
+          const cvSection = document.getElementById('cv-section');
+          const pdbSection = document.getElementById('pdb-section');
+          const portfolioSection = document.getElementById('portfolio-section');
+          const cvLinks = document.getElementById('cv-nav-links'); // test
+          const pdbLinks = document.getElementById('pdb-nav-links');
+          const btnCV = document.getElementById('toggle-view-cv');
+          const btnPDB = document.getElementById('toggle-view-pdb');
+
+          if (view === 'cv') {
+              if (cvSection && pdbSection) {
+                  pdbSection.classList.add('hidden', 'opacity-0', 'scale-95');
+                  pdbSection.classList.remove('opacity-100', 'scale-100');
+                  
+                  cvSection.classList.remove('hidden');
+                  setTimeout(() => {
+                      cvSection.classList.remove('opacity-0', 'scale-95');
+                      cvSection.classList.add('opacity-100', 'scale-100');
+                  }, 50);
+              }
+              if (btnCV && btnPDB) {
+                  btnCV.classList.add('bg-accent', 'text-black', 'shadow-[0_0_15px_rgba(204,255,0,0.3)]');
+                  btnCV.classList.remove('text-zinc-400', 'hover:text-white');
+                  btnPDB.classList.add('text-zinc-400', 'hover:text-white');
+                  btnPDB.classList.remove('bg-accent', 'text-black', 'shadow-[0_0_15px_rgba(204,255,0,0.3)]');
+              }
+              if (cvLinks && pdbLinks) {
+                  cvLinks.classList.remove('hidden');
+                  cvLinks.classList.add('xl:flex');
+                  pdbLinks.classList.add('hidden');
+                  pdbLinks.classList.remove('flex');
+              }
+              window.scrollTo({ top: 0, behavior: 'instant' });
+          } else if (view === 'pdb') {
+              if (cvSection && pdbSection) {
+                  cvSection.classList.add('hidden', 'opacity-0', 'scale-95');
+                  cvSection.classList.remove('opacity-100', 'scale-100');
+                  
+                  pdbSection.classList.remove('hidden');
+                  setTimeout(() => {
+                      pdbSection.classList.remove('opacity-0', 'scale-95');
+                      pdbSection.classList.add('opacity-100', 'scale-100');
+                  }, 50);
+              }
+              if (btnCV && btnPDB) {
+                  btnPDB.classList.add('bg-accent', 'text-black', 'shadow-[0_0_15px_rgba(204,255,0,0.3)]');
+                  btnPDB.classList.remove('text-zinc-400', 'hover:text-white');
+                  btnCV.classList.add('text-zinc-400', 'hover:text-white');
+                  btnCV.classList.remove('bg-accent', 'text-black', 'shadow-[0_0_15px_rgba(204,255,0,0.3)]');
+              }
+              if (cvLinks && pdbLinks) {
+                  cvLinks.classList.add('hidden');
+                  cvLinks.classList.remove('xl:flex');
+                  pdbLinks.classList.remove('hidden');
+                  pdbLinks.classList.add('flex');
+              }
+              window.scrollTo({ top: 0, behavior: 'instant' });
+              // Initialize Chart if not already initialized
+              if (!myChart) {
+                  initPdbChart();
+                  updatePdbTable();
+              }
+          }
+          
+          // Re-trigger Lucide icon instantiation for newly visible tags
+          if (window.lucide) {
+              window.lucide.createIcons();
+          }
+      };
+
+      // Compile tagline for Custom Sandbox
+      window.compileTagline = function() {
+          const input = document.getElementById('sandbox-tagline');
+          const output = document.getElementById('sandbox-output');
+          if (input && output) {
+              const text = input.value.trim();
+              if (text) {
+                  output.textContent = currentLang === 'en' 
+                      ? `"${text}" added as central focal focus parameter. Identity compiled successfully.` 
+                      : `"${text}" toegevoegd als centrale focusparameter. Identiteit succesvol gecompileerd.`;
+                  output.classList.remove('hidden', 'text-red-500');
+                  output.classList.add('text-accent', 'animate-pulse-fast');
+                  setTimeout(() => {
+                      output.classList.remove('animate-pulse-fast');
+                  }, 1500);
+              } else {
+                  output.textContent = currentLang === 'en' 
+                      ? "Please enter some values to formulate identity vector." 
+                      : "Voer waarden in om de identiteitsvector te formuleren.";
+                  output.classList.remove('hidden', 'text-accent');
+                  output.classList.add('text-red-500');
+              }
+          }
+      };
 
       // Explicit language selection function for Intro Screen
       window.selectLanguage = function(lang) {
@@ -2168,11 +3089,118 @@
 
               card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
           });
-          
-          card.addEventListener('mouseleave', () => {
-              card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)';
-          });
       });
+
+      // Windesheim. (2026). Skills Guide. Data ingevuld door Hugo, Thijmen en Ritchie.
+      const skillsData = [
+          { nameEn: "Initiative", nameNl: "Initiatief", cat: "Persoonlijke vaardigheden", score: 75, isWeak: true, individual: { Ritchie: 100, Thijmen: 75, Hugo: 50 } },
+          { nameEn: "Emphatic Behavior", nameNl: "Empathisch gedrag", cat: "Persoonlijke vaardigheden", score: 75, isWeak: true, individual: { Ritchie: 75, Thijmen: 75, Hugo: 75 } },
+          { nameEn: "Adaptability", nameNl: "Aanpassingsvermogen", cat: "Persoonlijke vaardigheden", score: 67, isWeak: true, individual: { Ritchie: 75, Thijmen: 50, Hugo: 75 } },
+          { nameEn: "Resilience", nameNl: "Veerkracht", cat: "Persoonlijke vaardigheden", score: 75, isWeak: true, individual: { Ritchie: 75, Thijmen: 75, Hugo: 75 } },
+          { nameEn: "Perseverance", nameNl: "Doorzettingsvermogen", cat: "Persoonlijke vaardigheden", score: 83, isWeak: false, individual: { Ritchie: 100, Thijmen: 75, Hugo: 75 } },
+          { nameEn: "Curiosity", nameNl: "Nieuwsgierigheid", cat: "Cognitieve vaardigheden", score: 83, isWeak: false, individual: { Ritchie: 75, Thijmen: 75, Hugo: 100 } },
+          { nameEn: "Comm. Awareness", nameNl: "Commercieel bewustzijn", cat: "Cognitieve vaardigheden", score: 75, isWeak: true, individual: { Ritchie: 75, Thijmen: 75, Hugo: 75 } },
+          { nameEn: "Creativity", nameNl: "Creativiteit", cat: "Cognitieve vaardigheden", score: 58, isWeak: true, individual: { Ritchie: 75, Thijmen: 50, Hugo: 50 } },
+          { nameEn: "Critical Thinking", nameNl: "Kritisch denken", cat: "Cognitieve vaardigheden", score: 83, isWeak: false, individual: { Ritchie: 100, Thijmen: 75, Hugo: 75 } },
+          { nameEn: "Responsibility", nameNl: "Verantwoordelijkheid", cat: "Ethische vaardigheden", score: 92, isWeak: false, individual: { Ritchie: 100, Thijmen: 100, Hugo: 75 } },
+          { nameEn: "Moral Awareness", nameNl: "Moreel bewustzijn", cat: "Ethische vaardigheden", score: 75, isWeak: true, individual: { Ritchie: 75, Thijmen: 75, Hugo: 75 } },
+          { nameEn: "Judgment", nameNl: "Oordeelsvorming", cat: "Ethische vaardigheden", score: 83, isWeak: false, individual: { Ritchie: 75, Thijmen: 75, Hugo: 100 } },
+          { nameEn: "Handling Diff.", nameNl: "Omgaan met verschillen", cat: "Interpersoonlijke vaardigheden", score: 58, isWeak: true, individual: { Ritchie: 50, Thijmen: 50, Hugo: 75 } },
+          { nameEn: "Collaboration", nameNl: "Samenwerken", cat: "Interpersoonlijke vaardigheden", score: 83, isWeak: false, individual: { Ritchie: 75, Thijmen: 100, Hugo: 75 } },
+          { nameEn: "Communication", nameNl: "Communiceren", cat: "Interpersoonlijke vaardigheden", score: 67, isWeak: true, individual: { Ritchie: 25, Thijmen: 100, Hugo: 75 } },
+          { nameEn: "Leadership", nameNl: "Leiderschap", cat: "Interpersoonlijke vaardigheden", score: 58, isWeak: true, individual: { Ritchie: 50, Thijmen: 75, Hugo: 50 } }
+      ];                
+      let myChart;
+      function initPdbChart() {
+          const canvas = document.getElementById('skillsChart');
+          if (!canvas) return;
+          const ctx = canvas.getContext('2d');
+          
+          const labels = currentLang === 'en' ? skillsData.map(s => s.nameEn) : skillsData.map(s => s.nameNl);
+          
+          myChart = new Chart(ctx, {
+              type: 'radar',
+              data: {
+                  labels: labels,
+                  datasets: [{
+                      label: currentLang === 'en' ? 'Strong Points' : 'Sterke punten',
+                      data: skillsData.map(s => !s.isWeak ? s.score : null),
+                      backgroundColor: 'rgba(204, 255, 0, 0.2)',
+                      borderColor: '#ccff00',
+                      pointBackgroundColor: '#ccff00',
+                      spanGaps: true
+                  }, {
+                      label: currentLang === 'en' ? 'Improvement Points' : 'Verbeterpunten',
+                      data: skillsData.map(s => s.isWeak ? s.score : null),
+                      backgroundColor: 'rgba(244, 63, 94, 0.2)',
+                      borderColor: '#f43f5e',
+                      pointBackgroundColor: '#f43f5e',
+                      spanGaps: true
+                  }]
+              },
+              options: {
+                  responsive: true,
+                  maintainAspectRatio: false,
+                  scales: {
+                      r: {
+                          angleLines: { color: '#333' },
+                          grid: { color: '#333' },
+                          pointLabels: { color: '#aaa', font: { size: 12 } },
+                          ticks: { display: false, beginAtZero: true, min: 0, max: 100 }
+                      }
+                  },
+                  plugins: { 
+                      legend: { labels: { color: '#aaa' } },
+                      tooltip: {
+                          callbacks: {
+                              label: function(context) {
+                                  let label = context.dataset.label || '';
+                                  if (label) label += ': ';
+                                  const skill = skillsData[context.dataIndex];
+                                  if (context.parsed.r !== null) {
+                                       label += `${context.parsed.r}%\n`;
+                                       label += `Indiv: R:${skill.individual.Ritchie}%, T:${skill.individual.Thijmen}%, H:${skill.individual.Hugo}%`;
+                                  }
+                                  return label;
+                              }
+                          }
+                      }
+                  }
+              }
+          });
+      }
+      function updatePdbTable() {
+          const tbody = document.getElementById('skills-table-body');
+          if (!tbody) return;
+          tbody.innerHTML = '';
+          skillsData.forEach(skill => {
+              const row = document.createElement('tr');
+              row.className = 'border-b border-zinc-800';
+              const name = currentLang === 'en' ? skill.nameEn : skill.nameNl;
+              const barColor = skill.isWeak ? 'bg-rose-500' : 'bg-accent';
+              row.innerHTML = `
+                  <td class="py-1 text-[10px] text-zinc-500">${name}</td>
+                  <td class="py-1 text-right text-zinc-300 font-mono text-xs">${skill.individual.Ritchie}%</td>
+                  <td class="py-1 text-right text-zinc-300 font-mono text-xs">${skill.individual.Thijmen}%</td>
+                  <td class="py-1 text-right text-zinc-300 font-mono text-xs">${skill.individual.Hugo}%</td>
+                  <td class="py-1 text-right text-zinc-100 font-mono text-xs font-bold">${skill.score}%</td>
+                  <td class="py-1 text-right">
+                      <div class="h-1.5 bg-zinc-800 rounded-full w-16 ml-auto overflow-hidden">
+                          <div class="h-full ${barColor}" style="width: ${skill.score}%"></div>
+                      </div>
+                  </td>
+              `;
+              tbody.appendChild(row);
+          });
+      }
+      initPdbChart();
+      updatePdbTable();
     </script>
+<script type="module" src="/index.tsx"></script>
+    <div id="portfolio-section" class="hidden opacity-0 scale-95 transition-all duration-500">
+        <div class="max-w-[1400px] mx-auto pt-24 md:pt-32 px-4 md:px-8 relative z-10 animate-fade-in pb-24">
+            <h2 class="text-3xl font-display font-bold uppercase text-accent mb-6">Bewijsstukken & Portfolio</h2>
+        </div>
+    </div>
 </body>
 </html>

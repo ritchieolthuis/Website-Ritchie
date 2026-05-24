@@ -8,6 +8,9 @@
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -111,9 +114,33 @@
             
             <!-- Content -->
             <div class="space-y-16">
+                <div>
+                    <h3 class="text-2xl font-bold text-white mb-4" data-i18n="skills_viz_title">Skills Visualization</h3>
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                        <div class="bg-zinc-900/50 p-6 rounded-2xl border border-zinc-800">
+                           <canvas id="skillsChart"></canvas>
+                        </div>
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left text-zinc-300">
+                                <thead class="text-zinc-500 uppercase text-xs">
+                                    <tr>
+                                        <th class="pb-3" data-i18n="skills_table_skill">Skill</th>
+                                        <th class="pb-3 text-right" data-i18n="skills_table_score">Score (%)</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="skills-table-body" class="text-sm">
+                                    <!-- Rows added dynamically -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="h-px bg-zinc-800 w-full"></div>
+
                 <!-- Section 1: Digital Skills -->
                 <div>
-                    <h3 class="text-2xl font-bold text-accent mb-4 flex items-center gap-2" data-i18n="full_skills_digital_title">
+                    <h3 class="text-2xl font-bold text-white mb-4 flex items-center gap-2" data-i18n="full_skills_digital_title">
                         1. Digital Skills
                     </h3>
                     <p class="text-zinc-400 text-sm mb-6 max-w-2xl" data-i18n="full_skills_digital_desc">Essential tools and platforms for modern business analysis.</p>
@@ -212,9 +239,21 @@
         
         // --- Language Logic ---
         let currentLang = 'en';
+        const skillsData = [
+            { en: "Commercial Awareness", nl: "Commercieel Bewustzijn", score: 85 },
+            { en: "Creativity", nl: "Creativiteit", score: 90 },
+            { en: "Critical Thinking", nl: "Kritisch Denken", score: 80 },
+            { en: "Leadership", nl: "Leiderschap", score: 75 },
+            { en: "Collaboration", nl: "Samenwerken", score: 95 },
+            { en: "Communication", nl: "Communiceren", score: 88 }
+        ];
+
         const translations = {
             en: {
                 skills_modal_title: "Full Expertise",
+                skills_viz_title: "Skills Visualization",
+                skills_table_skill: "Skill",
+                skills_table_score: "Score (%)",
                 full_skills_digital_title: "1. Digital Skills",
                 full_skills_digital_desc: "Essential tools and platforms for modern business analysis.",
                 full_skills_business_title: "2. Investigative Expertise: Business Strategies",
@@ -225,6 +264,9 @@
             },
             nl: {
                 skills_modal_title: "Expertise",
+                skills_viz_title: "Vaardigheden Visualisatie",
+                skills_table_skill: "Vaardigheid",
+                skills_table_score: "Score (%)",
                 full_skills_digital_title: "1. Digitale Vaardigheden",
                 full_skills_digital_desc: "Essentiële tools en platforms voor moderne bedrijfsanalyse.",
                 full_skills_business_title: "2. Onderzoeksexpertise: Bedrijfsstrategieën",
@@ -234,6 +276,54 @@
                 full_skills_models_def: "Bij het uitvoeren van analyses, ontwerpen en adviezen worden diverse bewezen theorieën en modellen gebruikt om keuzes te onderbouwen en waarde te creëren."
             }
         };
+
+        let myChart;
+
+        function initChart() {
+            const ctx = document.getElementById('skillsChart').getContext('2d');
+            myChart = new Chart(ctx, {
+                type: 'radar',
+                data: {
+                    labels: skillsData.map(s => s[currentLang]),
+                    datasets: [{
+                        label: currentLang === 'en' ? 'Skill Score' : 'Vaardigheid Score',
+                        data: skillsData.map(s => s.score),
+                        backgroundColor: 'rgba(204, 255, 0, 0.2)',
+                        borderColor: '#ccff00',
+                        pointBackgroundColor: '#ccff00',
+                    }]
+                },
+                options: {
+                    scales: {
+                        r: {
+                            angleLines: { color: '#333' },
+                            grid: { color: '#333' },
+                            pointLabels: { color: '#aaa', font: { size: 12 } },
+                            ticks: { display: false, beginAtZero: true, max: 100 }
+                        }
+                    },
+                    plugins: { legend: { labels: { color: '#aaa' } } }
+                }
+            });
+        }
+
+        function updateTable() {
+            const tbody = document.getElementById('skills-table-body');
+            tbody.innerHTML = '';
+            skillsData.forEach(skill => {
+                const row = document.createElement('tr');
+                row.className = 'border-b border-zinc-800';
+                row.innerHTML = `
+                    <td class="py-3">${skill[currentLang]}</td>
+                    <td class="py-3 text-right">
+                        <div class="h-2 bg-zinc-800 rounded-full w-24 ml-auto overflow-hidden">
+                            <div class="h-full bg-accent" style="width: ${skill.score}%"></div>
+                        </div>
+                    </td>
+                `;
+                tbody.appendChild(row);
+            });
+        }
 
         window.toggleLanguage = () => {
             currentLang = currentLang === 'en' ? 'nl' : 'en';
@@ -247,7 +337,19 @@
                    el.innerHTML = translations[currentLang][key];
                 }
             });
+
+            // Update chart
+            myChart.data.labels = skillsData.map(s => s[currentLang]);
+            myChart.data.datasets[0].label = currentLang === 'en' ? 'Skill Score' : 'Vaardigheid Score';
+            myChart.update();
+            
+            // Update Table
+            updateTable();
         };
+
+        // Initialize
+        initChart();
+        updateTable();
     </script>
 </body>
 </html>
