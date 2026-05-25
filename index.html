@@ -3446,26 +3446,17 @@
                   labels: labels,
                   datasets: [
                       {
-                          label: currentLang === 'en' ? 'Strong Points' : 'Sterke Punten',
-                          data: skillsData.map(s => s.isWeak ? null : s.score),
+                          label: currentLang === 'en' ? 'Competence Score' : 'Competentie Score',
+                          data: skillsData.map(s => s.score),
                           backgroundColor: 'rgba(204, 255, 0, 0.1)',
                           borderColor: '#ccff00',
                           borderWidth: 2,
-                          pointBackgroundColor: '#ccff00',
-                          pointBorderColor: '#ccff00',
+                          pointBackgroundColor: skillsData.map(s => s.isWeak ? '#f43f5e' : '#ccff00'),
+                          pointBorderColor: skillsData.map(s => s.isWeak ? '#f43f5e' : '#ccff00'),
+                          pointRadius: 4,
+                          pointHoverRadius: 6,
                           pointHoverBackgroundColor: '#fff',
                           pointHoverBorderColor: '#ccff00'
-                      },
-                      {
-                          label: currentLang === 'en' ? 'Improvement Points' : 'Verbeterpunten',
-                          data: skillsData.map(s => s.isWeak ? s.score : null),
-                          backgroundColor: 'rgba(244, 63, 94, 0.1)',
-                          borderColor: '#f43f5e',
-                          borderWidth: 2,
-                          pointBackgroundColor: '#f43f5e',
-                          pointBorderColor: '#f43f5e',
-                          pointHoverBackgroundColor: '#fff',
-                          pointHoverBorderColor: '#f43f5e'
                       }
                   ]
               },
