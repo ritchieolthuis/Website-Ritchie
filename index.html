@@ -4606,6 +4606,103 @@
         // Set Branding Dossier as default view on page load
         document.addEventListener('DOMContentLoaded', () => {
             window.switchView('pdb');
+            
+            // --- Typewriter Effect for Paragraphs ---
+            // Create stylesheet for the typing animation and base transition
+            const style = document.createElement('style');
+            style.textContent = `
+                p {
+                    opacity: 0;
+                    transform: translateY(4px);
+                    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+                    position: relative;
+                }
+                p.typing-ready {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+                .typed-char {
+                    opacity: 0;
+                    animation: fadeInChar 0.05s forwards;
+                }
+                @keyframes fadeInChar {
+                    to { opacity: 1; }
+                }
+            `;
+            document.head.appendChild(style);
+
+            // Observe all paragraphs to trigger typewriter effect when visible
+            const observerOptions = {
+                root: null,
+                threshold: 0.15,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const typeParagraph = (p) => {
+                if (p.dataset.typed === "true") return;
+                p.dataset.typed = "true";
+                p.classList.add('typing-ready');
+                
+                const originalHTML = p.innerHTML;
+                
+                // If it contains tags (like strong, links, etc.) or is very long, do a beautiful fade-word-in effect
+                // otherwise do a classic character typewriter effect.
+                const originalText = p.textContent.trim();
+                if (originalText.length === 0) return;
+
+                // Let's do a smooth word-by-word fade typing effect that keeps HTML formatting intact
+                const nodes = Array.from(p.childNodes);
+                p.innerHTML = '';
+                
+                let globalDelay = 0;
+                
+                const processNode = (node, container) => {
+                    if (node.nodeType === Node.TEXT_NODE) {
+                        const words = node.textContent.split(/(\s+)/);
+                        words.forEach(word => {
+                            if (word.trim() === '') {
+                                container.appendChild(document.createTextNode(word));
+                            } else {
+                                const span = document.createElement('span');
+                                span.className = 'typed-char';
+                                span.textContent = word;
+                                span.style.animationDelay = `${globalDelay}ms`;
+                                globalDelay += 12; // ultra smooth fast type speed per word/syllable
+                                container.appendChild(span);
+                            }
+                        });
+                    } else {
+                        // Element node (like strong, span, a)
+                        const clone = node.cloneNode(false);
+                        container.appendChild(clone);
+                        Array.from(node.childNodes).forEach(child => {
+                            processNode(child, clone);
+                        });
+                    }
+                };
+
+                nodes.forEach(node => processNode(node, p));
+            };
+
+            const pObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        typeParagraph(entry.target);
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            // Target only actual readable narrative paragraphs, exclude structural components
+            document.querySelectorAll('p').forEach(p => {
+                // Ignore code/iframe/chart wrapper or tiny utility paragraphs
+                if (p.closest('.no-typewriter') || p.textContent.trim().length < 5) {
+                    p.style.opacity = '1';
+                    p.style.transform = 'none';
+                    return;
+                }
+                pObserver.observe(p);
+            });
         });
     </script>
 </body>
