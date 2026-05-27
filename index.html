@@ -305,7 +305,26 @@
             color: #000;
         }
 
-    </style>
+    .pdb-enhanced {
+  font-size: 1.125rem;
+  line-height: 1.8;
+  color: #e0e0e0;
+  background: rgba(20,20,20,0.85);
+  backdrop-filter: blur(6px);
+  padding: 1.5rem;
+  border-radius: 0.75rem;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in-up { animation: fadeInUp 0.6s forwards; }
+</style>
     
     <!-- Define functions globally in head to ensure availability -->
     <script>
@@ -2030,7 +2049,7 @@
                                 Mijn afstudeerperiode bij Axelio was hiervoor de ultieme test: toen wegens het drukke oogstseizoen de cold-calling mislukte en we geen Britse aardappelverwerkers te spreken kregen, raakte ik niet in paniek door mijn behoefte aan controle en structuur. In plaats daarvan paste ik mijn <strong>Aanpassingsvermogen</strong> en <strong>Initiatief</strong> toe door de vragenlijst om te bouwen tot een korte, online enquête en deze naar 700 suspect-adressen te sturen. Dit opende alsnog de deuren voor diepgaande interviews met grote spelers (Agrio-partners, ERP-consultants en Britse growers). 
                             </p>
                             <p>
-                                Ik heb echt gemerkt dat ook in het bedrijfsleven alles een iteratief proces is, net zoals Design Thinking. Je kunt nooit iets meteen 100% perfect maken; juist het in gesprek gaan met de klant en de feedback die je ophaalt zorgen ervoor dat een product of plan geperfectioneerd wordt. Mijn stage heeft me laten zien dat ik soms dingen gewoon moet doen en gaandeweg moet aanscherpen. De synthese van mijn Ikigai – waar passie voor commerciële strategie, analytische discipline en de marktbehoefte aan daadkracht samenkomen – vormt nu een logisch, samenhangend en overtuigend geheel waarin ik mijn 16 skills doelgericht kan inzetten.
+                                Ik heb echt gemerkt dat ook in het bedrijfsleven alles een iteratief proces is, net zoals Design Thinking. Je kunt nooit iets meteen 100% perfect maken; juist het in gesprek gaan met de klant en de feedback die je ophaalt zorgen ervoor dat een product of plan geperfectioneerd wordt. Mijn stage heeft me laten zien dat ik soms dingen gewoon moet doen en gaandeweg moet aanscherpen. De synthese van mijn Ikigai, waarin passie voor commerciële strategie, analytische discipline en de marktbehoefte aan daadkracht samenkomen, vormt nu een logisch, samenhangend en overtuigend geheel waarin ik mijn 16 skills doelgericht kan inzetten.
                             </p>
                             <button onclick="window.switchView('portfolio'); window.showSemesterPage('afstuderen');" class="px-3 py-1.5 bg-zinc-900 border border-zinc-800 hover:border-accent hover:text-accent rounded-lg text-xs font-bold transition-colors inline-flex items-center gap-1.5 cursor-pointer data-hover-trigger">
                                 <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i> Bekijk Afstudeerportfolio
@@ -2267,7 +2286,7 @@
                                 Olthuis, R. e.a. (2024). <span class="italic">Salesplan Unica Building Services</span> [PDF]. Ongepubliceerd, Windesheim.<br><a href="https://drive.google.com/file/d/1es7Vk1lV_21IisBqw2iKkiHNbB0h9W1P/view" target="_blank" class="text-accent hover:underline break-words">https://drive.google.com/file/d/1es7Vk1lV_21IisBqw2iKkiHNbB0h9W1P/view</a> <br><a href="#" onclick="window.switchView('portfolio'); window.showSemesterPage('jaar2'); setTimeout(() => document.getElementById('doc-salesplan').scrollIntoView({behavior: 'smooth', block: 'center'}), 300); return false;" class="text-accent hover:underline text-[11px] font-bold">↳ Bekijk in portfolio (Jaar 2)</a>
                             </li>
                             <li class="pl-4 -indent-4 mb-2">
-                                Olthuis, R. e.a. (2026). <span class="italic">Businesscase Perron038 & Factory NEXT Prototype</span> [Webapplicatie].<br><a href="https://businesscaseperron038.hugo-fransen03.workers.dev/" target="_blank" class="text-accent hover:underline break-words">https://businesscaseperron038.hugo-fransen03.workers.dev/</a> <br><a href="#" onclick="window.switchView('portfolio'); window.showSemesterPage('jaar4'); setTimeout(() => document.getElementById('doc-perroncase').scrollIntoView({behavior: 'smooth', block: 'center'}), 300); return false;" class="text-accent hover:underline text-[11px] font-bold">↳ Bekijk in portfolio (Jaar 4)</a>
+                                Olthuis, R. e.a. (2026). <span class="italic">Businesscase Perron038 & Factory NEXT Prototype</span> [Webapplicatie].<br><a href="https://businesscaseperron038.hugo-fransen03.workers.dev/" target="_blank" class="text-accent hover:underline break-words">https://businesscaseperron038.hugo-fransen03.workers.dev/</a> <br><a href="#" onclick="window.switchView('portfolio'); window.showSemesterPage('jaar4'); setTimeout(() => document.getElementById('iframe-perron-case').scrollIntoView({behavior: 'smooth', block: 'center'}), 300); return false;" class="text-accent hover:underline text-[11px] font-bold">↳ Bekijk in portfolio (Jaar 4)</a>
                             </li>
                             <li class="pl-4 -indent-4 mb-2">
                                 Olthuis, R. e.a. (2026). <span class="italic">Whitepaper Vitens Mindset</span> [PDF]. Ongepubliceerd.<br><a href="https://drive.google.com/file/d/1EHu5kPJSsH389BJXJSdSb07LpDOhY7Jt/view" target="_blank" class="text-accent hover:underline break-words">https://drive.google.com/file/d/1EHu5kPJSsH389BJXJSdSb07LpDOhY7Jt/view</a> <br><a href="#" onclick="window.switchView('portfolio'); window.showSemesterPage('jaar4'); setTimeout(() => document.getElementById('doc-vitens-mindset').scrollIntoView({behavior: 'smooth', block: 'center'}), 300); return false;" class="text-accent hover:underline text-[11px] font-bold">↳ Bekijk in portfolio (Jaar 4)</a>
@@ -2681,7 +2700,7 @@
             
             // ENGLISH PROJECTS
             proj_axel_title: "Axelio | Graduation: Agrio Entry-Strategy UK Market",
-            proj_axel_desc: `<div class="relative pl-6 border-l border-zinc-800/60 ml-2"><div class="mb-6 last:mb-0 relative"><div class="absolute -left-[33px] top-1 w-4 h-4 rounded-full bg-[#121212] border-2 border-accent"></div><h4 class="text-accent font-mono text-sm uppercase mb-2 font-bold">Challenge & Analysis</h4><p class="text-zinc-400 text-base md:text-[17px] leading-[1.8] font-light tracking-wide text-zinc-300">Conducted research into the UK market for Agrio. Analyzed the competitive landscape and identified key potential customers.</p></div><div class="mb-6 last:mb-0 relative"><div class="absolute -left-[33px] top-1 w-4 h-4 rounded-full bg-[#121212] border-2 border-accent"></div><h4 class="text-accent font-mono text-sm uppercase mb-2 font-bold">Expert Engagement</h4><p class="text-zinc-400 text-base md:text-[17px] leading-[1.8] font-light tracking-wide text-zinc-300">Spoke with experts in the UK market to validate assumptions and gather deep market insights crucial for a successful entry.</p></div><div class="mb-6 last:mb-0 relative"><div class="absolute -left-[33px] top-1 w-4 h-4 rounded-full bg-[#121212] border-2 border-accent"></div><h4 class="text-accent font-mono text-sm uppercase mb-2 font-bold">Advice & Result</h4><p class="text-zinc-400 text-base md:text-[17px] leading-[1.8] font-light tracking-wide text-zinc-300">Delivered a comprehensive market entry strategy plan for Agrio, with concrete steps and focus areas for the UK market.</p></div></div>`,
+            proj_axel_desc: `<div class="relative pl-6 border-l border-zinc-800/60 ml-2"><div class="mb-6 last:mb-0 relative"><div class="absolute -left-[33px] top-1 w-4 h-4 rounded-full bg-[#121212] border-2 border-accent"></div><h4 class="text-accent font-mono text-sm uppercase mb-2 font-bold">Challenge & Analysis</h4><p class="text-zinc-400 text-base md:text-[17px] leading-[1.8] font-light tracking-wide text-zinc-300">Conducting research into the UK market for Agrio. Analyzing the competitive landscape and mapping key potential customers.</p></div><div class="mb-6 last:mb-0 relative"><div class="absolute -left-[33px] top-1 w-4 h-4 rounded-full bg-[#121212] border-2 border-accent"></div><h4 class="text-accent font-mono text-sm uppercase mb-2 font-bold">Expert Engagement</h4><p class="text-zinc-400 text-base md:text-[17px] leading-[1.8] font-light tracking-wide text-zinc-300">Speaking with experts in the UK market to validate assumptions and gather deep market insights important for a successful entry.</p></div><div class="mb-6 last:mb-0 relative"><div class="absolute -left-[33px] top-1 w-4 h-4 rounded-full bg-[#121212] border-2 border-accent"></div><h4 class="text-accent font-mono text-sm uppercase mb-2 font-bold">Advice & Result</h4><p class="text-zinc-400 text-base md:text-[17px] leading-[1.8] font-light tracking-wide text-zinc-300">Currently drafting a comprehensive market entry strategy plan for Agrio, outlining concrete steps and focus areas for the UK market.</p></div></div>`,
             
             proj_1_title: "Vitens, Grootzakelijke markt: Market Needs, Positioning & Organisational Direction",
             proj_1_desc: `<div class="mb-5 p-3 bg-zinc-900/40 rounded-lg border border-zinc-800 text-zinc-300"><div class="flex items-center gap-2 mb-1.5 font-mono text-[10px] uppercase tracking-widest text-accent"><i data-lucide="bar-chart-2" class="w-3 h-3"></i> Quick Summary</div><p class="text-[11px] leading-relaxed">Bridging traditional utilities to commercial 'Water-as-a-Service'.</p></div><div class="relative pl-6 border-l border-zinc-800/60 ml-2"><div class="mb-6 last:mb-0 relative"><div class="absolute -left-[33px] top-1 w-4 h-4 rounded-full bg-[#121212] border-2 border-accent"></div><h4 class="text-accent font-mono text-sm uppercase mb-2 font-bold">Challenge & Analysis</h4><p class="text-zinc-400 text-base md:text-[17px] leading-[1.8] font-light tracking-wide text-zinc-300">Conducted in-depth market study to position new 'Water-as-a-Service' division. Analyzed competitors and customer needs to define the scope of the portfolio.</p></div><div class="mb-6 last:mb-0 relative"><div class="absolute -left-[33px] top-1 w-4 h-4 rounded-full bg-[#121212] border-2 border-accent"></div><h4 class="text-accent font-mono text-sm uppercase mb-2 font-bold">Strategic Insight</h4><p class="text-zinc-400 text-base md:text-[17px] leading-[1.8] font-light tracking-wide text-zinc-300">Identified opportunity to distinguish Vitens through circular water solutions and water stewardship, bridging current services to a commercial entity.</p></div><div class="mb-6 last:mb-0 relative"><div class="absolute -left-[33px] top-1 w-4 h-4 rounded-full bg-[#121212] border-2 border-accent"></div><h4 class="text-accent font-mono text-sm uppercase mb-2 font-bold">Advice & Outcome</h4><p class="text-zinc-400 text-base md:text-[17px] leading-[1.8] font-light tracking-wide text-zinc-300">Delivered strategic roadmap for naming, branding, and organizational form, creating a resilient and sustainable future for the large business segment.</p></div></div>`,
@@ -2846,7 +2865,7 @@
             
             // DUTCH PROJECT TRANSLATIONS
             proj_axel_title: "Axelio, Afstudeerstage: Agrio Entry-Strategy UK Markt",
-            proj_axel_desc: `<div class="relative pl-6 border-l border-zinc-800/60 ml-2"><div class="mb-6 last:mb-0 relative"><div class="absolute -left-[33px] top-1 w-4 h-4 rounded-full bg-[#121212] border-2 border-accent"></div><h4 class="text-accent font-mono text-sm uppercase mb-2 font-bold">Uitdaging & Analyse</h4><p class="text-zinc-400 text-base md:text-[17px] leading-[1.8] font-light tracking-wide text-zinc-300">Onderzoek gedaan naar de Britse markt voor Agrio. Het concurrentielandschap geanalyseerd en belangrijke potentiële klanten in kaart gebracht.</p></div><div class="mb-6 last:mb-0 relative"><div class="absolute -left-[33px] top-1 w-4 h-4 rounded-full bg-[#121212] border-2 border-accent"></div><h4 class="text-accent font-mono text-sm uppercase mb-2 font-bold">Expert Betrokkenheid</h4><p class="text-zinc-400 text-base md:text-[17px] leading-[1.8] font-light tracking-wide text-zinc-300">Gesproken met experts op de Britse markt om aannames te valideren en diepgaande marktinzichten te verzamelen die cruciaal zijn voor een succesvolle entree.</p></div><div class="mb-6 last:mb-0 relative"><div class="absolute -left-[33px] top-1 w-4 h-4 rounded-full bg-[#121212] border-2 border-accent"></div><h4 class="text-accent font-mono text-sm uppercase mb-2 font-bold">Advies & Resultaat</h4><p class="text-zinc-400 text-base md:text-[17px] leading-[1.8] font-light tracking-wide text-zinc-300">Een uitgebreid marktentree-strategieplan opgeleverd voor Agrio, met concrete stappen en focusgebieden voor de Britse markt.</p></div></div>`,
+            proj_axel_desc: `<div class="relative pl-6 border-l border-zinc-800/60 ml-2"><div class="mb-6 last:mb-0 relative"><div class="absolute -left-[33px] top-1 w-4 h-4 rounded-full bg-[#121212] border-2 border-accent"></div><h4 class="text-accent font-mono text-sm uppercase mb-2 font-bold">Uitdaging & Analyse</h4><p class="text-zinc-400 text-base md:text-[17px] leading-[1.8] font-light tracking-wide text-zinc-300">Onderzoek aan het doen naar de Britse markt voor Agrio. Het concurrentielandschap analyseren en belangrijke potentiële klanten in kaart brengen.</p></div><div class="mb-6 last:mb-0 relative"><div class="absolute -left-[33px] top-1 w-4 h-4 rounded-full bg-[#121212] border-2 border-accent"></div><h4 class="text-accent font-mono text-sm uppercase mb-2 font-bold">Expert Betrokkenheid</h4><p class="text-zinc-400 text-base md:text-[17px] leading-[1.8] font-light tracking-wide text-zinc-300">In gesprek met experts op de Britse markt om aannames te valideren en diepgaande marktinzichten te verzamelen die belangrijk zijn voor een succesvolle entree.</p></div><div class="mb-6 last:mb-0 relative"><div class="absolute -left-[33px] top-1 w-4 h-4 rounded-full bg-[#121212] border-2 border-accent"></div><h4 class="text-accent font-mono text-sm uppercase mb-2 font-bold">Advies & Resultaat</h4><p class="text-zinc-400 text-base md:text-[17px] leading-[1.8] font-light tracking-wide text-zinc-300">Bezig met het opstellen van een uitgebreid marktentree-strategieplan voor Agrio, met concrete stappen en focusgebieden voor de Britse markt.</p></div></div>`,
             
             proj_1_title: "Vitens, Grootzakelijke markt: Marktbehoeften, Positionering & Organisatorische Richting",
             proj_1_desc: `<div class="mb-5 p-3 bg-zinc-900/40 rounded-lg border border-zinc-800 text-zinc-300"><div class="flex items-center gap-2 mb-1.5 font-mono text-[10px] uppercase tracking-widest text-accent"><i data-lucide="bar-chart-2" class="w-3 h-3"></i> Snel Overzicht</div><p class="text-[11px] leading-relaxed">Transformatie van nutsbedrijf naar commerciële 'Water-as-a-Service'-entiteit.</p></div><div class="relative pl-6 border-l border-zinc-800/60 ml-2"><div class="mb-6 last:mb-0 relative"><div class="absolute -left-[33px] top-1 w-4 h-4 rounded-full bg-[#121212] border-2 border-accent"></div><h4 class="text-accent font-mono text-sm uppercase mb-2 font-bold">Uitdaging & Analyse</h4><p class="text-zinc-400 text-base md:text-[17px] leading-[1.8] font-light tracking-wide text-zinc-300">Uitgebreid marktonderzoek uitgevoerd om de nieuwe divisie 'Water-as-a-Service' te positioneren. Concurrenten en klantbehoeften geanalyseerd om de scope van het portfolio te bepalen.</p></div><div class="mb-6 last:mb-0 relative"><div class="absolute -left-[33px] top-1 w-4 h-4 rounded-full bg-[#121212] border-2 border-accent"></div><h4 class="text-accent font-mono text-sm uppercase mb-2 font-bold">Strategisch Inzicht</h4><p class="text-zinc-400 text-base md:text-[17px] leading-[1.8] font-light tracking-wide text-zinc-300">Kans geïdentificeerd om Vitens te onderscheiden door circulaire wateroplossingen en waterbeheer, waarbij huidige diensten worden overbrugd naar een commerciële entiteit.</p></div><div class="mb-6 last:mb-0 relative"><div class="absolute -left-[33px] top-1 w-4 h-4 rounded-full bg-[#121212] border-2 border-accent"></div><h4 class="text-accent font-mono text-sm uppercase mb-2 font-bold">Advies & Resultaat</h4><p class="text-zinc-400 text-base md:text-[17px] leading-[1.8] font-light tracking-wide text-zinc-300">Strategische roadmap opgeleverd voor naamgeving, branding en organisatievorm, wat zorgt voor een veerkrachtige en duurzame toekomst voor het grootzakelijke segment.</p></div></div>`,
@@ -3008,6 +3027,7 @@
           if (pdbSection) {
               pdbSection.classList.add('hidden', 'opacity-0', 'scale-95');
               pdbSection.classList.remove('opacity-100', 'scale-100');
+      pdbSection.classList.remove('pdb-enhanced', 'animate-fade-in-up');
           }
           if (portfolioSection) {
               portfolioSection.classList.add('hidden', 'opacity-0', 'scale-95');
@@ -3065,6 +3085,7 @@
                   setTimeout(() => {
                       pdbSection.classList.remove('opacity-0', 'scale-95');
                       pdbSection.classList.add('opacity-100', 'scale-100');
+        pdbSection.classList.add('pdb-enhanced', 'animate-fade-in-up');
                   }, 50);
               }
               if (btnPDB) {
@@ -4111,7 +4132,7 @@
                                 </p>
                                 <div class="pl-4 border-l-2 border-accent/50 py-1 my-4">
                                     <p class="text-zinc-400 italic">
-                                        "Mijn doel is om hierna door te stromen naar de master Business Administration. Deze richting sluit naadloos aan bij mijn interesses en biedt de strategische verdieping waar ik naar op zoek ben."
+                                        "Mijn doel is om hierna door te stromen naar de master Business Administration. Deze richting sluit erg goed aan bij mijn interesses en biedt de strategische verdieping waar ik naar op zoek ben."
                                     </p>
                                 </div>
                                 <p>
@@ -4194,18 +4215,36 @@
                     </div>
 
                     <div class="space-y-6">
-                        <p class="text-zinc-300 text-base md:text-[17px] leading-[1.8] font-light tracking-wide">
-                                         <!-- Project 1: Perron038 -->
+                        <!-- YPCP-trio Introductie -->
+                        <div class="p-6 rounded-2xl bg-zinc-900/50 border border-zinc-800 space-y-4">
+                            <h3 class="text-lg font-display font-semibold text-white flex items-center gap-2">
+                                <i data-lucide="users" class="w-5 h-5 text-accent"></i> Ons YPCP-trio: Ritchie, Hugo & Thijmen
+                            </h3>
+                            <p class="text-zinc-300 text-sm md:text-base leading-relaxed font-light">
+                                In het vierde jaar van de opleiding heb ik samen met Hugo Fransen en Thijmen Kelder als ons YPCP-trio twee omvangrijke projecten parallel uitgevoerd. Als hecht YPCP-trio hebben we onze krachten gebundeld om complexe, strategische vraagstukken op te lossen voor toonaangevende organisaties in de regio.
+                            </p>
+                            <p class="text-zinc-300 text-sm md:text-base leading-relaxed font-light">
+                                Tijdens deze samenwerking hebben we met ons drieën intensief onderzoek gedaan naar zowel de zakelijke marktpositionering van Vitens als het vergroten van de klantconversie voor Factory NEXT op Perron038. Als hecht YPCP-trio met Hugo Fransen en Thijmen Kelder hebben we een strategisch onderzoek uitgevoerd waarbij we de theorie direct in de praktijk hebben toegepast.
+                            </p>
+                        </div>
+
+                        <!-- Project 1: Perron038 -->
                         <div class="relative pl-8 border-l border-zinc-800/60 ml-2 my-8">
                             <div class="mb-8 last:mb-0 relative">
                                 <div class="absolute -left-[37px] top-1 w-4 h-4 rounded-full bg-[#121212] border-2 border-accent"></div>
-                                <h4 class="text-accent font-mono text-sm uppercase mb-2 font-bold">Project 1: Perron038 | Factory NEXT</h4>
+                                <h4 class="text-accent font-display text-lg mb-2 font-bold">Perron038 | Factory NEXT</h4>
                                 <div class="flex gap-2 mb-4">
                                     <a href="https://businesscaseperron038.hugo-fransen03.workers.dev/" target="_blank" class="px-3 py-1 bg-zinc-800 hover:bg-accent hover:text-black transition-colors rounded-full text-[10px] font-bold flex items-center gap-1 cursor-pointer data-hover-trigger"><i data-lucide="external-link" class="w-3 h-3"></i> Live Website</a>
                                     <a href="https://businesscaseperron038mindset.hugo-fransen03.workers.dev/" target="_blank" class="px-3 py-1 bg-zinc-800 hover:bg-accent hover:text-black transition-colors rounded-full text-[10px] font-bold flex items-center gap-1 cursor-pointer data-hover-trigger"><i data-lucide="external-link" class="w-3 h-3"></i> Mindset Website</a>
                                 </div>
                                 <p class="text-zinc-300 text-base md:text-[17px] leading-[1.8] font-light tracking-wide mb-4">
-                                    Bij Perron038 hebben we met ons trio onderzoek gedaan naar waarom de waarde van Factory NEXT nog niet altijd duidelijk overkwam bij de doelgroep. We hebben gekeken naar interne gesprekken, data, de marketing- en opvolgprocessen en wat er nodig was om meer gekwalificeerde leads en klantprojecten te krijgen. Perron038 dacht zelf dat dit een marketingprobleem was, maar wij lieten zien dat het een tracking- en feedbackknelpunt was. Onze uiteindelijke oplossing was om de marketing en opvolging te professionaliseren met Google Tag Manager voor live tracking, Google Analytics voor monitoring en inzicht, en een CRM-systeem voor centrale en gestructureerde leadopvolging. Zo kon Perron038 leads veel gerichter opvolgen.
+                                    Een slimme fabriek is méér dan alleen high-tech machines. Het is een optelsom van digitalisering en dataverzameling, efficiënte processen, intelligente verbindingen en communicatie, en de mens die het verschil maakt. Maar waar begin je als je jouw fabriek klaar wilt stomen voor de toekomst? Dat ontdek je in Factory NEXT op Perron038! Een plek waar je inspiratie opdoet, je kennis vergroot en nieuwe technologie daadwerkelijk kunt testen. Dat is Factory NEXT: een faciliteit met vijf verschillende labs waar jij met jouw organisatie gebruik van kan maken, of je nu aan de slag wilt met 3D metaalprinten, artificial intelligence, vision & optics, robotics & logistics of data driven manufacturing.
+                                </p>
+                                <p class="text-zinc-300 text-base md:text-[17px] leading-[1.8] font-light tracking-wide mb-4">
+                                    Hoewel de expertise en technologische hoogstandjes in de labs volledig aanwezig waren, kwamen klanten niet naar de fysieke locatie. Uit onze analyses bleek een duidelijke bottleneck: van de 79 in kaart gebrachte suspect-bedrijven namen er uiteindelijk slechts 16 deel. Dit leverde een conversie op van slechts 20%, en dat terwijl het om een volledig gratis innovatieprogramma ging! 
+                                </p>
+                                <p class="text-zinc-300 text-base md:text-[17px] leading-[1.8] font-light tracking-wide mb-4">
+                                    Perron038 dacht zelf dat dit een marketingprobleem was, maar wij lieten zien dat het een tracking- en feedbackknelpunt was. Onze uiteindelijke oplossing was om de marketing en leadopvolging te professionaliseren door Google Tag Manager voor live tracking op de website, Google Analytics 4 voor monitoring en inzicht, en een CRM-systeem voor centrale en gestructureerde leadopvolging te combineren. Hierdoor kon Perron038 leads veel gerichter en datagedreven opvolgen.
                                 </p>
                             </div>
 
@@ -4223,14 +4262,14 @@
                                 <h5 class="text-xs font-mono text-white uppercase mb-2">Interactieve Previews (Live Apps)</h5>
                                 
                                 <div class="flex flex-wrap gap-2 mb-4">
-                                    <button onclick="window.togglePerronPreview('case')" id="btn-preview-case" class="px-4 py-2 bg-accent text-black shadow-[0_0_15px_rgba(204,255,0,0.3)] rounded-full text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer data-hover-trigger">
-                                        <i data-lucide="eye" class="w-3.5 h-3.5"></i> Bekijk Businesscase
+                                    <button onclick="window.togglePerronPreview('prototype')" id="btn-preview-prototype" class="px-4 py-2 bg-accent text-black shadow-[0_0_15px_rgba(204,255,0,0.3)] rounded-full text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer data-hover-trigger">
+                                        <i data-lucide="mouse-pointer-click" class="w-3.5 h-3.5"></i> Bekijk Prototype
+                                    </button>
+                                    <button onclick="window.togglePerronPreview('case')" id="btn-preview-case" class="px-4 py-2 bg-zinc-800 hover:bg-zinc-700 text-white rounded-full text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer data-hover-trigger">
+                                        <i data-lucide="eye" class="w-3.5 h-3.5"></i> Bekijk Identiteit
                                     </button>
                                     <button onclick="window.togglePerronPreview('mindset')" id="btn-preview-mindset" class="px-4 py-2 bg-zinc-800 hover:bg-zinc-700 text-white rounded-full text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer data-hover-trigger">
                                         <i data-lucide="eye" class="w-3.5 h-3.5"></i> Bekijk Mindset
-                                    </button>
-                                    <button onclick="window.togglePerronPreview('prototype')" id="btn-preview-prototype" class="px-4 py-2 bg-zinc-800 hover:bg-zinc-700 text-white rounded-full text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer data-hover-trigger">
-                                        <i data-lucide="mouse-pointer-click" class="w-3.5 h-3.5"></i> Bekijk Prototype
                                     </button>
                                     <button onclick="window.togglePerronPreview('none')" id="btn-preview-none" class="px-4 py-2 bg-zinc-900 border border-zinc-800 hover:bg-zinc-800 text-zinc-400 hover:text-white rounded-full text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer data-hover-trigger">
                                         <i data-lucide="eye-off" class="w-3.5 h-3.5"></i> Verberg Preview
@@ -4252,26 +4291,28 @@
                                             <span class="w-2.5 h-2.5 bg-green-500/80 rounded-full"></span>
                                         </div>
                                         <div class="mx-auto bg-black/40 border border-zinc-800 px-3 py-1 rounded text-[10px] text-zinc-500 font-mono w-[60%] text-center truncate" id="iframe-url-display">
-                                            https://businesscaseperron038.hugo-fransen03.workers.dev/
+                                            prototype-demo.html (Form Tracking Demo)
                                         </div>
                                     </div>
                                     
-                                    <!-- Frame 1 -->
-                                    <iframe id="doc-perroncase" src="https://businesscaseperron038.hugo-fransen03.workers.dev/" class="w-full h-[560px] border-0 bg-transparent relative z-10" onload="this.style.backgroundColor='white'"></iframe>
-                                    <!-- Frame 2 -->
+                                    <!-- Frame 1: Identiteit -->
+                                    <iframe id="iframe-perron-case" src="" class="hidden w-full h-[560px] border-0 bg-transparent relative z-10" onload="this.style.backgroundColor='white'"></iframe>
+                                    <!-- Frame 2: Mindset -->
                                     <iframe id="iframe-perron-mindset" src="" class="hidden w-full h-[560px] border-0 bg-transparent relative z-10" onload="this.style.backgroundColor='white'"></iframe>
-                                    <!-- Frame 3 (Prototype) -->
-                                    <iframe id="iframe-perron-prototype" src="" class="hidden w-full h-[560px] border-0 bg-transparent relative z-10" onload="this.style.backgroundColor='white'"></iframe>
+                                    <!-- Frame 3: Prototype (standaard actief) -->
+                                    <iframe id="iframe-perron-prototype" src="prototype-demo.html" class="w-full h-[560px] border-0 bg-transparent relative z-10"></iframe>
                                 </div>
-                                <p class="text-[10px] text-zinc-500 mt-2 font-mono italic"><a href="#" onclick="window.switchView('pdb'); setTimeout(() => document.getElementById('pdb-bronnen').scrollIntoView({behavior: 'smooth', block: 'center'}), 300); return false;" class="hover:text-accent transition-colors underline decoration-zinc-700 underline-offset-2" title="Bekijk in bronnenlijst">Bron: Olthuis, R. e.a. (2026). Businesscase Perron038 & Factory NEXT Prototype [Webapplicatie].</a></p>
+                                <p class="text-[10px] text-zinc-500 mt-2 font-mono italic"><a href="#" onclick="window.switchView('pdb'); setTimeout(() => document.getElementById('iframe-perron-case').scrollIntoView({behavior: 'smooth', block: 'center'}), 300); return false;" class="hover:text-accent transition-colors underline decoration-zinc-700 underline-offset-2" title="Bekijk in bronnenlijst">Bron: Olthuis, R. e.a. (2026). Businesscase Perron038 & Factory NEXT Prototype [Webapplicatie].</a></p>
                             </div>
                         </div>
 
+                        <!-- Project 2: Vitens -->
+                        <div class="relative pl-8 border-l border-zinc-800/60 ml-2 my-8">
                             <div class="mb-8 last:mb-0 relative mt-8 pt-8 border-t border-zinc-800">
                                 <div class="absolute -left-[37px] top-9 w-4 h-4 rounded-full bg-[#121212] border-2 border-accent"></div>
-                                <h4 class="text-accent font-mono text-sm uppercase mb-2 font-bold">Project 2: Vitens | Water as a Service</h4>
+                                <h4 class="text-accent font-display text-lg mb-2 font-bold">Vitens | Water as a Service</h4>
                                 <p class="text-zinc-300 text-base md:text-[17px] leading-[1.8] font-light tracking-wide mb-4">
-                                    Als onderdeel van ons YPCP-trio met Hugo Fransen en Thijmen Kelder hebben we een strategisch onderzoek uitgevoerd voor Vitens naar de zakelijke markt. Dit project liep van september tot januari. We hielden voorbereidingssessies met de accountmanagers Sandra Beld en Wilco van Veen, en hebben vervolgens diepgaande interviews uitgevoerd met hun zakelijke klanten. Ons eindrapport en advies is geëvalueerd met Business Development Manager Martijn Olde Weghuis en teammanager Nienke Peek. Zij beoordeelden ons onderzoek als uitstekend en gaven aan dat het ze mooie nieuwe inzichten bracht die ze zelf nog niet hadden.
+                                    Voor drinkwaterbedrijf Vitens hebben we een grootschalig strategisch marktonderzoek uitgevoerd naar de zakelijke markt (Water as a Service). Dit intensieve project liep van september tot januari. Ter voorbereiding organiseerden we werksessies met de zakelijke accountmanagers Sandra Beld en Wilco van Veen om hun klantrelaties in kaart te brengen, waarna we diepgaande interviews hebben afgenomen met diverse grote zakelijke klanten. Het uiteindelijke eindrapport en ons strategisch advies hebben we gepresenteerd aan en geëvalueerd met Business Development Manager Martijn Olde Weghuis en teammanager Nienke Peek. Zij reageerden uiterst enthousiast. Of Vitens hierna concreet stappen heeft ondernomen met onze adviezen is voor ons niet bekend, aangezien we direct na de afronding van dit YPCP-project zijn gestart met ons afzonderlijke afstudeertraject en deze periode daarmee direct hebben afgesloten. De opzet en aanbevelingen zijn volledig overgedragen en het is aan hen om hierop te handelen. Wel onderstreepte Martijn Olde Weghuis ons resultaat met de mooie feedback: <em>"Jullie hebben er samen een mooi onderzoek van gemaakt en zijn uiteindelijk met een goed advies gekomen. Ook mooie nieuwe inzichten gekregen die wij zelf nog niet hadden."</em>
                                 </p>
                             </div>
 
@@ -4338,8 +4379,8 @@
                                     Om te anticiperen op deze situatie, heb ik mijn strategie radicaal aangepast. Ik heb de kernvragen omgebouwd tot een toegankelijke online enquête en vervolgens bijna 700 gerichte e-mails uitgestuurd naar suspect-adressen. Deze proactieve aanpak wierp zijn vruchten af: door de gerichte e-mails kreeg ik alsnog volop reacties en input op mijn vragenlijst. Nog belangrijker was dat dit de deuren opende voor verdieping; hierdoor heb ik alsnog een reeks waardevolle diepte-interviews met experts kunnen afnemen.
                                 </p>
                                 <p class="text-zinc-300 text-base md:text-[17px] leading-[1.8] font-light tracking-wide mb-4">
-                                    Voor het uiteindelijke Go-To-Market entreeadvies heb ik systematisch <strong>diverse, contrasterende perspectieven benut en geïntegreerd</strong>. Ik combineerde de functionele inzichten van ervaren Microsoft Dynamics-partners en Agrio ERP-consultants met de rauwe, operationele pijnpunten van Britse aardappeltelers (growers) en grootschalige verwerkers. Door deze marktperspectieven samen te smelten met theoretische markttrajectmodellen, heb ik een uiterst betrouwbaar en gefaseerd marktentreeadvies opgeleverd dat direct door de directie van Axelio is overgenomen voor uitvoering in het Verenigd Koninkrijk.
-                                </p>
+                                     Voor het uiteindelijke Go-To-Market entreeadvies combineer ik systematisch <strong>diverse, contrasterende perspectieven</strong>. Ik integreer de functionele inzichten van ervaren Microsoft Dynamics-partners en Agrio ERP-consultants met de operationele pijnpunten van Britse aardappeltelers (growers) en grootschalige verwerkers. Hoewel ik momenteel nog in de afrondende fase van mijn afstuderen zit, is de intentie van de directie van Axelio om met dit go-to-market entreeadvies (een strategisch marketing-introductieplan) na oplevering daadwerkelijk de markttoetreding in het Verenigd Koninkrijk in gang te gaan zetten.
+                                 </p>
                             </div>
                         </div>
 
@@ -4379,7 +4420,7 @@
                         <div class="p-6 md:p-8 rounded-3xl bg-gradient-to-br from-[#1a1a1a] to-[#0a0a0a] border border-accent/30 shadow-[0_0_30px_rgba(204,255,0,0.05)] my-8 space-y-4">
                             <h4 class="text-lg font-bold text-white uppercase font-display tracking-wide">Volledig Markttoetredingsadvies</h4>
                             <p class="text-zinc-300 text-sm leading-relaxed">
-                                Op basis van de analyse werd uiteindelijk een volledig markttoetredingsadvies ontwikkeld voor Axelio. Hierbij werd geadviseerd om:
+                                Op basis van de lopende analyses ontwikkel ik een gefaseerd marktentreeadvies (marketing-introductieplan) voor Axelio. Hierin wordt geadviseerd om:
                             </p>
                             <ul class="space-y-2 text-zinc-400 text-sm pl-4">
                                 <li class="flex items-start gap-2"><span class="text-accent">✓</span> De UK-markt gefaseerd te betreden</li>
@@ -4874,9 +4915,9 @@
                 iframeMindset.classList.add('hidden');
                 iframePrototype.classList.remove('hidden');
                 if (!iframePrototype.getAttribute('src') || iframePrototype.getAttribute('src') === "") {
-                    iframePrototype.src = "https://businesscaseperron038.hugo-fransen03.workers.dev/";
+                    iframePrototype.src = "prototype-demo.html";
                 }
-                urlDisplay.textContent = "https://businesscaseperron038.hugo-fransen03.workers.dev/ (Prototype)";
+                urlDisplay.textContent = "prototype-demo.html (Form Tracking Demo)";
             }
         };
 
